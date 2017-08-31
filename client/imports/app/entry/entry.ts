@@ -20,4 +20,6 @@ export class EntryComponent implements OnInit {
     ngOnInit() {
 
     }
+
+    rsvp
 }
