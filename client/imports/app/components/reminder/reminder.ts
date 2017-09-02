@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import template from "./reminder.html";
-import style from "./reminder.scss";
+import style from "../../style/themes/default/reminder.scss";
 
 @Component({
     selector: "reminder",
@@ -9,6 +9,7 @@ import style from "./reminder.scss";
 })
 
 export class ReminderComponent implements OnInit {
+    @Input() currentComponent;
 
     constructor() {
 

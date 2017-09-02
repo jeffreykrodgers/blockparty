@@ -2,6 +2,7 @@
 interface Wedding {
     _id?: string;
     date: any;
+    theme: any;
     spouses: Spouse[];
     venues: Venue[];
     meals: Meal[];

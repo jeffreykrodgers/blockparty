@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import template from "./meal.html";
-import style from "./meal.scss";
+import style from "../../style/themes/default/meal.scss";
 
 @Component({
     selector: "meal",
@@ -9,6 +9,7 @@ import style from "./meal.scss";
 })
 
 export class MealComponent implements OnInit {
+    @Input() currentComponent;
 
     constructor() {
 

@@ -1,0 +1,10 @@
+<div>
+    <search *ngIf="currentComponent === 'search'"
+            [currentComponent]="currentComponent"></search>
+    <guest *ngIf="currentComponent === 'guest'"
+           [currentComponent]="currentComponent"></guest>
+    <meal *ngIf="currentComponent === 'meal'"
+          [currentComponent]="currentComponent"></meal>
+    <reminder *ngIf="currentComponent === 'reminder'"
+          [currentComponent]="currentComponent"></reminder>
+</div>

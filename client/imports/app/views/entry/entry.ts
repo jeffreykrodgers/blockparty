@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import template from "./entry.html";
-import style from "./entry.scss";
+import style from "../../style/themes/default/entry.scss";
 
 @Component({
     selector: "entry",
@@ -19,7 +19,5 @@ export class EntryComponent implements OnInit {
 
     ngOnInit() {
 
-    }
-
-    rsvp
+    };
 }

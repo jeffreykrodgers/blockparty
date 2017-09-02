@@ -1,6 +1,9 @@
 .app {
-  background: lightgrey;
   padding: 20px;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {

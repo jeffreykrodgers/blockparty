@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import template from "./photos.html";
-import style from "./photos.scss";
+import style from "../../style/themes/default/photos.scss";
 
 @Component({
     selector: "photos",
