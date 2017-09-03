@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 
 import { GuestService } from "../../services/guest.service";
 
@@ -13,7 +13,7 @@ import style from "../../style/themes/default/search.scss";
 })
 
 export class SearchComponent implements OnInit {
-    @Input() currentComponent;
+    @Output() currentComponent: EventEmitter<string> = new EventEmitter();
     guestName: string;
     findGuest: any;
 
@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
         this.findGuest = () => {
             if (this.guestName) {
                 this.guestService.setGuestData({guestName: this.guestName});
-                this.currentComponent = 'guest';
+                this.currentComponent.emit('guest');
             }
         }
 
@@ -32,3 +32,15 @@ export class SearchComponent implements OnInit {
 
     }
 }
+
+// @Component({
+//     selector: 'child-comp',
+// (...)
+// })
+// export class ChildComponent {
+//     @Output()
+//     uploaded:EventEmitter<string> = new EventEmitter();
+//
+//     uploadComplete() {
+//         this.uploaded.emit('complete');
+//     }

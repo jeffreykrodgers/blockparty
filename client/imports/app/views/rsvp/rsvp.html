@@ -1,6 +1,6 @@
 <div>
     <search *ngIf="currentComponent === 'search'"
-            [currentComponent]="currentComponent"></search>
+            [currentComponent]="setCurrentComponent($event)"></search>
     <guest *ngIf="currentComponent === 'guest'"
            [currentComponent]="currentComponent"></guest>
     <meal *ngIf="currentComponent === 'meal'"

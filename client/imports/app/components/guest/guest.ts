@@ -12,7 +12,7 @@ import {GuestService} from "../../services/guest.service";
 
 export class GuestComponent implements OnInit {
     @Input() currentComponent;
-    guestData: object;
+    guestData: any;
 
     constructor(private guestService: GuestService) {
         this.guestData = guestService.currentGuestData();
