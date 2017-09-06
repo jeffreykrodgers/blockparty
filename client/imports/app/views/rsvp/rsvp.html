@@ -1,10 +1,18 @@
-<div>
-    <search *ngIf="currentComponent === 'search'"
-            [currentComponent]="setCurrentComponent($event)"></search>
-    <guest *ngIf="currentComponent === 'guest'"
-           [currentComponent]="currentComponent"></guest>
-    <meal *ngIf="currentComponent === 'meal'"
-          [currentComponent]="currentComponent"></meal>
-    <reminder *ngIf="currentComponent === 'reminder'"
-          [currentComponent]="currentComponent"></reminder>
-</div>
+<section class="rsvp-top"><h1>Content Top</h1><h3>{{currentSetGuest}}</h3></section>
+<section class="rsvp-content">
+    <search     [hidden]="!(currentSetComponent === 'search')"
+                (currentComponent)="setCurrentComponent($event)"></search>
+
+    <guest      [hidden]="!(currentSetComponent === 'guest')"
+                (currentComponent)="setCurrentComponent($event)"></guest>
+
+    <meal       [hidden]="!(currentSetComponent === 'meal')"
+                (currentComponent)="setCurrentComponent($event)"></meal>
+
+    <reminder   [hidden]="!(currentSetComponent === 'reminder')"
+                (currentComponent)="setCurrentComponent($event)"></reminder>
+</section>
+<section class="rsvp-bottom">
+    <button class="ui icon button" [routerLink]="['/']"><i class="chevron left icon"></i> Back</button>
+</section>
+

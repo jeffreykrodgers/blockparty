@@ -1,17 +1,17 @@
 import { Component, OnInit, Input } from "@angular/core";
-import template from "./reminder.html";
-import style from "../../style/themes/default/reminder.scss";
+import template from "./bottom.html";
+import style from "../../style/themes/default/bottom.scss";
 
 @Component({
-    selector: "reminder",
+    selector: "bottom",
     host: {
-      class: "reminder",
+        class: "bottom",
     },
     template,
     styles: [ style ]
 })
 
-export class ReminderComponent implements OnInit {
+export class BottomComponent implements OnInit {
     @Input() currentComponent;
 
     constructor() {

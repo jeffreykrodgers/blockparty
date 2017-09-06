@@ -4,6 +4,9 @@ import style from "../../style/themes/default/meal.scss";
 
 @Component({
     selector: "meal",
+    host: {
+        class: "reminder",
+    },
     template,
     styles: [ style ]
 })

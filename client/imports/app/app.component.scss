@@ -1,9 +1,26 @@
 .app {
-  padding: 20px;
   display: flex;
+  flex-direction: column;
   height: 100vh;
-  justify-content: center;
-  align-items: center;
+
+  .top {
+    max-height: 40px;
+    flex: 1;
+  }
+
+  .content {
+    flex: auto;
+    display: flex;
+
+    .entry {
+      width: 100%;
+    }
+  }
+
+  .bottom {
+    max-height: 40px;
+    flex: 1;
+  }
 }
 
 h1 {

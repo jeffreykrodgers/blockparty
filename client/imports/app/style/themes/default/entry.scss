@@ -1,3 +1,18 @@
-.entry {
-  text-align: center;
+:host {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .entry-top {
+
+  }
+
+  .entry-content {
+    text-align: center;
+  }
+
+  .entry-bottom {
+
+  }
 }

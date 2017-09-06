@@ -4,6 +4,9 @@ import style from "../../style/themes/default/entry.scss";
 
 @Component({
     selector: "entry",
+    host: {
+      class: 'entry',
+    },
     template,
     styles: [ style ]
 })

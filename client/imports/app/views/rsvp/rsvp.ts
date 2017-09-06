@@ -1,41 +1,36 @@
 import { Component, OnInit } from "@angular/core";
+import { Subscription } from 'rxjs/Subscription';
+
+import { GuestService } from "../../services/guest.service";
+
 import template from "./rsvp.html";
 import style from "../../style/themes/default/rsvp.scss";
-import {SearchComponent} from "../../components/search/search";
 
 @Component({
     selector: "rsvp",
+    host: {
+      class: "rsvp",
+    },
     template,
     styles: [ style ],
 })
 
 export class RsvpComponent implements OnInit {
+    guestSubscription: Subscription;
     rsvp: any;
-    currentComponent: any;
+    currentSetComponent: any;
+    currentSetGuest: any;
 
-    constructor() {
-
+    constructor(private guestService: GuestService) {
+        this.currentSetGuest = this.guestService.getGuestData().subscribe();
+        console.log(this.currentSetGuest);
     }
 
     ngOnInit() {
-        this.currentComponent = 'search';
+        this.currentSetComponent = 'search';
     };
 
     setCurrentComponent(component) {
-        this.currentComponent = component;
+        this.currentSetComponent = component;
     }
 }
-
-
-// @Component({
-//     template `
-//     <child-comp (uploaded)="someMethod($event)"></child-comp>
-//   `,
-//     directives: [ ChildComponent ]
-// })
-// export class ParentComponent {
-// (...)
-//
-//     someMethod(event) {
-//     }
-// }

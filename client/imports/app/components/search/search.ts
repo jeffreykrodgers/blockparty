@@ -1,15 +1,17 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-
-import { GuestService } from "../../services/guest.service";
+import { Subscription } from 'rxjs/Subscription';
 
 import template from "./search.html";
 import style from "../../style/themes/default/search.scss";
+import {GuestService} from "../../services/guest.service";
 
 @Component({
     selector: "search",
+    host: {
+      class: "search"
+    },
     template,
     styles: [ style ],
-    providers: [GuestService]
 })
 
 export class SearchComponent implements OnInit {
@@ -17,7 +19,7 @@ export class SearchComponent implements OnInit {
     guestName: string;
     findGuest: any;
 
-    constructor(private guestService:GuestService) {
+    constructor(private guestService: GuestService) {
 
         this.findGuest = () => {
             if (this.guestName) {
@@ -32,15 +34,3 @@ export class SearchComponent implements OnInit {
 
     }
 }
-
-// @Component({
-//     selector: 'child-comp',
-// (...)
-// })
-// export class ChildComponent {
-//     @Output()
-//     uploaded:EventEmitter<string> = new EventEmitter();
-//
-//     uploadComplete() {
-//         this.uploaded.emit('complete');
-//     }

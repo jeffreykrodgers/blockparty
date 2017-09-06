@@ -4,6 +4,9 @@ import style from "../../style/themes/default/photos.scss";
 
 @Component({
     selector: "photos",
+    host: {
+        class: "reminder",
+    },
     template,
     styles: [ style ]
 })

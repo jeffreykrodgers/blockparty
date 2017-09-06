@@ -4,9 +4,9 @@ interface Wedding {
     date: any;
     theme: any;
     spouses: Spouse[];
-    venues: Venue[];
-    meals: Meal[];
-    announcements: Announcement[];
+    venues?: Venue[];
+    meals?: Meal[];
+    announcements?: Announcement[];
     guests: Guest[];
 }
 
@@ -14,6 +14,7 @@ interface Spouse {
     _id?: string;
     first_name: String;
     last_name: String;
+    title: String;
     email: String;
     password: String;
     services: any;
@@ -44,19 +45,21 @@ interface Announcement {
 interface Guest {
     _id?: string;
     guest_name: string;
-    meal: string;
-    reminder: Reminder;
-    additions: Additions;
+    group: boolean;
+    group_name?: string;
+    meal?: string;
+    reminder?: Reminder;
+    additions?: Additions;
 }
 
 interface Reminder {
     date: any;
-    test: string;
+    test?: string;
 }
 
 interface Additions {
     count: number;
-    details: Details;
+    details?: Details[];
 }
 
 interface Details {
