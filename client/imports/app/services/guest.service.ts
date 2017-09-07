@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
-// import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class GuestService {
-    private guestData = new Subject<any>();
+    private guestDataObservable = new Subject<any>();
+    guestData: any;
 
     constructor() {
 
     }
 
-    getGuestData() {
-        return this.guestData.asObservable();
+    getGuestData(): Observable<any> {
+        return this.guestDataObservable.asObservable();
     }
 
     setGuestData(guestData: any) {
-        this.guestData.next(guestData);
+        this.guestDataObservable.next(guestData);
     }
 }

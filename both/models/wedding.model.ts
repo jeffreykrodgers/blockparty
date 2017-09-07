@@ -45,8 +45,7 @@ interface Announcement {
 interface Guest {
     _id?: string;
     guest_name: string;
-    group: boolean;
-    group_name?: string;
+    invitation_num: number;
     meal?: string;
     reminder?: Reminder;
     additions?: Additions;

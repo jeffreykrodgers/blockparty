@@ -1,7 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Subscription } from 'rxjs/Subscription';
-
-import { GuestService } from "../../services/guest.service";
 
 import template from "./rsvp.html";
 import style from "../../style/themes/default/rsvp.scss";
@@ -16,15 +13,13 @@ import style from "../../style/themes/default/rsvp.scss";
 })
 
 export class RsvpComponent implements OnInit {
-    guestSubscription: Subscription;
     rsvp: any;
-    currentSetComponent: any;
-    currentSetGuest: any;
+    currentSetComponent: string;
+    currentGuest: string;
 
-    constructor(private guestService: GuestService) {
-        this.currentSetGuest = this.guestService.getGuestData().subscribe();
-        console.log(this.currentSetGuest);
-    }
+    constructor() {
+
+    };
 
     ngOnInit() {
         this.currentSetComponent = 'search';
@@ -32,5 +27,9 @@ export class RsvpComponent implements OnInit {
 
     setCurrentComponent(component) {
         this.currentSetComponent = component;
+    };
+
+    setGuestName(name) {
+        this.currentGuest = name;
     }
 }

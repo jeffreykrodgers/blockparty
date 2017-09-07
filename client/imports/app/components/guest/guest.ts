@@ -12,11 +12,14 @@ import {GuestService} from "../../services/guest.service";
 
 export class GuestComponent implements OnInit {
     @Input() currentComponent;
+    guestData: any;
 
     constructor(private guestService: GuestService) {
+
     }
 
     ngOnInit() {
-
+        this.guestData = this.guestService.getGuestData();
+        console.log(this.guestData);
     }
 }

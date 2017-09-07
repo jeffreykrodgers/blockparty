@@ -1,7 +1,8 @@
-<section class="rsvp-top"><h1>Content Top</h1><h3>{{currentSetGuest}}</h3></section>
+<section class="rsvp-top"><h1>RSVP</h1><h3>{{currentGuest}}</h3></section>
 <section class="rsvp-content">
     <search     [hidden]="!(currentSetComponent === 'search')"
-                (currentComponent)="setCurrentComponent($event)"></search>
+                (currentComponent)="setCurrentComponent($event)"
+                (currentGuestName)="setGuestName($event)"></search>
 
     <guest      [hidden]="!(currentSetComponent === 'guest')"
                 (currentComponent)="setCurrentComponent($event)"></guest>

@@ -16,18 +16,21 @@ import {GuestService} from "../../services/guest.service";
 
 export class SearchComponent implements OnInit {
     @Output() currentComponent: EventEmitter<string> = new EventEmitter();
+    @Output() currentGuestName: EventEmitter<string> = new EventEmitter();
+    invitationNumber: number;
     guestName: string;
     findGuest: any;
 
     constructor(private guestService: GuestService) {
 
         this.findGuest = () => {
-            if (this.guestName) {
+            if (this.invitationNumber) {
+                this.guestName = 'Keith';
                 this.guestService.setGuestData({guestName: this.guestName});
+                this.currentGuestName.emit(this.guestName);
                 this.currentComponent.emit('guest');
             }
         }
-
     }
 
     ngOnInit() {
