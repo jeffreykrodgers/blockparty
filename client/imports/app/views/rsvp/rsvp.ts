@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 import template from "./rsvp.html";
 import style from "../../style/themes/default/rsvp.scss";
+import {GuestService} from "../../services/guest.service";
 
 @Component({
     selector: "rsvp",
@@ -17,12 +18,13 @@ export class RsvpComponent implements OnInit {
     currentSetComponent: string;
     currentGuest: string;
 
-    constructor() {
+    constructor(private _guestService: GuestService) {
 
     };
 
     ngOnInit() {
         this.currentSetComponent = 'search';
+        this._guestService.init();
     };
 
     setCurrentComponent(component) {
@@ -31,5 +33,5 @@ export class RsvpComponent implements OnInit {
 
     setGuestName(name) {
         this.currentGuest = name;
-    }
+    };
 }

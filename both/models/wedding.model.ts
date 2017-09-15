@@ -47,6 +47,7 @@ interface Guest {
     guest_name: string;
     invitation_num: number;
     meal?: string;
+    relation?: string;
     reminder?: Reminder;
     additions?: Additions;
 }

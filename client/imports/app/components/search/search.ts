@@ -24,7 +24,15 @@ export class SearchComponent implements OnInit {
     constructor(private guestService: GuestService) {
 
         this.findGuest = () => {
+            //Check if model has invitationNumber
+            //  Find a guest with a matching invitation number
+            // If found, return guest Name and store guest in guestService
+            // If not, return error saying guest not found. Maybe search by name?
             if (this.invitationNumber) {
+
+
+
+
                 this.guestName = 'Keith';
                 this.guestService.setGuestData({guestName: this.guestName});
                 this.currentGuestName.emit(this.guestName);

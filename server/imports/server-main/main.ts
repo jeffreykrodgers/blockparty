@@ -27,8 +27,7 @@ export class Main {
                 announcements: [],
                 guests: [{
                     guest_name: 'Keith Shingleton',
-                    group: false,
-                    group_name: '',
+                    invitation_num: '001',
                     meal: '',
                     reminder: [],
                     additions: {

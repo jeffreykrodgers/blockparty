@@ -1,4 +1,5 @@
 <section class="rsvp-top"><h1>RSVP</h1><h3>{{currentGuest}}</h3></section>
+
 <section class="rsvp-content">
     <search     [hidden]="!(currentSetComponent === 'search')"
                 (currentComponent)="setCurrentComponent($event)"
@@ -13,7 +14,7 @@
     <reminder   [hidden]="!(currentSetComponent === 'reminder')"
                 (currentComponent)="setCurrentComponent($event)"></reminder>
 </section>
+
 <section class="rsvp-bottom">
     <button class="ui icon button" [routerLink]="['/']"><i class="chevron left icon"></i> Back</button>
 </section>
-
