@@ -12,12 +12,9 @@ import style from "../../style/themes/default/entry.scss";
 })
 
 export class EntryComponent implements OnInit {
-    rsvp: any;
 
     constructor() {
-        this.rsvp = () => {
-            console.log('RSVPd');
-        }
+
     }
 
     ngOnInit() {

@@ -1,25 +1,28 @@
 import { Component, OnInit, Input } from "@angular/core";
 import template from "./guest.html";
 import style from "../../style/themes/default/guest.scss";
-import {GuestService} from "../../services/guest.service";
+import {RsvpService} from "../../services/rsvp.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: "guest",
     template,
     styles: [ style ],
-    providers: [GuestService]
 })
 
 export class GuestComponent implements OnInit {
     @Input() currentComponent;
-    guestData: any;
+    rsvpData: Observable<any>;
 
-    constructor(private guestService: GuestService) {
-
+    constructor(private _rsvpService: RsvpService) {
+        this._rsvpService.getRsvpData().subscribe(rsvp => this.rsvpData = rsvp);
     }
 
     ngOnInit() {
-        this.guestData = this.guestService.getGuestData();
-        console.log(this.guestData);
+
+    }
+
+    setGuests() {
+
     }
 }

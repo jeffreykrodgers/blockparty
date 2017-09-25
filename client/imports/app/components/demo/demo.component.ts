@@ -10,6 +10,7 @@ import style from "./demo.component.scss";
   template,
   styles: [ style ]
 })
+
 export class DemoComponent implements OnInit {
   greeting: string;
   data: Observable<Demo[]>;

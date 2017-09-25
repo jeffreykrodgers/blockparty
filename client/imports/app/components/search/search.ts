@@ -1,9 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { Subscription } from 'rxjs/Subscription';
 
 import template from "./search.html";
+import { Observable } from "rxjs";
 import style from "../../style/themes/default/search.scss";
-import {GuestService} from "../../services/guest.service";
+import {WeddingService} from "../../services/wedding.service";
+import {RsvpService} from "../../services/rsvp.service";
+import {WeddingDB} from "../../../../../both/models/wedding.model";
+
 
 @Component({
     selector: "search",
@@ -16,32 +19,38 @@ import {GuestService} from "../../services/guest.service";
 
 export class SearchComponent implements OnInit {
     @Output() currentComponent: EventEmitter<string> = new EventEmitter();
-    @Output() currentGuestName: EventEmitter<string> = new EventEmitter();
+
+    rsvpData: Observable<any>;
+    weddingData: Observable<WeddingDB[]>;
+
     invitationNumber: number;
-    guestName: string;
-    findGuest: any;
-
-    constructor(private guestService: GuestService) {
-
-        this.findGuest = () => {
-            //Check if model has invitationNumber
-            //  Find a guest with a matching invitation number
-            // If found, return guest Name and store guest in guestService
-            // If not, return error saying guest not found. Maybe search by name?
-            if (this.invitationNumber) {
 
 
-
-
-                this.guestName = 'Keith';
-                this.guestService.setGuestData({guestName: this.guestName});
-                this.currentGuestName.emit(this.guestName);
-                this.currentComponent.emit('guest');
-            }
-        }
+    constructor(private _weddingService: WeddingService, private _rsvpService: RsvpService) {
+        this.weddingData = this._weddingService.getWedding({}).zone();
+        this.rsvpData = this._rsvpService.getRsvpData();
     }
 
     ngOnInit() {
 
+    }
+
+    findGuests() {
+        if (this.invitationNumber) {
+            this.weddingData.subscribe(weddings => {
+                const invitationParty = weddings[0].guests.filter(
+                    guest => guest.invitation_num === this.invitationNumber);
+
+                this._rsvpService.setRsvpData({
+                    "guests": invitationParty,
+                    "invitation_num": this.invitationNumber
+                });
+
+                console.log(invitationParty);
+                // this.rsvpData.subscribe(rsvp => console.log(rsvp));
+            });
+
+            this.currentComponent.emit('guest');
+        }
     }
 }

@@ -46,26 +46,16 @@ interface Guest {
     _id?: string;
     guest_name: string;
     invitation_num: number;
+    attending?: boolean;
+    secondary: boolean;
     meal?: string;
     relation?: string;
     reminder?: Reminder;
-    additions?: Additions;
 }
 
 interface Reminder {
     date: any;
     test?: string;
-}
-
-interface Additions {
-    count: number;
-    details?: Details[];
-}
-
-interface Details {
-    _id?: string;
-    name: string;
-    meal: string;
 }
 
 export type WeddingDB = Wedding;

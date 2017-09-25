@@ -1,9 +1,10 @@
 <div class="guest">
     <div class="ui form">
-        <div class="field">
-            <label>Guest Name</label>
-            <input type="text" placeholder="Guest #2" [(ngModel)]="guest2Name" name="invitationNumber"/>
+        <div class="field" *ngIf="rsvpData">
+            <div *ngFor="let guest of rsvpData.guests">
+                <h2>{{guest.guest_name}}</h2>
+            </div>
         </div>
-        <button class="ui icon button" (click)="addAdditionalGuest()"><i class="chevron right icon"></i> Continue</button>
+        <button class="ui icon button" (click)="setGuests()"><i class="chevron right icon"></i> Continue</button>
     </div>
 </div>

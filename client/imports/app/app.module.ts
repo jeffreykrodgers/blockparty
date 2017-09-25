@@ -21,8 +21,8 @@ import {TopComponent} from "./components/top/top";
 import {BottomComponent} from "./components/bottom/bottom";
 
 import {DemoDataService} from "./components/demo/demo-data.service";
-import { GuestService } from "./services/guest.service";
 import {WeddingService} from "./services/wedding.service";
+import {RsvpService} from "./services/rsvp.service";
 
 
 @NgModule({
@@ -48,8 +48,8 @@ import {WeddingService} from "./services/wedding.service";
     // Providers
     providers: [
         DemoDataService,
-        GuestService,
-        WeddingService
+        WeddingService,
+        RsvpService
     ],
     // Modules
     imports: [

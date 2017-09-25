@@ -8,10 +8,21 @@ export class WeddingService {
     private data: ObservableCursor<WeddingDB>;
 
     constructor() {
-        this.data = WeddingCollection.find({});
+
     }
 
-    public getWedding(): ObservableCursor<WeddingDB> {
+    public getWedding(reqObj: any): ObservableCursor<WeddingDB> {
+
+        //TODO fetch wedding by url instead of hardcode
+        if (!reqObj._id) {
+            reqObj._id = "kn9uNZazZ7uAExBAb";
+        }
+
+        this.data = WeddingCollection.find(reqObj);
         return this.data;
+    }
+
+    public setWedding(obj) {
+
     }
 }
