@@ -2,7 +2,10 @@
     <div class="ui form">
         <div class="field" *ngIf="rsvpData">
             <div *ngFor="let guest of rsvpData.guests">
-                <h2>{{guest.guest_name}}</h2>
+                <div class="ui checkbox">
+                    <input type="checkbox" [(ngModel)]="guest.attending">
+                    <label>{{guest.guest_name}}</label>
+                </div>
             </div>
         </div>
         <button class="ui icon button" (click)="setGuests()"><i class="chevron right icon"></i> Continue</button>

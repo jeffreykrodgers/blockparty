@@ -1,5 +1,7 @@
 import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 // import {SuiModule} from 'ng2-semantic-ui';
@@ -20,9 +22,11 @@ import {SearchComponent} from "./components/search/search";
 import {TopComponent} from "./components/top/top";
 import {BottomComponent} from "./components/bottom/bottom";
 
+
 import {DemoDataService} from "./components/demo/demo-data.service";
 import {WeddingService} from "./services/wedding.service";
 import {RsvpService} from "./services/rsvp.service";
+
 
 
 @NgModule({
@@ -40,6 +44,7 @@ import {RsvpService} from "./services/rsvp.service";
         SearchComponent,
         TopComponent,
         BottomComponent,
+
     ],
     // Entry Components
     entryComponents: [

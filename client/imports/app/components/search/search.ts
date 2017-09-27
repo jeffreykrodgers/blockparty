@@ -20,15 +20,15 @@ import {WeddingDB} from "../../../../../both/models/wedding.model";
 export class SearchComponent implements OnInit {
     @Output() currentComponent: EventEmitter<string> = new EventEmitter();
 
-    rsvpData: Observable<any>;
     weddingData: Observable<WeddingDB[]>;
 
     invitationNumber: number;
+    errors: any;
 
 
     constructor(private _weddingService: WeddingService, private _rsvpService: RsvpService) {
         this.weddingData = this._weddingService.getWedding({}).zone();
-        this.rsvpData = this._rsvpService.getRsvpData();
+        this.errors = [];
     }
 
     ngOnInit() {
@@ -41,16 +41,21 @@ export class SearchComponent implements OnInit {
                 const invitationParty = weddings[0].guests.filter(
                     guest => guest.invitation_num === this.invitationNumber);
 
-                this._rsvpService.setRsvpData({
-                    "guests": invitationParty,
-                    "invitation_num": this.invitationNumber
-                });
+                if (invitationParty.length > 0) {
+                    this._rsvpService.setRsvpData({
+                        "guests": invitationParty,
+                        "invitation_num": this.invitationNumber
+                    });
 
-                console.log(invitationParty);
-                // this.rsvpData.subscribe(rsvp => console.log(rsvp));
+                    this.currentComponent.emit('guest');
+
+                } else {
+                    this.errors.push("No Guests found with this invitation number");
+                }
             });
 
-            this.currentComponent.emit('guest');
+        } else {
+            this.errors.push("Please input an invitation number");
         }
     }
 }

@@ -3,6 +3,9 @@
         <div class="field">
             <label>Invitation Number</label>
             <input type="text" placeholder="Invitation Number" [(ngModel)]="invitationNumber" name="invitationNumber"/>
+            <div class="ui pointing red basic label" *ngIf="errors.length > 0">
+                <span *ngFor="let error of errors">{{error}}</span>
+            </div>
         </div>
         <button class="ui icon button" (click)="findGuests()"><i class="chevron right icon"></i> Continue</button>
     </div>

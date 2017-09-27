@@ -45,6 +45,7 @@ interface Announcement {
 interface Guest {
     _id?: string;
     guest_name: string;
+    email: string;
     invitation_num: number;
     attending?: boolean;
     secondary: boolean;

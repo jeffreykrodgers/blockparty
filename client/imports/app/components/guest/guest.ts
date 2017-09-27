@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import template from "./guest.html";
 import style from "../../style/themes/default/guest.scss";
 import {RsvpService} from "../../services/rsvp.service";
@@ -11,7 +11,7 @@ import {Observable} from "rxjs/Observable";
 })
 
 export class GuestComponent implements OnInit {
-    @Input() currentComponent;
+    @Output() currentComponent: EventEmitter<string> = new EventEmitter;
     rsvpData: Observable<any>;
 
     constructor(private _rsvpService: RsvpService) {
@@ -23,6 +23,8 @@ export class GuestComponent implements OnInit {
     }
 
     setGuests() {
+        this._rsvpService.setRsvpData(this.rsvpData);
 
+        this.currentComponent.emit('meal');
     }
 }

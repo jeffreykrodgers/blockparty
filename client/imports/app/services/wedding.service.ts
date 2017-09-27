@@ -15,7 +15,7 @@ export class WeddingService {
 
         //TODO fetch wedding by url instead of hardcode
         if (!reqObj._id) {
-            reqObj._id = "kn9uNZazZ7uAExBAb";
+            reqObj._id = "XnLF27HLpbihYMRFd";
         }
 
         this.data = WeddingCollection.find(reqObj);
