@@ -15,9 +15,9 @@ interface Spouse {
     first_name: String;
     last_name: String;
     title: String;
-    email: String;
-    password: String;
-    services: any;
+    email?: String;
+    password?: String;
+    services?: any;
 }
 
 interface Venue {
@@ -29,10 +29,10 @@ interface Venue {
     end_time: any;
 }
 
-interface Meal{
+interface Meal {
     _id?: string;
     name: string;
-    notes: string;
+    notes?: string;
 }
 
 interface Announcement {
@@ -44,19 +44,15 @@ interface Announcement {
 
 interface Guest {
     _id?: string;
-    guest_name: string;
+    name: string;
     email: string;
     invitation_num: number;
     attending?: boolean;
     secondary: boolean;
     meal?: string;
     relation?: string;
-    reminder?: Reminder;
-}
-
-interface Reminder {
-    date: any;
-    test?: string;
+    reminder?: number;
+    gift?: number;
 }
 
 export type WeddingDB = Wedding;

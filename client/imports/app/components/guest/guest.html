@@ -4,7 +4,7 @@
             <div *ngFor="let guest of rsvpData.guests">
                 <div class="ui checkbox">
                     <input type="checkbox" [(ngModel)]="guest.attending">
-                    <label>{{guest.guest_name}}</label>
+                    <label>{{guest.name}}</label>
                 </div>
             </div>
         </div>

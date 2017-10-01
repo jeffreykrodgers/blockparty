@@ -1,0 +1,34 @@
+<div>
+
+    <div *ngIf="!addingGift">
+        <div class="field">
+            <h3>Gift</h3>
+            <button class="ui button" (click)="addGift()">Add Gift</button>
+
+            <div class="gift-form">
+                <h5 *ngFor="let gift of gifts">From {{gift.guest}} - {{gift.amount}}</h5>
+            </div>
+        </div>
+        <button class="ui icon button" (click)="setGift()">
+            <i class="chevron right icon"></i> Continue
+        </button>
+    </div>
+
+    <div *ngIf="addingGift" class="ui form">
+        <div class="field">
+            <div class="add-gift-form" *ngIf="addingGift">
+                <!--<md-select placeholder="Guest..." [(ngModel)]="gift.guest">-->
+                    <!--<md-option *ngFor="let guest of guests" [value]="guest._id">{{ guest.name }}</md-option>-->
+                <!--</md-select>-->
+
+                <!--<md-form-field class="example-full-width">-->
+                    <!--<input mdInput [(ngModel)]="gift.amount">-->
+                <!--</md-form-field>-->
+            </div>
+        </div>
+        <button class="ui icon button" (click)="startPayment()">
+            <i class="chevron right icon"></i> PayPal
+        </button>
+    </div>
+
+</div>

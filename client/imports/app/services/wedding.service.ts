@@ -15,14 +15,14 @@ export class WeddingService {
 
         //TODO fetch wedding by url instead of hardcode
         if (!reqObj._id) {
-            reqObj._id = "XnLF27HLpbihYMRFd";
+            reqObj._id = "FKm7S7p8FhpdgyeE3";
         }
 
         this.data = WeddingCollection.find(reqObj);
         return this.data;
     }
 
-    public setWedding(obj) {
-
+    public updateWedding(id: string, obj: object) {
+        Meteor.call('updateGuests', id, obj);
     }
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import template from "./reminder.html";
 import { Observable } from "rxjs";
+
+import template from "./reminder.html";
 import style from "../../style/themes/default/reminder.scss";
-import {WeddingService} from "../../services/wedding.service";
+
 import {RsvpService} from "../../services/rsvp.service";
-import {WeddingDB} from "../../../../../both/models/wedding.model";
 
 @Component({
     selector: "reminder",
@@ -16,31 +16,56 @@ import {WeddingDB} from "../../../../../both/models/wedding.model";
 })
 
 export class ReminderComponent implements OnInit {
+    //I/O
     @Output() currentComponent: EventEmitter<string> = new EventEmitter();
 
+    //Observables
     rsvpData: Observable<any>;
-    weddingData: Observable<WeddingDB[]>;
 
-    guests: object[];
-    guestMenuItems: object[];
+    //Other Variables
+    guests?: object[];
+    reminders?: object[];
 
-    constructor(private _weddingService: WeddingService, private _rsvpService: RsvpService) {
-        this.weddingData = this._weddingService.getWedding({}).zone();
+    constructor(private _rsvpService: RsvpService) {
+        this.reminders = [];
+        this.guests = [];
         this._rsvpService.getRsvpData().subscribe(rsvp => {
             this.rsvpData = rsvp;
             this.guests = rsvp.guests;
 
-            // for (let i = 0; i < this.guests.length; i++) {
-            //     this.guestMenuItems[i].label = this.guests[i].guest_name;
-            //     this.guestMenuItems[i].value = this.guests[i]._id;
-            // }
-            //
-            // console.log(this.guestMenuItems);
+            this.guests.forEach((guest: any) => {
+                if (guest.reminder && this.reminders.filter((r: any) => r.guest === guest._id).length === 0) {
+                    this.reminders.push({
+                        guest: guest._id,
+                        date: guest.reminder,
+                        guest_email: guest.email
+                    });
+                }
+            });
         });
     }
 
 
     ngOnInit() {
 
+    }
+
+    addReminder() {
+        this.reminders.push({});
+    }
+
+    setReminder() {
+
+        this.reminders.forEach((reminder?: any) => {
+            this.guests.filter((guest?: any) => {
+                if (guest._id === reminder.guest) {
+                    guest.reminder = reminder.date;
+                    guest.email = reminder.guest_email;
+                }
+            });
+        });
+
+        this._rsvpService.setRsvpData(this.rsvpData, true);
+        this.currentComponent.emit('gift');
     }
 }

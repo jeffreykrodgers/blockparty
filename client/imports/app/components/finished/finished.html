@@ -1,0 +1,12 @@
+<div>
+    <h1>You're all set!</h1>
+    <div *ngIf="rsvpData">
+        <div *ngFor="let v of venues">
+            <h4>{{v.event}}</h4>
+            <p>{{v.start_time}}</p>
+
+            <h5>{{v.name}}</h5>
+            <p>{{v.address}}</p>
+        </div>
+    </div>
+</div>

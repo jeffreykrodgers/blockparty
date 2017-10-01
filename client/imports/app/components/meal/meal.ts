@@ -46,7 +46,7 @@ export class MealComponent implements OnInit {
     }
 
     setMeal() {
-        this._rsvpService.setRsvpData(this.rsvpData);
+        this._rsvpService.setRsvpData(this.rsvpData, true);
 
         const need_meals = this.guests_without_meals.length;
 

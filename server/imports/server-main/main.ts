@@ -3,17 +3,20 @@ import {Demo} from "../../../both/models/demo.model";
 import {WeddingCollection} from "../../../both/collections/wedding.collection";
 import {WeddingDB} from "../../../both/models/wedding.model";
 
+import "../meteor/methods";
+import "../meteor/startup";
+
 import { Random } from 'meteor/random';
 
 export class Main {
     start(): void {
-        console.log(Random.id());
         this.insertDemoWedding();
     }
 
     insertDemoWedding(): void {
         if (WeddingCollection.find({}).cursor.count() === 0) {
             const data: WeddingDB[] = [{
+                _id: "FKm7S7p8FhpdgyeE3",
                 date: '2018-06-24T09:00:00+05:00',
                 theme: 'default',
                 spouses: [{
@@ -70,39 +73,47 @@ export class Main {
                 guests: [
                     {
                         _id: Random.id(),
-                        guest_name: 'Keith Shingleton',
+                        name: 'Keith Shingleton',
                         invitation_num: '001',
                         attending: false,
                         secondary: false,
                         meal: '',
-                        reminder: [],
+                        relation: 'friend',
+                        reminder: '',
+                        gift: 0,
                     },
                     {
                         _id: Random.id(),
-                        guest_name: 'AJ Lando',
+                        name: 'AJ Lando',
                         invitation_num: '001',
                         attending: false,
                         secondary: false,
                         meal: '',
-                        reminder: [],
+                        relation: 'friend',
+                        reminder: '',
+                        gift: 0,
                     },
                     {
                         _id: Random.id(),
-                        guest_name: 'Damien Blasko',
+                        name: 'Damien Blasko',
                         invitation_num: '002',
                         attending: false,
                         secondary: false,
                         meal: '',
-                        reminder: [],
+                        relation: 'friend',
+                        reminder: '',
+                        gift: 0,
                     },
                     {
                         _id: Random.id(),
-                        guest_name: 'Damiens Guest',
+                        name: 'Damiens Guest',
                         invitation_num: '002',
                         attending: false,
                         secondary: true,
                         meal: '',
-                        reminder: [],
+                        relation: 'friend',
+                        reminder: '',
+                        gift: 0,
                     }
                 ]
             }];

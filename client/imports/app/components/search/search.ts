@@ -23,8 +23,8 @@ export class SearchComponent implements OnInit {
     weddingData: Observable<WeddingDB[]>;
 
     invitationNumber: number;
+    guests: any;
     errors: any;
-
 
     constructor(private _weddingService: WeddingService, private _rsvpService: RsvpService) {
         this.weddingData = this._weddingService.getWedding({}).zone();
@@ -32,27 +32,28 @@ export class SearchComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        this.weddingData.subscribe(wedding =>{
+            this.guests = wedding[0].guests;
+        });
     }
 
     findGuests() {
         if (this.invitationNumber) {
-            this.weddingData.subscribe(weddings => {
-                const invitationParty = weddings[0].guests.filter(
-                    guest => guest.invitation_num === this.invitationNumber);
 
-                if (invitationParty.length > 0) {
-                    this._rsvpService.setRsvpData({
-                        "guests": invitationParty,
-                        "invitation_num": this.invitationNumber
-                    });
+            const invitationParty = this.guests.filter(
+                guest => guest.invitation_num === this.invitationNumber);
 
-                    this.currentComponent.emit('guest');
+            if (invitationParty.length > 0) {
+                this._rsvpService.setRsvpData({
+                    "guests": invitationParty,
+                    "invitation_num": this.invitationNumber
+                });
 
-                } else {
-                    this.errors.push("No Guests found with this invitation number");
-                }
-            });
+                this.currentComponent.emit('guest');
+
+            } else {
+                this.errors.push("No Guests found with this invitation number");
+            }
 
         } else {
             this.errors.push("Please input an invitation number");

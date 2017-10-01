@@ -12,6 +12,15 @@
 
     <reminder   [hidden]="!(currentSetComponent === 'reminder')"
                 (currentComponent)="setCurrentComponent($event)"></reminder>
+
+    <gift       [hidden]="!(currentSetComponent === 'gift')"
+                (currentComponent)="setCurrentComponent($event)"></gift>
+
+    <summary    [hidden]="!(currentSetComponent === 'summary')"
+                (currentComponent)="setCurrentComponent($event)"></summary>
+
+    <finished   [hidden]="!(currentSetComponent === 'finished')"
+                (currentComponent)="setCurrentComponent($event)"></finished>
 </section>
 
 <section class="rsvp-bottom">

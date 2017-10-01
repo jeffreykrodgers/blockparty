@@ -15,7 +15,6 @@ import style from "../../style/themes/default/rsvp.scss";
 export class RsvpComponent implements OnInit {
     currentSetComponent: string;
 
-
     constructor() {
 
     };
