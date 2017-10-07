@@ -23,7 +23,6 @@ export class RsvpComponent implements OnInit {
 
     ngOnInit() {
         this._rsvpService.getRsvpData().subscribe((rsvp) => {
-            console.log("current_component:", rsvp.current_component);
             this.componentData = rsvp.current_component;
         });
     };

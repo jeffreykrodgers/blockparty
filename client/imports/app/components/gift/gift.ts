@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { Observable } from "rxjs";
+import {Component, OnInit, Output, EventEmitter} from "@angular/core";
+import {Observable} from "rxjs";
 
 import template from "./gift.html";
 import style from "../../style/themes/default/gift.scss";
@@ -13,23 +13,22 @@ import {RsvpService} from "../../services/rsvp.service";
         class: "gift",
     },
     template,
-    styles: [ style ]
+    styles: [style]
 })
 
 export class GiftComponent implements OnInit {
-    //I/O
     @Output() currentComponent: EventEmitter<object> = new EventEmitter();
 
-    //Observables
     rsvpData: any;
-
-    //Other Variables
     guests?: object[];
     gifts?: object[];
     addingGift: boolean;
 
-    constructor(private _weddingService: WeddingService, private _rsvpService: RsvpService) {
+    constructor(private _rsvpService: RsvpService) {
         this.gifts = [];
+    }
+
+    ngOnInit() {
         this._rsvpService.getRsvpData().subscribe(rsvp => {
             this.rsvpData = rsvp;
             this.guests = rsvp.guests;
@@ -45,11 +44,6 @@ export class GiftComponent implements OnInit {
         });
     }
 
-
-    ngOnInit() {
-
-    }
-
     addGift() {
         this.gifts.push({});
         this.addingGift = true;
@@ -61,7 +55,6 @@ export class GiftComponent implements OnInit {
     }
 
     setGift() {
-
         this.gifts.forEach((gift?: any) => {
             this.guests.filter((guest?: any) => {
                 if (guest._id === gift.guest) {

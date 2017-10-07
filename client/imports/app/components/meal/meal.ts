@@ -1,6 +1,6 @@
-import { Component, OnInit,  Output, EventEmitter } from "@angular/core";
+import {Component, OnInit, Output, EventEmitter} from "@angular/core";
 import template from "./meal.html";
-import { Observable } from "rxjs";
+import {Observable} from "rxjs";
 import style from "../../style/themes/default/meal.scss";
 import {WeddingService} from "../../services/wedding.service";
 import {RsvpService} from "../../services/rsvp.service";
@@ -12,7 +12,7 @@ import {WeddingDB} from "../../../../../both/models/wedding.model";
         class: "reminder",
     },
     template,
-    styles: [ style ]
+    styles: [style]
 })
 
 export class MealComponent implements OnInit {
@@ -35,12 +35,12 @@ export class MealComponent implements OnInit {
             this.guests = rsvp.guests;
             this.activeGuest = rsvp.guests[0];
 
-            this.guests_without_meals = rsvp.guests.filter(function(guest){
+            this.guests_without_meals = rsvp.guests.filter(function (guest) {
                 return !guest.meal;
             });
         });
 
-        this.weddingData.subscribe(wedding =>{
+        this.weddingData.subscribe(wedding => {
             this.meals = wedding[0].meals;
         });
     }

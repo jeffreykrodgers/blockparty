@@ -14,13 +14,13 @@ export class GuestComponent implements OnInit {
     rsvpData: any;
 
     constructor(private _rsvpService: RsvpService) {
-        this._rsvpService.getRsvpData().subscribe((rsvp) => {
-            this.rsvpData = rsvp;
-        });
+
     }
 
     ngOnInit() {
-
+        this._rsvpService.getRsvpData().subscribe((rsvp) => {
+            this.rsvpData = rsvp;
+        });
     }
 
     setGuests() {

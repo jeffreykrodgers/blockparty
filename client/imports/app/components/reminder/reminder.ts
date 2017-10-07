@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { Observable } from "rxjs";
+import {Component, OnInit, Output, EventEmitter} from "@angular/core";
+import {Observable} from "rxjs";
 
 import template from "./reminder.html";
 import style from "../../style/themes/default/reminder.scss";
@@ -9,23 +9,23 @@ import {RsvpService} from "../../services/rsvp.service";
 @Component({
     selector: "reminder",
     host: {
-      class: "reminder",
+        class: "reminder",
     },
     template,
-    styles: [ style ]
+    styles: [style]
 })
 
 export class ReminderComponent implements OnInit {
-    //Observables
     rsvpData: any;
-
-    //Other Variables
     guests?: object[];
     reminders?: object[];
 
     constructor(private _rsvpService: RsvpService) {
         this.reminders = [];
         this.guests = [];
+    }
+
+    ngOnInit() {
         this._rsvpService.getRsvpData().subscribe(rsvp => {
             this.rsvpData = rsvp;
             this.guests = rsvp.guests;
@@ -42,16 +42,11 @@ export class ReminderComponent implements OnInit {
         });
     }
 
-    ngOnInit() {
-
-    }
-
     addReminder() {
         this.reminders.push({});
     }
 
     setReminder() {
-
         this.reminders.forEach((reminder?: any) => {
             this.guests.filter((guest?: any) => {
                 if (guest._id === reminder.guest) {
