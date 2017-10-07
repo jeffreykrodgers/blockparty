@@ -11,11 +11,12 @@ import {Observable} from "rxjs/Observable";
 })
 
 export class GuestComponent implements OnInit {
-    @Output() currentComponent: EventEmitter<string> = new EventEmitter;
-    rsvpData: Observable<any>;
+    rsvpData: any;
 
     constructor(private _rsvpService: RsvpService) {
-        this._rsvpService.getRsvpData().subscribe(rsvp => this.rsvpData = rsvp);
+        this._rsvpService.getRsvpData().subscribe((rsvp) => {
+            this.rsvpData = rsvp;
+        });
     }
 
     ngOnInit() {
@@ -23,8 +24,10 @@ export class GuestComponent implements OnInit {
     }
 
     setGuests() {
-        this._rsvpService.setRsvpData(this.rsvpData, true);
+        this.rsvpData.current_component = {
+            name: 'meal'
+        };
 
-        this.currentComponent.emit('meal');
+        this._rsvpService.setRsvpData(this.rsvpData, true);
     }
 }

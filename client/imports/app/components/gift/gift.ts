@@ -18,10 +18,10 @@ import {RsvpService} from "../../services/rsvp.service";
 
 export class GiftComponent implements OnInit {
     //I/O
-    @Output() currentComponent: EventEmitter<string> = new EventEmitter();
+    @Output() currentComponent: EventEmitter<object> = new EventEmitter();
 
     //Observables
-    rsvpData: Observable<any>;
+    rsvpData: any;
 
     //Other Variables
     guests?: object[];
@@ -70,7 +70,11 @@ export class GiftComponent implements OnInit {
             });
         });
 
+        this.rsvpData.current_component = {
+            name: 'summary',
+            title: 'Summary'
+        };
+
         this._rsvpService.setRsvpData(this.rsvpData, true);
-        this.currentComponent.emit('summary');
     }
 }

@@ -14,7 +14,6 @@ import {WeddingService} from "../../services/wedding.service";
 })
 
 export class FinishedComponent implements OnInit {
-    @Output() currentComponent: EventEmitter<string> = new EventEmitter;
     rsvpData: Observable<any>;
     weddingData: Observable<WeddingDB[]>;
 

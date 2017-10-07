@@ -1,17 +1,37 @@
+@import "variables";
+@import "functions";
+
 :host {
+  height: 100vh;
   width: 100vw;
+  max-width: 600px;
+  max-height: 450px;
   display: flex;
+  margin: 0 auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: translucent($white, .45);
+  border-radius: 6px;
+  box-shadow: $shadow-extra-long;
+  -webkit-backdrop-filter: blur(10px);
 
-  .rsvp-top {
-
+  section {
+    width: 100%;
+    text-align: center;
+    flex: 1;
   }
 
+  .rsvp-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;  }
+
   .rsvp-content {
-    max-width: 400px;
-    text-align: center;
+    flex: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .rsvp-bottom {

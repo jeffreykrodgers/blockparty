@@ -16,11 +16,8 @@ import {RsvpService} from "../../services/rsvp.service";
 })
 
 export class ReminderComponent implements OnInit {
-    //I/O
-    @Output() currentComponent: EventEmitter<string> = new EventEmitter();
-
     //Observables
-    rsvpData: Observable<any>;
+    rsvpData: any;
 
     //Other Variables
     guests?: object[];
@@ -45,7 +42,6 @@ export class ReminderComponent implements OnInit {
         });
     }
 
-
     ngOnInit() {
 
     }
@@ -65,7 +61,11 @@ export class ReminderComponent implements OnInit {
             });
         });
 
+        this.rsvpData.current_component = {
+            name: 'gift',
+            title: 'Give a Gift'
+        };
+
         this._rsvpService.setRsvpData(this.rsvpData, true);
-        this.currentComponent.emit('gift');
     }
 }

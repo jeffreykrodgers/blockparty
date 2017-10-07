@@ -1,28 +1,21 @@
-<section class="rsvp-top"><h1>RSVP</h1></section>
+<section class="rsvp-top"><h2>{{componentData.title}}</h2></section>
 
 <section class="rsvp-content">
-    <search     [hidden]="!(currentSetComponent === 'search')"
-                (currentComponent)="setCurrentComponent($event)"></search>
+    <search     *ngIf="componentData.name === 'search'"></search>
 
-    <guest      [hidden]="!(currentSetComponent === 'guest')"
-                (currentComponent)="setCurrentComponent($event)"></guest>
+    <guest      *ngIf="componentData.name === 'guest'"></guest>
 
-    <meal       [hidden]="!(currentSetComponent === 'meal')"
-                (currentComponent)="setCurrentComponent($event)"></meal>
+    <meal       *ngIf="componentData.name === 'meal'"></meal>
 
-    <reminder   [hidden]="!(currentSetComponent === 'reminder')"
-                (currentComponent)="setCurrentComponent($event)"></reminder>
+    <reminder   *ngIf="componentData.name === 'reminder'"></reminder>
 
-    <gift       [hidden]="!(currentSetComponent === 'gift')"
-                (currentComponent)="setCurrentComponent($event)"></gift>
+    <gift       *ngIf="componentData.name === 'gift'"></gift>
 
-    <summary    [hidden]="!(currentSetComponent === 'summary')"
-                (currentComponent)="setCurrentComponent($event)"></summary>
+    <summary    *ngIf="componentData.name === 'summary'"></summary>
 
-    <finished   [hidden]="!(currentSetComponent === 'finished')"
-                (currentComponent)="setCurrentComponent($event)"></finished>
+    <finished    *ngIf="componentData.name === 'finished'"></finished>
 </section>
 
 <section class="rsvp-bottom">
-
+    <!--<button class="ui button basic inverted">Continue</button>-->
 </section>

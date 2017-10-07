@@ -18,8 +18,6 @@ import {WeddingDB} from "../../../../../both/models/wedding.model";
 })
 
 export class SearchComponent implements OnInit {
-    @Output() currentComponent: EventEmitter<string> = new EventEmitter();
-
     weddingData: Observable<WeddingDB[]>;
 
     invitationNumber: number;
@@ -45,11 +43,13 @@ export class SearchComponent implements OnInit {
 
             if (invitationParty.length > 0) {
                 this._rsvpService.setRsvpData({
-                    "guests": invitationParty,
-                    "invitation_num": this.invitationNumber
+                    guests: invitationParty,
+                    invitation_num: this.invitationNumber,
+                    current_component: {
+                        name: 'guest',
+                        title: 'Who will be coming?',
+                    }
                 });
-
-                this.currentComponent.emit('guest');
 
             } else {
                 this.errors.push("No Guests found with this invitation number");

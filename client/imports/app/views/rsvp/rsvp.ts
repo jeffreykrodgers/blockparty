@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 
 import template from "./rsvp.html";
 import style from "../../style/themes/default/rsvp.scss";
+import {RsvpService} from "../../services/rsvp.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: "rsvp",
@@ -13,17 +15,16 @@ import style from "../../style/themes/default/rsvp.scss";
 })
 
 export class RsvpComponent implements OnInit {
-    currentSetComponent: string;
+    componentData: Observable<any>;
 
-    constructor() {
+    constructor(private _rsvpService: RsvpService) {
 
     };
 
     ngOnInit() {
-        this.currentSetComponent = 'search';
-    };
-
-    setCurrentComponent(component) {
-        this.currentSetComponent = component;
+        this._rsvpService.getRsvpData().subscribe((rsvp) => {
+            console.log("current_component:", rsvp.current_component);
+            this.componentData = rsvp.current_component;
+        });
     };
 }

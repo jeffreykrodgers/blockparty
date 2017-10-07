@@ -10,6 +10,13 @@
 
   .entry-content {
     text-align: center;
+    img {
+      max-height: 350px;
+    }
+
+    button {
+      margin-top: 20px;
+    }
   }
 
   .entry-bottom {

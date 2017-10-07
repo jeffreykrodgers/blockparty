@@ -1,14 +1,20 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from "rxjs/Observable";
-import { Meteor} from "meteor/meteor";
+import {Injectable} from '@angular/core';
+import {Observable} from "rxjs/Observable";
 import {WeddingService} from "./wedding.service";
 import {WeddingDB} from "../../../../both/models/wedding.model";
-import {MeteorObservable} from "meteor-rxjs";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class RsvpService {
-    private rsvpDataObservable = new Subject<any>();
+    private rsvpDataObservable = new BehaviorSubject<any>({
+        guests: [],
+        invitiation_num: '',
+        current_component: {
+            name: 'search',
+            title: 'Enter your Invitation Number'
+        }
+    });
+
 
     weddingData: Observable<WeddingDB[]>;
     weddingId: string;
@@ -17,7 +23,7 @@ export class RsvpService {
         this.weddingData = this._weddingService.getWedding({}).zone();
         this.weddingData.subscribe(wedding => {
             this.weddingId = wedding[0]._id;
-        })
+        });
     }
 
     getRsvpData(): Observable<any> {

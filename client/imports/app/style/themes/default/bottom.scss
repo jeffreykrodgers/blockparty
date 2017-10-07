@@ -1,3 +1,11 @@
-h1 {
-  text-align: center;
+.flowers {
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    height: 100%;
+    max-width: 720px;
+    bottom: -56%;
+    left: -4%;
+  }
 }

@@ -4,33 +4,61 @@ body, html {
 }
 
 .app {
-  display: flex;
-  flex-direction: column;
   height: 100vh;
-  background-color: $navy;
-  color: $white;
+  background-image: url("/img/vinajeff.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 
-  .top {
-    max-height: 40px;
-    flex: 1;
-  }
-
-  .content {
-    flex: auto;
+  .bgOverlay {
+    height: 100vh;
     display: flex;
+    flex-direction: column;
+    color: $white;
+    background: -webkit-linear-gradient(left bottom, rgba(180,39,117,.90), rgba(32,67,125,.90)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top right, rgba(32,67,125,.90), rgba(180,39,117,.90)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(top right, rgba(32,67,125,.90), rgba(180,39,117,.90)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to top right, rgba(32,67,125,.90), rgba(180,39,117,.90)); /* Standard syntax (must be last) */
 
-    .entry {
-      width: 100%;
+    .top {
+      max-height: 40px;
+      flex: 1;
     }
 
-    .ui.form .field>label {
-      color: $white;
-    }
-  }
+    .content {
+      flex: auto;
+      display: flex;
+      align-items: center;
 
-  .bottom {
-    max-height: 40px;
-    flex: 1;
+      .entry {
+        width: 100%;
+      }
+
+      .ui.form .field > label {
+        color: $white;
+      }
+
+      .ui.form input[type=text],
+      .ui.form input:not([type]) {
+        background: none;
+        border: 0;
+        border-bottom: 1px solid $white;
+        border-radius: 0;
+        color: $white;
+
+        &::placeholder {
+          color: translucent70($white);
+        }
+      }
+
+      .ui.form .field>label {
+        color: $white;
+      }
+    }
+
+    .bottom {
+      max-height: 40px;
+      flex: 1;
+    }
   }
 }
 
