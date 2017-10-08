@@ -6,23 +6,24 @@
 
             <div class="reminder-form" *ngFor="let reminder of reminders">
                 <h3>Remind </h3>
+                <mat-form-field>
+                    <mat-select placeholder="Guest..." [(ngModel)]="reminder.guest">
+                        <mat-option *ngFor="let guest of guests" [value]="guest._id">{{ guest.name }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-select placeholder="When?" [(ngModel)]="reminder.date">
+                        <mat-option [value]="90">90 Days Before</mat-option>
+                        <mat-option [value]="60">60 Days Before</mat-option>
+                        <mat-option [value]="30">30 Days Before</mat-option>
+                        <mat-option [value]="1">1 Day Before</mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-                <md-select placeholder="Guest..." [(ngModel)]="reminder.guest">
-                    <md-option *ngFor="let guest of guests" [value]="guest._id">{{ guest.name }}</md-option>
-                </md-select>
-
-                <md-select placeholder="When?" [(ngModel)]="reminder.date">
-                    <md-option [value]="90">90 Days Before</md-option>
-                    <md-option [value]="60">60 Days Before</md-option>
-                    <md-option [value]="30">30 Days Before</md-option>
-                    <md-option [value]="1">1 Day Before</md-option>
-                </md-select>
-
-                <md-form-field class="example-full-width">
-                    <input mdInput placeholder="Email Address" [(ngModel)]="reminder.guest_email">
-                </md-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email Address" [(ngModel)]="reminder.guest_email">
+                </mat-form-field>
             </div>
-
         </div>
         <button class="ui icon button" (click)="setReminder()"><i class="chevron right icon"></i> Continue</button>
     </div>

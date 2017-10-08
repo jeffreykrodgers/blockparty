@@ -17,13 +17,13 @@
     <div *ngIf="addingGift" class="ui form">
         <div class="field">
             <div class="add-gift-form" *ngIf="addingGift">
-                <!--<md-select placeholder="Guest..." [(ngModel)]="gift.guest">-->
-                    <!--<md-option *ngFor="let guest of guests" [value]="guest._id">{{ guest.name }}</md-option>-->
-                <!--</md-select>-->
+                <!--<mat-select placeholder="Guest..." [(ngModel)]="gift.guest">-->
+                    <!--<mat-option *ngFor="let guest of guests" [value]="guest._id">{{ guest.name }}</mat-option>-->
+                <!--</mat-select>-->
 
-                <!--<md-form-field class="example-full-width">-->
-                    <!--<input mdInput [(ngModel)]="gift.amount">-->
-                <!--</md-form-field>-->
+                <!--<mat-form-field class="example-full-width">-->
+                    <!--<input matInput [(ngModel)]="gift.amount">-->
+                <!--</mat-form-field>-->
             </div>
         </div>
         <button class="ui icon button" (click)="startPayment()">

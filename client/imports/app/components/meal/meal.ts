@@ -31,10 +31,8 @@ export class MealComponent implements OnInit {
     ngOnInit() {
         this._rsvpService.getRsvpData().subscribe(rsvp => {
             this.rsvpData = rsvp;
-
             this.guests = rsvp.guests;
             this.activeGuest = rsvp.guests[0];
-
             this.guests_without_meals = rsvp.guests.filter(function (guest) {
                 return !guest.meal;
             });
@@ -46,6 +44,10 @@ export class MealComponent implements OnInit {
     }
 
     setMeal() {
+        this.guests_without_meals = this.guests.filter((guest:any) => {
+           return !guest.meal;
+        });
+
         const need_meals = this.guests_without_meals.length;
 
         if (need_meals > 0) {
