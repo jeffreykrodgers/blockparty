@@ -1,0 +1,23 @@
+@function saturateColor($base-color){
+  @return saturate($base-color, 10%);
+}
+
+@function translucent($base-color, $percent){
+  @return rgba($base-color, $percent);
+}
+
+@function translucent85($base-color){
+  @return rgba($base-color, .85);
+}
+
+@function translucent70($base-color){
+  @return rgba($base-color, .70);
+}
+
+@function translucent50($base-color){
+  @return rgba($base-color, .50);
+}
+
+@function translucent30($base-color){
+  @return rgba($base-color, .30);
+}

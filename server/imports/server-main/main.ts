@@ -1,5 +1,3 @@
-import {DemoCollection} from "../../../both/collections/demo.collection";
-import {Demo} from "../../../both/models/demo.model";
 import {WeddingCollection} from "../../../both/collections/wedding.collection";
 import {WeddingDB} from "../../../both/models/wedding.model";
 
@@ -115,6 +113,32 @@ export class Main {
                         reminder: '',
                         gift: 0,
                     }
+                ],
+                tables: [
+                    {
+                        _id: Random.id(),
+                        number: 1,
+                        guests: [],
+                        notes: null
+                    },
+                    {
+                        _id: Random.id(),
+                        number: 2,
+                        guests: [],
+                        notes: null
+                    },
+                    {
+                        _id: Random.id(),
+                        number: 3,
+                        guests: [],
+                        notes: null
+                    },
+                    {
+                        _id: Random.id(),
+                        number: 4,
+                        guests: [],
+                        notes: null
+                    },
                 ]
             }];
             data.forEach((obj: WeddingDB) => {

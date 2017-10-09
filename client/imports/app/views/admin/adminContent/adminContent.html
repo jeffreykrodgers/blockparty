@@ -1,0 +1,46 @@
+<div class="dashboard">
+    <div class="charts">
+        <div class="list">
+            <div class="chart card">
+                <h2>Chart 1</h2>
+            </div>
+            <div class="chart card">
+                <h2>Chart 2</h2>
+            </div>
+            <div class="chart card">
+                <h2>Chart 3</h2>
+            </div>
+        </div>
+    </div>
+    <div class="guests">
+        <div class="nav">
+            <h2>Guests</h2>
+            <a href="#">All</a>
+            <a href="#">Friends</a>
+            <a href="#">Family</a>
+        </div>
+        <div class="list">
+            <div class="guest card" *ngFor="let guest of guests">
+                <div class="top">
+                    <h2>{{guest.name}}</h2>
+                </div>
+                <div class="bottom">
+                    <div class="property">Invite: {{guest.invitation_num}}</div>
+                    <div class="property">Relation: {{guest.relation}}</div>
+                    <div class="property">RSVP Status: {{guest.attending}}</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="tables">
+        <div class="nav">
+            <h2>Tables</h2>
+        </div>
+        <div class="list">
+            <div class="table card" *ngFor="let table of tables">
+                <h2>Table {{table.number}}</h2>
+            </div>
+        </div>
+    </div>
+</div>

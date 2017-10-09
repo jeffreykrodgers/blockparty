@@ -1,0 +1,102 @@
+@import "../styles/functions";
+@import "../styles/variables";
+@import "../styles/mixins";
+
+:host {
+  display: flex;
+  .dashboard {
+    flex: 1;
+    display: flex;
+    padding: 0 20px 20px;
+
+    h2 {
+      font-weight: 300;
+    }
+
+    &>div {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      .list {
+        height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        .card {
+          margin: 30px;
+          border-radius: 8px;
+          background-color: $white;
+          padding: 12px;
+          box-shadow: $shadow-subtle;
+          transition: .4s all;
+
+          &:hover {
+            box-shadow: $shadow-long;
+          }
+        }
+      }
+
+      .nav {
+        margin: 30px 30px 0;
+        display: flex;
+        align-items: flex-end;
+
+        a {
+          padding: 10px;
+          margin: 0 10px;
+        }
+
+        h2 {
+          margin-right: 10px;
+          margin-bottom: 8px;
+        }
+      }
+    }
+
+    .charts {
+      flex: 2;
+      .chart {
+
+      }
+    }
+
+    .guests {
+      flex: 2;
+
+      .list {
+        .guest {
+          cursor: pointer;
+
+          &>div {
+            margin: 6px 8px;
+          }
+
+          .top {
+            padding-bottom: 4px;
+            border-bottom: 1px solid translucent30($gray);
+          }
+
+          .bottom {
+            display: flex;
+          }
+        }
+      }
+
+
+    }
+
+    .tables {
+      flex: 1;
+      .list {
+        .table {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

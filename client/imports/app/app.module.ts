@@ -58,12 +58,20 @@ import {
     MatToolbarModule,
     MatTooltipModule,
 } from '@angular/material';
+import {AdminComponent} from "./views/admin/admin";
+import {AdminContentComponent} from "./views/admin/adminContent/adminContent";
+import {AdminTopComponent} from "./views/admin/adminTop/adminTop";
 
 
 @NgModule({
     // Components, Pipes, Directive
     declarations: [
         AppComponent,
+
+        //Admin
+        AdminComponent,
+        AdminTopComponent,
+        AdminContentComponent,
         AnnouncementsComponent,
         DemoComponent,
         EntryComponent,

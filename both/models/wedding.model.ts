@@ -7,7 +7,8 @@ interface Wedding {
     venues?: Venue[];
     meals?: Meal[];
     announcements?: Announcement[];
-    guests: Guest[];
+    guests?: Guest[];
+    tables?: Table[];
 }
 
 interface Spouse {
@@ -40,6 +41,13 @@ interface Announcement {
     date: any;
     title: string;
     announcement: string;
+}
+
+interface Table {
+    _id?: string;
+    number: number;
+    guests?: string[];
+    notes?: string;
 }
 
 interface Guest {
