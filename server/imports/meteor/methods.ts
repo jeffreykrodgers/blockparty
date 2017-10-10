@@ -31,7 +31,21 @@ Meteor.methods({
         guestData.forEach((guest?: any) =>{
             WeddingCollection.collection.update({_id: weddingId, "guests._id": guest._id}, {$set: {"guests.$": guest}});
         });
+    },
 
+    addGuests: (weddingId: string, guests: object[]) => {
+        check(weddingId, String);
+        check(guests, Array);
+
+        guests.forEach( (guest?: any) => {
+            WeddingCollection.collection.update({_id: weddingId}, {$push: {"guests": guest}});
+        })
+    },
+
+    removeGuest: (weddingId: string, guestId: string) => {
+        check([weddingId, guestId], String);
+
+        WeddingCollection.collection.update({_id: weddingId}, {$pull: {"guests.$._id": guestId}});
     },
 
     testMethods: (testMessage: string) => {

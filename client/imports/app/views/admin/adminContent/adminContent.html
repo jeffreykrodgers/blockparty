@@ -20,14 +20,20 @@
             <a href="#">Family</a>
         </div>
         <div class="list">
-            <div class="guest card" *ngFor="let guest of guests">
+            <div class="guest card animated slideInUp" *ngFor="let guest of guests">
                 <div class="top">
                     <h2>{{guest.name}}</h2>
                 </div>
                 <div class="bottom">
-                    <div class="property">Invite: {{guest.invitation_num}}</div>
-                    <div class="property">Relation: {{guest.relation}}</div>
-                    <div class="property">RSVP Status: {{guest.attending}}</div>
+                    <div class="property">
+                        <label>Invite</label><h4>{{guest.invitation_num}}</h4>
+                    </div>
+                    <div class="property">
+                        <label>Relation</label><h4>{{guest.relation}}</h4>
+                    </div>
+                    <div class="property">
+                        <label>RSVP Status</label><h4>{{guest.attending}}</h4>
+                    </div>
                 </div>
 
             </div>
@@ -38,9 +44,22 @@
             <h2>Tables</h2>
         </div>
         <div class="list">
-            <div class="table card" *ngFor="let table of tables">
+            <div class="table" *ngFor="let table of tables">
                 <h2>Table {{table.number}}</h2>
             </div>
         </div>
     </div>
+    <div class="addButton">
+        <i class="material-icons" (click)="addItemModal.show({inverted: true})">add</i>
+    </div>
+    <sm-modal title="Add Item" class="" #addItemModal>
+        <modal-content>
+            Add a Guest, Table, Meal, and more!
+        </modal-content>
+        <modal-actions>
+            <div class="ui buttons">
+                <div class="ui button primary" (click)="hideModal(addItemModal)">Close modal</div>
+            </div>
+        </modal-actions>
+    </sm-modal>
 </div>

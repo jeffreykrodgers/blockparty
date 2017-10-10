@@ -61,6 +61,7 @@ import {
 import {AdminComponent} from "./views/admin/admin";
 import {AdminContentComponent} from "./views/admin/adminContent/adminContent";
 import {AdminTopComponent} from "./views/admin/adminTop/adminTop";
+import {NgSemanticModule} from "ng-semantic";
 
 
 @NgModule({
@@ -104,9 +105,9 @@ import {AdminTopComponent} from "./views/admin/adminTop/adminTop";
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot(routes),
+        NgSemanticModule,
 
         //TODO Fix SuiModule
-        // SuiModule,
         MatAutocompleteModule,
         MatButtonModule,
         MatButtonToggleModule,

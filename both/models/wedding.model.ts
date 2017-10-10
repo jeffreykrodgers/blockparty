@@ -56,6 +56,7 @@ interface Guest {
     email: string;
     invitation_num: number;
     attending?: boolean;
+    complete?: boolean;
     secondary: boolean;
     meal?: string;
     relation?: string;

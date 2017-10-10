@@ -1,9 +1,12 @@
 @import "../styles/functions";
 @import "../styles/variables";
 @import "../styles/mixins";
+@import "../styles/animations";
 
 :host {
   display: flex;
+  flex: 1;
+
   .dashboard {
     flex: 1;
     display: flex;
@@ -21,7 +24,9 @@
       .list {
         height: 100%;
         overflow-y: scroll;
-        overflow-x: hidden;
+        overflow-x: visible;
+        display: flex;
+        flex-direction: column;
 
         &::-webkit-scrollbar {
           display: none;
@@ -33,10 +38,10 @@
           background-color: $white;
           padding: 12px;
           box-shadow: $shadow-subtle;
-          transition: .4s all;
+          transition: .2s all;
 
           &:hover {
-            box-shadow: $shadow-long;
+            box-shadow: $shadow-extra-long-down;
           }
         }
       }
@@ -83,6 +88,14 @@
 
           .bottom {
             display: flex;
+
+            .property {
+              padding: 10px;
+
+              h4 {
+                margin: 0;
+              }
+            }
           }
         }
       }
@@ -93,10 +106,48 @@
     .tables {
       flex: 1;
       .list {
+        flex-direction: row;
+        flex-wrap: wrap;
         .table {
+          margin: 20px;
+          min-width: 140px;
+          max-width: 140px;
+          min-height: 140px;
+          max-height: 140px;
+          border-radius: 70px;
           cursor: pointer;
+          background-color: $white;
+          box-shadow: $shadow-subtle;
+          transition: .2s all;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &:hover {
+            box-shadow: $shadow-extra-long-down;
+          }
         }
       }
+    }
+  }
+
+  .addButton {
+    position: fixed;
+    bottom: 60px;
+    cursor: pointer;
+    right: 60px;
+    background-color: $white;
+    height: 60px;
+    width: 60px;
+    border-radius: 40px;
+    box-shadow: $shadow-long;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s;
+
+    &:hover {
+      box-shadow: $shadow-extra-long;
     }
   }
 }
