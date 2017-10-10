@@ -35,7 +35,6 @@
                         <label>RSVP Status</label><h4>{{guest.attending}}</h4>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -49,8 +48,8 @@
             </div>
         </div>
     </div>
-    <div class="addButton">
-        <i class="material-icons" (click)="addItemModal.show({inverted: true})">add</i>
+    <div class="addButton" (click)="addItemModal.show({inverted: true})">
+        <i class="material-icons">add</i>
     </div>
     <sm-modal title="Add Item" class="" #addItemModal>
         <modal-content>

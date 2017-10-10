@@ -33,7 +33,7 @@
         }
 
         .card {
-          margin: 30px;
+          margin: 15px 30px;
           border-radius: 8px;
           background-color: $white;
           padding: 12px;
@@ -64,7 +64,7 @@
     }
 
     .charts {
-      flex: 2;
+      flex: 1;
       .chart {
 
       }
@@ -104,10 +104,12 @@
     }
 
     .tables {
-      flex: 1;
+      flex: 2;
       .list {
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: flex-start;
+
         .table {
           margin: 20px;
           min-width: 140px;
