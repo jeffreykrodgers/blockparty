@@ -50,5 +50,9 @@ Meteor.methods({
 
     testMethods: (testMessage: string) => {
         console.log(testMessage);
+    },
+
+    getServerTime: () => {
+        return (new Date).toDateString();
     }
 });
