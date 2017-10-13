@@ -1,0 +1,20 @@
+<div class="legend">
+    <div class="metric" *ngFor="let point of chart.data">
+        <div class="marker" [style.backgroundColor]="point.color"></div>
+        <div class="data">
+            <label>{{point.key}}</label>
+            <h3>{{point.value}}<span *ngIf="chart.type === 'percentage'">%</span></h3>
+        </div>
+    </div>
+</div>
+<div class="chart">
+    <div class="background">
+        <div class="fill"
+             *ngFor="let point of chart.data"
+             [style.backgroundColor]="point.color"
+             [style.width.%]="point.value"></div>
+    </div>
+</div>
+<div class="title">
+    <h2>{{chart.title}}</h2>
+</div>

@@ -1,0 +1,28 @@
+@import "../../styles/variables";
+@import "../../styles/functions";
+@import "../../styles/mixins";
+
+:host {
+  cursor: pointer;
+
+  &>div {
+    margin: 6px 8px;
+  }
+
+  .top {
+    padding-bottom: 4px;
+    border-bottom: 1px solid translucent30($gray);
+  }
+
+  .bottom {
+    display: flex;
+
+    .property {
+      padding: 10px;
+
+      h4 {
+        margin: 0;
+      }
+    }
+  }
+}

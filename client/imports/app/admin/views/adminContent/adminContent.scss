@@ -1,0 +1,170 @@
+@import "../../styles/functions";
+@import "../../styles/variables";
+@import "../../styles/mixins";
+@import "../../styles/animations";
+
+:host {
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dashboard {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 20px;
+
+    h2 {
+      font-weight: 300;
+    }
+
+    .area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      .nav {
+        margin: 20px 20px 0;
+        display: flex;
+
+        a {
+          padding: 10px;
+          margin: 0 10px;
+        }
+
+        h2 {
+          margin-right: 10px;
+          margin-bottom: 8px;
+        }
+        .title {
+
+        }
+
+        .actions {
+
+        }
+      }
+    }
+
+    .list {
+      display: flex;
+      flex: 1;
+
+      &.horizontal {
+        flex-direction: row;
+
+        &>.vertical {
+          margin: 0 20px;
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      &.vertical {
+        flex-direction: column;
+
+        &>.horizontal {
+          margin: 20px 0;
+
+          &:first-child {
+            margin-top: 0;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    .card {
+      flex: 1;
+      margin: 15px;
+      border-radius: 8px;
+      background-color: $white;
+      padding: 20px;
+      box-shadow: $shadow-subtle;
+      transition: .2s all;
+
+      &:hover {
+        box-shadow: $shadow-extra-long-down;
+      }
+    }
+
+    .charts {
+      .wedding {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        h1 {
+          margin: 0;
+          font-weight: 200;
+          font-family: 'Gotham', Arial, sans-serif;
+        }
+
+        h4 {
+          margin: 0;
+          padding-top: 5px;
+          border-top: 1px solid translucent30(gray);
+          font-weight: 200;
+          font-family: 'Gotham', Arial, sans-serif;
+
+          sup {
+            color: $lightBlue;
+            font-weight: 300;
+          }
+        }
+      }
+    }
+
+    .table {
+      margin: 20px;
+      min-width: 140px;
+      max-width: 140px;
+      min-height: 140px;
+      max-height: 140px;
+      border-radius: 70px;
+      cursor: pointer;
+      background-color: $white;
+      box-shadow: $shadow-subtle;
+      transition: .2s all;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        box-shadow: $shadow-extra-long-down;
+      }
+    }
+  }
+
+  .addButton {
+    position: fixed;
+    bottom: 60px;
+    cursor: pointer;
+    right: 60px;
+    background-color: $white;
+    height: 60px;
+    width: 60px;
+    border-radius: 40px;
+    box-shadow: $shadow-long;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s;
+
+    &:hover {
+      box-shadow: $shadow-extra-long;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+@import "../../styles/variables";
+@import "../../styles/functions";
+@import "../../styles/mixins";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  .legend {
+    display: flex;
+
+    .metric {
+      display: flex;
+      flex: 1;
+      margin-right: 20px;
+      .marker {
+        background-color: $gray;
+        border-radius: 4px;
+        width: 8px;
+        height: 100%;
+        margin-right: 5px;
+      }
+      .data {
+        h3 {
+          font-size: 28px;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+  .chart {
+    margin: 10px 0;
+    .background {
+      margin: 20px 0;
+      height: 30px;
+      width: 100%;
+      border-radius: 15px;
+      background-color: translucent30($gray);
+      position: relative;
+      overflow: hidden;
+    }
+    .fill {
+      height: 30px;
+      background-color: #B42775;
+      border-radius: 15px;
+      position: absolute;
+    }
+  }
+  .title {
+    flex: 1;
+    text-align: center;
+  }
+}

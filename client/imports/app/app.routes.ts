@@ -1,12 +1,12 @@
 import { Route } from '@angular/router';
 
-import { EntryComponent } from './views/entry/entry';
-import { RsvpComponent } from './views/rsvp/rsvp';
-import {AdminComponent} from "./views/admin/admin";
+import { EntryView } from './content/views/entry/entry';
+import { RsvpView } from './content/views/rsvp/rsvp';
+import {AdminView} from "./admin/admin";
 
 
 export const routes: Route[] = [
-    { path: '', component: EntryComponent },
-    { path: 'rsvp', component: RsvpComponent},
-    { path: 'admin', component: AdminComponent},
+    { path: '', component: EntryView },
+    { path: 'rsvp', component: RsvpView},
+    { path: 'admin', component: AdminView},
 ];

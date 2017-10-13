@@ -1,0 +1,58 @@
+@import "../../styles/functions";
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+h1 {
+  font-weight: 200;
+  font-family: 'Gotham', Arial, sans-serif;
+}
+
+h4 {
+  font-weight: 200;
+  font-family: 'Gotham', Arial, sans-serif;
+}
+
+:host {
+  display: flex;
+  font-family: 'Gotham', Arial, sans-serif;
+  box-shadow: $shadow-subtle;
+
+  &>div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin: 30px;
+  }
+
+  .center {
+    justify-content: center;
+  }
+
+  .right {
+    justify-content: flex-end;
+  }
+
+
+  .left {
+    .countdown {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+
+      h3 {
+        font-size: 28px;
+        font-family: 'Gotham', Arial, sans-serif;
+        font-weight: 100;
+        margin: 0;
+      }
+
+      h4 {
+        margin: 0;
+        margin-right: 8px;
+        font-family: 'Gotham', Arial, sans-serif;
+        color: $lightBlue;
+      }
+    }
+
+  }
+}

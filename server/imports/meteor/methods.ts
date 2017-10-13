@@ -53,6 +53,6 @@ Meteor.methods({
     },
 
     getServerTime: () => {
-        return (new Date).toDateString();
+        return (new Date);
     }
 });
