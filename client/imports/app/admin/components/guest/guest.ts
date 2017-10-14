@@ -13,9 +13,10 @@ import style from "./guest.scss";
 
 export class admin_GuestComponent implements OnInit {
     @Input() guest: object;
+    table: number;
 
     constructor() {
-
+        this.table = 3;
     }
 
     ngOnInit() {

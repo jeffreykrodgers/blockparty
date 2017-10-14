@@ -46,7 +46,6 @@ interface Announcement {
 interface Table {
     _id?: string;
     number: number;
-    guests?: string[];
     notes?: string;
 }
 
@@ -62,6 +61,7 @@ interface Guest {
     relation?: string;
     reminder?: number;
     gift?: number;
+    table?: string;
 }
 
 export type WeddingDB = Wedding;

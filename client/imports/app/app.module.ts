@@ -40,6 +40,7 @@ import {WeddingService} from "./services/wedding.service";
 import {RsvpService} from "./services/rsvp.service";
 
 import {NgSemanticModule} from "ng-semantic";
+import {MainPipe} from "./pipes/main-pipe.module";
 
 
 @NgModule({
@@ -96,6 +97,7 @@ import {NgSemanticModule} from "ng-semantic";
         ReactiveFormsModule,
         RouterModule.forRoot(routes),
         NgSemanticModule,
+        MainPipe,
     ],
     // Main Component
     bootstrap: [AppComponent]

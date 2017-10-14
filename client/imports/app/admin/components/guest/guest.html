@@ -1,14 +1,31 @@
-<div class="top">
-    <h2>{{guest.name}}</h2>
+<div class="left">
+    <label>Table</label>
+    <h4>{{table}}</h4>
 </div>
-<div class="bottom">
-    <div class="property">
-        <label>Invite</label><h4>{{guest.invitation_num}}</h4>
+
+<div class="center">
+    <div class="picture">
+        <span>Pic</span>
     </div>
-    <div class="property">
-        <label>Relation</label><h4>{{guest.relation}}</h4>
+    <div class="name">
+        <span>{{guest.name}}</span>
     </div>
-    <div class="property">
-        <label>RSVP Status</label><h4>{{guest.attending}}</h4>
+    <div class="details">
+        <div class="detail">
+            <label>Email</label>
+            <h4>{{guest.email}}</h4>
+        </div>
+        <div class="detail">
+            <label>Invite</label>
+            <h4>{{guest.invitation_num}}</h4>
+        </div>
+        <div class="detail">
+            <label>Meal</label>
+            <h4>{{guest.meal}}</h4>
+        </div>
     </div>
+</div>
+
+<div class="right">
+    <i class="material-icons">check</i>
 </div>
