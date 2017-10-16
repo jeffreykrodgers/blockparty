@@ -1,17 +1,28 @@
 @import "../../styles/variables";
 @import "../../styles/functions";
 @import "../../styles/mixins";
+@import "../../styles/defaults";
 
 :host {
-  cursor: pointer;
   display: flex;
+  margin: 10px !important;
+  padding: 10px 20px !important;
 
   &>div {
     margin: 6px 8px;
   }
 
-  h4 {
+  h5 {
     margin: 0;
+  }
+
+  h2, h3, h4 {
+    margin: 0;
+    color: $blue;
+  }
+
+  label {
+    font-size: 12px;
   }
 
   .left {
@@ -29,16 +40,36 @@
     flex: 6;
     display: flex;
 
+    &>div  {
+      display: flex;
+      justify-content: center;
+    }
+
+    .picture {
+      margin-right: 15px;
+    }
+
     .name {
       display: flex;
       flex-direction: column;
+      width: 130px;
     }
 
     .details {
       display: flex;
+      flex: 1;
 
       .detail {
+        margin: 0 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
+        &.meals {
+          margin-left: auto;
+          display: flex;
+          align-items: center;
+        }
       }
     }
   }
@@ -46,10 +77,8 @@
   .right {
     display: flex;
     flex: 1;
-    max-width: 60px;
+    max-width: 20px;
     align-items: center;
     justify-content: flex-end;
   }
-
-
 }

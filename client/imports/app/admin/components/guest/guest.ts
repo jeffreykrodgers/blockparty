@@ -22,4 +22,15 @@ export class admin_GuestComponent implements OnInit {
     ngOnInit() {
 
     }
+
+    mealColor(meal) {
+        switch(meal) {
+            case 'Chicken':
+                return 'purple';
+            case 'Fish':
+                return 'pink';
+            case 'Vegetarian':
+                return 'teal';
+        }
+    }
 }

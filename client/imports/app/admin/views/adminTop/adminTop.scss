@@ -1,21 +1,26 @@
 @import "../../styles/functions";
 @import "../../styles/variables";
 @import "../../styles/mixins";
+@import "../../styles/defaults";
 
 h1 {
   font-weight: 200;
   font-family: 'Gotham', Arial, sans-serif;
+  text-shadow: $shadow-text;
 }
 
 h4 {
   font-weight: 200;
   font-family: 'Gotham', Arial, sans-serif;
+  text-shadow: $shadow-text;
 }
 
 :host {
   display: flex;
   font-family: 'Gotham', Arial, sans-serif;
+  text-shadow: $shadow-text;
   box-shadow: $shadow-subtle;
+  min-height: 58px;
 
   &>div {
     flex: 1;
@@ -30,6 +35,11 @@ h4 {
 
   .right {
     justify-content: flex-end;
+
+    .picture {
+      background: $gray;
+      margin: 10px;
+    }
   }
 
 
@@ -43,6 +53,7 @@ h4 {
         font-size: 28px;
         font-family: 'Gotham', Arial, sans-serif;
         font-weight: 100;
+        text-shadow: $shadow-text;
         margin: 0;
       }
 
@@ -50,6 +61,7 @@ h4 {
         margin: 0;
         margin-right: 8px;
         font-family: 'Gotham', Arial, sans-serif;
+        text-shadow: $shadow-text;
         color: $blue;
       }
     }

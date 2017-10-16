@@ -21,7 +21,6 @@
     }
 
     .area {
-      flex: 1;
       display: flex;
       flex-direction: column;
 
@@ -50,13 +49,13 @@
 
     .list {
       display: flex;
-      flex: 1;
 
       &.horizontal {
         flex-direction: row;
 
         &>.vertical {
           margin: 0 20px;
+          flex: 1;
 
           &:first-child {
             margin-left: 0;
@@ -73,6 +72,7 @@
 
         &>.horizontal {
           margin: 20px 0;
+          flex: 1;
 
           &:first-child {
             margin-top: 0;
@@ -94,8 +94,12 @@
       box-shadow: $shadow-subtle;
       transition: .2s all;
 
-      &:hover {
-        box-shadow: $shadow-extra-long-down;
+      &.clickable {
+        cursor: pointer;
+
+        &:hover {
+          box-shadow: $shadow-extra-long-down;
+        }
       }
     }
 
@@ -110,6 +114,7 @@
           margin: 0;
           font-weight: 200;
           font-family: 'Gotham', Arial, sans-serif;
+          text-shadow: $shadow-text;
         }
 
         h4 {
@@ -118,6 +123,7 @@
           border-top: 1px solid translucent30(gray);
           font-weight: 200;
           font-family: 'Gotham', Arial, sans-serif;
+          text-shadow: $shadow-text;
 
           sup {
             color: $blue;
@@ -142,8 +148,10 @@
       align-items: center;
       justify-content: center;
 
-      &:hover {
-        box-shadow: $shadow-extra-long-down;
+      &.clickable {
+        &:hover {
+          box-shadow: $shadow-extra-long-down;
+        }
       }
     }
   }
@@ -167,4 +175,9 @@
       box-shadow: $shadow-extra-long;
     }
   }
+
+  .ui.modal>.header {
+    border-bottom: 0px;
+  }
+
 }

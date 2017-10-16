@@ -56,15 +56,15 @@ export class Main {
                 meals: [
                     {
                         _id: Random.id(),
-                        name: "Chicken Dish"
+                        name: "Chicken"
                     },
                     {
                         _id: Random.id(),
-                        name: "Salmon Dish"
+                        name: "Salmon"
                     },
                     {
                         _id: Random.id(),
-                        name: "Vegitarian"
+                        name: "Vegetarian"
                     },
                 ],
                 announcements: [],
@@ -79,6 +79,7 @@ export class Main {
                         relation: 'friend',
                         reminder: '',
                         gift: 0,
+                        table: '3',
                     },
                     {
                         _id: Random.id(),

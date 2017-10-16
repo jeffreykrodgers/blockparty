@@ -1,7 +1,7 @@
 <div class="dashboard">
     <div class="charts area">
         <div class="nav wedding">
-            <h1>Vina and Jeff</h1>
+            <h1>{{spouses[0].first_name}} and {{spouses[1].first_name}}</h1>
             <h4>Sunday, June 24<sup>th</sup> 2018</h4>
         </div>
         <div class="horizontal list">
@@ -11,7 +11,7 @@
 
     <dashboard-area [title]="'Tables'" class="tables" >
         <div class="list">
-            <div class="table" *ngFor="let table of tables">
+            <div class="clickable table" *ngFor="let table of tables">
                 <h2>Table {{table.number}}</h2>
             </div>
         </div>
@@ -21,19 +21,19 @@
         <div class="vertical list">
             <dashboard-area [title]="'Guests'" class="guests">
                 <div class="vertical list">
-                    <guest-card *ngFor="let guest of guests" [guest]="guest"></guest-card>
+                    <guest-card class="clickable" *ngFor="let guest of guests" [guest]="guest"></guest-card>
                 </div>
             </dashboard-area>
         </div>
         <div class="vertical list">
             <dashboard-area [title]="'Venues'" class="venues">
                 <div class="horizontal list">
-                    <venue-card class="animated slideInUp" *ngFor="let venue of venues" [venue]="venue"></venue-card>
+                    <venue-card class="clickable animated slideInUp" *ngFor="let venue of venues" [venue]="venue"></venue-card>
                 </div>
             </dashboard-area>
             <dashboard-area [title]="'Meals'" class="meals">
                 <div class="horizontal list">
-                    <meal-card class="animated slideInUp" *ngFor="let meal of meals" [meal]="meal"></meal-card>
+                    <meal-card class="clickable animated slideInUp" *ngFor="let meal of meals" [meal]="meal"></meal-card>
                 </div>
             </dashboard-area>
         </div>
@@ -41,10 +41,11 @@
     </div>
 </div>
 
-<div class="addButton" (click)="addItemModal.show({inverted: true})">
+<div class="addButton" (click)="addItem(addItemModal)">
     <i class="material-icons">add</i>
 </div>
-<sm-modal title="Add Item" class="" #addItemModal>
+
+<sm-modal title="Add Item" class="modal" #addItemModal>
     <modal-content>
         Add a Guest, Table, Meal, and more!
     </modal-content>

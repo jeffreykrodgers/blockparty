@@ -1,31 +1,37 @@
 <div class="left">
     <label>Table</label>
-    <h4>{{table}}</h4>
+    <h2>{{table}}</h2>
 </div>
 
 <div class="center">
     <div class="picture">
-        <span>Pic</span>
+
     </div>
     <div class="name">
-        <span>{{guest.name}}</span>
+        <h4>{{guest.name}}</h4>
+        <h5>{{guest.relation}}</h5>
     </div>
     <div class="details">
         <div class="detail">
-            <label>Email</label>
-            <h4>{{guest.email}}</h4>
-        </div>
-        <div class="detail">
             <label>Invite</label>
-            <h4>{{guest.invitation_num}}</h4>
+            <h5>{{guest.invitation_num}}</h5>
         </div>
-        <div class="detail">
-            <label>Meal</label>
-            <h4>{{guest.meal}}</h4>
+
+        <div class="detail" *ngIf="guest.email">
+            <label>Email</label>
+            <h5>{{guest.email}}</h5>
+        </div>
+
+        <div class="meals detail">
+            <div *ngIf="guest.meal" class="ui horizontal label" [ngClass]="mealColor(guest.meal)">
+                {{guest.meal}}
+            </div>
         </div>
     </div>
 </div>
 
 <div class="right">
-    <i class="material-icons">check</i>
+    <i class="large teal checkmark icon" *ngIf="guest.completed && guest.attending"></i>
+    <i class="large pink remove icon" *ngIf="guest.completed && !guest.attending"></i>
+    <i class="large minus icon" *ngIf="!guest.completed"></i>
 </div>

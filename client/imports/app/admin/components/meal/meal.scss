@@ -1,0 +1,9 @@
+@import "../../styles/variables";
+@import "../../styles/functions";
+@import "../../styles/mixins";
+
+:host {
+  min-width: 160px;
+  min-height: 200px;
+
+}

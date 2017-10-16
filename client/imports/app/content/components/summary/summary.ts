@@ -23,6 +23,10 @@ export class SummaryComponent implements OnInit {
     }
 
     finish() {
+        this.rsvpData.guests.forEach((guest) => {
+           guest.completed = true;
+        });
+
         this.rsvpData.current_component = {
             name: 'finished',
             title: 'You are all set!'

@@ -5,6 +5,7 @@
 :host {
   display: flex;
   flex-direction: column;
+
   .legend {
     display: flex;
 
@@ -13,12 +14,12 @@
       flex: 1;
       margin-right: 20px;
       .marker {
-        background-color: $gray;
+        background: $gradient-v;
         border-radius: 4px;
         width: 8px;
         height: 100%;
         margin-right: 5px;
-        box-shadow: $shadow-long;
+        box-shadow: $shadow-subtle;
       }
       .data {
         h3 {
@@ -35,14 +36,14 @@
       height: 30px;
       width: 100%;
       border-radius: 15px;
-      background-color: translucent30($gray);
+      background-color: $lightGray;
       box-shadow: $shadow-subtle;
       position: relative;
       overflow: hidden;
     }
     .fill {
       height: 30px;
-      background-color: #B42775;
+      background: $gradient-h;
       border-radius: 15px;
       position: absolute;
     }

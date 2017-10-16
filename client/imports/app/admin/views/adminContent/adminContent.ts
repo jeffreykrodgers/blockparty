@@ -18,6 +18,7 @@ export class AdminContentView implements OnInit {
     weddingData: Observable<WeddingDB[]>;
 
     weddingId: string;
+    spouses: object[];
     guests: object[];
     tables: object[];
     meals: object[];
@@ -33,7 +34,6 @@ export class AdminContentView implements OnInit {
                 data: [{
                     key: 'Complete',
                     slug: 'completion-rate',
-                    color: '#8781EF',
                     value: 65,
                 }]
             },
@@ -90,7 +90,9 @@ export class AdminContentView implements OnInit {
 
     ngOnInit() {
         this.weddingData.subscribe(wedding => {
+            console.log(wedding);
             this.weddingId = wedding[0]._id;
+            this.spouses = wedding[0].spouses;
             this.guests = wedding[0].guests;
             this.tables = wedding[0].tables;
             this.meals = wedding[0].meals;
@@ -98,8 +100,8 @@ export class AdminContentView implements OnInit {
         });
     };
 
-    addItem() {
-
+    addItem(modal) {
+        modal.show({inverted: true})
     };
 
     editItem(item) {
