@@ -1,6 +1,7 @@
 import {WeddingCollection} from "../../../both/collections/wedding.collection";
 import {check} from "meteor/check";
 import {Meteor} from "meteor/meteor";
+import {Random} from "meteor/random";
 
 Meteor.methods({
 
@@ -33,16 +34,48 @@ Meteor.methods({
         });
     },
 
-    addGuests: (weddingId: string, guests: object[]) => {
-        check(weddingId, String);
-        check(guests, Array);
+    addItem: (weddingId: string, items: object[], type: string) => {
+        console.log("INCOMING", weddingId, items, type);
+        // check([weddingId, type], String);
+        // check(items, Array);
 
-        guests.forEach( (guest?: any) => {
-            WeddingCollection.collection.update({_id: weddingId}, {$push: {"guests": guest}});
-        })
+        items.forEach((item?: any) => {
+            item._id = Random.id;
+            console.log('NEW ITEM ID', item._id);
+        });
+
+        switch (type) {
+            case 'guest':
+                items.forEach( (item?: any) => {
+                    WeddingCollection.collection.update({_id: weddingId}, {$push: {"guests": item}});
+                });
+                break;
+            case 'table':
+                items.forEach( (item?: any) => {
+                    WeddingCollection.collection.update({_id: weddingId}, {$push: {"meals": item}});
+                });
+                break;
+            case 'meal':
+                items.forEach( (item?: any) => {
+                    WeddingCollection.collection.update({_id: weddingId}, {$push: {"tables": item}});
+                });
+                break;
+            case 'venue':
+                items.forEach( (item?: any) => {
+                    WeddingCollection.collection.update({_id: weddingId}, {$push: {"venues": item}});
+                });
+                break;
+            case 'announcement':
+                items.forEach( (item?: any) => {
+                    WeddingCollection.collection.update({_id: weddingId}, {$push: {"announcements": item}});
+                });
+                break;
+            default:
+                console.error("E01 -", type, "is not a valid wedding item.");
+        }
     },
 
-    removeGuest: (weddingId: string, guestId: string) => {
+    removeItem: (weddingId: string, guestId: string) => {
         check([weddingId, guestId], String);
 
         WeddingCollection.collection.update({_id: weddingId}, {$pull: {"guests.$._id": guestId}});

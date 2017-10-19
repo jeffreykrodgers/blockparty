@@ -1,6 +1,6 @@
 <div class="left">
     <label>Table</label>
-    <h2>{{table}}</h2>
+    <h2>{{guest.table || "-"}}</h2>
 </div>
 
 <div class="center">
@@ -9,7 +9,7 @@
     </div>
     <div class="name">
         <h4>{{guest.name}}</h4>
-        <h5>{{guest.relation}}</h5>
+        <h5>{{guest.relation}} of the {{guest.party}}</h5>
     </div>
     <div class="details">
         <div class="detail">
@@ -33,5 +33,5 @@
 <div class="right">
     <i class="large teal checkmark icon" *ngIf="guest.completed && guest.attending"></i>
     <i class="large pink remove icon" *ngIf="guest.completed && !guest.attending"></i>
-    <i class="large minus icon" *ngIf="!guest.completed"></i>
+    <i class="large warning icon" *ngIf="!guest.completed"></i>
 </div>

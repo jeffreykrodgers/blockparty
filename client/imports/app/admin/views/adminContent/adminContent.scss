@@ -155,29 +155,4 @@
       }
     }
   }
-
-  .addButton {
-    position: fixed;
-    bottom: 60px;
-    cursor: pointer;
-    right: 60px;
-    background-color: $white;
-    height: 60px;
-    width: 60px;
-    border-radius: 40px;
-    box-shadow: $shadow-long;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all .2s;
-
-    &:hover {
-      box-shadow: $shadow-extra-long;
-    }
-  }
-
-  .ui.modal>.header {
-    border-bottom: 0px;
-  }
-
 }

@@ -1,0 +1,84 @@
+@import "../../styles/functions";
+@import "../../styles/variables";
+@import "../../styles/mixins";
+@import "../../styles/animations";
+
+:host {
+  .addButton {
+    position: fixed;
+    bottom: 60px;
+    cursor: pointer;
+    right: 60px;
+    background: $gradient-d;
+    height: 60px;
+    width: 60px;
+    border-radius: 40px;
+    box-shadow: $shadow-long;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s;
+
+    i {
+      margin: 0;
+    }
+
+    &:hover {
+      box-shadow: $shadow-extra-long;
+    }
+  }
+
+  .ui.modal>.header {
+    border-bottom: 0px;
+  }
+
+
+}
+
+::ng-deep {
+  .ui.modal>.header {
+    border-bottom: 0px;
+    text-align: center;
+    padding-bottom: 0;
+  }
+
+  .ui.modal>.content {
+    .items-menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      h4 {
+        flex: 1;
+        margin: 20px 40px;
+        border-bottom: 4px solid $gray;
+        padding: 5px 0;
+
+        &.active {
+
+        }
+      }
+    }
+  }
+  //.modal {
+  //  .header{
+  //    border-bottom: 0px;
+  //  }
+  //  .items-menu {
+  //    display: flex;
+  //    align-items: center;
+  //    justify-content: center;
+  //    text-align: center;
+  //
+  //    h4 {
+  //      flex: 1;
+  //      margin: 20px;
+  //      border-bottom: 4px solid $gray;
+  //      padding: 5px 0;
+  //    }
+  //  }
+  //}
+}
+
+

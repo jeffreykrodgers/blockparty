@@ -1,3 +1,24 @@
-<div>
-    <h1>{{venue.name}}</h1>
+<div class="head">
+    <i class="big inverted photo icon"></i>
 </div>
+<div class="details">
+    <div class="name">
+        <h5>{{venue.event}}</h5>
+        <h1>{{venue.name}}</h1>
+    </div>
+    <div class="address">
+        <p>{{venue.address.street}}</p>
+        <p>{{venue.address.city}}, {{venue.address.state}} {{venue.address.zip}}</p>
+    </div>
+</div>
+<div class="foot">
+    <div class="time">
+        <label>Start</label>
+        <h1>{{startTime}}</h1>
+    </div>
+    <div class="time">
+        <label>End</label>
+        <h1>{{endTime}}</h1>
+    </div>
+</div>
+

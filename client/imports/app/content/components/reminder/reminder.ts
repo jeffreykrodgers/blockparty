@@ -28,7 +28,9 @@ export class ReminderComponent implements OnInit {
     ngOnInit() {
         this._rsvpService.getRsvpData().subscribe(rsvp => {
             this.rsvpData = rsvp;
-            this.guests = rsvp.guests;
+            this.guests = rsvp.guests.filter(function (guest) {
+                return guest.attending;
+            });
 
             this.guests.forEach((guest: any) => {
                 if (guest.reminder && this.reminders.filter((r: any) => r.guest === guest._id).length === 0) {

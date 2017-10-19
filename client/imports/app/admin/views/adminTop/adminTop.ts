@@ -19,9 +19,11 @@ export class AdminTopView implements OnInit {
     currentTime: any;
     weddingData: any;
     countdown: any;
+    moment: any;
 
     constructor(private _weddingService: WeddingService) {
         this.countdown = {};
+        this.moment = moment;
     }
 
     ngOnInit() {

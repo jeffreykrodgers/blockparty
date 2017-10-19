@@ -34,7 +34,7 @@ export class MealComponent implements OnInit {
             this.guests = rsvp.guests;
             this.activeGuest = rsvp.guests[0];
             this.guests_without_meals = rsvp.guests.filter(function (guest) {
-                return !guest.meal;
+                return !guest.meal && guest.attending;
             });
         });
 
@@ -45,7 +45,7 @@ export class MealComponent implements OnInit {
 
     setMeal() {
         this.guests_without_meals = this.guests.filter((guest:any) => {
-           return !guest.meal;
+           return !guest.meal && guest.attending;
         });
 
         const need_meals = this.guests_without_meals.length;

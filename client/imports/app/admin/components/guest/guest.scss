@@ -6,7 +6,7 @@
 :host {
   display: flex;
   margin: 10px !important;
-  padding: 10px 20px !important;
+  padding: 10px 20px 10px 0 !important;
 
   &>div {
     margin: 6px 8px;
@@ -30,15 +30,23 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 40px;
-    padding-right: 20px;
+    max-width: 60px;
+    margin: -10px 0;
+    padding: 0 10px;
     flex: 1;
-    border-right: 2px solid $blue;
+    background: $lightGray;
+    border-radius: 8px 0 0 8px;
+    box-shadow: $shadow-subtle;
+
+    h2, label {
+      color: $gray;
+    }
   }
 
   .center {
     flex: 6;
     display: flex;
+    margin-left: 15px;
 
     &>div  {
       display: flex;
@@ -52,7 +60,14 @@
     .name {
       display: flex;
       flex-direction: column;
-      width: 130px;
+      width: 150px;
+
+      h4 {
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
 
     .details {

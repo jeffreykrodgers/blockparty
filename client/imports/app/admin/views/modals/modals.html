@@ -1,0 +1,63 @@
+
+<div class="addButton" (click)="addItem(addModal)">
+    <i class="large inverted add icon"></i>
+</div>
+
+<sm-modal title="Add Item" class="modal" #addModal>
+    <modal-content>
+        <div class="items-menu">
+            <h4 class="item">Guest</h4>
+            <h4 class="item">Table</h4>
+            <h4 class="item">Venue</h4>
+            <h4 class="item">Meal</h4>
+            <h4 class="item">Announcement</h4>
+        </div>
+        <form class="ui form">
+            <div class="field">
+                <sm-input icon="user"
+                          class="left"
+                          placeholder="Name..."
+                          [(model)]="modalData.name">
+                </sm-input>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <sm-select placeholder="Relation..."
+                               class="fluid search"
+                               [(model)]="modalData.relation">
+                        <option value="Friend">Friend</option>
+                        <option value="Family">Family</option>
+                    </sm-select>
+                </div>
+                <div class="field">
+                    <sm-select placeholder="Party..."
+                               class="fluid search"
+                               [(model)]="modalData.party">
+                        <option value="Bride">Bride</option>
+                        <option value="Groom">Groom</option>
+                        <option value="Both">Couple</option>
+                    </sm-select>
+                </div>
+            </div>
+
+            <div class="field">
+                <sm-input icon="dollar"
+                          class="left"
+                          placeholder="Invitation Number..."
+                          [(model)]="modalData.invitation_num">
+                </sm-input>
+            </div>
+        </form>
+    </modal-content>
+    <modal-actions>
+        <button class="ui button primary"
+             (click)="submitModal(addModal)">
+            Add
+        </button>
+        <button class="ui button"
+             (click)="addModal.hide()">
+            Cancel
+        </button>
+    </modal-actions>
+</sm-modal>

@@ -5,5 +5,75 @@
 :host {
   min-width: 300px;
   min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+
+  &>div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 200;
+    font-family: 'Gotham', Arial, sans-serif;
+    line-height: 30px;
+  }
+
+  h3, h5 {
+    margin: 0;
+  }
+
+  h5 {
+    color: $blue;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .head {
+    flex: 2;
+    background: $purple;
+    border-radius: 8px 8px 0 0;
+    box-shadow: $shadow-subtle;
+  }
+
+  .details {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px 15px;
+
+    &>div {
+
+    }
+
+    .address {
+      justify-content: flex-end;
+      margin-top: auto;
+    }
+  }
+
+  .foot {
+    flex-direction: row;
+    padding: 0px 0px 15px;
+
+
+
+    .time {
+      flex: 1;
+
+      label {
+        color: $blue;
+      }
+    }
+  }
 
 }

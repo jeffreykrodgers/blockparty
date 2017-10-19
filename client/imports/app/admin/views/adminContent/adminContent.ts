@@ -5,6 +5,8 @@ import {WeddingService} from "../../../services/wedding.service";
 import {Observable} from "rxjs/Observable";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
 
+import * as moment from 'moment';
+
 @Component({
     selector: "adminContent",
     host: {
@@ -16,16 +18,20 @@ import {WeddingDB} from "../../../../../../both/models/wedding.model";
 
 export class AdminContentView implements OnInit {
     weddingData: Observable<WeddingDB[]>;
-
+    weddingDate: any;
     weddingId: string;
+
     spouses: object[];
+    date: any;
     guests: object[];
     tables: object[];
     meals: object[];
     venues: object[];
     charts: object[];
+    moment: any;
 
     constructor(private _weddingService: WeddingService) {
+
         this.weddingData = this._weddingService.getWedding({}).zone();
         this.charts = [
             {
@@ -86,12 +92,15 @@ export class AdminContentView implements OnInit {
                 ]
             }
         ];
+        this.moment = moment;
+
     }
 
     ngOnInit() {
         this.weddingData.subscribe(wedding => {
             console.log(wedding);
             this.weddingId = wedding[0]._id;
+            this.date = moment(wedding[0].date).format('dddd, MMMM Do YYYY [at] h:mm a');
             this.spouses = wedding[0].spouses;
             this.guests = wedding[0].guests;
             this.tables = wedding[0].tables;
@@ -99,20 +108,4 @@ export class AdminContentView implements OnInit {
             this.venues = wedding[0].venues;
         });
     };
-
-    addItem(modal) {
-        modal.show({inverted: true})
-    };
-
-    editItem(item) {
-
-    };
-
-    removeItem(item) {
-
-    };
-
-    hideModal(modal) {
-        modal.hide();
-    }
 }

@@ -1,3 +1,7 @@
-<div>
-    <h2>{{meal.name}}</h2>
+<div class="head" [ngClass]="meal.color">
+    <i class="big inverted photo icon"></i>
+</div>
+<div class="foot">
+    <h1>{{meal.name}}</h1>
+    <p>{{meal.notes}}</p>
 </div>

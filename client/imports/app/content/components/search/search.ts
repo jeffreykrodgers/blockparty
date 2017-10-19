@@ -39,7 +39,7 @@ export class SearchComponent implements OnInit {
         if (this.invitationNumber) {
 
             const invitationParty = this.guests.filter(
-                guest => guest.invitation_num === this.invitationNumber);
+                guest => guest.invitation_num == this.invitationNumber);
 
             if (invitationParty.length > 0) {
                 this._rsvpService.setRsvpData({

@@ -15,17 +15,9 @@ export class Main {
         if (WeddingCollection.find({}).cursor.count() === 0) {
             const data: WeddingDB[] = [{
                 _id: "FKm7S7p8FhpdgyeE3",
-                date: '2018-06-24T09:00:00+05:00',
+                date: '2018-06-24T23:00:00+05:00',
                 theme: 'default',
-                spouses: [{
-                        _id: Random.id(),
-                        first_name: 'Jeff',
-                        last_name: 'Rodgers',
-                        title: 'Groom',
-                        email: 'jeffrey.rodgers@outlook.com',
-                        password: 'testpass',
-                        services: {}
-                    },
+                spouses: [
                     {
                         _id: Random.id(),
                         first_name: 'Vina',
@@ -34,12 +26,27 @@ export class Main {
                         email: 'vina.canete@gmail.com',
                         password: 'testpass',
                         services: {}
-                    }],
+                    },
+                    {
+                        _id: Random.id(),
+                        first_name: 'Jeff',
+                        last_name: 'Rodgers',
+                        title: 'Groom',
+                        email: 'jeffrey.rodgers@outlook.com',
+                        password: 'testpass',
+                        services: {}
+                    },
+                ],
                 venues: [
                     {
                         _id: Random.id(),
                         name: 'Holy Cross Catholic Church',
-                        address: '',
+                        address: {
+                            street: '140 Mt Airy Ave',
+                            city: 'Philadelphia',
+                            state: 'PA',
+                            zip: '19119'
+                        },
                         event: 'Ceremony',
                         start_time: '2018-06-24T09:00:00+05:00',
                         end_time: '2018-06-24T11:00:00+05:00'
@@ -47,7 +54,12 @@ export class Main {
                     {
                         _id: Random.id(),
                         name: 'Flourtown Country Club ',
-                        address: '',
+                        address: {
+                            street: '150 McCloskey Rd',
+                            city: 'Flourtown',
+                            state: 'PA',
+                            zip: '19031'
+                        },
                         event: 'Reception',
                         start_time: '2018-06-24T12:00:00+05:00',
                         end_time: '2018-06-24T17:00:00+05:00'
@@ -72,71 +84,34 @@ export class Main {
                     {
                         _id: Random.id(),
                         name: 'Keith Shingleton',
-                        invitation_num: '001',
+                        invitation_num: 2,
                         attending: false,
                         secondary: false,
                         meal: '',
-                        relation: 'friend',
+                        relation: 'Friend',
+                        party: 'Groom',
                         reminder: '',
-                        gift: 0,
-                        table: '3',
+                        gift: null,
+                        table: null,
                     },
                     {
                         _id: Random.id(),
-                        name: 'AJ Lando',
-                        invitation_num: '001',
+                        name: 'Andrea Lando',
+                        invitation_num: 2,
                         attending: false,
                         secondary: false,
                         meal: '',
-                        relation: 'friend',
+                        relation: 'Friend',
+                        party: 'Groom',
                         reminder: '',
-                        gift: 0,
+                        gift: null,
+                        table: null,
                     },
-                    {
-                        _id: Random.id(),
-                        name: 'Damien Blasko',
-                        invitation_num: '002',
-                        attending: false,
-                        secondary: false,
-                        meal: '',
-                        relation: 'friend',
-                        reminder: '',
-                        gift: 0,
-                    },
-                    {
-                        _id: Random.id(),
-                        name: 'Damiens Guest',
-                        invitation_num: '002',
-                        attending: false,
-                        secondary: true,
-                        meal: '',
-                        relation: 'friend',
-                        reminder: '',
-                        gift: 0,
-                    }
                 ],
                 tables: [
                     {
                         _id: Random.id(),
                         number: 1,
-                        guests: [],
-                        notes: null
-                    },
-                    {
-                        _id: Random.id(),
-                        number: 2,
-                        guests: [],
-                        notes: null
-                    },
-                    {
-                        _id: Random.id(),
-                        number: 3,
-                        guests: [],
-                        notes: null
-                    },
-                    {
-                        _id: Random.id(),
-                        number: 4,
                         guests: [],
                         notes: null
                     },

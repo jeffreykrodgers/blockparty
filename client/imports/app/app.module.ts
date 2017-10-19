@@ -41,6 +41,7 @@ import {RsvpService} from "./services/rsvp.service";
 
 import {NgSemanticModule} from "ng-semantic";
 import {MainPipe} from "./pipes/main-pipe.module";
+import {ModalsView} from "./admin/views/modals/modals";
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import {MainPipe} from "./pipes/main-pipe.module";
         AdminView,
         AdminTopView,
         AdminContentView,
+        ModalsView,
 
         //Admin Components
         admin_AreaComponent,

@@ -24,7 +24,12 @@ interface Spouse {
 interface Venue {
     _id?: string;
     name: string;
-    address: string;
+    address: {
+        street: string,
+        city: string,
+        state: string,
+        zip: string,
+    };
     event: string;
     start_time: any;
     end_time: any;
@@ -52,16 +57,17 @@ interface Table {
 interface Guest {
     _id?: string;
     name: string;
-    email: string;
+    email?: string;
     invitation_num: number;
     attending?: boolean;
     complete?: boolean;
     secondary: boolean;
     meal?: string;
     relation?: string;
+    party?: string;
     reminder?: number;
     gift?: number;
-    table?: string;
+    table?: number;
 }
 
 export type WeddingDB = Wedding;

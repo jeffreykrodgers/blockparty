@@ -12,13 +12,13 @@ import style from "./meal.scss";
 })
 
 export class admin_MealComponent implements OnInit {
-    @Input() meal: object;
+    @Input() meal: any;
 
     constructor() {
 
     }
 
     ngOnInit() {
-
+        console.log(this.meal.color);
     }
 }

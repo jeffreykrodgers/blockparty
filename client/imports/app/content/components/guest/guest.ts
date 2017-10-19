@@ -27,6 +27,13 @@ export class GuestComponent implements OnInit {
         this.rsvpData.current_component = {
             name: 'meal'
         };
+        //
+        // this.rsvpData.guests.forEach((guest) => {
+        //     if (!guest.attending) {
+        //         this.rsvpData.guests = this.rsvpData.guests.filter(
+        //             item => item !== guest);
+        //     }
+        // });
 
         this._rsvpService.setRsvpData(this.rsvpData, true);
     }

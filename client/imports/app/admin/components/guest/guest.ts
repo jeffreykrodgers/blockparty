@@ -13,10 +13,9 @@ import style from "./guest.scss";
 
 export class admin_GuestComponent implements OnInit {
     @Input() guest: object;
-    table: number;
 
     constructor() {
-        this.table = 3;
+
     }
 
     ngOnInit() {
@@ -27,7 +26,7 @@ export class admin_GuestComponent implements OnInit {
         switch(meal) {
             case 'Chicken':
                 return 'purple';
-            case 'Fish':
+            case 'Salmon':
                 return 'pink';
             case 'Vegetarian':
                 return 'teal';
