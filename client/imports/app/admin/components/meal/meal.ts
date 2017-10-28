@@ -19,6 +19,6 @@ export class admin_MealComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.meal.color);
+                                                                            
     }
 }

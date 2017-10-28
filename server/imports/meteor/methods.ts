@@ -19,15 +19,11 @@ Meteor.methods({
     },
 
     updateWedding: (weddingId:string, weddingData:object) => {
-        check(weddingId, String);
-        check(weddingData, Object);
 
         WeddingCollection.collection.update(weddingId, {$set: weddingData});
     },
 
     updateGuests: (weddingId: string, guestData: object[]) => {
-        check(weddingId, String);
-        check(guestData, Array);
 
         guestData.forEach((guest?: any) =>{
             WeddingCollection.collection.update({_id: weddingId, "guests._id": guest._id}, {$set: {"guests.$": guest}});
@@ -35,14 +31,13 @@ Meteor.methods({
     },
 
     addItem: (weddingId: string, items: object[], type: string) => {
-        console.log("INCOMING", weddingId, items, type);
-        // check([weddingId, type], String);
-        // check(items, Array);
 
         items.forEach((item?: any) => {
-            item._id = Random.id;
+            item._id = Random.id();
             console.log('NEW ITEM ID', item._id);
         });
+
+        console.log("ITEMS:", items);
 
         switch (type) {
             case 'guest':
@@ -52,12 +47,12 @@ Meteor.methods({
                 break;
             case 'table':
                 items.forEach( (item?: any) => {
-                    WeddingCollection.collection.update({_id: weddingId}, {$push: {"meals": item}});
+                    WeddingCollection.collection.update({_id: weddingId}, {$push: {"tables": item}});
                 });
                 break;
             case 'meal':
                 items.forEach( (item?: any) => {
-                    WeddingCollection.collection.update({_id: weddingId}, {$push: {"tables": item}});
+                    WeddingCollection.collection.update({_id: weddingId}, {$push: {"meals": item}});
                 });
                 break;
             case 'venue':

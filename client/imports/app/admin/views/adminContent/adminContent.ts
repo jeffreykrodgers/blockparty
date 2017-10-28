@@ -98,7 +98,6 @@ export class AdminContentView implements OnInit {
 
     ngOnInit() {
         this.weddingData.subscribe(wedding => {
-            console.log(wedding);
             this.weddingId = wedding[0]._id;
             this.date = moment(wedding[0].date).format('dddd, MMMM Do YYYY [at] h:mm a');
             this.spouses = wedding[0].spouses;

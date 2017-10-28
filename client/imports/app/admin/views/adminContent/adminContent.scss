@@ -93,6 +93,7 @@
       padding: 20px;
       box-shadow: $shadow-subtle;
       transition: .2s all;
+      position: relative;
 
       &.clickable {
         cursor: pointer;
@@ -129,28 +130,6 @@
             color: $blue;
             font-weight: 300;
           }
-        }
-      }
-    }
-
-    .table {
-      margin: 20px;
-      min-width: 140px;
-      max-width: 140px;
-      min-height: 140px;
-      max-height: 140px;
-      border-radius: 70px;
-      cursor: pointer;
-      background-color: $white;
-      box-shadow: $shadow-subtle;
-      transition: .2s all;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      &.clickable {
-        &:hover {
-          box-shadow: $shadow-extra-long-down;
         }
       }
     }

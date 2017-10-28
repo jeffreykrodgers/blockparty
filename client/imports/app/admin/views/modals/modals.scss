@@ -28,10 +28,6 @@
     }
   }
 
-  .ui.modal>.header {
-    border-bottom: 0px;
-  }
-
 
 }
 
@@ -52,12 +48,23 @@
       h4 {
         flex: 1;
         margin: 20px 40px;
-        border-bottom: 4px solid $gray;
         padding: 5px 0;
+        cursor: pointer;
 
         &.active {
-
+          border-bottom: 4px solid $blue;
         }
+      }
+    }
+
+    .ui.form {
+      padding: 20px;
+
+      h5 {
+        margin: 0;
+        text-align: center;
+        min-width: 50px;
+        line-height: 38px;
       }
     }
   }

@@ -112,6 +112,7 @@ export class Main {
                     {
                         _id: Random.id(),
                         number: 1,
+                        seats: 10,
                         guests: [],
                         notes: null
                     },

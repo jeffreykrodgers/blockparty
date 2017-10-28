@@ -14,3 +14,9 @@
   z-index: 1000;
   color: $gray;
 }
+
+::ng-deep {
+  .horizontal, .vertical {
+    flex-wrap: wrap;
+  }
+}

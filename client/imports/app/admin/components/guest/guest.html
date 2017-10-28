@@ -31,7 +31,12 @@
 </div>
 
 <div class="right">
-    <i class="large teal checkmark icon" *ngIf="guest.completed && guest.attending"></i>
-    <i class="large pink remove icon" *ngIf="guest.completed && !guest.attending"></i>
+    <i class="large green checkmark icon" *ngIf="guest.completed && guest.attending"></i>
+    <i class="large red remove icon" *ngIf="guest.completed && !guest.attending"></i>
     <i class="large warning icon" *ngIf="!guest.completed"></i>
+</div>
+
+<div class="actions">
+    <i class="small write icon"></i>
+    <i class="small red remove icon"></i>
 </div>

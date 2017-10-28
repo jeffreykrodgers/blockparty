@@ -17,19 +17,27 @@ import {WeddingDB} from "../../../../../../both/models/wedding.model";
 export class ModalsView implements OnInit {
     weddingData: Observable<WeddingDB[]>;
     weddingId: any;
-
+    activeForm: string;
     modalData: any;
+    guests: any;
 
     constructor(private _weddingService: WeddingService) {
         this.weddingData = this._weddingService.getWedding({}).zone();
         this.modalData = {};
+        this.activeForm = 'guest';
+        this.modalData.address = {};
     }
 
     ngOnInit() {
         this.weddingData.subscribe(wedding => {
             this.weddingId = wedding[0]._id;
+            this.guests = wedding[0].guests;
         });
     };
+
+    setForm(form) {
+        this.activeForm = form;
+    }
 
     addItem(modal) {
         modal.show({inverted: true});
@@ -45,17 +53,56 @@ export class ModalsView implements OnInit {
     };
 
     submitModal(modal) {
-        const item = {
-            name: this.modalData.name,
-            invitation_num: this.modalData.invitation_num,
-            relation: this.modalData.relation,
-            party: this.modalData.party
-        };
-        const type = 'guest';
 
-        console.log()
+        let item = {};
+        switch(this.activeForm) {
+            case 'guest':
+                item = {
+                    name: this.modalData.name,
+                    invitation_num: this.modalData.invitation_num,
+                    relation: this.modalData.relation,
+                    party: this.modalData.party
+                };
+                break;
+            case 'table':
+                item = {
+                    number: 2,
+                    notes: this.modalData.notes,
+                    seats: this.modalData.seats,
+                    guests: this.modalData.guests,
+                };
+                break;
+            case 'venue':
+                item = {
+                    name: this.modalData.name,
+                    address: this.modalData.address,
+                    event: this.modalData.event,
+                    start_time: this.modalData.startTime,
+                    end_time: this.modalData.endTime,
+                };
+                break;
+            case 'meal':
+                item = {
+                    name: this.modalData.name,
+                    notes: this.modalData.notes,
+                };
+                break;
+            case 'announcement':
+                item = {
+                    date: this.modalData.date,
+                    title: this.modalData.title,
+                    announcements: this.modalData.announcement
+                };
+                break;
+            default:
+                console.error("ER2-Not a valid form");
+        }
 
-        Meteor.call('addItem', this.weddingId, [item], type);
+        Meteor.call('addItem', this.weddingId, [item], this.activeForm);
+
+        this.modalData = {};
+        console.log(this.modalData);
+
         modal.hide();
     }
 }

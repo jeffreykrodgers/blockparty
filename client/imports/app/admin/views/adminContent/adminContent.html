@@ -10,14 +10,6 @@
         </div>
     </div>
 
-    <dashboard-area [title]="'Tables'" class="tables" >
-        <div class="list">
-            <div class="clickable table" *ngFor="let table of tables">
-                <h2>Table {{table.number}}</h2>
-            </div>
-        </div>
-    </dashboard-area>
-
     <div class="horizontal list">
         <div class="vertical list">
             <dashboard-area [title]="'Guests'" class="guests">
@@ -30,6 +22,14 @@
             </dashboard-area>
         </div>
         <div class="vertical list">
+            <dashboard-area [title]="'Tables'" class="tables" >
+                <div class="list">
+                    <table-card class="clickable"
+                                *ngFor="let table of tables"
+                                [table]="table">
+                    </table-card>
+                </div>
+            </dashboard-area>
             <dashboard-area [title]="'Venues'" class="venues">
                 <div class="horizontal list">
                     <venue-card class="clickable animated slideInUp"

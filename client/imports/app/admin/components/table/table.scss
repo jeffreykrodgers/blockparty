@@ -1,0 +1,52 @@
+@import "../../styles/functions";
+@import "../../styles/variables";
+@import "../../styles/mixins";
+@import "../../styles/animations";
+
+:host {
+  margin: 20px;
+  min-width: 140px;
+  max-width: 140px;
+  min-height: 140px;
+  max-height: 140px;
+  border-radius: 70px;
+  cursor: pointer;
+  background-color: $white;
+  box-shadow: $shadow-subtle;
+  transition: .2s all;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 10px solid $gray;
+
+  &.clickable {
+    &:hover {
+      box-shadow: $shadow-extra-long-down;
+    }
+  }
+
+  h1, h5 {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 20px;
+    font-weight: 200;
+    font-family: 'Gotham', Arial, sans-serif;
+    margin-top: 5px;
+  }
+
+  h5 {
+    color: $blue;
+    font-weight: 200;
+  }
+}
+
+::ng-deep {
+    .highchart, .highcharts-container {
+      height: 100%;
+      width: 100%;
+    }
+}

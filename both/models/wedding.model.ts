@@ -52,6 +52,8 @@ interface Table {
     _id?: string;
     number: number;
     notes?: string;
+    seats: number;
+    guests: string[];
 }
 
 interface Guest {

@@ -42,6 +42,8 @@ import {RsvpService} from "./services/rsvp.service";
 import {NgSemanticModule} from "ng-semantic";
 import {MainPipe} from "./pipes/main-pipe.module";
 import {ModalsView} from "./admin/views/modals/modals";
+import {ChartModule} from "angular2-highcharts";
+import {ContentView} from "./content/content";
 
 
 @NgModule({
@@ -64,6 +66,7 @@ import {ModalsView} from "./admin/views/modals/modals";
         admin_VenueComponent,
 
         //Content Views
+        ContentView,
         RsvpView,
         EntryView,
 
@@ -100,6 +103,7 @@ import {ModalsView} from "./admin/views/modals/modals";
         RouterModule.forRoot(routes),
         NgSemanticModule,
         MainPipe,
+        ChartModule.forRoot(require('highcharts')),
     ],
     // Main Component
     bootstrap: [AppComponent]
