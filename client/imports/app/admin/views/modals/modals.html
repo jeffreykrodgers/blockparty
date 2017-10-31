@@ -3,7 +3,7 @@
     <i class="large inverted add icon"></i>
 </div>
 
-<sm-modal title="Add Item" class="modal" #addModal>
+<sm-modal title="Add Item" class="modal" id="addModal" #addModal>
     <modal-content>
         <div class="items-menu">
             <h4 class="item" (click)="setForm('guest')" [ngClass]="{active: (activeForm === 'guest')}">Guest</h4>
@@ -12,7 +12,7 @@
             <h4 class="item" (click)="setForm('meal')" [ngClass]="{active: (activeForm === 'meal')}">Meal</h4>
             <h4 class="item" (click)="setForm('announcement')" [ngClass]="{active: (activeForm === 'announcement')}">Announcement</h4>
         </div>
-        <form class="ui form" *ngIf="activeForm === 'guest'">
+        <form class="ui form" id="modalForm" *ngIf="activeForm === 'guest'">
             <div class="field">
                 <sm-input icon="user"
                           class="left"
@@ -50,7 +50,7 @@
                 </sm-input>
             </div>
         </form>
-        <form class="ui form" *ngIf="activeForm === 'table'">
+        <form class="ui form" id="modalForm" *ngIf="activeForm === 'table'">
             <div class="field">
                 <sm-input icon="hashtag"
                           class="left"
@@ -76,7 +76,7 @@
                 </sm-input>
             </div>
         </form>
-        <form class="ui form" *ngIf="activeForm === 'venue'">
+        <form class="ui form" id="modalForm" *ngIf="activeForm === 'venue'">
             <div class="field">
                 <label>Venue</label>
                 <sm-input class="left"
@@ -137,7 +137,7 @@
                 </div>
             </div>
         </form>
-        <form class="ui form" *ngIf="activeForm === 'meal'">
+        <form class="ui form" id="modalForm" *ngIf="activeForm === 'meal'">
             <div class="field">
                 <sm-input class="left"
                           placeholder="Name..."
@@ -151,7 +151,7 @@
                 </sm-input>
             </div>
         </form>
-        <form class="ui form" *ngIf="activeForm === 'announcement'">
+        <form class="ui form" id="modalForm" *ngIf="activeForm === 'announcement'">
             <div class="field">
                 <sm-input class="left"
                           placeholder="Title..."
@@ -167,6 +167,10 @@
         </form>
     </modal-content>
     <modal-actions>
+        <div class="ui checkbox">
+            <input type="checkbox" name="public" [(ngModel)]="addingMultiple">
+            <label>Create Multiple</label>
+        </div>
         <button class="ui button primary"
              (click)="submitModal(addModal)">
             Add

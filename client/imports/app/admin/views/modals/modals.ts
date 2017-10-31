@@ -5,6 +5,9 @@ import {WeddingService} from "../../../services/wedding.service";
 import {Observable} from "rxjs/Observable";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
 
+declare let jquery: any;
+declare let $: any;
+
 @Component({
     selector: "modals",
     host: {
@@ -20,6 +23,7 @@ export class ModalsView implements OnInit {
     activeForm: string;
     modalData: any;
     guests: any;
+    addingMultiple: boolean;
 
     constructor(private _weddingService: WeddingService) {
         this.weddingData = this._weddingService.getWedding({}).zone();
@@ -41,7 +45,6 @@ export class ModalsView implements OnInit {
 
     addItem(modal) {
         modal.show({inverted: true});
-
     };
 
     editItem(item) {
@@ -55,7 +58,7 @@ export class ModalsView implements OnInit {
     submitModal(modal) {
 
         let item = {};
-        switch(this.activeForm) {
+        switch (this.activeForm) {
             case 'guest':
                 item = {
                     name: this.modalData.name,
@@ -100,9 +103,11 @@ export class ModalsView implements OnInit {
 
         Meteor.call('addItem', this.weddingId, [item], this.activeForm);
 
-        this.modalData = {};
-        console.log(this.modalData);
+        if (!this.addingMultiple) {
+            modal.hide();
+        }
 
-        modal.hide();
+        // $('#modalForm').form('reset');
+        this.modalData = {};
     }
 }

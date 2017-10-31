@@ -68,6 +68,14 @@
       }
     }
   }
+
+  .ui.modal>.actions {
+    border-top: 0;
+    background: none;
+    .ui.checkbox {
+      margin-right: 10px;
+    }
+  }
   //.modal {
   //  .header{
   //    border-bottom: 0px;

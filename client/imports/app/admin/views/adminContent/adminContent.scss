@@ -88,12 +88,13 @@
     .card {
       flex: 1;
       margin: 15px;
-      border-radius: 8px;
+      border-radius: 4px;
       background-color: $white;
       padding: 20px;
       box-shadow: $shadow-subtle;
       transition: .2s all;
       position: relative;
+      overflow: visible;
 
       &.clickable {
         cursor: pointer;

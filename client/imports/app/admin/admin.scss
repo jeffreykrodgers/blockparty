@@ -20,3 +20,14 @@
     flex-wrap: wrap;
   }
 }
+
+::ng-deep {
+  .ui.popup {
+    max-width: none;
+    border: 0;
+
+    &:before {
+      box-shadow: none !important;
+    }
+  }
+}

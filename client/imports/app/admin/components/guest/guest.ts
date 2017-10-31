@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from "@angular/core";
 import template from "./guest.html";
 import style from "./guest.scss";
 
+declare let $: any;
+
 @Component({
     selector: "guest-card",
     host: {
@@ -19,11 +21,15 @@ export class admin_GuestComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        $('.activitiesToggle')
+            .popup({
+                inline: true,
+                on: 'click'
+            });
     }
 
     mealColor(meal) {
-        switch(meal) {
+        switch (meal) {
             case 'Chicken':
                 return 'purple';
             case 'Salmon':

@@ -7,6 +7,11 @@
     <div class="picture">
 
     </div>
+    <div class="status">
+        <i class="large green checkmark icon" *ngIf="guest.completed && guest.attending"></i>
+        <i class="large red remove icon" *ngIf="guest.completed && !guest.attending"></i>
+        <i class="large warning icon" *ngIf="!guest.completed"></i>
+    </div>
     <div class="name">
         <h4>{{guest.name}}</h4>
         <h5>{{guest.relation}} of the {{guest.party}}</h5>
@@ -31,12 +36,9 @@
 </div>
 
 <div class="right">
-    <i class="large green checkmark icon" *ngIf="guest.completed && guest.attending"></i>
-    <i class="large red remove icon" *ngIf="guest.completed && !guest.attending"></i>
-    <i class="large warning icon" *ngIf="!guest.completed"></i>
-</div>
-
-<div class="actions">
-    <i class="small write icon"></i>
-    <i class="small red remove icon"></i>
+    <i class="material-icons activitiesToggle" data-position="right center">more_vert</i>
+    <div class="ui popup">
+        <sm-button class="positive" (click)="console.log('click')" icon="edit"></sm-button>
+        <sm-button class="negative" (click)="console.log('click')" icon="remove"></sm-button>
+    </div>
 </div>

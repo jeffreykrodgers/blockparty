@@ -25,17 +25,18 @@
     font-size: 12px;
   }
 
-  .left {
+  &>.left {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     max-width: 60px;
+    min-width: 60px;
     margin: -10px 0;
     padding: 0 10px;
     flex: 1;
     background: $lightGray;
-    border-radius: 8px 0 0 8px;
+    border-radius: 4px 0 0 4px;
     box-shadow: $shadow-subtle;
 
     h2, label {
@@ -43,7 +44,7 @@
     }
   }
 
-  .center {
+  &>.center {
     flex: 6;
     display: flex;
     margin-left: 15px;
@@ -54,7 +55,14 @@
     }
 
     .picture {
-      margin-right: 15px;
+
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 10px;
     }
 
     .name {
@@ -99,12 +107,14 @@
     }
   }
 
-  .right {
+  &>.right {
     display: flex;
     flex: 1;
-    max-width: 20px;
+    max-width: 10px;
+    min-width: 10px;
     align-items: center;
     justify-content: flex-end;
+    margin-right: 0;
   }
 
   .actions {
@@ -112,15 +122,10 @@
     flex-direction: column;
     right: 0;
     display: none;
+    height: 100%;
 
     i {
       flex: 1;
-    }
-  }
-
-  &:hover {
-    .actions {
-      display: flex;
     }
   }
 }
