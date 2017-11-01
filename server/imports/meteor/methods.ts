@@ -40,27 +40,27 @@ Meteor.methods({
         console.log("ITEMS:", items);
 
         switch (type) {
-            case 'guest':
+            case 'Guest':
                 items.forEach( (item?: any) => {
                     WeddingCollection.collection.update({_id: weddingId}, {$push: {"guests": item}});
                 });
                 break;
-            case 'table':
+            case 'Table':
                 items.forEach( (item?: any) => {
                     WeddingCollection.collection.update({_id: weddingId}, {$push: {"tables": item}});
                 });
                 break;
-            case 'meal':
+            case 'Meal':
                 items.forEach( (item?: any) => {
                     WeddingCollection.collection.update({_id: weddingId}, {$push: {"meals": item}});
                 });
                 break;
-            case 'venue':
+            case 'Venue':
                 items.forEach( (item?: any) => {
                     WeddingCollection.collection.update({_id: weddingId}, {$push: {"venues": item}});
                 });
                 break;
-            case 'announcement':
+            case 'Announcement':
                 items.forEach( (item?: any) => {
                     WeddingCollection.collection.update({_id: weddingId}, {$push: {"announcements": item}});
                 });

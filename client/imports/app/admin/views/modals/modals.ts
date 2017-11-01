@@ -37,14 +37,27 @@ export class ModalsView implements OnInit {
             this.weddingId = wedding[0]._id;
             this.guests = wedding[0].guests;
         });
+
+        $('.addButtonsToggle').popup({
+            on: 'click',
+            hideOnScroll: true,
+        });
+
+        $('.addToggle')
+            .popup({
+                inline: true,
+                on: 'hover'
+            });
     };
 
-    setForm(form) {
-        this.activeForm = form;
-    }
+    // setForm(form) {
+    //     this.activeForm = form;
+    // }
 
-    addItem(modal) {
+    addItem(modal, form) {
         modal.show({inverted: true});
+        this.activeForm = form;
+        $('.addButtonsToggle').popup('hide');
     };
 
     editItem(item) {
@@ -55,11 +68,18 @@ export class ModalsView implements OnInit {
 
     };
 
+    cancelModal(modal) {
+        console.log("Clearing Form");
+        this.modalData = {};
+        $('#modalForm').form('clear');
+        modal.hide();
+    }
+
     submitModal(modal) {
 
         let item = {};
         switch (this.activeForm) {
-            case 'guest':
+            case 'Guest':
                 item = {
                     name: this.modalData.name,
                     invitation_num: this.modalData.invitation_num,
@@ -67,7 +87,7 @@ export class ModalsView implements OnInit {
                     party: this.modalData.party
                 };
                 break;
-            case 'table':
+            case 'Table':
                 item = {
                     number: 2,
                     notes: this.modalData.notes,
@@ -75,7 +95,7 @@ export class ModalsView implements OnInit {
                     guests: this.modalData.guests,
                 };
                 break;
-            case 'venue':
+            case 'Venue':
                 item = {
                     name: this.modalData.name,
                     address: this.modalData.address,
@@ -84,13 +104,13 @@ export class ModalsView implements OnInit {
                     end_time: this.modalData.endTime,
                 };
                 break;
-            case 'meal':
+            case 'Meal':
                 item = {
                     name: this.modalData.name,
                     notes: this.modalData.notes,
                 };
                 break;
-            case 'announcement':
+            case 'Announcement':
                 item = {
                     date: this.modalData.date,
                     title: this.modalData.title,
@@ -98,16 +118,16 @@ export class ModalsView implements OnInit {
                 };
                 break;
             default:
-                console.error("ER2-Not a valid form");
+                console.error("E02-Not a valid form");
         }
 
         Meteor.call('addItem', this.weddingId, [item], this.activeForm);
 
         if (!this.addingMultiple) {
-            modal.hide();
+            this.cancelModal(modal);
         }
 
         // $('#modalForm').form('reset');
-        this.modalData = {};
+
     }
 }

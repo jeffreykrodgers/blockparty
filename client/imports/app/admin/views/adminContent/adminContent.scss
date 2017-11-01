@@ -136,3 +136,27 @@
     }
   }
 }
+
+::ng-deep {
+  .ui.pink.button {
+    background: $pink;
+    box-shadow: colorShadow($pink);
+  }
+  .ui.purple.button {
+    background: $purple;
+    box-shadow: colorShadow($purple);
+  }
+  .ui.teal.button {
+    background: $teal;
+    box-shadow: colorShadow($teal);
+  }
+
+  .ui.blue.button {
+    background: $blue;
+    box-shadow: colorShadow($blue);
+  }
+
+  .ui.popup {
+    box-shadow: $shadow-long;
+  }
+}

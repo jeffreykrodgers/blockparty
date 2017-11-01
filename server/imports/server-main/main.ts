@@ -68,7 +68,7 @@ export class Main {
                 meals: [
                     {
                         _id: Random.id(),
-                        name: "Chicken"
+                        name: "Chicken",
                     },
                     {
                         _id: Random.id(),

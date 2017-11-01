@@ -21,3 +21,11 @@
 @function translucent30($base-color){
   @return rgba($base-color, .30);
 }
+
+@function translucent15($base-color){
+  @return rgba($base-color, .15);
+}
+
+@function colorShadow($base-color) {
+  @return 0 0 25px translucent50($base-color);
+}
