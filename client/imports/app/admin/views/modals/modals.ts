@@ -43,7 +43,7 @@ export class ModalsView implements OnInit {
         //Open Modal event from modal service
         this._modalService.events$.forEach((data) => {
             if (data.data) {
-                this.modalData = data.data;
+                this.modalData = {...data.data};
             }
             this.modalMode = data.mode;
 
@@ -166,7 +166,7 @@ export class ModalsView implements OnInit {
                 Meteor.call('updateItem',
                     this.weddingId,
                     this.activeForm,
-                    this.modalData,
+                    [this.modalData],
                 );
                 break;
             case 'Add':

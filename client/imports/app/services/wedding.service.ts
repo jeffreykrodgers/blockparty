@@ -26,6 +26,7 @@ export class WeddingService {
     }
 
     public updateWedding(id: string, obj: object) {
+        console.log("DB Call:", id, obj);
         Meteor.call('updateItem', id, 'Guest', obj);
     }
 
