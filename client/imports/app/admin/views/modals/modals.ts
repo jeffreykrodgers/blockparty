@@ -1,9 +1,10 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import template from "./modals.html";
 import style from "./modals.scss";
 import {WeddingService} from "../../../services/wedding.service";
 import {Observable} from "rxjs/Observable";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
+import {ModalService} from "./modals.service";
 
 declare let jquery: any;
 declare let $: any;
@@ -18,21 +19,45 @@ declare let $: any;
 })
 
 export class ModalsView implements OnInit {
+    @ViewChild('itemModal') itemModal:any;
+
     weddingData: Observable<WeddingDB[]>;
     weddingId: any;
     activeForm: string;
     modalData: any;
+    modalMode: string;
     guests: any;
     addingMultiple: boolean;
 
-    constructor(private _weddingService: WeddingService) {
+    constructor(private _weddingService: WeddingService,
+                private _modalService: ModalService) {
         this.weddingData = this._weddingService.getWedding({}).zone();
         this.modalData = {};
-        this.activeForm = 'guest';
+        this.activeForm = 'Guest';
         this.modalData.address = {};
     }
 
     ngOnInit() {
+        const self = this;
+
+        //Open Modal event from modal service
+        this._modalService.events$.forEach((data) => {
+            if (data.data) {
+                this.modalData = data.data;
+            }
+            this.modalMode = data.mode;
+
+            switch(this.modalMode) {
+                case 'Edit':
+                    self.editItem(data.form);
+                    break;
+                case 'Add':
+                default:
+                    self.addItem(data.form);
+                    break;
+            }
+        });
+
         this.weddingData.subscribe(wedding => {
             this.weddingId = wedding[0]._id;
             this.guests = wedding[0].guests;
@@ -40,39 +65,54 @@ export class ModalsView implements OnInit {
 
         $('.addButtonsToggle').popup({
             on: 'click',
-            hideOnScroll: true,
         });
 
-        $('.addToggle')
-            .popup({
-                inline: true,
-                on: 'hover'
-            });
+        $('.addToggle').popup({
+            inline: true,
+            on: 'hover'
+        });
+
+        $('#itemModal').modal();
     };
 
-    // setForm(form) {
-    //     this.activeForm = form;
-    // }
+    addItem(form) {
+        if (form === 'Venue') {
+            this.modalData = {address:{}}
+        }
 
-    addItem(modal, form) {
-        modal.show({inverted: true});
+        this.modalMode = 'Add';
         this.activeForm = form;
+        this.showModal(this.itemModal);
+
         $('.addButtonsToggle').popup('hide');
     };
 
-    editItem(item) {
-
+    editItem(form) {
+        this.activeForm = form;
+        this.showModal(this.itemModal);
     };
 
-    removeItem(item) {
-
-    };
+    clearModalData() {
+        if (this.activeForm === 'Venue') {
+            this.modalData = {address:{}};
+        } else {
+            this.modalData = {};
+        }
+    }
 
     cancelModal(modal) {
-        console.log("Clearing Form");
-        this.modalData = {};
-        $('#modalForm').form('clear');
         modal.hide();
+
+        this.clearModalData();
+        $('#modalForm').form('clear');
+    }
+
+    showModal(modal) {
+        $('.activitiesToggle').popup('hide');
+        modal.show({
+            inverted: true,
+            observeChanges: true,
+        });
     }
 
     submitModal(modal) {
@@ -121,13 +161,27 @@ export class ModalsView implements OnInit {
                 console.error("E02-Not a valid form");
         }
 
-        Meteor.call('addItem', this.weddingId, [item], this.activeForm);
+        switch (this.modalMode) {
+            case 'Edit':
+                Meteor.call('updateItem',
+                    this.weddingId,
+                    this.activeForm,
+                    this.modalData,
+                );
+                break;
+            case 'Add':
+            default:
+                Meteor.call('addItem',
+                    this.weddingId,
+                    this.activeForm,
+                    [item]
+                );
+                break;
+        }
+
 
         if (!this.addingMultiple) {
             this.cancelModal(modal);
         }
-
-        // $('#modalForm').form('reset');
-
     }
 }

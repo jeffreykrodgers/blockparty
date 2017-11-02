@@ -1,22 +1,24 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
-export class RsvpService {
-    private modalDataObservable = new BehaviorSubject<any>({
-        form: [],
-    });
+export class ModalService {
+    private modalObservable = new Subject<any>();
+    // private modalDataObservable = new BehaviorSubject<any>({
+    //     form: [],
+    // });
 
-    constructor() {
-
+    openModal(type, object = {}, mode = 'Add') {
+        const data = {
+            form: type,
+            mode: mode,
+            data: object,
+        };
+        this.modalObservable.next(data);
     }
 
-    getModalData(): Observable<any> {
-        return this.modalDataObservable.asObservable();
-    }
-
-    setModalData(modalData: any) {
-        this.modalDataObservable.next(modalData);
+    get events$ () {
+        return this.modalObservable.asObservable();
     }
 }

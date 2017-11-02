@@ -5,39 +5,53 @@ import {Random} from "meteor/random";
 
 Meteor.methods({
 
-    setGuests: (weddingId: string, guestData: object[]) => {
-        check(weddingId, String);
-        check(guestData, Array);
-
-
-    },
-
-    setMeals: (weddingId: string, mealData: object[]) => {
-        check(weddingId, String);
-        check(mealData, Array);
-
-    },
-
     updateWedding: (weddingId:string, weddingData:object) => {
-
         WeddingCollection.collection.update(weddingId, {$set: weddingData});
     },
 
-    updateGuests: (weddingId: string, guestData: object[]) => {
-
-        guestData.forEach((guest?: any) =>{
-            WeddingCollection.collection.update({_id: weddingId, "guests._id": guest._id}, {$set: {"guests.$": guest}});
-        });
+    updateItem: (weddingId: string, type: string, item: any) => {
+        switch (type) {
+            case 'Guest':
+                WeddingCollection.collection.update({
+                    _id: weddingId,
+                    "guests._id": item._id
+                }, {$set: {"guests.$": item}});
+                break;
+            case 'Table':
+                WeddingCollection.collection.update({
+                    _id: weddingId,
+                    "tables._id": item._id
+                }, {$set: {"tables.$": item}});
+                break;
+            case 'Meal':
+                WeddingCollection.collection.update({
+                    _id: weddingId,
+                    "meals._id": item._id
+                }, {$set: {"meals.$": item}});
+                break;
+            case 'Venue':
+                WeddingCollection.collection.update({
+                    _id: weddingId,
+                    "venues._id": item._id
+                }, {$set: {"venues.$": item}});
+                break;
+            case 'Announcements':
+                WeddingCollection.collection.update({
+                    _id: weddingId,
+                    "venues._id": item._id
+                }, {$set: {"venues.$": item}});
+                break;
+            default:
+                console.error("E03-Type not valid. Cannot edit document");
+        }
     },
 
-    addItem: (weddingId: string, items: object[], type: string) => {
+    addItem: (weddingId: string, type: string, items: object[]) => {
 
         items.forEach((item?: any) => {
             item._id = Random.id();
             console.log('NEW ITEM ID', item._id);
         });
-
-        console.log("ITEMS:", items);
 
         switch (type) {
             case 'Guest':
@@ -70,10 +84,39 @@ Meteor.methods({
         }
     },
 
-    removeItem: (weddingId: string, guestId: string) => {
-        check([weddingId, guestId], String);
-
-        WeddingCollection.collection.update({_id: weddingId}, {$pull: {"guests.$._id": guestId}});
+    deleteItem: (weddingId: string, type: string, item: any) => {
+        console.log(weddingId, type, item);
+        switch (type) {
+            case 'Guest':
+                WeddingCollection.collection.update({
+                    _id: weddingId,
+                    "guests._id": item._id
+                }, {$pull: {"guests": {'_id': item._id}}});
+                break;
+            case 'Table':
+                WeddingCollection.collection.update({
+                    _id: weddingId,
+                    "tables._id": item._id
+                }, {$pull: {"tables": {'_id': item._id}}});                break;
+            case 'Meal':
+                WeddingCollection.collection.update({
+                    _id: weddingId,
+                    "meals._id": item._id
+                }, {$pull: {"meals": {'_id': item._id}}});
+                break;
+            case 'Venue':
+                WeddingCollection.collection.update({
+                    _id: weddingId,
+                    "venues._id": item._id
+                }, {$pull: {"venues": {'_id': item._id}}});                break;
+            case 'Announcements':
+                WeddingCollection.collection.update({
+                    _id: weddingId,
+                    "announcements._id": item._id
+                }, {$pull: {"announcements": {'_id': item._id}}});                break;
+            default:
+                console.error("E03-Type not valid. Cannot edit document");
+        }
     },
 
     testMethods: (testMessage: string) => {

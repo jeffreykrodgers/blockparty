@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from "@angular/core";
 import template from "./table.html";
 import style from "./table.scss";
 import {WeddingService} from "../../../services/wedding.service";
+import {ModalService} from "../../views/modals/modals.service";
 
 @Component({
     selector: "table-card",
@@ -18,7 +19,8 @@ export class admin_TableComponent implements OnInit {
     tableCount: number;
     tablePercent: number;
 
-    constructor() {
+    constructor(private _modalService: ModalService,
+                private _weddingService: WeddingService) {
         // this.options = {
         //     credits: {
         //         enabled: false,
@@ -65,7 +67,12 @@ export class admin_TableComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.tableCount = this.table.guests.length;
-        this.tablePercent = 100*(this.tableCount/this.table.seats);
+        if (this.table.guests) {
+            this.tableCount = this.table.guests.length;
+        } else {
+            this.tableCount = 0;
+        }
+
+        // this.tablePercent = 100*(this.tableCount/this.table.seats);
     }
 }

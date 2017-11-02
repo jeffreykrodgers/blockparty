@@ -3,6 +3,8 @@ import template from "./venue.html";
 import style from "./venue.scss";
 
 import * as moment from 'moment';
+import {ModalService} from "../../views/modals/modals.service";
+import {WeddingService} from "../../../services/wedding.service";
 declare let $: any;
 
 @Component({
@@ -20,7 +22,9 @@ export class admin_VenueComponent implements OnInit {
     startTime: any;
     endTime: any;
 
-    constructor() {
+    constructor(private _modalService: ModalService,
+                private _weddingService: WeddingService) {
+
         this.moment = moment;
     }
 

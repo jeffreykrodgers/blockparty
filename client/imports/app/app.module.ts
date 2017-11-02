@@ -44,6 +44,7 @@ import {MainPipe} from "./pipes/main-pipe.module";
 import {ModalsView} from "./admin/views/modals/modals";
 import {ChartModule} from "angular2-highcharts";
 import {ContentView} from "./content/content";
+import {ModalService} from "./admin/views/modals/modals.service";
 
 
 @NgModule({
@@ -92,7 +93,8 @@ import {ContentView} from "./content/content";
     providers: [
         DemoDataService,
         WeddingService,
-        RsvpService
+        RsvpService,
+        ModalService,
     ],
     // Modules
     imports: [

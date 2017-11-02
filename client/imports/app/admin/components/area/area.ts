@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import template from "./area.html";
 import style from "./area.scss";
+import {ModalService} from "../../views/modals/modals.service";
 
 @Component({
     selector: "dashboard-area",
@@ -12,9 +13,9 @@ import style from "./area.scss";
 })
 
 export class admin_AreaComponent implements OnInit {
-    @Input() title: string;
+    @Input() slug: string;
 
-    constructor() {
+    constructor(private _modalService: ModalService) {
 
     }
 

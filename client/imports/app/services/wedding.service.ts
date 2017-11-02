@@ -6,6 +6,7 @@ import { WeddingCollection } from "../../../../both/collections/wedding.collecti
 @Injectable()
 export class WeddingService {
     private data: ObservableCursor<WeddingDB>;
+    weddingId: string;
 
     constructor() {
 
@@ -18,11 +19,17 @@ export class WeddingService {
             reqObj._id = "FKm7S7p8FhpdgyeE3";
         }
 
+        this.weddingId = reqObj._id;
+
         this.data = WeddingCollection.find(reqObj);
         return this.data;
     }
 
     public updateWedding(id: string, obj: object) {
-        Meteor.call('updateGuests', id, obj);
+        Meteor.call('updateItem', id, 'Guest', obj);
+    }
+
+    public deleteItem(type: string, obj:any) {
+        Meteor.call( 'deleteItem', this.weddingId, type, obj)
     }
 }

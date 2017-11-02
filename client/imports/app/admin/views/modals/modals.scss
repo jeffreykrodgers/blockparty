@@ -27,20 +27,6 @@
       box-shadow: $shadow-extra-long;
     }
   }
-  .ui.invisible.popup {
-    background: none;
-    border: none;
-    box-shadow: none;
-
-    &.visible {
-      display: flex;
-      flex-direction: column;
-    }
-
-    &:before {
-      content: none;
-    }
-  }
 
   .vertical.list {
     display: flex;
@@ -49,13 +35,6 @@
 }
 
 ::ng-deep {
-  .ui.round.button {
-    border-radius: 20px;
-    height: 38px;
-    width: 38px;
-    margin-top: 10px;
-  }
-
   .ui.modal>.header {
     border-bottom: 0px;
     text-align: center;

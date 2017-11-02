@@ -4,35 +4,37 @@
 </div>
 <div class="ui invisible popup">
     <div class="vertical list">
-        <sm-button class="teal round addToggle" (click)="addItem(addModal, 'Guest')" icon="user" data-position="left center"></sm-button>
+        <sm-button class="teal round addToggle" (click)="addItem('Guest')" icon="user" data-position="left center"></sm-button>
         <div class="ui popup">Guest</div>
 
-        <sm-button class="pink round addToggle" (click)="addItem(addModal, 'Table')" icon="users"data-position="left center"></sm-button>
+        <sm-button class="pink round addToggle" (click)="addItem('Table')" icon="users"data-position="left center"></sm-button>
         <div class="ui popup">Table</div>
 
-        <sm-button class="purple round addToggle" (click)="addItem(addModal, 'Meal')" icon="food" data-position="left center"></sm-button>
+        <sm-button class="purple round addToggle" (click)="addItem('Meal')" icon="food" data-position="left center"></sm-button>
         <div class="ui popup">Meal</div>
 
-        <sm-button class="blue round addToggle" (click)="addItem(addModal, 'Venue')" icon="marker" data-position="left center"></sm-button>
+        <sm-button class="blue round addToggle" (click)="addItem('Venue')" icon="marker" data-position="left center"></sm-button>
         <div class="ui popup">Venue</div>
 
-        <sm-button class="teal round addToggle" (click)="addItem(addModal, 'Announcement')" icon="announcement" data-position="left center"></sm-button>
+        <sm-button class="teal round addToggle" (click)="addItem('Announcement')" icon="announcement" data-position="left center"></sm-button>
         <div class="ui popup">Announcement</div>
 
     </div>
 </div>
 
-<sm-modal title="Add {{activeForm}}" class="modal" id="addModal" #addModal>
+<sm-modal title="{{modalMode}} {{activeForm}}" class="modal" id="itemModal" #itemModal>
     <modal-content>
         <form class="ui form" id="modalForm" *ngIf="activeForm === 'Guest'">
             <div class="field">
-                <sm-input icon="user"
-                          class="left"
-                          placeholder="Name..."
-                          [(model)]="modalData.name">
-                </sm-input>
+                <label>Name</label>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="Name"
+                           [(ngModel)]="modalData.name"
+                           name="guest_name"
+                           autocomplete="off">
+                </div>
             </div>
-
             <div class="two fields">
                 <div class="field">
                     <sm-select placeholder="Relation..."
@@ -49,29 +51,36 @@
                                [(model)]="modalData.party">
                         <option value="Bride">Bride</option>
                         <option value="Groom">Groom</option>
-                        <option value="Both">Couple</option>
+                        <option value="Couple">Couple</option>
                     </sm-select>
                 </div>
             </div>
 
             <div class="field">
-                <sm-input icon="hashtag"
-                          class="left"
-                          placeholder="Invitation Number..."
-                          [(model)]="modalData.invitation_num">
-                </sm-input>
+                <label>Invitation Number</label>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="Invitation Number"
+                           [(ngModel)]="modalData.invitation_num"
+                           name="guest_inv"
+                           autocomplete="off">
+                </div>
             </div>
         </form>
         <form class="ui form" id="modalForm" *ngIf="activeForm === 'Table'">
             <div class="field">
-                <sm-input icon="hashtag"
-                          class="left"
-                          placeholder="Number of Seats..."
-                          [(model)]="modalData.seats">
-                </sm-input>
+                <label>Number of Seats</label>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="Number of Seats"
+                           [(ngModel)]="modalData.seats"
+                           name="table_seats"
+                           autocomplete="off">
+                </div>
             </div>
 
             <div class="field">
+                <label>Guests</label>
                 <sm-select placeholder="Guests..."
                            class="fluid search multiple"
                            [(model)]="modalData.guests">
@@ -81,47 +90,65 @@
             </div>
 
             <div class="field">
-                <sm-input icon="write"
-                          class="left"
-                          placeholder="Notes..."
-                          [(model)]="modalData.notes">
-                </sm-input>
+                <label>Notes</label>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="Notes"
+                           [(ngModel)]="modalData.notes"
+                           name="table_notes"
+                           autocomplete="off">
+                </div>
             </div>
         </form>
         <form class="ui form" id="modalForm" *ngIf="activeForm === 'Venue'">
             <div class="field">
                 <label>Venue</label>
-                <sm-input class="left"
-                          placeholder="Name..."
-                          [(model)]="modalData.name">
-                </sm-input>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="Name..."
+                           [(ngModel)]="modalData.name"
+                           name="venue_name"
+                           autocomplete="off">
+                </div>
             </div>
             <div class="field">
                 <label>Address</label>
-                <sm-input class="left"
-                          placeholder="Street..."
-                          [(model)]="modalData.address.street">
-                </sm-input>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="Street"
+                           [(ngModel)]="modalData.address.street"
+                           name="venue_street"
+                           autocomplete="off">
+                </div>
             </div>
 
             <div class="three fields">
                 <div class="field">
-                    <sm-input class="left"
-                              placeholder="City..."
-                              [(model)]="modalData.address.city">
-                    </sm-input>
+                    <div class="ui input left">
+                        <input type="text"
+                               placeholder="City"
+                               [(ngModel)]="modalData.address.city"
+                               name="venue_city"
+                               autocomplete="off">
+                    </div>
                 </div>
                 <div class="field">
-                    <sm-input class="left"
-                              placeholder="State..."
-                              [(model)]="modalData.address.state">
-                    </sm-input>
+                    <div class="ui input left">
+                        <input type="text"
+                               placeholder="State"
+                               [(ngModel)]="modalData.address.state"
+                               name="venue_state"
+                               autocomplete="off">
+                    </div>
                 </div>
                 <div class="field">
-                    <sm-input class="left"
-                              placeholder="Zip..."
-                              [(model)]="modalData.address.zip">
-                    </sm-input>
+                    <div class="ui input left">
+                        <input type="text"
+                               placeholder="Zip"
+                               [(ngModel)]="modalData.address.zip"
+                               name="venue_zip"
+                               autocomplete="off">
+                    </div>
                 </div>
             </div>
 
@@ -136,42 +163,63 @@
             </div>
             <div class="two fields">
                 <div class="field">
-                    <sm-input class="left"
-                              placeholder="Start Time..."
-                              [(model)]="modalData.startTime">
-                    </sm-input>
+                    <label>Start Time</label>
+                    <div class="ui input left">
+                        <input type="text"
+                               placeholder="Start Time"
+                               [(ngModel)]="modalData.startTime"
+                               name="venue_start"
+                               autocomplete="off">
+                    </div>
                 </div>
                 <div class="field">
-                    <sm-input class="left"
-                              placeholder="End Time..."
-                              [(model)]="modalData.endTime">
-                    </sm-input>
+                    <label>End Time</label>
+                    <div class="ui input left">
+                        <input type="text"
+                               placeholder="End Time"
+                               [(ngModel)]="modalData.endTime"
+                               name="venue_end"
+                               autocomplete="off">
+                    </div>
                 </div>
             </div>
         </form>
         <form class="ui form" id="modalForm" *ngIf="activeForm === 'Meal'">
             <div class="field">
-                <sm-input class="left"
-                          placeholder="Name..."
-                          [(model)]="modalData.name">
-                </sm-input>
+                <label>Name</label>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="Name"
+                           [(ngModel)]="modalData.name"
+                           name="meal_name"
+                           autocomplete="off">
+                </div>
             </div>
             <div class="field">
-                <sm-input class="left"
-                          placeholder="Notes..."
-                          [(model)]="modalData.notes">
-                </sm-input>
+                <label>Notes</label>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="Notes"
+                           [(ngModel)]="modalData.notes"
+                           name="meal_notes"
+                           autocomplete="off">
+                </div>
             </div>
         </form>
         <form class="ui form" id="modalForm" *ngIf="activeForm === 'Announcement'">
             <div class="field">
-                <sm-input class="left"
-                          placeholder="Title..."
-                          [(model)]="modalData.title">
-                </sm-input>
+                <label>Title</label>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="Title"
+                           [(ngModel)]="modalData.title"
+                           name="annoucement_title"
+                           autocomplete="off">
+                </div>
             </div>
 
             <div class="field">
+                <label>Announcement</label>
                 <textarea placeholder="Announcement..."
                           name="announcement"
                           [(ngModel)]="modalData.announcement"></textarea>
@@ -179,16 +227,16 @@
         </form>
     </modal-content>
     <modal-actions>
-        <div class="ui checkbox">
+        <div class="ui checkbox" *ngIf="modalMode === 'Add'">
             <input type="checkbox" name="public" [(ngModel)]="addingMultiple">
             <label>Create Multiple</label>
         </div>
         <button class="ui button primary"
-             (click)="submitModal(addModal)">
-            Add
+             (click)="submitModal(itemModal)">
+            {{modalMode}}
         </button>
         <button class="ui button"
-             (click)="cancelModal(addModal)">
+             (click)="cancelModal(itemModal)">
             Cancel
         </button>
     </modal-actions>

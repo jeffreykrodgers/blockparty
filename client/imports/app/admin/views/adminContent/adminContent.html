@@ -12,7 +12,7 @@
 
     <div class="horizontal list">
         <div class="vertical list">
-            <dashboard-area [title]="'Guests'" class="guests">
+            <dashboard-area [slug]="'Guest'" class="guests">
                 <div class="vertical list">
                     <guest-card class="clickable"
                                 *ngFor="let guest of guests"
@@ -22,7 +22,7 @@
             </dashboard-area>
         </div>
         <div class="vertical list">
-            <dashboard-area [title]="'Tables'" class="tables" >
+            <dashboard-area [slug]="'Table'" class="tables" >
                 <div class="list">
                     <table-card class="clickable"
                                 *ngFor="let table of tables"
@@ -30,7 +30,7 @@
                     </table-card>
                 </div>
             </dashboard-area>
-            <dashboard-area [title]="'Venues'" class="venues">
+            <dashboard-area [slug]="'Venue'" class="venues">
                 <div class="horizontal list">
                     <venue-card class="clickable animated slideInUp"
                                 *ngFor="let venue of venues"
@@ -38,7 +38,7 @@
                     </venue-card>
                 </div>
             </dashboard-area>
-            <dashboard-area [title]="'Meals'" class="meals">
+            <dashboard-area [slug]="'Meal'" class="meals">
                 <div class="horizontal list">
                     <meal-card class="clickable animated slideInUp"
                                *ngFor="let meal of meals"

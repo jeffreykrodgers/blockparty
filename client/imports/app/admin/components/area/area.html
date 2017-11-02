@@ -1,11 +1,11 @@
 <div class="nav">
     <div class="title">
-        <h2>{{title}}</h2>
+        <h2>{{slug}}s</h2>
     </div>
     <div class="actions">
         <i class="sort icon"></i>
         <i class="filter icon"></i>
-        <i class="add icon"></i>
+        <i class="add icon" (click)="_modalService.openModal(slug)"></i>
     </div>
 </div>
 <ng-content></ng-content>
