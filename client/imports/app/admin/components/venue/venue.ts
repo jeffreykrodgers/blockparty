@@ -5,6 +5,7 @@ import style from "./venue.scss";
 import * as moment from 'moment';
 import {ModalService} from "../../views/modals/modals.service";
 import {WeddingService} from "../../../services/wedding.service";
+
 declare let $: any;
 
 @Component({
@@ -19,18 +20,17 @@ declare let $: any;
 export class admin_VenueComponent implements OnInit {
     @Input() venue: any;
     moment: any;
-    startTime: any;
-    endTime: any;
+    start_time: any;
+    end_time: any;
 
-    constructor(private _modalService: ModalService,
-                private _weddingService: WeddingService) {
+    constructor(private _weddingService: WeddingService) {
 
         this.moment = moment;
     }
 
     ngOnInit() {
-        this.startTime = moment(this.venue.start_time).format('h:mm a');
-        this.endTime = moment(this.venue.end_time).format('h:mm a');
+        this.start_time = moment(this.venue.start_time).format('h:mm a');
+        this.end_time = moment(this.venue.end_time).format('h:mm a');
 
         $('.activitiesToggle')
             .popup({

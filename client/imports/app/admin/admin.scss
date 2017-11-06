@@ -4,19 +4,20 @@
 
 :host {
   display: flex;
-  flex-direction: column;
   flex: 1;
   min-height: 100vh;
   max-height: 100vh;
-  border-radius: 4px;
-  background-color: $frost;
-  box-shadow: $shadow-extra-long;
-  z-index: 1000;
+  background: $frost;
   color: $gray;
+  -moz-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  //-webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
 }
 
 ::ng-deep {
   .horizontal, .vertical {
+    display: flex;
     flex-wrap: wrap;
   }
 }

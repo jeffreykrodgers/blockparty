@@ -4,19 +4,19 @@
 </div>
 <div class="ui invisible popup">
     <div class="vertical list">
-        <sm-button class="teal round addToggle" (click)="addItem('Guest')" icon="user" data-position="left center"></sm-button>
+        <sm-button class="purple round addToggle" (click)="addItem('Guest')" icon="user" data-position="left center"></sm-button>
         <div class="ui popup">Guest</div>
 
-        <sm-button class="pink round addToggle" (click)="addItem('Table')" icon="users"data-position="left center"></sm-button>
+        <sm-button class="purple round addToggle" (click)="addItem('Table')" icon="users"data-position="left center"></sm-button>
         <div class="ui popup">Table</div>
 
         <sm-button class="purple round addToggle" (click)="addItem('Meal')" icon="food" data-position="left center"></sm-button>
         <div class="ui popup">Meal</div>
 
-        <sm-button class="blue round addToggle" (click)="addItem('Venue')" icon="marker" data-position="left center"></sm-button>
+        <sm-button class="purple round addToggle" (click)="addItem('Venue')" icon="marker" data-position="left center"></sm-button>
         <div class="ui popup">Venue</div>
 
-        <sm-button class="teal round addToggle" (click)="addItem('Announcement')" icon="announcement" data-position="left center"></sm-button>
+        <sm-button class="purple round addToggle" (click)="addItem('Announcement')" icon="announcement" data-position="left center"></sm-button>
         <div class="ui popup">Announcement</div>
 
     </div>
@@ -164,22 +164,27 @@
             <div class="two fields">
                 <div class="field">
                     <label>Start Time</label>
-                    <div class="ui input left">
-                        <input type="text"
-                               placeholder="Start Time"
-                               [(ngModel)]="modalData.startTime"
-                               name="venue_start"
-                               autocomplete="off">
+                    <div class="ui calendar" id="#example1">
+                        <div class="ui input left">
+                            <input type="datetime-local"
+                                   placeholder="Start Time"
+                                   [(ngModel)]="modalData.start_time"
+                                   name="venue_start"
+                                   autocomplete="off">
+                        </div>
                     </div>
+
                 </div>
                 <div class="field">
                     <label>End Time</label>
-                    <div class="ui input left">
-                        <input type="text"
-                               placeholder="End Time"
-                               [(ngModel)]="modalData.endTime"
-                               name="venue_end"
-                               autocomplete="off">
+                    <div class="ui calendar">
+                        <div class="ui input left">
+                            <input type="datetime-local"
+                                   placeholder="End Time"
+                                   [(ngModel)]="modalData.end_time"
+                                   name="venue_end"
+                                   autocomplete="off">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -233,10 +238,10 @@
         </div>
         <button class="ui button primary"
              (click)="submitModal(itemModal)">
-            {{modalMode}}
+            {{buttonText()}}
         </button>
         <button class="ui button"
-             (click)="cancelModal(itemModal)">
+             (click)="closeModal(itemModal)">
             Cancel
         </button>
     </modal-actions>

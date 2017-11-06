@@ -4,6 +4,8 @@ import style from "./meal.scss";
 import {ModalService} from "../../views/modals/modals.service";
 import {WeddingService} from "../../../services/wedding.service";
 
+declare let $: any;
+
 @Component({
     selector: "meal-card",
     host: {
@@ -16,12 +18,14 @@ import {WeddingService} from "../../../services/wedding.service";
 export class admin_MealComponent implements OnInit {
     @Input() meal: any;
 
-    constructor(private _modalService: ModalService,
-                private _weddingService: WeddingService) {
+    constructor(private _weddingService: WeddingService) {
 
     }
 
     ngOnInit() {
-                                                                            
+        $('.activitiesToggle').popup({
+            inline: true,
+            on: 'click'
+        });
     }
 }

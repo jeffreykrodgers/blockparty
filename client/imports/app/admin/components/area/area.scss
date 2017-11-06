@@ -4,9 +4,10 @@
 @import "../../styles/animations";
 
 :host {
-  margin: 10px 0;
+  margin: 10px;
+
   .nav {
-    margin: 30px 15px 0;
+    margin: 0px 15px 0;
     display: flex;
     align-items: center;
     border-bottom: 1px solid $lightGray;
@@ -37,5 +38,12 @@
         margin-left: 10px;
       }
     }
+  }
+}
+
+::ng-deep {
+  .list {
+    //overflow-y: scroll;
+    //overflow-x: visible;
   }
 }

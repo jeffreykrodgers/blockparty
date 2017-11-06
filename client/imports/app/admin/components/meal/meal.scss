@@ -13,9 +13,10 @@
   justify-content: center;
 
   .head {
-    flex: 1;
+    //flex: 1;
     background: $lightGray;
     border-radius: 4px 4px 0 0;
+    height: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,7 +34,8 @@
   }
 
   .foot {
-    flex: 1;
+    //flex: 1;
+    height: 50%;
     display: flex;
     flex-direction: column;
     text-align: center;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import template from "./adminTop.html";
 import style from "./adminTop.scss";
 import {WeddingService} from "../../../services/wedding.service";
@@ -11,12 +11,10 @@ import * as moment from 'moment';
         class: 'adminTop',
     },
     template,
-    styles: [ style ]
+    styles: [style]
 })
 
-export class AdminTopView implements OnInit {
-
-    currentTime: any;
+export class admin_TopComponent implements OnInit {
     weddingData: any;
     countdown: any;
     moment: any;
@@ -28,24 +26,23 @@ export class AdminTopView implements OnInit {
 
     ngOnInit() {
         this.weddingData = this._weddingService.getWedding({}).zone();
-
-        this.weddingData.subscribe(wedding =>{
+        this.weddingData.subscribe(wedding => {
             this.weddingData = wedding[0];
-
             this.getCountdown();
         });
 
         let self = this;
+
         setInterval(function () {
             self.getCountdown();
         }, 10000);
     };
 
     private getCountdown() {
-        let _weddingDate:any = moment(this.weddingData.date);
-        let _currentDate:any = moment();
-        let _diffTime:any = _weddingDate - _currentDate;
-        let _duration:any = moment.duration(_diffTime);
+        let _weddingDate: any = moment(this.weddingData.date);
+        let _currentDate: any = moment();
+        let _diffTime: any = _weddingDate - _currentDate;
+        let _duration: any = moment.duration(_diffTime);
 
         if (_diffTime > 0) {
             //TODO Fix to use moment.diff instead of duration

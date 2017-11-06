@@ -1,0 +1,128 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+@import "../../styles/defaults";
+@import "../../styles/functions";
+
+:host {
+  width: 300px;
+  padding: 20px;
+  background: $gradient-d;
+  //box-shadow: colorShadow($blue);
+  color: $white;
+
+  .head {
+    margin: 30px;
+    margin-bottom: 0;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #EEEEEE;
+    border-bottom: 1px solid translucent50($white);
+
+    .wedding {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      h1 {
+        margin: 0;
+        font-weight: 100;
+        font-family: 'Gotham', Arial, sans-serif;
+        text-shadow: $shadow-text;
+      }
+
+      h4 {
+        margin: 0;
+        padding-top: 5px;
+        font-size: 14px;
+        font-weight: 100;
+        font-family: 'Gotham', Arial, sans-serif;
+        text-shadow: $shadow-text;
+
+        sup {
+          color: $blue;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+  .body {
+    margin: 30px;
+    margin-right: 10px;
+
+    .navigation {
+      display: flex;
+      flex-direction: column;
+      padding-left: 0;
+
+      .item {
+        height: 38px;
+        display: flex;
+        margin: 5px 0;
+
+        a.link {
+          color: translucent50($white);
+          cursor: pointer;
+          display: flex;
+          flex: 1;
+          align-items: center;
+          transition: all .2s;
+          padding-left: 25px;
+
+          .indicator {
+            margin-left: auto;
+            opacity: 0;
+            transition: all .2s
+          }
+
+          &.active {
+            color: $white;
+            &::before {
+              content: '';
+              display: block;
+              background: $white;
+              position: absolute;
+              margin-left: -25px;
+              height: 30px;
+              width: 6px;
+              border-radius: 3px;
+            }
+
+            &:hover {
+              color: $white;
+
+              .indicator {
+                color: $white;
+                opacity: 1;
+              }
+            }
+
+            .indicator {
+              opacity: 1;
+            }
+          }
+
+          &:hover {
+            color: $white;
+
+            .indicator {
+              color: $white;
+              opacity: .5;
+            }
+          }
+
+          i.icon {
+            margin-right: 10px;
+            margin-top: -7px;
+          }
+
+          h5 {
+            margin: 0;
+            font-weight: 100;
+            font-family: 'Gotham', Arial, sans-serif;
+            text-shadow: $shadow-text;
+          }
+        }
+      }
+    }
+  }
+}

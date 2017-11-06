@@ -4,6 +4,7 @@
 
 :host {
   min-width: 300px;
+  max-width: 350px;
   min-height: 320px;
   display: flex;
   flex-direction: column;
@@ -48,6 +49,7 @@
     background: $gradient-d;
     border-radius: 4px 4px 0 0;
     box-shadow: $shadow-subtle;
+    min-height: 120px;
   }
 
   .details {

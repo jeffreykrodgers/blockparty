@@ -18,7 +18,6 @@ import * as moment from 'moment';
 
 export class AdminContentView implements OnInit {
     weddingData: Observable<WeddingDB[]>;
-    weddingDate: any;
     weddingId: string;
 
     spouses: object[];
@@ -31,7 +30,6 @@ export class AdminContentView implements OnInit {
     moment: any;
 
     constructor(private _weddingService: WeddingService) {
-
         this.weddingData = this._weddingService.getWedding({}).zone();
         this.charts = [
             {
@@ -93,7 +91,6 @@ export class AdminContentView implements OnInit {
             }
         ];
         this.moment = moment;
-
     }
 
     ngOnInit() {

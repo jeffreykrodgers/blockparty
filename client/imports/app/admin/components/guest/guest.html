@@ -1,12 +1,12 @@
-<div class="left">
-    <label>Table</label>
-    <h2>{{guest.table || "-"}}</h2>
-</div>
+<!--<div class="left">-->
+    <!--<label>Table</label>-->
+    <!--<h2>{{guest.table || "-"}}</h2>-->
+<!--</div>-->
 
 <div class="center">
-    <div class="picture">
+    <!--<div class="picture">-->
 
-    </div>
+    <!--</div>-->
     <div class="status">
         <i class="large green checkmark icon" *ngIf="guest.completed && guest.attending"></i>
         <i class="large red remove icon" *ngIf="guest.completed && !guest.attending"></i>
@@ -17,16 +17,6 @@
         <h5>{{guest.relation}} of the {{guest.party}}</h5>
     </div>
     <div class="details">
-        <div class="detail">
-            <label>Invite</label>
-            <h5>{{guest.invitation_num}}</h5>
-        </div>
-
-        <div class="detail" *ngIf="guest.email">
-            <label>Email</label>
-            <h5>{{guest.email}}</h5>
-        </div>
-
         <div class="meals detail">
             <div *ngIf="guest.meal" class="ui horizontal label" [ngClass]="mealColor(guest.meal)">
                 {{guest.meal}}
@@ -36,9 +26,14 @@
 </div>
 
 <div class="right">
-    <i class="material-icons activitiesToggle" data-position="right center">more_vert</i>
-    <div class="ui invisible popup">
-        <sm-button class="round teal" (click)="_modalService.openModal('Guest', guest, 'Edit')" icon="edit"></sm-button>
-        <sm-button class="round red" (click)="_weddingService.deleteItem('Guest', guest)" icon="remove"></sm-button>
-    </div>
+    <label>Invite</label>
+    <h5>{{guest.invitation_num}}</h5>
 </div>
+
+<!--<div class="right">-->
+    <!--<i class="material-icons activitiesToggle" data-position="right center">more_vert</i>-->
+    <!--<div class="ui invisible popup">-->
+        <!--<sm-button class="round teal" (click)="_modalService.openModal('Guest', guest, 'Edit')" icon="edit"></sm-button>-->
+        <!--<sm-button class="round red" (click)="_weddingService.deleteItem('Guest', guest)" icon="remove"></sm-button>-->
+    <!--</div>-->
+<!--</div>-->

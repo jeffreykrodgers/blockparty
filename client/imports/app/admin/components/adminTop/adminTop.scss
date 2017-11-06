@@ -19,14 +19,13 @@ h4 {
   display: flex;
   font-family: 'Gotham', Arial, sans-serif;
   text-shadow: $shadow-text;
-  box-shadow: $shadow-subtle;
-  min-height: 58px;
+  height: 60px;
 
   &>div {
     flex: 1;
     display: flex;
     align-items: center;
-    margin: 30px;
+    margin: 20px;
   }
 
   .center {
@@ -39,6 +38,7 @@ h4 {
     .picture {
       background: $gray;
       margin: 10px;
+      margin-right: 0;
     }
   }
 

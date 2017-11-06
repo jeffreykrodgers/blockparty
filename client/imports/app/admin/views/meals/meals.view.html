@@ -1,0 +1,9 @@
+<dashboard-area [slug]="'Meal'" class="meals">
+    <div class="horizontal list">
+        <meal-card class="clickable animated slideInUp"
+                   *ngFor="let meal of meals"
+                   [meal]="meal"
+                   (click)="_modalService.openModal('Meal', meal, 'Edit')">
+        </meal-card>
+    </div>
+</dashboard-area>

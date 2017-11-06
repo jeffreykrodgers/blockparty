@@ -4,6 +4,7 @@ import {Pipe} from '@angular/core';
     name: 'reverse',
     pure: false
 })
+
 export class ReversePipe {
     transform(values) {
         if (values) {

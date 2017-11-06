@@ -4,6 +4,8 @@ import style from "./table.scss";
 import {WeddingService} from "../../../services/wedding.service";
 import {ModalService} from "../../views/modals/modals.service";
 
+declare let $: any;
+
 @Component({
     selector: "table-card",
     host: {
@@ -15,12 +17,12 @@ import {ModalService} from "../../views/modals/modals.service";
 
 export class admin_TableComponent implements OnInit {
     @Input() table: any;
-    options: any;
+
     tableCount: number;
     tablePercent: number;
+    // options: any;
 
-    constructor(private _modalService: ModalService,
-                private _weddingService: WeddingService) {
+    constructor(private _weddingService: WeddingService) {
         // this.options = {
         //     credits: {
         //         enabled: false,
@@ -67,12 +69,12 @@ export class admin_TableComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.table.guests) {
-            this.tableCount = this.table.guests.length;
-        } else {
-            this.tableCount = 0;
-        }
+        this.tableCount = this.table.guests ? this.table.guests.length : 0;
+        this.tablePercent = 100*(this.tableCount/this.table.seats);
 
-        // this.tablePercent = 100*(this.tableCount/this.table.seats);
+        $('.activitiesToggle').popup({
+            inline: true,
+            on: 'click'
+        });
     }
 }

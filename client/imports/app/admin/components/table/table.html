@@ -2,12 +2,11 @@
 <h2>Table {{table.number}}</h2>
 <h5>{{tableCount}} Guests</h5>
 <p>{{table.notes}}</p>
-<!--<h1 *ngIf="tablePercent > 0">{{tablePercent}}%</h1>-->
-<!--<h1 *ngIf="tablePercent === 0">Empty</h1>-->
-<div class="actions">
-    <i class="material-icons activitiesToggle" data-position="bottom center">more_horiz</i>
-    <div class="ui invisible popup">
-        <sm-button class="round teal" (click)="_modalService.openModal('Table', table, 'Edit')" icon="edit"></sm-button>
-        <sm-button class="round red" (click)="_weddingService.deleteItem('Table', table)" icon="remove"></sm-button>
-    </div>
-</div>
+
+<!--<div class="actions">-->
+    <!--<i class="material-icons activitiesToggle" data-position="bottom center">more_horiz</i>-->
+    <!--<div class="ui invisible popup">-->
+        <!--<sm-button class="round teal" (click)="_modalService.openModal('Table', table, 'Edit')" icon="edit"></sm-button>-->
+        <!--<sm-button class="round red" (click)="_weddingService.deleteItem('Table', table)" icon="remove"></sm-button>-->
+    <!--</div>-->
+<!--</div>-->

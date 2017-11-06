@@ -1,0 +1,9 @@
+<dashboard-area [slug]="'Venue'" class="venues">
+    <div class="horizontal list">
+        <venue-card class="clickable animated slideInUp"
+                    *ngFor="let venue of venues"
+                    [venue]="venue"
+                    (click)="_modalService.openModal('Venue', venue, 'Edit')">
+        </venue-card>
+    </div>
+</dashboard-area>

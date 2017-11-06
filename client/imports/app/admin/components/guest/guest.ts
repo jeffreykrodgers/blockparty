@@ -18,8 +18,7 @@ declare let $: any;
 export class admin_GuestComponent implements OnInit {
     @Input() guest: object;
 
-    constructor(private _modalService: ModalService,
-                private _weddingService: WeddingService) {
+    constructor(private _weddingService: WeddingService) {
 
     }
 

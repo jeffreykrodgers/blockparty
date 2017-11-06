@@ -6,7 +6,7 @@
 :host {
   display: flex;
   margin: 10px !important;
-  padding: 10px 20px 10px 0 !important;
+  padding: 0 !important;
 
   &>div {
     margin: 6px 8px;
@@ -47,6 +47,7 @@
   &>.center {
     flex: 6;
     display: flex;
+    margin: 15px 0;
     margin-left: 15px;
 
     &>div  {
@@ -109,23 +110,14 @@
 
   &>.right {
     display: flex;
-    flex: 1;
-    max-width: 10px;
-    min-width: 10px;
     align-items: center;
-    justify-content: flex-end;
-    margin-right: 0;
-  }
-
-  .actions {
-    position: absolute;
     flex-direction: column;
-    right: 0;
-    display: none;
-    height: 100%;
-
-    i {
-      flex: 1;
-    }
+    justify-content: center;
+    margin: 0;
+    background: $gradient-d;
+    color: $white;
+    padding: 0 10px;
+    border-radius: 0 4px 4px 0;
+    width: 55px;
   }
 }

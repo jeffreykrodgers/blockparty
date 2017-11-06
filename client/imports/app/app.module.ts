@@ -26,7 +26,7 @@ import {BottomComponent} from "./content/components/bottom/bottom";
 
 import {AdminView} from "./admin/admin";
 import {AdminContentView} from "./admin/views/adminContent/adminContent";
-import {AdminTopView} from "./admin/views/adminTop/adminTop";
+import {admin_TopComponent} from "./admin/components/adminTop/adminTop";
 
 import {admin_AreaComponent} from "./admin/components/area/area";
 import {admin_ChartComponent} from "./admin/components/chart/chart";
@@ -45,6 +45,13 @@ import {ModalsView} from "./admin/views/modals/modals";
 import {ChartModule} from "angular2-highcharts";
 import {ContentView} from "./content/content";
 import {ModalService} from "./admin/views/modals/modals.service";
+import {GuestsView} from "./admin/views/guests/guests.view";
+import {MealsView} from "./admin/views/meals/meals.view";
+import {VenuesView} from "./admin/views/venues/venues.view";
+import {AnnouncementsView} from "./admin/views/announcements/announcements.view";
+import {admin_SidebarComponent} from "./admin/components/adminSidebar/adminSidebar.component";
+import {DashboardView} from "./admin/views/dashboard/dashboard.view";
+
 
 
 @NgModule({
@@ -54,17 +61,23 @@ import {ModalService} from "./admin/views/modals/modals.service";
 
         //Admin
         AdminView,
-        AdminTopView,
         AdminContentView,
+        DashboardView,
         ModalsView,
+        GuestsView,
+        MealsView,
+        VenuesView,
+        AnnouncementsView,
 
         //Admin Components
         admin_AreaComponent,
         admin_ChartComponent,
+        admin_TopComponent,
         admin_GuestComponent,
         admin_MealComponent,
         admin_TableComponent,
         admin_VenueComponent,
+        admin_SidebarComponent,
 
         //Content Views
         ContentView,

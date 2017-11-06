@@ -1,0 +1,19 @@
+<dashboard-area [slug]="'Guest'" class="guests">
+    <div class="vertical list">
+        <guest-card class="clickable"
+                    *ngFor="let guest of guests"
+                    [guest]="guest"
+                    (click)="_modalService.openModal('Guest', guest, 'Edit')">
+        </guest-card>
+    </div>
+</dashboard-area>
+
+<dashboard-area [slug]="'Table'" class="tables" >
+    <div class="list">
+        <table-card class="clickable"
+                    *ngFor="let table of tables"
+                    [table]="table"
+                    (click)="_modalService.openModal('Table', table, 'Edit')">
+        </table-card>
+    </div>
+</dashboard-area>

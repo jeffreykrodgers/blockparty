@@ -5,6 +5,7 @@
 
 :host {
   overflow-y: scroll;
+  flex: 1;
 
   &::-webkit-scrollbar {
     display: none;
@@ -52,6 +53,7 @@
 
       &.horizontal {
         flex-direction: row;
+        display: flex;
 
         &>.vertical {
           margin: 0 20px;
@@ -69,6 +71,7 @@
 
       &.vertical {
         flex-direction: column;
+        display: flex;
 
         &>.horizontal {
           margin: 20px 0;
@@ -81,26 +84,6 @@
           &:last-child {
             margin-bottom: 0;
           }
-        }
-      }
-    }
-
-    .card {
-      flex: 1;
-      margin: 15px;
-      border-radius: 4px;
-      background-color: $white;
-      padding: 20px;
-      box-shadow: $shadow-subtle;
-      transition: .2s all;
-      position: relative;
-      overflow: visible;
-
-      &.clickable {
-        cursor: pointer;
-
-        &:hover {
-          box-shadow: $shadow-extra-long-down;
         }
       }
     }
@@ -138,6 +121,27 @@
 }
 
 ::ng-deep {
+
+  .card {
+    flex: 1;
+    margin: 15px;
+    border-radius: 4px;
+    background-color: $white;
+    padding: 20px;
+    box-shadow: $shadow-subtle;
+    transition: .2s all;
+    position: relative;
+    overflow: visible;
+
+    &.clickable {
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: $shadow-extra-long-down;
+      }
+    }
+  }
+
   .ui.pink.button {
     background: $pink;
     box-shadow: colorShadow($pink);
