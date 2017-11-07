@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ObservableCursor } from "meteor-rxjs";
-import { WeddingDB } from "../../../../both/models/wedding.model";
-import { WeddingCollection } from "../../../../both/collections/wedding.collection";
+import { WeddingDB } from "../../../../../both/models/wedding.model";
+import { WeddingCollection } from "../../../../../both/collections/wedding.collection";
 
 @Injectable()
 export class WeddingService {

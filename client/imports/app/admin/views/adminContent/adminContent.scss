@@ -4,8 +4,10 @@
 @import "../../styles/animations";
 
 :host {
-  overflow-y: scroll;
+  //overflow-y: scroll;
   flex: 1;
+  max-height: 100%;
+  overflow: hidden;
 
   &::-webkit-scrollbar {
     display: none;
@@ -15,7 +17,9 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 0 20px 20px;
+    overflow: scroll;
+    height: calc(100% - 60px);
+    padding: 10px 10px 0;
 
     h2 {
       font-weight: 300;
@@ -98,7 +102,7 @@
         h1 {
           margin: 0;
           font-weight: 200;
-          font-family: 'Gotham', Arial, sans-serif;
+          font-family: 'Montserrat', Arial, sans-serif;
           text-shadow: $shadow-text;
         }
 
@@ -107,7 +111,7 @@
           padding-top: 5px;
           border-top: 1px solid translucent30(gray);
           font-weight: 200;
-          font-family: 'Gotham', Arial, sans-serif;
+          font-family: 'Montserrat', Arial, sans-serif;
           text-shadow: $shadow-text;
 
           sup {
@@ -121,6 +125,32 @@
 }
 
 ::ng-deep {
+
+  .insert {
+    flex: 1;
+    border: 2px dashed translucent30($gray);
+    margin: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all .2s;
+    animation-delay: 1s;
+
+    .item {
+      display: flex;
+
+      i {
+        margin-left: 5px;
+      }
+    }
+
+    &:hover {
+      color: $blue;
+      border-color: translucent50($gray);
+    }
+  }
 
   .card {
     flex: 1;

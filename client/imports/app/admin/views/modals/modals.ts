@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import template from "./modals.html";
 import style from "./modals.scss";
-import {WeddingService} from "../../../services/wedding.service";
+import {WeddingService} from "../../../common/services/wedding.service";
 import {Observable} from "rxjs/Observable";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
 import {ModalService} from "./modals.service";

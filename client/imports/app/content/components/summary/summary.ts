@@ -1,7 +1,7 @@
 import {Component, OnInit, Output, EventEmitter} from "@angular/core";
 import template from "./summary.html";
 import style from "../../style/themes/default/summary.scss";
-import {RsvpService} from "../../../services/rsvp.service";
+import {RsvpService} from "../../../common/services/rsvp.service";
 
 @Component({
     selector: "summary",

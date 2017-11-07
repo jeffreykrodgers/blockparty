@@ -67,7 +67,7 @@ interface Guest {
     meal?: string;
     relation?: string;
     party?: string;
-    reminder?: number;
+    reminder?: string;
     gift?: number;
     table?: number;
 }

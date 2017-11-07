@@ -10,7 +10,6 @@ Meteor.methods({
     },
 
     updateItem: (weddingId: string, type: string, items: any) => {
-        console.log(weddingId, type, items);
         items.forEach((item?: any) => {
             switch (type) {
                 case 'Guest':

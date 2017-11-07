@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import template from "./adminTop.html";
 import style from "./adminTop.scss";
-import {WeddingService} from "../../../services/wedding.service";
+import {WeddingService} from "../../../common/services/wedding.service";
 
 import * as moment from 'moment';
 

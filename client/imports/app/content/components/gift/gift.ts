@@ -3,7 +3,7 @@ import {Observable} from "rxjs";
 
 import template from "./gift.html";
 import style from "../../style/themes/default/gift.scss";
-import {RsvpService} from "../../../services/rsvp.service";
+import {RsvpService} from "../../../common/services/rsvp.service";
 
 
 @Component({

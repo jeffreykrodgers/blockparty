@@ -36,11 +36,11 @@ import {admin_TableComponent} from "./admin/components/table/table";
 import {admin_VenueComponent} from "./admin/components/venue/venue";
 
 import {DemoDataService} from "./content/components/demo/demo-data.service";
-import {WeddingService} from "./services/wedding.service";
-import {RsvpService} from "./services/rsvp.service";
+import {WeddingService} from "./common/services/wedding.service";
+import {RsvpService} from "./common/services/rsvp.service";
 
 import {NgSemanticModule} from "ng-semantic";
-import {MainPipe} from "./pipes/main-pipe.module";
+import {MainPipe} from "./common/pipes/main-pipe.module";
 import {ModalsView} from "./admin/views/modals/modals";
 import {ChartModule} from "angular2-highcharts";
 import {ContentView} from "./content/content";

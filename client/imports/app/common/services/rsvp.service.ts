@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {WeddingService} from "./wedding.service";
-import {WeddingDB} from "../../../../both/models/wedding.model";
+import {WeddingDB} from "../../../../../both/models/wedding.model";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Injectable()

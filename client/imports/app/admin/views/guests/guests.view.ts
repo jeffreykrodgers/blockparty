@@ -1,10 +1,11 @@
 import {Component, OnInit} from "@angular/core";
 import template from "./guests.view.html";
 import style from "./guests.view.scss";
-import {WeddingService} from "../../../services/wedding.service";
+import {WeddingService} from "../../../common/services/wedding.service";
 import {Observable} from "rxjs/Observable";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
 import {ModalService} from "../modals/modals.service";
+import {animateFactory} from 'ng2-animate';
 
 @Component({
     selector: "guests",
@@ -12,7 +13,8 @@ import {ModalService} from "../modals/modals.service";
         class: 'guests',
     },
     template,
-    styles: [style]
+    styles: [style],
+    animations: [animateFactory(300, 100, 'ease-in')]
 })
 
 export class GuestsView implements OnInit {

@@ -1,19 +1,33 @@
 <dashboard-area [slug]="'Guest'" class="guests">
     <div class="vertical list">
-        <guest-card class="clickable"
-                    *ngFor="let guest of guests"
+        <guest-card class="clickable animated fadeInLeft"
+                    *ngFor="let guest of guests; let i=index"
+                    [ngStyle]="{'animation-delay': '.'+ i +'s'}"
                     [guest]="guest"
                     (click)="_modalService.openModal('Guest', guest, 'Edit')">
         </guest-card>
+        <div class="insert animated fadeIn" (click)="_modalService.openModal('Guest')">
+            <div class="item">
+                <i class="add icon"></i>
+                <div class="content">Add Guest</div>
+            </div>
+        </div>
     </div>
 </dashboard-area>
 
 <dashboard-area [slug]="'Table'" class="tables" >
     <div class="list">
-        <table-card class="clickable"
-                    *ngFor="let table of tables"
+        <table-card class="clickable animated fadeInRight"
+                    *ngFor="let table of tables; let i=index"
+                    [ngStyle]="{'animation-delay': '.'+ i +'s'}"
                     [table]="table"
                     (click)="_modalService.openModal('Table', table, 'Edit')">
         </table-card>
+        <div class="insert animated fadeIn" (click)="_modalService.openModal('Table')">
+            <div class="item">
+                <i class="add icon"></i>
+                <div class="content">Add Table</div>
+            </div>
+        </div>
     </div>
 </dashboard-area>

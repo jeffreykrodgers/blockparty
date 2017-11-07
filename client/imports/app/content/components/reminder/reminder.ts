@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import template from "./reminder.html";
 import style from "../../style/themes/default/reminder.scss";
 
-import {RsvpService} from "../../../services/rsvp.service";
+import {RsvpService} from "../../../common/services/rsvp.service";
 
 @Component({
     selector: "reminder",

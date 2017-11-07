@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import template from "./guest.html";
 import style from "../../style/themes/default/guest.scss";
-import {RsvpService} from "../../../services/rsvp.service";
+import {RsvpService} from "../../../common/services/rsvp.service";
 import {Observable} from "rxjs/Observable";
 
 @Component({

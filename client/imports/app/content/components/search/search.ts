@@ -3,8 +3,8 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import template from "./search.html";
 import { Observable } from "rxjs";
 import style from "../../style/themes/default/search.scss";
-import {WeddingService} from "../../../services/wedding.service";
-import {RsvpService} from "../../../services/rsvp.service";
+import {WeddingService} from "../../../common/services/wedding.service";
+import {RsvpService} from "../../../common/services/rsvp.service";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
 
 

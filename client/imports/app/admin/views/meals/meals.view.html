@@ -1,9 +1,16 @@
 <dashboard-area [slug]="'Meal'" class="meals">
     <div class="horizontal list">
-        <meal-card class="clickable animated slideInUp"
-                   *ngFor="let meal of meals"
+        <meal-card class="clickable animated fadeInDown"
+                   *ngFor="let meal of meals; let i = index"
+                   [ngStyle]="{'animation-delay': '.'+ i +'s'}"
                    [meal]="meal"
                    (click)="_modalService.openModal('Meal', meal, 'Edit')">
         </meal-card>
+        <div class="insert animated fadeIn" (click)="_modalService.openModal('Meal')">
+            <div class="item">
+                <i class="add icon"></i>
+                <div class="content">Add Venue</div>
+            </div>
+        </div>
     </div>
 </dashboard-area>

@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import template from "./guest.html";
 import style from "./guest.scss";
-import {ModalService} from "../../views/modals/modals.service";
-import {WeddingService} from "../../../services/wedding.service";
+import {WeddingService} from "../../../common/services/wedding.service";
 
 declare let $: any;
 
