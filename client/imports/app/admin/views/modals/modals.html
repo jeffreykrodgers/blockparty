@@ -58,13 +58,26 @@
 
             <div class="field">
                 <label>Invitation Number</label>
-                <div class="ui input left">
-                    <input type="text"
-                           placeholder="Invitation Number"
-                           [(ngModel)]="modalData.invitation_num"
-                           name="guest_inv"
-                           autocomplete="off">
+                <sm-select placeholder="Party..."
+                           class="fluid"
+                           [(model)]="modalData.invitation_num"
+                           (change)="checkForGen($event)">
+                    <option value="generateInvite">New...</option>
+                    <option *ngFor="let invite of invitations">{{invite}}</option>
+                </sm-select>
+            </div>
+            <div class="field" *ngIf="modalMode === 'Edit'">
+                <div class="ui toggle checkbox">
+                    <input name="public" type="checkbox" [(ngModel)]="modalData.attending">
+                    <label>Attending?</label>
                 </div>
+            </div>
+            <div class="field" *ngIf="modalMode === 'Edit' && modalData.attending === true">
+                <sm-select placeholder="Meal"
+                           class="fluid search"
+                           [(model)]="modalData.meal">
+                    <option *ngFor="let meal of meals" value="{{meal.name}}">{{meal.name}}</option>
+                </sm-select>
             </div>
         </form>
         <form class="ui form" id="modalForm" *ngIf="activeForm === 'Table'">
@@ -201,6 +214,16 @@
                 </div>
             </div>
             <div class="field">
+                <label>Price</label>
+                <div class="ui input left">
+                    <input type="number"
+                           placeholder="Name"
+                           [(ngModel)]="modalData.price"
+                           name="meal_name"
+                           autocomplete="off">
+                </div>
+            </div>
+            <div class="field">
                 <label>Notes</label>
                 <div class="ui input left">
                     <input type="text"
@@ -232,6 +255,11 @@
         </form>
     </modal-content>
     <modal-actions>
+        <div class="ui left floated negative button"
+             *ngIf="modalMode === 'Edit'"
+             (click)="_weddingService.deleteWeddingItem(activeForm, modalData)">
+            Delete {{activeForm}}
+        </div>
         <div class="ui checkbox" *ngIf="modalMode === 'Add'">
             <input type="checkbox" name="public" [(ngModel)]="addingMultiple">
             <label>Create Multiple</label>

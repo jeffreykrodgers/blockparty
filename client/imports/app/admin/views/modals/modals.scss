@@ -41,6 +41,10 @@
     padding-bottom: 0;
   }
 
+  .ui.inverted.dimmer > .ui.modal {
+    box-shadow: $shadow-extra-long;
+  }
+
   .ui.modal>.content {
     .items-menu {
       display: flex;
@@ -79,24 +83,6 @@
       margin-right: 10px;
     }
   }
-  //.modal {
-  //  .header{
-  //    border-bottom: 0px;
-  //  }
-  //  .items-menu {
-  //    display: flex;
-  //    align-items: center;
-  //    justify-content: center;
-  //    text-align: center;
-  //
-  //    h4 {
-  //      flex: 1;
-  //      margin: 20px;
-  //      border-bottom: 4px solid $gray;
-  //      padding: 5px 0;
-  //    }
-  //  }
-  //}
 }
 
 

@@ -3,12 +3,13 @@
 @import "../../styles/mixins";
 
 :host {
+  width: 25%;
   min-width: 160px;
   min-height: 200px;
-
+  max-width: 250px;
   padding: 0 !important;
-
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
 
@@ -24,12 +25,15 @@
 
     &.teal {
       background: $teal;
+      border-bottom: 6px solid $teal;
     }
     &.purple {
       background: $purple;
+      border-bottom: 6px solid $purple;
     }
     &.pink {
       background: $pink;
+      border-bottom: 6px solid $pink;
     }
   }
 
@@ -43,6 +47,14 @@
 
     h1 {
       font-size: 24px;
+      font-weight: 200;
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin-bottom: 5px;
+    }
+
+    h4 {
+      margin: 0;
+      font-size: 20px;
       font-weight: 200;
       font-family: 'Montserrat', Arial, sans-serif;
     }

@@ -61,6 +61,14 @@ Meteor.methods({
                     WeddingCollection.collection.update({_id: weddingId}, {$push: {"guests": item}});
                 });
                 break;
+            case 'Invitation':
+                items.forEach((item?: any) => {
+                   WeddingCollection.collection.update({_id: weddingId}, {$push: {"invitations": {
+                       $each: [item],
+                       $position: 0
+                   }}});
+                });
+                break;
             case 'Table':
                 items.forEach((item?: any) => {
                     WeddingCollection.collection.update({_id: weddingId}, {$push: {"tables": item}});

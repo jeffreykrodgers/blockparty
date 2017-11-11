@@ -17,6 +17,7 @@ declare let $: any;
 
 export class admin_TableComponent implements OnInit {
     @Input() table: any;
+    @Input() index: any;
 
     tableCount: number;
     tablePercent: number;

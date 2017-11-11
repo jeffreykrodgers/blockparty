@@ -8,6 +8,7 @@ interface Wedding {
     meals?: Meal[];
     announcements?: Announcement[];
     guests?: Guest[];
+    invitations?: string[];
     tables?: Table[];
 }
 
@@ -31,6 +32,7 @@ interface Venue {
         zip: string,
     };
     event: string;
+    price?: number;
     start_time: any;
     end_time: any;
 }
@@ -38,6 +40,7 @@ interface Venue {
 interface Meal {
     _id?: string;
     name: string;
+    price?: number;
     notes?: string;
 }
 
@@ -60,9 +63,8 @@ interface Guest {
     _id?: string;
     name: string;
     email?: string;
-    invitation_num: number;
-    attending?: boolean;
-    complete?: boolean;
+    invitation_num: string;
+    status?: string;
     secondary: boolean;
     meal?: string;
     relation?: string;

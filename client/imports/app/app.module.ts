@@ -12,7 +12,6 @@ import {RsvpView} from "./content/views/rsvp/rsvp";
 
 import {AppComponent} from "./app.component";
 import {AnnouncementsComponent} from "./content/components/announcements/announcements";
-import {DemoComponent} from "./content/components/demo/demo.component";
 import {FinishedComponent} from "./content/components/finished/finished";
 import {GiftComponent} from "./content/components/gift/gift";
 import {GuestComponent} from "./content/components/guest/guest";
@@ -35,7 +34,6 @@ import {admin_MealComponent} from "./admin/components/meal/meal";
 import {admin_TableComponent} from "./admin/components/table/table";
 import {admin_VenueComponent} from "./admin/components/venue/venue";
 
-import {DemoDataService} from "./content/components/demo/demo-data.service";
 import {WeddingService} from "./common/services/wedding.service";
 import {RsvpService} from "./common/services/rsvp.service";
 
@@ -86,7 +84,6 @@ import {DashboardView} from "./admin/views/dashboard/dashboard.view";
 
         //Content Components
         AnnouncementsComponent,
-        DemoComponent,
         FinishedComponent,
         GiftComponent,
         GuestComponent,
@@ -104,7 +101,6 @@ import {DashboardView} from "./admin/views/dashboard/dashboard.view";
     ],
     // Providers
     providers: [
-        DemoDataService,
         WeddingService,
         RsvpService,
         ModalService,

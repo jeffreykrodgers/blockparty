@@ -15,11 +15,9 @@ declare let $: any;
 })
 
 export class admin_GuestComponent implements OnInit {
-    @Input() guest: object;
+    @Input() guest: any;
 
-    constructor(private _weddingService: WeddingService) {
-
-    }
+    constructor(private _weddingService: WeddingService) {}
 
     ngOnInit() {
         $('.activitiesToggle').popup({
@@ -29,6 +27,7 @@ export class admin_GuestComponent implements OnInit {
     }
 
     mealColor(meal) {
+        //TODO: This is hardcoded, needed to get color value from meal object
         switch (meal) {
             case 'Chicken':
                 return 'purple';
@@ -36,6 +35,16 @@ export class admin_GuestComponent implements OnInit {
                 return 'pink';
             case 'Vegetarian':
                 return 'teal';
+        }
+    }
+
+    guestStatus() {
+        if (this.guest.completed && this.guest.attending) {
+            return 'attending';
+        } else if (this.guest.completed && !this.guest.attending) {
+            return 'missing';
+        } else if (!this.guest.completed) {
+            return 'incomplete';
         }
     }
 }

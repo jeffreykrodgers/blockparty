@@ -9,7 +9,7 @@
  */
 
 .animated {
-  animation-duration: .6s;
+  animation-duration: .5s;
   animation-fill-mode: both;
 }
 
@@ -573,7 +573,7 @@
 @keyframes fadeInDown {
   from {
     opacity: 0;
-    transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -15%, 0);
   }
 
   to {
@@ -605,7 +605,7 @@
 @keyframes fadeInLeft {
   from {
     opacity: 0;
-    transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-5%, 0, 0);
   }
 
   to {
@@ -637,7 +637,7 @@
 @keyframes fadeInRight {
   from {
     opacity: 0;
-    transform: translate3d(100%, 0, 0);
+    transform: translate3d(5%, 0, 0);
   }
 
   to {
@@ -1283,7 +1283,7 @@
 @keyframes zoomIn {
   from {
     opacity: 0;
-    transform: scale3d(.3, .3, .3);
+    transform: scale3d(.85, .85, .85);
   }
 
   50% {

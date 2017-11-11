@@ -1,16 +1,16 @@
 <div class="center">
     <div class="status">
-        <i class="large green checkmark icon" *ngIf="guest.completed && guest.attending"></i>
-        <i class="large red remove icon" *ngIf="guest.completed && !guest.attending"></i>
-        <i class="large warning icon" *ngIf="!guest.completed"></i>
+        <i class="large green checkmark icon" *ngIf="guestStatus() === 'attending'"></i>
+        <i class="large red remove icon" *ngIf="guestStatus() === 'missing'"></i>
+        <i class="large warning icon" *ngIf="guestStatus() === 'incomplete'"></i>
     </div>
     <div class="name">
-        <h4>{{guest.name}}</h4>
+        <h4 [ngClass]="guestStatus()">{{guest.name}}</h4>
         <h5>{{guest.relation}} of the {{guest.party}}</h5>
     </div>
     <div class="details">
         <div class="meals detail">
-            <div *ngIf="guest.meal" class="ui horizontal label" [ngClass]="mealColor(guest.meal)">
+            <div *ngIf="guest.attending && guest.meal" class="ui horizontal label" [ngClass]="mealColor(guest.meal)">
                 {{guest.meal}}
             </div>
         </div>
@@ -21,11 +21,3 @@
     <label>Invite</label>
     <h5>{{guest.invitation_num}}</h5>
 </div>
-
-<!--<div class="right">-->
-    <!--<i class="material-icons activitiesToggle" data-position="right center">more_vert</i>-->
-    <!--<div class="ui invisible popup">-->
-        <!--<sm-button class="round teal" (click)="_modalService.openModal('Guest', guest, 'Edit')" icon="edit"></sm-button>-->
-        <!--<sm-button class="round red" (click)="_weddingService.deleteItem('Guest', guest)" icon="remove"></sm-button>-->
-    <!--</div>-->
-<!--</div>-->

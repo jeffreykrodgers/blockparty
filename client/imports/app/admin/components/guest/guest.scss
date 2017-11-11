@@ -76,6 +76,16 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        &.attending {
+          color: $green;
+        }
+        &.missing {
+          color: $red;
+        }
+        &.incomplete {
+          color: $gray;
+        }
       }
     }
 
@@ -114,10 +124,14 @@
     flex-direction: column;
     justify-content: center;
     margin: 0;
-    background: $gradient-d;
-    color: $white;
+    background: translucent30($lightGray);
     padding: 0 10px;
     border-radius: 0 4px 4px 0;
     width: 55px;
+
+    .icon.close {
+      position: absolute;
+      //display: none;
+    }
   }
 }

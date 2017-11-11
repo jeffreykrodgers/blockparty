@@ -33,7 +33,7 @@ export class RsvpService {
     setRsvpData(rsvpData: any, updateDb?: boolean) {
         if (updateDb) {
             console.log("Updating DB:", rsvpData);
-            this._weddingService.updateWedding(this.weddingId, rsvpData.guests);
+            WeddingService.updateWeddingItem(this.weddingId, rsvpData.guests);
         }
 
         this.rsvpDataObservable.next(rsvpData);
