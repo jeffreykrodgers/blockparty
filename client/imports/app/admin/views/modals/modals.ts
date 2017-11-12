@@ -138,6 +138,15 @@ export class ModalsView implements OnInit {
         this.modalData.invitation_num = invite;
     };
 
+    inviteGuests(invite) {
+        let guests = this.guests.filter((guest) => {
+            if (guest.invitation_num === invite) return guest.name;
+        });
+
+        let list = guests.map(guest => ` ${guest.name}`);
+        return ` - ${list}`;
+    }
+
     showModal(modal) {
         $('.activitiesToggle').popup('hide');
         modal.show({
@@ -152,6 +161,7 @@ export class ModalsView implements OnInit {
 
     submitModal(modal) {
         let methodName = this.modalMode === "Edit" ? "updateItem" : "addItem";
+        console.log(this.activeForm);
 
         Meteor.call(methodName,
             this.weddingId,

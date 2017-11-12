@@ -63,7 +63,7 @@
                            [(model)]="modalData.invitation_num"
                            (change)="checkForGen($event)">
                     <option value="generateInvite">New...</option>
-                    <option *ngFor="let invite of invitations">{{invite}}</option>
+                    <option *ngFor="let invite of invitations" value="{{invite}}">{{invite}}{{inviteGuests(invite)}}</option>
                 </sm-select>
             </div>
             <div class="field" *ngIf="modalMode === 'Edit'">
