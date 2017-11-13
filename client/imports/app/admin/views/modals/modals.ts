@@ -5,7 +5,8 @@ import {WeddingService} from "../../../common/services/wedding.service";
 import {Observable} from "rxjs/Observable";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
 import {ModalService} from "./modals.service";
-import {ReversePipe} from "../../../common/pipes/reverse";
+import {UtilityService} from "../../../common/services/utils.services";
+import {Router, RouterModule, Routes} from "@angular/router";
 
 declare let $: any;
 
@@ -32,7 +33,9 @@ export class ModalsView implements OnInit {
     addingMultiple: boolean;
 
     constructor(private _weddingService: WeddingService,
-                private _modalService: ModalService) {
+                private _modalService: ModalService,
+                private _utils: UtilityService,
+                private router: Router) {
         this.weddingData = this._weddingService.getWedding({}).zone();
         this.modalData = {};
         this.invitations = [];
@@ -161,7 +164,13 @@ export class ModalsView implements OnInit {
 
     submitModal(modal) {
         let methodName = this.modalMode === "Edit" ? "updateItem" : "addItem";
-        console.log(this.activeForm);
+        let slug = this._utils.invertSlug(this.activeForm, true);
+        let url = ``;
+        if (slug === 'tables') {
+            url = `/admin/guests`;
+        } else {
+            url = `/admin/${slug}`;
+        }
 
         Meteor.call(methodName,
             this.weddingId,
@@ -172,6 +181,7 @@ export class ModalsView implements OnInit {
         if (this.addingMultiple) {
             $('#modalForm').form('clear');
         } else {
+            this.router.navigate([url]);
             this.closeModal(modal);
         }
     }

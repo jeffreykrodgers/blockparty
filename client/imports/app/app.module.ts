@@ -49,8 +49,7 @@ import {VenuesView} from "./admin/views/venues/venues.view";
 import {AnnouncementsView} from "./admin/views/announcements/announcements.view";
 import {admin_SidebarComponent} from "./admin/components/adminSidebar/adminSidebar.component";
 import {DashboardView} from "./admin/views/dashboard/dashboard.view";
-
-
+import {UtilityService} from "./common/services/utils.services";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -104,6 +103,7 @@ import {DashboardView} from "./admin/views/dashboard/dashboard.view";
         WeddingService,
         RsvpService,
         ModalService,
+        UtilityService,
     ],
     // Modules
     imports: [
