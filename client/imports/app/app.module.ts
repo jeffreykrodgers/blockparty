@@ -25,7 +25,7 @@ import {BottomComponent} from "./content/components/bottom/bottom";
 
 import {AdminView} from "./admin/admin";
 import {AdminContentView} from "./admin/views/adminContent/adminContent";
-import {admin_TopComponent} from "./admin/components/adminTop/adminTop";
+import {admin_TopComponent} from "./admin/views/adminContent/adminTop/adminTop";
 
 import {admin_AreaComponent} from "./admin/components/area/area";
 import {admin_ChartComponent} from "./admin/components/chart/chart";
@@ -47,7 +47,7 @@ import {GuestsView} from "./admin/views/guests/guests.view";
 import {MealsView} from "./admin/views/meals/meals.view";
 import {VenuesView} from "./admin/views/venues/venues.view";
 import {AnnouncementsView} from "./admin/views/announcements/announcements.view";
-import {admin_SidebarComponent} from "./admin/components/adminSidebar/adminSidebar.component";
+import {admin_SidebarComponent} from "./admin/views/adminContent/adminSidebar/adminSidebar.component";
 import {DashboardView} from "./admin/views/dashboard/dashboard.view";
 import {UtilityService} from "./common/services/utils.services";
 

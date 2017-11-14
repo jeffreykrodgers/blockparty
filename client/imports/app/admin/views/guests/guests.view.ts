@@ -21,6 +21,7 @@ export class GuestsView implements OnInit {
     weddingData: Observable<WeddingDB[]>;
 
     guests: object[];
+    meals: object[];
     tables: object[];
 
     constructor(private _weddingService: WeddingService,
@@ -32,6 +33,7 @@ export class GuestsView implements OnInit {
         this.weddingData.subscribe(wedding => {
             this.guests = wedding[0].guests;
             this.tables = wedding[0].tables;
+            this.meals = wedding[0].meals;
         });
     }
 }

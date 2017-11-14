@@ -225,20 +225,13 @@
             </div>
             <div class="inline fields">
                 <div class="field"
-                     *ngFor="let color of colors"
-                     ngClass="{{color.name}}">
-                    <sm-checkbox label="{{color.name}}"
-                                 [(ngModel)]="modalData.color"
-                                 name="meal_color"
-                                 value="{{color.name}}"
-                                 type="radio"></sm-checkbox>
-                    <!--<div class="ui radio checkbox">-->
-                        <!--<input name="color"-->
-                               <!--type="radio"-->
-                               <!--[value]="color.name"-->
-                               <!--([ngModel])="modalData.color">-->
-                        <!--<label>{{color.name}}</label>-->
-                    <!--</div>-->
+                     *ngFor="let color of colors">
+                    <div class="ui radio checkbox" [ngClass]="color">
+                        <input name="color"
+                               type="radio"
+                               [value]="color"
+                               [(ngModel)]="modalData.color">
+                    </div>
                 </div>
             </div>
             <div class="field">

@@ -7,7 +7,7 @@ import {WeddingDB} from "../../../../../../both/models/wedding.model";
 import {ModalService} from "./modals.service";
 import {UtilityService} from "../../../common/services/utils.services";
 import {Router, RouterModule, Routes} from "@angular/router";
-import {FormGroup} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 
 declare let $: any;
 
@@ -22,10 +22,7 @@ declare let $: any;
 
 export class ModalsView implements OnInit {
     @ViewChild('itemModal') itemModal: any;
-    guestForm: FormGroup;
-    tableForm: FormGroup;
-    venueForm: FormGroup;
-    mealForm: FormGroup;
+    // guestForm: FormGroup;
 
     weddingData: Observable<WeddingDB[]>;
     weddingId: any;
@@ -35,33 +32,32 @@ export class ModalsView implements OnInit {
     guests: any;
     invitations: any;
     meals: any;
-    colors: any;
+    colors: string[];
     addingMultiple: boolean;
 
     constructor(private _weddingService: WeddingService,
                 private _modalService: ModalService,
                 private _utils: UtilityService,
                 private router: Router) {
+
         this.weddingData = this._weddingService.getWedding({}).zone();
         this.modalData = {};
         this.invitations = [];
         this.activeForm = 'Guest';
         this.modalData.address = {};
 
-        this.colors = [
-            {
-                name: 'teal',
-                color: '#78ECD6',
-            },
-            {
-                name: 'pink',
-                color: '#FBC8D7',
-            },
-            {
-                name: 'purple',
-                color: '#8781EF',
-            }
-        ]
+        this.colors = ['teal', 'pink', 'purple', 'blue'];
+
+        //TODO Maybe Reactive forms? I don't know...
+        // this.guestForm = new FormGroup({
+        //     name: new FormControl('Name'),
+        //     relation: new FormControl('Relation'),
+        //     party: new FormControl('Party'),
+        //     invitation_num: new FormControl('Invitation Code'),
+        //     attending: new FormControl('Attending'),
+        //     meal: new FormControl('Meal')
+        // });
+
     }
 
     ngOnInit() {
@@ -134,9 +130,7 @@ export class ModalsView implements OnInit {
     };
 
     generateInvite() {
-        console.log("Generating Invite");
         const generate = function () {
-            console.log("Generation Function");
             let text = "";
             const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             for (let i = 0; i < 3; i++)
@@ -149,7 +143,6 @@ export class ModalsView implements OnInit {
         let invite = generate();
 
         while (this.invitations && this.invitations.includes(invite)) {
-            console.log("Repeating");
             invite = generate();
         }
 
@@ -187,12 +180,7 @@ export class ModalsView implements OnInit {
     submitModal(modal) {
         let methodName = this.modalMode === "Edit" ? "updateItem" : "addItem";
         let slug = this._utils.invertSlug(this.activeForm, true);
-        let url = ``;
-        if (slug === 'tables') {
-            url = `/admin/guests`;
-        } else {
-            url = `/admin/${slug}`;
-        }
+        let url = slug === 'tables' ? `/admin/guests` : `/admin/${slug}`;
 
         Meteor.call(methodName,
             this.weddingId,

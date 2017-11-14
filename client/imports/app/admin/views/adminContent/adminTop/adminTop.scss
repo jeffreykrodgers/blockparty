@@ -1,7 +1,7 @@
-@import "../../styles/functions";
-@import "../../styles/variables";
-@import "../../styles/mixins";
-@import "../../styles/defaults";
+@import "../../../styles/functions";
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+@import "../../../styles/defaults";
 
 h1 {
   font-weight: 200;
@@ -62,7 +62,7 @@ h4 {
       h3 {
         font-size: 28px;
         font-family: 'Montserrat', Arial, sans-serif;
-        font-weight: 100;
+        font-weight: 200;
         text-shadow: $shadow-text;
         margin: 0;
       }

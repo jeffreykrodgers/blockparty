@@ -2,8 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import template from "./adminSidebar.component.html";
 import style from "./adminSidebar.component.scss";
 import {Observable} from "rxjs/Observable";
-import {WeddingDB} from "../../../../../../both/models/wedding.model";
-import {WeddingService} from "../../../common/services/wedding.service";
+import {WeddingDB} from "../../../../../../../both/models/wedding.model";
+import {WeddingService} from "../../../../common/services/wedding.service";
 
 import * as moment from 'moment';
 import {ActivatedRoute, Router} from "@angular/router";

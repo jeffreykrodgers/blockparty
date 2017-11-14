@@ -14,14 +14,13 @@
   justify-content: center;
 
   .head {
-    //flex: 1;
     background: $lightGray;
     border-radius: 4px 4px 0 0;
     height: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    //border-bottom: 6px solid #EEEEEE;
+    border-bottom: 6px solid $lightGray;
 
     &.teal {
       background: $teal;
@@ -34,6 +33,10 @@
     &.pink {
       background: $pink;
       border-bottom: 6px solid $pink;
+    }
+    &.blue {
+      background: $blue;
+      border-bottom: 6px solid $blue;
     }
   }
 

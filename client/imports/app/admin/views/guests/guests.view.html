@@ -4,6 +4,7 @@
                     *ngFor="let guest of guests; let i=index"
                     [ngStyle]="{'animation-delay': '.'+ i +'s'}"
                     [guest]="guest"
+                    [meals]="meals"
                     (click)="_modalService.openModal('Guest', guest, 'Edit')">
         </guest-card>
         <div class="insert animated fadeIn" (click)="_modalService.openModal('Guest')">
