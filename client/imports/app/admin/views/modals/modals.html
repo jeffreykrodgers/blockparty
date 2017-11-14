@@ -58,8 +58,8 @@
 
             <div class="field">
                 <label>Invitation Number</label>
-                <sm-select placeholder="Party..."
-                           class="fluid"
+                <sm-select placeholder="Invitation..."
+                           class="fluid search"
                            [(model)]="modalData.invitation_num"
                            (change)="checkForGen($event)">
                     <option value="generateInvite">New...</option>
@@ -219,8 +219,26 @@
                     <input type="number"
                            placeholder="Name"
                            [(ngModel)]="modalData.price"
-                           name="meal_name"
+                           name="meal_price"
                            autocomplete="off">
+                </div>
+            </div>
+            <div class="inline fields">
+                <div class="field"
+                     *ngFor="let color of colors"
+                     ngClass="{{color.name}}">
+                    <sm-checkbox label="{{color.name}}"
+                                 [(ngModel)]="modalData.color"
+                                 name="meal_color"
+                                 value="{{color.name}}"
+                                 type="radio"></sm-checkbox>
+                    <!--<div class="ui radio checkbox">-->
+                        <!--<input name="color"-->
+                               <!--type="radio"-->
+                               <!--[value]="color.name"-->
+                               <!--([ngModel])="modalData.color">-->
+                        <!--<label>{{color.name}}</label>-->
+                    <!--</div>-->
                 </div>
             </div>
             <div class="field">

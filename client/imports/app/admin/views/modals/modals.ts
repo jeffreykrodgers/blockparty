@@ -7,6 +7,7 @@ import {WeddingDB} from "../../../../../../both/models/wedding.model";
 import {ModalService} from "./modals.service";
 import {UtilityService} from "../../../common/services/utils.services";
 import {Router, RouterModule, Routes} from "@angular/router";
+import {FormGroup} from "@angular/forms";
 
 declare let $: any;
 
@@ -21,6 +22,10 @@ declare let $: any;
 
 export class ModalsView implements OnInit {
     @ViewChild('itemModal') itemModal: any;
+    guestForm: FormGroup;
+    tableForm: FormGroup;
+    venueForm: FormGroup;
+    mealForm: FormGroup;
 
     weddingData: Observable<WeddingDB[]>;
     weddingId: any;
@@ -30,6 +35,7 @@ export class ModalsView implements OnInit {
     guests: any;
     invitations: any;
     meals: any;
+    colors: any;
     addingMultiple: boolean;
 
     constructor(private _weddingService: WeddingService,
@@ -41,6 +47,21 @@ export class ModalsView implements OnInit {
         this.invitations = [];
         this.activeForm = 'Guest';
         this.modalData.address = {};
+
+        this.colors = [
+            {
+                name: 'teal',
+                color: '#78ECD6',
+            },
+            {
+                name: 'pink',
+                color: '#FBC8D7',
+            },
+            {
+                name: 'purple',
+                color: '#8781EF',
+            }
+        ]
     }
 
     ngOnInit() {
@@ -158,6 +179,7 @@ export class ModalsView implements OnInit {
             onVisible: () => {
                 $('.calendar').calendar();
                 $('.uidropdown').dropdown();
+                $('.checkbox').checkbox();
             }
         });
     }

@@ -40,6 +40,7 @@ interface Venue {
 interface Meal {
     _id?: string;
     name: string;
+    color?: string;
     price?: number;
     notes?: string;
 }
