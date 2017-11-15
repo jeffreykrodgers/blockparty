@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from "@angular/core";
 import template from "./table.html";
 import style from "./table.scss";
 import {WeddingService} from "../../../common/services/wedding.service";
-import {ModalService} from "../../views/modals/modals.service";
+import {ModalService} from "../modals/modals.service";
 
 declare let $: any;
 

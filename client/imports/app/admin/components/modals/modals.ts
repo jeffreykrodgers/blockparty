@@ -124,6 +124,16 @@ export class ModalsView implements OnInit {
         $('#modalForm').form('clear');
     }
 
+    deleteItem(modal) {
+        Meteor.call('editItem',
+            this.weddingId,
+            this.activeForm,
+            [this.modalData],
+        );
+        this._weddingService.deleteWeddingItem(this.activeForm, this.modalData);
+        this.closeModal(modal);
+    }
+
     editItem(form) {
         this.activeForm = form;
         this.showModal(this.itemModal);
@@ -155,13 +165,13 @@ export class ModalsView implements OnInit {
         this.modalData.invitation_num = invite;
     };
 
-    inviteGuests(invite) {
+    invitationGuests(invite) {
         let guests = this.guests.filter((guest) => {
             if (guest.invitation_num === invite) return guest.name;
         });
 
         let list = guests.map(guest => ` ${guest.name}`);
-        return ` - ${list}`;
+        if (list.length > 0) return ` - ${list}`;
     }
 
     showModal(modal) {

@@ -112,6 +112,10 @@
       left: 0;
     }
 
+    & input:indeterminate ~ label::after {
+      opacity: .6;
+    }
+
     &.teal {
       & input:checked ~ label::after {
         background-color: $teal;

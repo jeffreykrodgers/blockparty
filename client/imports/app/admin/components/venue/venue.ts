@@ -3,7 +3,7 @@ import template from "./venue.html";
 import style from "./venue.scss";
 
 import * as moment from 'moment';
-import {ModalService} from "../../views/modals/modals.service";
+import {ModalService} from "../modals/modals.service";
 import {WeddingService} from "../../../common/services/wedding.service";
 
 declare let $: any;

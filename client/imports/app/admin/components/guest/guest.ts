@@ -33,7 +33,7 @@ export class admin_GuestComponent implements OnInit {
     }
 
     guestStatus() {
-        if (this.guest.completed && this.guest.attending) {
+        if (this.guest.attending) {
             return 'attending';
         } else if (this.guest.completed && !this.guest.attending) {
             return 'missing';

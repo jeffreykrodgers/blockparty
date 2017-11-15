@@ -4,7 +4,7 @@ import style from "./guests.view.scss";
 import {WeddingService} from "../../../common/services/wedding.service";
 import {Observable} from "rxjs/Observable";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
-import {ModalService} from "../modals/modals.service";
+import {ModalService} from "../../components/modals/modals.service";
 import {animateFactory} from 'ng2-animate';
 
 @Component({

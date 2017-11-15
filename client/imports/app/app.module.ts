@@ -39,10 +39,10 @@ import {RsvpService} from "./common/services/rsvp.service";
 
 import {NgSemanticModule} from "ng-semantic";
 import {MainPipe} from "./common/pipes/main-pipe.module";
-import {ModalsView} from "./admin/views/modals/modals";
+import {ModalsView} from "./admin/components/modals/modals";
 import {ChartModule} from "angular2-highcharts";
 import {ContentView} from "./content/content";
-import {ModalService} from "./admin/views/modals/modals.service";
+import {ModalService} from "./admin/components/modals/modals.service";
 import {GuestsView} from "./admin/views/guests/guests.view";
 import {MealsView} from "./admin/views/meals/meals.view";
 import {VenuesView} from "./admin/views/venues/venues.view";

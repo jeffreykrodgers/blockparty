@@ -10,11 +10,11 @@
         <sm-button class="purple round addToggle" (click)="addItem('Table')" icon="users"data-position="left center"></sm-button>
         <div class="ui popup">Table</div>
 
-        <sm-button class="purple round addToggle" (click)="addItem('Meal')" icon="food" data-position="left center"></sm-button>
-        <div class="ui popup">Meal</div>
-
         <sm-button class="purple round addToggle" (click)="addItem('Venue')" icon="marker" data-position="left center"></sm-button>
         <div class="ui popup">Venue</div>
+
+        <sm-button class="purple round addToggle" (click)="addItem('Meal')" icon="food" data-position="left center"></sm-button>
+        <div class="ui popup">Meal</div>
 
         <!--<sm-button class="purple round addToggle" (click)="addItem('Announcement')" icon="announcement" data-position="left center"></sm-button>-->
         <!--<div class="ui popup">Announcement</div>-->
@@ -63,7 +63,7 @@
                            [(model)]="modalData.invitation_num"
                            (change)="checkForGen($event)">
                     <option value="generateInvite">New...</option>
-                    <option *ngFor="let invite of invitations" value="{{invite}}">{{invite}}{{inviteGuests(invite)}}</option>
+                    <option *ngFor="let invite of invitations" value="{{invite}}">{{invite}}{{invitationGuests(invite)}}</option>
                 </sm-select>
             </div>
             <div class="field" *ngIf="modalMode === 'Edit'">
@@ -268,7 +268,7 @@
     <modal-actions>
         <div class="ui left floated negative button"
              *ngIf="modalMode === 'Edit'"
-             (click)="_weddingService.deleteWeddingItem(activeForm, modalData)">
+             (click)="deleteItem(itemModal)">
             Delete {{activeForm}}
         </div>
         <div class="ui checkbox" *ngIf="modalMode === 'Add'">
