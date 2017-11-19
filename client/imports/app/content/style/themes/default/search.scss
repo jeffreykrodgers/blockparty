@@ -1,2 +1,38 @@
 @import "variables";
 
+
+:host {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    height: 350px;
+    opacity: .85;
+  }
+
+  .ui.form {
+    margin: 60px 0;
+
+    input[type="text"] {
+      font-weight: 300;
+      border-bottom: 2px solid;
+      text-align: center;
+      text-transform: uppercase;
+
+      &::placeholder {
+        color: $white;
+        font-weight: 300;
+        text-transform: none;
+      }
+
+      &:focus {
+        &::placeholder {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

@@ -35,7 +35,7 @@ import {admin_TableComponent} from "./admin/components/table/table";
 import {admin_VenueComponent} from "./admin/components/venue/venue";
 
 import {WeddingService} from "./common/services/wedding.service";
-import {RsvpService} from "./common/services/rsvp.service";
+import {RsvpService} from "./content/services/rsvp.service";
 
 import {NgSemanticModule} from "ng-semantic";
 import {MainPipe} from "./common/pipes/main-pipe.module";

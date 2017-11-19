@@ -1,13 +1,13 @@
-<div class="guest">
-    <div class="ui form">
-        <div class="field" *ngIf="rsvpData">
-            <div *ngFor="let guest of rsvpData.guests">
-                <div class="ui checkbox">
-                    <input type="checkbox" [(ngModel)]="guest.attending">
-                    <label>{{guest.name}}</label>
-                </div>
+<div class="ui form">
+    <div class="inline fields" *ngIf="rsvpData">
+        <div class="field" *ngFor="let guest of rsvpData.guests">
+            <!--<i class="huge white user icon"></i>-->
+            <div class="ui checkbox">
+                <input type="checkbox" [(ngModel)]="guest.attending">
+                <label>{{guest.name}}</label>
             </div>
         </div>
-        <button class="ui icon button" (click)="setGuests()"><i class="chevron right icon"></i> Continue</button>
     </div>
+
+    <button class="ui big inverted basic button" (click)="setGuests()">Next</button>
 </div>

@@ -8,20 +8,27 @@ body, html {
   background-image: url("/img/vinajeff.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  font-family: 'montserrat', helvetica, sans-serif;
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'montserrat', Helvetica, sans-serif;
+    font-weight: 200;
+  }
 
   .bgOverlay {
     height: 100vh;
     display: flex;
     flex-direction: column;
     color: $white;
-    background: -webkit-linear-gradient(left bottom, rgba(180,39,117,.90), rgba(32,67,125,.90)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(top right, rgba(32,67,125,.90), rgba(180,39,117,.90)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(top right, rgba(32,67,125,.90), rgba(180,39,117,.90)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to top right, rgba(32,67,125,.90), rgba(180,39,117,.90)); /* Standard syntax (must be last) */
+    background: -webkit-linear-gradient(left bottom, rgba(180,39,117,.95), rgba(32,67,125,.95)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top right, rgba(32,67,125,.95), rgba(180,39,117,.95)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(top right, rgba(32,67,125,.95), rgba(180,39,117,.95)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to top right, rgba(32,67,125,.95), rgba(180,39,117,.95)); /* Standard syntax (must be last) */
 
     .top {
       max-height: 40px;
       flex: 1;
+      z-index: 1;
     }
 
     .content {
@@ -29,6 +36,7 @@ body, html {
       display: flex;
       align-items: center;
       height: 100%;
+      z-index: 5;
 
       .entry {
         width: 100%;
@@ -44,10 +52,13 @@ body, html {
         border: 0;
         border-bottom: 1px solid $white;
         border-radius: 0;
+        padding: 15px;
         color: $white;
+        font-size: 22px;
+        font-family: 'montserrat', helvetica, sans-serif;
 
         &::placeholder {
-          color: translucent70($white);
+          color: $white;
         }
       }
 
@@ -59,7 +70,7 @@ body, html {
     .bottom {
       max-height: 40px;
       flex: 1;
+      z-index: 1;
     }
   }
 }
-

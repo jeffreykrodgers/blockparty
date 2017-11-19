@@ -4,7 +4,7 @@ import template from "./search.html";
 import { Observable } from "rxjs";
 import style from "../../style/themes/default/search.scss";
 import {WeddingService} from "../../../common/services/wedding.service";
-import {RsvpService} from "../../../common/services/rsvp.service";
+import {RsvpService} from "../../services/rsvp.service";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
 
 
@@ -20,7 +20,7 @@ import {WeddingDB} from "../../../../../../both/models/wedding.model";
 export class SearchComponent implements OnInit {
     weddingData: Observable<WeddingDB[]>;
 
-    invitationNumber: number;
+    invitationNumber: string;
     guests: any;
     errors: any;
 
@@ -37,7 +37,7 @@ export class SearchComponent implements OnInit {
 
     findGuests() {
         if (this.invitationNumber) {
-
+            this.invitationNumber = this.invitationNumber.toUpperCase();
             const invitationParty = this.guests.filter(
                 guest => guest.invitation_num == this.invitationNumber);
 

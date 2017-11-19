@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import template from "./finished.html";
 import style from "../../style/themes/default/finished.scss";
-import {RsvpService} from "../../../common/services/rsvp.service";
+import {RsvpService} from "../../services/rsvp.service";
 import {Observable} from "rxjs/Observable";
 
 import {WeddingDB} from "../../../../../../both/models/wedding.model";

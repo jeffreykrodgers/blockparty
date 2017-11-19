@@ -3,7 +3,7 @@ import template from "./meal.html";
 import {Observable} from "rxjs";
 import style from "../../style/themes/default/meal.scss";
 import {WeddingService} from "../../../common/services/wedding.service";
-import {RsvpService} from "../../../common/services/rsvp.service";
+import {RsvpService} from "../../services/rsvp.service";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
 
 @Component({

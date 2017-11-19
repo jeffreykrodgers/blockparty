@@ -1,7 +1,7 @@
 <div>
     <div class="ui form">
         <div class="field" *ngIf="rsvpData">
-            <h3>Choose meal for {{activeGuest.name}}</h3>
+            <h3>Choose meal for <strong>{{activeGuest.name}}</strong></h3>
             <div *ngFor="let meal of meals">
                 <div class="ui radio checkbox">
                     <input type="radio" [(ngModel)]="activeGuest.meal" value="{{meal.name}}">

@@ -10,6 +10,13 @@
 
   .entry-content {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-width: 360px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+
     img {
       max-height: 350px;
     }

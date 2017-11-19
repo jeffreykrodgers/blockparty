@@ -9,12 +9,28 @@ import {VenuesView} from "./admin/views/venues/venues.view";
 import {MealsView} from "./admin/views/meals/meals.view";
 import {AnnouncementsView} from "./admin/views/announcements/announcements.view";
 import {DashboardView} from "./admin/views/dashboard/dashboard.view";
+import {SearchComponent} from "./content/components/search/search";
+import {GuestComponent} from "./content/components/guest/guest";
+import {MealComponent} from "./content/components/meal/meal";
+import {ReminderComponent} from "./content/components/reminder/reminder";
+import {GiftComponent} from "./content/components/gift/gift";
+import {SummaryComponent} from "./content/components/summary/summary";
+import {FinishedComponent} from "./content/components/finished/finished";
 
 
 export const routes: Route[] = [
     {path: '', component: ContentView, children: [
         {path: '', component: EntryView},
-        {path: 'rsvp', component: RsvpView}
+        {path: 'rsvp', component: RsvpView, children: [
+            {path: '', component: SearchComponent},
+            {path: 'guests', component: GuestComponent},
+            {path: 'meals', component: MealComponent},
+            {path: 'reminders', component: ReminderComponent},
+            {path: 'gifts', component: GiftComponent},
+            {path: 'summary', component: SummaryComponent},
+            {path: 'finished', component: FinishedComponent},
+
+        ]}
     ]},
     {path: 'admin', component: AdminView, children: [
         {path: '', redirectTo: 'dashboard', pathMatch: 'full'},

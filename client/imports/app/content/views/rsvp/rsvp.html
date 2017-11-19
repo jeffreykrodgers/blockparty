@@ -1,6 +1,9 @@
-<section class="rsvp-top"><h2>{{componentData.title}}</h2></section>
+<section class="rsvp-top" *ngIf="componentData.name !== 'search'">
+    <img src="/img/vinajeff.svg"/>
+</section>
 
 <section class="rsvp-content">
+    <h2 *ngIf="componentData.name !== 'search'">{{componentData.title}}</h2>
     <search     *ngIf="componentData.name === 'search'"></search>
 
     <guest      *ngIf="componentData.name === 'guest'"></guest>
@@ -16,6 +19,6 @@
     <finished    *ngIf="componentData.name === 'finished'"></finished>
 </section>
 
-<section class="rsvp-bottom">
+<section class="rsvp-bottom" *ngIf="componentData.name !== 'search'">
     <!--<button class="ui button basic inverted">Continue</button>-->
 </section>
