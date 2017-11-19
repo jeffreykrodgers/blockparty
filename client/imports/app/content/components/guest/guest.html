@@ -1,11 +1,18 @@
+<h2>Who is coming?</h2>
 <div class="ui form">
     <div class="inline fields" *ngIf="rsvpData">
         <div class="field" *ngFor="let guest of rsvpData.guests">
-            <!--<i class="huge white user icon"></i>-->
-            <div class="ui checkbox">
-                <input type="checkbox" [(ngModel)]="guest.attending">
-                <label>{{guest.name}}</label>
-            </div>
+            <!--<div class="ui checkbox">-->
+                <!--<input type="checkbox" [(ngModel)]="guest.attending">-->
+                <!--<label>{{guest.name}}</label>-->
+            <!--</div>-->
+            <label class="guest">
+                <input type="checkbox" [(ngModel)]="guest.attending" />
+                <div class="guest-data">
+                    <i class="massive user icon"></i>
+                    <span>{{guest.name}}</span>
+                </div>
+            </label>
         </div>
     </div>
 

@@ -1,3 +1,6 @@
+@import "variables";
+@import "functions";
+
 :host {
   .ui.checkbox label, .ui.checkbox+label {
     color: white;
@@ -12,39 +15,43 @@
       flex-direction: column;
       align-items: center;
 
-      .ui.checkbox {
-
-        &.checked label{
+      .guest {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &> input{
+          visibility: hidden;
+          position: absolute;
+        }
+        &> input + .guest-data{
+          cursor:pointer;
+          opacity: .5;
+        }
+        &> input:checked + .guest-data{
           opacity: 1;
         }
 
-        input:checked ~ label::after {
-          display: none;
-        }
-
-        label{
+        .guest-data {
           display: flex;
           flex-direction: column;
           align-items: center;
-          opacity: .5;
-          font-family: 'montserrat', Helvetica, sans-serif;
-          font-weight: 200;
-          font-size: 20px;
 
-          &::before {
-            content: '\f2be';
-            font-family: 'fontawesome';
-            font-size: 100px;
-            background: none;
-            border: 0;
-            position: relative;
-            padding: 0;
-            height: 100px;
-            width: 100%;
-            margin: 10px 0;
-            padding-top: 40px;
+          span {
+            margin-bottom: 5px;
+            font-weight: 300;
           }
         }
+      }
+
+      &:first-child {
+        .ui.checkbox label {
+          padding-left: 0;
+        }
+      }
+
+      &:last-child {
+        margin-right: 0;
+        padding-right: 0;
       }
     }
   }

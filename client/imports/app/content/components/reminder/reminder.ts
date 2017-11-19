@@ -1,10 +1,8 @@
-import {Component, OnInit, Output, EventEmitter} from "@angular/core";
-import {Observable} from "rxjs";
-
+import {Component, OnInit} from "@angular/core";
+import {RsvpService} from "../../services/rsvp.service";
+import {Router} from "@angular/router";
 import template from "./reminder.html";
 import style from "../../style/themes/default/reminder.scss";
-
-import {RsvpService} from "../../services/rsvp.service";
 
 @Component({
     selector: "reminder",
@@ -20,7 +18,8 @@ export class ReminderComponent implements OnInit {
     guests?: object[];
     reminders?: object[];
 
-    constructor(private _rsvpService: RsvpService) {
+    constructor(private _rsvpService: RsvpService,
+                private _router: Router) {
         this.reminders = [];
         this.guests = [];
     }
@@ -28,6 +27,10 @@ export class ReminderComponent implements OnInit {
     ngOnInit() {
         this._rsvpService.getRsvpData().subscribe(rsvp => {
             this.rsvpData = rsvp;
+
+            if (!this.rsvpData.invitation_num)
+                this._router.navigate(['/rsvp']);
+
             this.guests = rsvp.guests.filter(function (guest) {
                 return guest.attending;
             });
@@ -58,11 +61,8 @@ export class ReminderComponent implements OnInit {
             });
         });
 
-        this.rsvpData.current_component = {
-            name: 'gift',
-            title: 'Give a Gift'
-        };
-
         this._rsvpService.setRsvpData(this.rsvpData, true);
+        this._router.navigate(['/rsvp/summary']);
+
     }
 }

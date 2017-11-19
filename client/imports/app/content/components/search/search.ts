@@ -6,7 +6,7 @@ import style from "../../style/themes/default/search.scss";
 import {WeddingService} from "../../../common/services/wedding.service";
 import {RsvpService} from "../../services/rsvp.service";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
-
+import {Router} from "@angular/router";
 
 @Component({
     selector: "search",
@@ -24,7 +24,9 @@ export class SearchComponent implements OnInit {
     guests: any;
     errors: any;
 
-    constructor(private _weddingService: WeddingService, private _rsvpService: RsvpService) {
+    constructor(private _weddingService: WeddingService,
+                private _rsvpService: RsvpService,
+                private _router: Router) {
         this.weddingData = this._weddingService.getWedding({}).zone();
         this.errors = [];
     }
@@ -44,12 +46,10 @@ export class SearchComponent implements OnInit {
             if (invitationParty.length > 0) {
                 this._rsvpService.setRsvpData({
                     guests: invitationParty,
-                    invitation_num: this.invitationNumber,
-                    current_component: {
-                        name: 'guest',
-                        title: 'Who will be coming?',
-                    }
+                    invitation_num: this.invitationNumber
                 });
+
+                this._router.navigate(['/rsvp/guests']);
 
             } else {
                 this.errors.push("No Guests found with this invitation number");

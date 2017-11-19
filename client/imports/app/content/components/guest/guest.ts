@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import template from "./guest.html";
 import style from "../../style/themes/default/guest.scss";
 import {RsvpService} from "../../services/rsvp.service";
+import {Router} from "@angular/router";
 
 declare let $: any;
 
@@ -14,15 +15,17 @@ declare let $: any;
 export class GuestComponent implements OnInit {
     rsvpData: any;
 
-    constructor(private _rsvpService: RsvpService) {
-
+    constructor(private _rsvpService: RsvpService,
+                private _router: Router) {
     }
 
     ngOnInit() {
         this._rsvpService.getRsvpData().subscribe((rsvp) => {
             this.rsvpData = rsvp;
-        });
 
+            if (!this.rsvpData.invitation_num)
+                this._router.navigate(['/rsvp']);
+        });
     }
 
     ngAfterViewInit() {
@@ -30,17 +33,8 @@ export class GuestComponent implements OnInit {
     };
 
     setGuests() {
-        this.rsvpData.current_component = {
-            name: 'meal'
-        };
-        //
-        // this.rsvpData.guests.forEach((guest) => {
-        //     if (!guest.attending) {
-        //         this.rsvpData.guests = this.rsvpData.guests.filter(
-        //             item => item !== guest);
-        //     }
-        // });
-
         this._rsvpService.setRsvpData(this.rsvpData, true);
+        this._router.navigate(['/rsvp/meals']);
+
     }
 }

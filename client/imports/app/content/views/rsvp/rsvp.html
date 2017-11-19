@@ -1,24 +1,10 @@
-<section class="rsvp-top" *ngIf="componentData.name !== 'search'">
-    <img src="/img/vinajeff.svg"/>
+<section class="rsvp-top">
+    <img src="/img/vinajeff.svg" *ngIf="_router.url !== '/rsvp'"/>
 </section>
 
 <section class="rsvp-content">
-    <h2 *ngIf="componentData.name !== 'search'">{{componentData.title}}</h2>
-    <search     *ngIf="componentData.name === 'search'"></search>
-
-    <guest      *ngIf="componentData.name === 'guest'"></guest>
-
-    <meal       *ngIf="componentData.name === 'meal'"></meal>
-
-    <reminder   *ngIf="componentData.name === 'reminder'"></reminder>
-
-    <gift       *ngIf="componentData.name === 'gift'"></gift>
-
-    <summary    *ngIf="componentData.name === 'summary'"></summary>
-
-    <finished    *ngIf="componentData.name === 'finished'"></finished>
+    <router-outlet></router-outlet>
 </section>
 
-<section class="rsvp-bottom" *ngIf="componentData.name !== 'search'">
-    <!--<button class="ui button basic inverted">Continue</button>-->
+<section class="rsvp-bottom">
 </section>

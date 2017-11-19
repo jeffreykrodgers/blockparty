@@ -1,0 +1,54 @@
+@import "variables";
+@import "functions";
+
+:host {
+  .ui.form {
+    .inline.fields {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0 40px;
+
+      .field {
+        .meal {
+          &> input{ /* HIDE RADIO */
+            visibility: hidden; /* Makes input not-clickable */
+            position: absolute; /* Remove input from document flow */
+          }
+          &> input + .meal-data{ /* IMAGE STYLES */
+            cursor :pointer;
+            opacity: .5;
+          }
+          &> input:checked + .meal-data{ /* (RADIO CHECKED) IMAGE STYLES */
+            opacity: 1;
+
+            .meal-image {
+              box-shadow: $shadow-short;
+            }
+          }
+
+          .meal-data {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            span {
+              margin-bottom: 5px;
+              font-weight: 300;
+            }
+
+            .meal-image {
+              background-color: $gray;
+              height: 100px;
+              width: 150px;
+              border-radius: 8px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+            }
+          }
+        }
+      }
+    }
+  }
+}

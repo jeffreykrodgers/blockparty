@@ -42,3 +42,9 @@
 
   }
 }
+
+::ng-deep {
+  .ui.button {
+    margin-right: 0;
+  }
+}
