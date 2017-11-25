@@ -50,6 +50,7 @@ import {AnnouncementsView} from "./admin/views/announcements/announcements.view"
 import {admin_SidebarComponent} from "./admin/views/adminContent/adminSidebar/adminSidebar.component";
 import {DashboardView} from "./admin/views/dashboard/dashboard.view";
 import {UtilityService} from "./common/services/utils.services";
+import {TablesView} from "./admin/views/tables/tables.view";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -62,6 +63,7 @@ import {UtilityService} from "./common/services/utils.services";
         DashboardView,
         ModalsView,
         GuestsView,
+        TablesView,
         MealsView,
         VenuesView,
         AnnouncementsView,

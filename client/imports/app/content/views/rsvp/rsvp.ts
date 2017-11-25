@@ -15,12 +15,16 @@ import {Router} from "@angular/router";
 })
 
 export class RsvpView implements OnInit {
+    links: object[];
 
     constructor(private _rsvpService: RsvpService,
                 private _router: Router) {
     };
 
     ngOnInit() {
+        this._rsvpService.getRsvpData().subscribe(rsvp => {
+            this.links = rsvp.links;
+        });
 
     };
 }

@@ -1,13 +1,13 @@
 @import "../../styles/functions";
 @import "../../styles/variables";
 @import "../../styles/mixins";
-@import "../../styles/animations";
+@import "../../../common/styles/animations";
 
 :host {
   .insert {
-    min-width: 160px;
+    min-width: 200px;
     min-height: 200px;
-    max-width: 250px;
+    max-width: calc(33% - 28px);
     flex: 1;
   }
 }

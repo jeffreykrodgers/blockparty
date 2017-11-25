@@ -1,10 +1,10 @@
 @import "../../styles/functions";
 @import "../../styles/variables";
 @import "../../styles/mixins";
-@import "../../styles/animations";
+@import "../../../common/styles/animations";
 
 :host {
-  margin: 10px;
+  //margin: 10px;
 
   .nav {
     margin: 0px 15px 0;
@@ -20,7 +20,7 @@
     h2 {
       margin-right: 10px;
       margin-bottom: 8px;
-      font-weight: 200;
+      font-weight: 400;
       font-family: 'Montserrat', Arial, sans-serif;
       text-shadow: $shadow-text;
     }

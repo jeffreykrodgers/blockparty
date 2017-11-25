@@ -1,0 +1,24 @@
+@import "variables";
+@import "functions";
+
+:host {
+  .venues {
+    display: flex;
+
+    .venue {
+      margin: 20px;
+
+      h3 {
+        margin: 0;
+        font-weight: 300;
+        font-size: 18px;
+      }
+
+      p {
+        margin: 0;
+        font-weight: 200;
+        font-size: 14px;
+      }
+    }
+  }
+}

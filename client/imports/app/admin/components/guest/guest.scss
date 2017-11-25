@@ -63,7 +63,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 10px;
+      margin: 0 15px 0 5px;
     }
 
     .name {
@@ -124,10 +124,23 @@
     flex-direction: column;
     justify-content: center;
     margin: 0;
-    background: translucent30($lightGray);
+    background: $gradient-d;
+    color: $white;
     padding: 0 10px;
     border-radius: 0 4px 4px 0;
     width: 55px;
+
+    label {
+      line-height: 12px;
+      font-weight: 300;
+    }
+
+    h3 {
+      color: $white;
+      font-weight: 400;
+    }
+
+
 
     .icon.close {
       position: absolute;

@@ -1,7 +1,7 @@
 @import "../../styles/functions";
 @import "../../styles/variables";
 @import "../../styles/mixins";
-@import "../../styles/animations";
+@import "../../../common/styles/animations";
 
 :host {
   margin: 10px;
@@ -33,7 +33,7 @@
 
   h1, h2 {
     font-size: 20px;
-    font-weight: 200;
+    font-weight: 400;
     font-family: 'Montserrat', Arial, sans-serif;
     margin-top: 0px;
   }
@@ -45,7 +45,7 @@
 
   h5 {
     color: $blue;
-    font-weight: 200;
+    font-weight: 300;
   }
 
   p {

@@ -44,6 +44,10 @@
 }
 
 ::ng-deep {
+  i, label, span {
+    color: $white;
+  }
+
   .ui.button {
     margin-right: 0;
   }

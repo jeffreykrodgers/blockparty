@@ -3,6 +3,7 @@ import template from "./finished.html";
 import style from "../../style/themes/default/finished.scss";
 import {RsvpService} from "../../services/rsvp.service";
 import {Observable} from "rxjs/Observable";
+import * as moment from 'moment';
 
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
 import {WeddingService} from "../../../common/services/wedding.service";
@@ -29,5 +30,13 @@ export class FinishedComponent implements OnInit {
         this.weddingData.subscribe(wedding =>{
             this.venues = wedding[0].venues;
         });
+    }
+
+    getDate(val) {
+        return moment(val).format('dddd[,] MMMM Mo YYYY');
+    }
+
+    getTime(val) {
+        return moment(val).format('h[:]mma')
     }
 }

@@ -1,0 +1,28 @@
+@import "variables";
+@import "functions";
+
+:host {
+  .summaries {
+    display: flex;
+
+    .summary {
+      margin: 20px 60px;
+
+      &>div {
+        margin: 10px 0;
+
+        h3 {
+          margin: 0;
+          font-weight: 300;
+          font-size: 18px;
+        }
+
+        p {
+          margin: 0;
+          font-weight: 200;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

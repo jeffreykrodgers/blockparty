@@ -1,0 +1,50 @@
+@import "variables";
+@import "functions";
+
+:host {
+  .ui.form .field {
+    margin: 30px 0 40px;
+    .reminders {
+      margin-bottom: 15px;
+
+      .reminder-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h3 {
+          margin: 0 10px;
+        }
+
+        .search, .left {
+          margin: 0 5px;
+        }
+
+        .search {
+          min-width: 220px;
+        }
+
+        i {
+          cursor: pointer;
+          opacity: .8;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .ui.form .field > .selection.dropdown {
+    border-radius: 0;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid #fff;
+    font-weight: 300;
+    font-size: 16px;
+    color: $white;
+  }
+}

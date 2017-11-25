@@ -6,16 +6,13 @@
 :host {
   width: 300px;
   padding: 20px;
-  background: $gradient-d;
+  background: $frost;
   //box-shadow: colorShadow($blue);
-  color: $white;
+  color: $blue;
+  padding-right: 0;
+  border-right: 1px solid $lightGray;
 
   .head {
-    margin: 30px;
-    margin-bottom: 0;
-    padding-bottom: 30px;
-    border-bottom: 1px solid #EEEEEE;
-    border-bottom: 1px solid translucent50($white);
 
     .wedding {
       display: flex;
@@ -46,8 +43,6 @@
     }
   }
   .body {
-    margin: 30px;
-    margin-right: 10px;
 
     .navigation {
       display: flex;
@@ -60,13 +55,12 @@
         margin: 5px 0;
 
         a.link {
-          color: translucent50($white);
+          color: translucent50($blue);
           cursor: pointer;
           display: flex;
           flex: 1;
           align-items: center;
           transition: all .2s;
-          padding-left: 25px;
 
           .indicator {
             margin-left: auto;
@@ -75,23 +69,23 @@
           }
 
           &.active {
-            color: $white;
-            &::before {
+            color: $blue;
+            &::after {
               content: '';
               display: block;
-              background: $white;
+              background: $blue;
               position: absolute;
-              margin-left: -25px;
               height: 30px;
-              width: 6px;
-              border-radius: 3px;
+              width: 4px;
+              border-radius: 4px 0 0 4px;
+              left: 296px;
             }
 
             &:hover {
-              color: $white;
+              color: $blue;
 
               .indicator {
-                color: $white;
+                color: $blue;
                 opacity: 1;
               }
             }
@@ -102,22 +96,21 @@
           }
 
           &:hover {
-            color: $white;
+            color: $blue;
 
             .indicator {
-              color: $white;
+              color: $blue;
               opacity: .5;
             }
           }
 
-          i.icon {
-            margin-right: 10px;
-            margin-top: -7px;
+          i {
+            margin-right: 15px;
           }
 
           h5 {
             margin: 0;
-            font-weight: 300;
+            font-weight: 400;
             font-family: 'Montserrat', Arial, sans-serif;
             text-shadow: $shadow-text;
           }

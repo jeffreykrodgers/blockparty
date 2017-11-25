@@ -19,7 +19,8 @@ h4 {
   display: flex;
   font-family: 'Montserrat', Arial, sans-serif;
   text-shadow: $shadow-text;
-  box-shadow: $shadow-subtle;
+  //box-shadow: $shadow-subtle;
+  border-bottom: 1px solid $lightGray;
   height: 60px;
 
   &>div {
@@ -54,27 +55,37 @@ h4 {
 
 
   .left {
-    .countdown {
+
+    .search {
       display: flex;
-      flex-direction: row;
-      align-items: baseline;
+      align-items: center;
 
-      h3 {
-        font-size: 28px;
-        font-family: 'Montserrat', Arial, sans-serif;
-        font-weight: 200;
-        text-shadow: $shadow-text;
-        margin: 0;
-      }
-
-      h4 {
-        margin: 0;
-        margin-right: 8px;
-        font-family: 'Montserrat', Arial, sans-serif;
-        text-shadow: $shadow-text;
-        color: $blue;
+      i {
+        margin: 0 5px;
       }
     }
+
+    //.countdown {
+    //  display: flex;
+    //  flex-direction: row;
+    //  align-items: baseline;
+    //
+    //  h3 {
+    //    font-size: 28px;
+    //    font-family: 'Montserrat', Arial, sans-serif;
+    //    font-weight: 200;
+    //    text-shadow: $shadow-text;
+    //    margin: 0;
+    //  }
+    //
+    //  h4 {
+    //    margin: 0;
+    //    margin-right: 8px;
+    //    font-family: 'Montserrat', Arial, sans-serif;
+    //    text-shadow: $shadow-text;
+    //    color: $blue;
+    //  }
+    //}
 
   }
 }

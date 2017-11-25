@@ -1,5 +1,5 @@
 <dashboard-area [slug]="'Meal'" class="meals">
-    <div class="horizontal list">
+    <div class="horizontal center list">
         <meal-card class="clickable animated fadeInDown"
                    *ngFor="let meal of meals; let i = index"
                    [ngStyle]="{'animation-delay': '.'+ i +'s'}"

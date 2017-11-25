@@ -1,0 +1,59 @@
+@import "style/themes/default/variables";
+@import "style/themes/default/functions";
+@import "style/themes/default/mixins";
+
+
+:host {
+  hr {
+    margin: 20px 60px;
+    opacity: .3;
+  }
+
+  .content {
+    flex: auto;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    z-index: 5;
+    color: $white;
+
+    .entry {
+      width: 100%;
+    }
+  }
+}
+
+::ng-deep {
+  color: $white;
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'montserrat', Helvetica, sans-serif;
+    font-weight: 200;
+  }
+
+  .ui.form .field > label {
+    color: $white;
+  }
+
+  .ui.form input[type=text],
+  .ui.form input:not([type]) {
+    background: none;
+    border: 0;
+    border-bottom: 1px solid $white;
+    border-radius: 0;
+    padding: 10px;
+    font-weight: 300;
+    color: $white;
+    font-size: 16px;
+    font-family: 'montserrat', helvetica, sans-serif;
+
+    &::placeholder {
+      color: $white;
+      font-size: 16px;
+    }
+  }
+
+  .ui.form .field>label {
+    color: $white;
+  }
+}

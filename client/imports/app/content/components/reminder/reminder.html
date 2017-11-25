@@ -1,9 +1,9 @@
-<div>
-    <div class="ui form">
-        <div class="field">
-            <h3>Would you like to set a reminder?</h3>
-            <button class="ui button" (click)="addReminder()">Add Reminder</button>
+<h2>Would you like to set a reminder?</h2>
+<div class="ui form">
+    <div class="field">
 
+
+        <div class="reminders">
             <div class="reminder-form" *ngFor="let reminder of reminders">
                 <h3>Remind </h3>
                 <sm-select placeholder="Who?" class="fluid search" [(model)]="reminder.guest">
@@ -16,10 +16,15 @@
                     <option [value]="30">30 Days Before</option>
                     <option [value]="1">1 Day Before</option>
                 </sm-select>
-
-                <sm-input icon="dollar" class="left" placeholder="Who?" [(model)]="reminder.guest_email"></sm-input>
+                <h3> at </h3>
+                <sm-input class="left" placeholder="Email" [(model)]="reminder.guest_email"></sm-input>
+                <i class="large remove icon" (click)="removeReminder(reminder)"></i>
             </div>
         </div>
-        <button class="ui icon button" (click)="setReminder()"><i class="chevron right icon"></i> Continue</button>
+
+        <button class="ui basic inverted icon button" *ngIf="reminders.length < 3" (click)="addReminder()">
+            <i class="add icon"></i> Add Reminder</button>
+
     </div>
+    <button class="ui big basic inverted button" (click)="setReminder()">Next</button>
 </div>

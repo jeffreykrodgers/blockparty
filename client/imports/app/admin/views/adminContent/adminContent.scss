@@ -1,7 +1,7 @@
 @import "../../styles/functions";
 @import "../../styles/variables";
 @import "../../styles/mixins";
-@import "../../styles/animations";
+@import "../../../common/styles/animations";
 
 :host {
   //overflow-y: scroll;
@@ -20,6 +20,7 @@
     overflow: scroll;
     height: calc(100% - 60px);
     padding: 10px 10px 0;
+    //max-width: 60%;
 
     h2 {
       font-weight: 300;
@@ -101,7 +102,7 @@
 
         h1 {
           margin: 0;
-          font-weight: 200;
+          font-weight: 400;
           font-family: 'Montserrat', Arial, sans-serif;
           text-shadow: $shadow-text;
         }
@@ -110,7 +111,7 @@
           margin: 0;
           padding-top: 5px;
           border-top: 1px solid translucent30(gray);
-          font-weight: 200;
+          font-weight: 400;
           font-family: 'Montserrat', Arial, sans-serif;
           text-shadow: $shadow-text;
 
@@ -126,8 +127,13 @@
 
 ::ng-deep {
 
+  h1, h2, h3, h4, h5 {
+    font-family: 'montserrat', Helvetica, sans-serif;
+    font-weight: 400;
+  }
+
   .insert {
-    flex: 1;
+    //flex: 1;
     border: 2px dashed translucent30($gray);
     margin: 10px;
     border-radius: 4px;
@@ -192,5 +198,23 @@
 
   .ui.popup {
     box-shadow: $shadow-long;
+  }
+
+  .red {
+    color: $red;
+
+    &.background {
+      background-color: $red;
+      color: $white;
+    }
+  }
+
+  .green {
+    color: $green;
+
+    &.background {
+      ackground-color: $green;
+      color: $white;
+    }
   }
 }

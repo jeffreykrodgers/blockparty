@@ -38,17 +38,22 @@ export class admin_SidebarComponent implements OnInit {
             {
                 text: 'Guests',
                 slug: '/admin/guests',
-                icon: 'user'
+                icon: 'person'
+            },
+            {
+                text: 'Tables',
+                slug: '/admin/tables',
+                icon: 'people'
             },
             {
                 text: 'Venues',
                 slug: '/admin/venues',
-                icon: 'map pin'
+                icon: 'location_on'
             },
             {
                 text: 'Meals',
                 slug: '/admin/meals',
-                icon: 'food'
+                icon: 'local_dining'
             },
             // {
             //     text: 'Announements',

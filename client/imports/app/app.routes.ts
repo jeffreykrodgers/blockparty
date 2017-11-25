@@ -16,6 +16,7 @@ import {ReminderComponent} from "./content/components/reminder/reminder";
 import {GiftComponent} from "./content/components/gift/gift";
 import {SummaryComponent} from "./content/components/summary/summary";
 import {FinishedComponent} from "./content/components/finished/finished";
+import {TablesView} from "./admin/views/tables/tables.view";
 
 
 export const routes: Route[] = [
@@ -36,6 +37,7 @@ export const routes: Route[] = [
         {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
         {path: 'dashboard', component: DashboardView},
         {path: 'guests', component: GuestsView},
+        {path: 'tables', component: TablesView},
         {path: 'venues', component: VenuesView},
         {path: 'meals', component: MealsView},
         {path: 'announcements', component: AnnouncementsView}

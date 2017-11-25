@@ -7,7 +7,7 @@
                        type="text"
                        [(ngModel)]="invitationNumber"
                        name="invitationNumber">
-                <i class="inverted circular search link large icon" (click)="findGuests()"></i>
+                <i class="inverted circular search link icon" (click)="findGuests()"></i>
             </div>
             <div class="ui pointing red basic label" *ngIf="errors.length > 0">
                 <span *ngFor="let error of errors">{{error}}</span>

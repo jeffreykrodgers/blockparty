@@ -2,10 +2,6 @@
 <div class="ui form">
     <div class="inline fields" *ngIf="rsvpData">
         <div class="field" *ngFor="let guest of rsvpData.guests">
-            <!--<div class="ui checkbox">-->
-                <!--<input type="checkbox" [(ngModel)]="guest.attending">-->
-                <!--<label>{{guest.name}}</label>-->
-            <!--</div>-->
             <label class="guest">
                 <input type="checkbox" [(ngModel)]="guest.attending" />
                 <div class="guest-data">

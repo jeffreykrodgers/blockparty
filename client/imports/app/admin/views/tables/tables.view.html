@@ -1,0 +1,17 @@
+<dashboard-area [slug]="'Table'" class="tables" >
+    <div class="list">
+        <table-card class="clickable animated zoomIn"
+                    *ngFor="let table of tables; let i=index"
+                    [ngStyle]="{'animation-delay': '.'+ i +'s'}"
+                    [table]="table"
+                    [index]="i + 1"
+                    (click)="_modalService.openModal('Table', table, 'Edit')">
+        </table-card>
+        <div class="insert animated fadeIn" (click)="_modalService.openModal('Table')">
+            <div class="item">
+                <i class="add icon"></i>
+                <div class="content">Add Table</div>
+            </div>
+        </div>
+    </div>
+</dashboard-area>

@@ -16,6 +16,12 @@
   .ui.form {
     margin: 60px 0;
 
+    .field {
+      .ui.input {
+        max-width: 210px;
+      }
+    }
+
     input[type="text"] {
       font-weight: 300;
       border-bottom: 2px solid;

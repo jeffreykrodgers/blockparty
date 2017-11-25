@@ -4,9 +4,9 @@
 
 :host {
   width: 25%;
-  min-width: 160px;
-  min-height: 200px;
-  max-width: 250px;
+  min-width: 200px;
+  min-height: 180px;
+  max-width: calc(33% - 28px);
   padding: 0 !important;
   display: flex;
   flex: 1;
@@ -50,7 +50,7 @@
 
     h1 {
       font-size: 24px;
-      font-weight: 200;
+      font-weight: 400;
       font-family: 'Montserrat', Arial, sans-serif;
       margin-bottom: 5px;
       min-height: 32px;
@@ -59,13 +59,13 @@
     h4 {
       margin: 0;
       font-size: 20px;
-      font-weight: 200;
+      font-weight: 300;
       font-family: 'Montserrat', Arial, sans-serif;
     }
 
     p {
       color: $blue;
-      font-weight: 200;
+      font-weight: 300;
       font-style: italic;
 
     }

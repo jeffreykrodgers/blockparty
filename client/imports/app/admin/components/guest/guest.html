@@ -1,8 +1,8 @@
 <div class="center">
     <div class="status">
-        <i class="large green checkmark icon" *ngIf="guestStatus() === 'attending'"></i>
-        <i class="large red remove icon" *ngIf="guestStatus() === 'missing'"></i>
-        <i class="large warning icon" *ngIf="guestStatus() === 'incomplete'"></i>
+        <i class="material-icons green" *ngIf="guestStatus() === 'attending'">check</i>
+        <i class="material-icons red" *ngIf="guestStatus() === 'missing'">close</i>
+        <i class="material-icons" *ngIf="guestStatus() === 'incomplete'">error_outline</i>
     </div>
     <div class="name">
         <h4 [ngClass]="guestStatus()">{{guest.name}}</h4>
@@ -19,5 +19,5 @@
 
 <div class="right">
     <label>Invite</label>
-    <h5>{{guest.invitation_num}}</h5>
+    <h3>{{guest.invitation_num}}</h3>
 </div>
