@@ -41,7 +41,14 @@ export class MealComponent implements OnInit {
                 this._router.navigate(['/rsvp']);
 
             this.guests = rsvp.guests.filter((guest:any) => guest.attending);
-            this.activeGuest = this.guests[0];
+            // this.activeGuest = this.guests.length > 0 ? this.activeGuest : {};
+
+            if (this.guests.length > 0) {
+                this.activeGuest = this.guests[0];
+            } else {
+                this.activeGuest = {};
+                this._router.navigate(['/rsvp/summary']);
+            }
         });
 
         this.weddingData.subscribe(wedding => {

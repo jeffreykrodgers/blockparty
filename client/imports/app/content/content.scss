@@ -4,10 +4,6 @@
 
 
 :host {
-  hr {
-    margin: 20px 60px;
-    opacity: .3;
-  }
 
   .content {
     flex: auto;
@@ -29,6 +25,11 @@
   h1, h2, h3, h4, h5 {
     font-family: 'montserrat', Helvetica, sans-serif;
     font-weight: 200;
+  }
+
+  hr {
+    margin: 20px 60px;
+    opacity: .3;
   }
 
   .ui.form .field > label {
