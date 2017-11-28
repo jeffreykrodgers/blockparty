@@ -69,11 +69,11 @@
     .name {
       display: flex;
       flex-direction: column;
-      width: 250px;
+      //width: 250px;
 
       h4 {
-        max-width: 150px;
-        white-space: nowrap;
+        max-width: 250px;
+        //white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
 
@@ -124,8 +124,8 @@
     flex-direction: column;
     justify-content: center;
     margin: 0;
-    background: $gradient-d;
-    color: $white;
+    background: translucent15($gray);
+    color: $gray;
     padding: 0 10px;
     border-radius: 0 4px 4px 0;
     width: 55px;
@@ -136,7 +136,7 @@
     }
 
     h3 {
-      color: $white;
+      color: $gray;
       font-weight: 400;
     }
 

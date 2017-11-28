@@ -4,13 +4,14 @@
 @import "../../../styles/functions";
 
 :host {
-  width: 300px;
+  width: 200px;
   padding: 20px;
   background: $frost;
   //box-shadow: colorShadow($blue);
   color: $blue;
   padding-right: 0;
   border-right: 1px solid $lightGray;
+  //flex-direction: column;
 
   .head {
 
@@ -78,7 +79,7 @@
               height: 30px;
               width: 4px;
               border-radius: 4px 0 0 4px;
-              left: 296px;
+              left: 196px;
             }
 
             &:hover {
@@ -113,6 +114,35 @@
             font-weight: 400;
             font-family: 'Montserrat', Arial, sans-serif;
             text-shadow: $shadow-text;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $tablet-max) {
+  :host {
+    position: absolute;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    display: none;
+
+    &.opened {
+      display: block;
+    }
+
+    .body {
+      .navigation {
+        .item {
+          a.link {
+            &.active {
+              &::after {
+                right: -1px;
+                left: auto;
+              }
+            }
           }
         }
       }

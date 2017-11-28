@@ -6,6 +6,7 @@ import {Observable} from "rxjs/Observable";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
 
 import * as moment from 'moment';
+import {MenuService} from "../../services/menu.service";
 
 @Component({
     selector: "adminContent",
@@ -29,7 +30,8 @@ export class AdminContentView implements OnInit {
     charts: object[];
     moment: any;
 
-    constructor(private _weddingService: WeddingService) {
+    constructor(private _weddingService: WeddingService,
+                private _menuService: MenuService) {
         this.weddingData = this._weddingService.getWedding({}).zone();
         this.charts = [
             {
@@ -103,5 +105,9 @@ export class AdminContentView implements OnInit {
             this.meals = wedding[0].meals;
             this.venues = wedding[0].venues;
         });
-    };
+    }
+
+    toggleMenu() {
+        this._menuService.toggleSidebar.emit();
+    }
 }

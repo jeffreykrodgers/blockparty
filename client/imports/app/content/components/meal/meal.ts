@@ -27,7 +27,9 @@ export class MealComponent implements OnInit {
 
     constructor(private _weddingService: WeddingService,
                 private _rsvpService: RsvpService,
-                private _router: Router) {}
+                private _router: Router) {
+        this.weddingData = this._weddingService.getWedding({}).zone();
+    }
 
     ngOnInit() {
         this._rsvpService.getRsvpData().subscribe(rsvp => {

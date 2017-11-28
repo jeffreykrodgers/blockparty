@@ -7,6 +7,7 @@ import {WeddingService} from "../../../../common/services/wedding.service";
 
 import * as moment from 'moment';
 import {ActivatedRoute, Router} from "@angular/router";
+import {MenuService} from "../../../services/menu.service";
 
 @Component({
     selector: "adminSidebar",
@@ -26,9 +27,12 @@ export class admin_SidebarComponent implements OnInit {
 
     links: any[];
 
+    open: boolean;
+
     constructor(private _weddingService: WeddingService,
                 private _router: Router,
                 private _route: ActivatedRoute) {
+
         this.weddingData = this._weddingService.getWedding({}).zone();
         this.links = [{
                 text: 'Dashboard',
@@ -70,5 +74,9 @@ export class admin_SidebarComponent implements OnInit {
             this.date = moment(wedding[0].date).format('dddd, MMMM Do YYYY [at] h:mm a');
             this.spouses = wedding[0].spouses;
         });
+    }
+
+    toggleMenu() {
+        this.open = !this.open;
     }
 }

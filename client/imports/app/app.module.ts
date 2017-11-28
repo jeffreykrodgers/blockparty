@@ -51,6 +51,7 @@ import {admin_SidebarComponent} from "./admin/views/adminContent/adminSidebar/ad
 import {DashboardView} from "./admin/views/dashboard/dashboard.view";
 import {UtilityService} from "./common/services/utils.services";
 import {TablesView} from "./admin/views/tables/tables.view";
+import {MenuService} from "./admin/services/menu.service";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -106,6 +107,7 @@ import {TablesView} from "./admin/views/tables/tables.view";
         RsvpService,
         ModalService,
         UtilityService,
+        MenuService,
     ],
     // Modules
     imports: [

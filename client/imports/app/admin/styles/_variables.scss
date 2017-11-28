@@ -23,3 +23,14 @@ $shadow-text: 0 0 6px rgba(0,0,0,.12);
 $gradient-h: linear-gradient(to right, $purple 0%, $blue 100%);
 $gradient-v: linear-gradient($purple 0%, $blue 100%);
 $gradient-d: linear-gradient(to bottom right, $purple, $blue);
+
+
+//device width
+
+$phone-max: 420px;
+
+$tablet-min: 421px;
+$tablet-max: 600px;
+
+$desktop-min: 601px;
+$desktop-max: 2048px;

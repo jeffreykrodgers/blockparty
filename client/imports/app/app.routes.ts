@@ -30,9 +30,9 @@ export const routes: Route[] = [
             {path: 'gifts', component: GiftComponent},
             {path: 'summary', component: SummaryComponent},
             {path: 'finished', component: FinishedComponent},
-
         ]}
     ]},
+
     {path: 'admin', component: AdminView, children: [
         {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
         {path: 'dashboard', component: DashboardView},
