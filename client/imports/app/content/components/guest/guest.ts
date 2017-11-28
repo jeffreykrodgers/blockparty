@@ -14,6 +14,7 @@ declare let $: any;
 
 export class GuestComponent implements OnInit {
     rsvpData: any;
+    links: object[];
 
     constructor(private _rsvpService: RsvpService,
                 private _router: Router) {
@@ -22,6 +23,8 @@ export class GuestComponent implements OnInit {
     ngOnInit() {
         this._rsvpService.getRsvpData().subscribe((rsvp) => {
             this.rsvpData = rsvp;
+
+            if (!rsvp.links) this.rsvpData.links = [];
 
             if (!this.rsvpData.invitation_num)
                 this._router.navigate(['/rsvp']);
@@ -33,6 +36,12 @@ export class GuestComponent implements OnInit {
     };
 
     setGuests() {
+        this.links = this.rsvpData.links.filter(
+            (link:any) => link.name === 'Meals');
+
+        if (this.links.length === 0)
+            this.rsvpData.links.push( {name: 'Meals', slug: '/rsvp/meals'});
+
         this._rsvpService.setRsvpData(this.rsvpData, true);
         this._router.navigate(['/rsvp/meals']);
 

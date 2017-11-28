@@ -68,14 +68,11 @@ export class ReminderComponent implements OnInit {
             });
         });
 
-        // this.links = this.rsvpData.links.filter(
-        //     (link:any) => link.name === 'Reminders');
+        this.links = this.rsvpData.links.filter(
+            (link:any) => link.name === 'Summary');
 
-        console.log(this.rsvpData);
-
-        // if (!this.links) this.rsvpData.links.push({
-        //     name: 'Reminders', slug: '/rsvp/reminders'
-        // });
+        if (this.links.length === 0)
+            this.rsvpData.links.push( {name: 'Summary', slug: '/rsvp/summary'});
 
         this._rsvpService.setRsvpData(this.rsvpData, true);
         this._router.navigate(['/rsvp/summary']);

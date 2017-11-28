@@ -27,9 +27,7 @@ export class MealComponent implements OnInit {
 
     constructor(private _weddingService: WeddingService,
                 private _rsvpService: RsvpService,
-                private _router: Router) {
-        this.weddingData = this._weddingService.getWedding({}).zone();
-    }
+                private _router: Router) {}
 
     ngOnInit() {
         this._rsvpService.getRsvpData().subscribe(rsvp => {
@@ -41,36 +39,37 @@ export class MealComponent implements OnInit {
                 this._router.navigate(['/rsvp']);
 
             this.guests = rsvp.guests.filter((guest:any) => guest.attending);
-            // this.activeGuest = this.guests.length > 0 ? this.activeGuest : {};
-
-            if (this.guests.length > 0) {
-                this.activeGuest = this.guests[0];
-            } else {
-                this.activeGuest = {};
-                this._router.navigate(['/rsvp/summary']);
-            }
         });
 
         this.weddingData.subscribe(wedding => {
             this.meals = wedding[0].meals;
         });
+
+        if (this.guests.length > 0) {
+            this.activeGuest = this.guests[0];
+        } else {
+            this.activeGuest = {};
+            this.rsvpData.links = [
+                {name: 'Guests', slug: '/rsvp/guests'},
+                {name: 'Summary', slug: '/rsvp/summary'}
+            ];
+            this._rsvpService.setRsvpData(this.rsvpData, false);
+            this._router.navigate(['/rsvp/summary']);
+        }
     }
 
     setMeal() {
         const guest_count = this.guests.length;
         const guest_index = this.guests.indexOf(this.activeGuest);
 
-        console.log("Count:", guest_count);
-        console.log("Index:", guest_index);
-
         if (guest_index < guest_count - 1) {
             this.activeGuest = this.guests[guest_index + 1];
         } else {
             this.links = this.rsvpData.links.filter(
-                (link:any) => link.name === 'Meals');
+                (link:any) => link.name === 'Reminders');
 
-            if (this.links.length === 0) this.rsvpData.links.push =
-                {name: 'Meals', slug: '/rsvp/meals'};
+            if (this.links.length === 0)
+                this.rsvpData.links.push({name: 'Reminders', slug: '/rsvp/reminders'});
 
             this._rsvpService.setRsvpData(this.rsvpData, true);
             this._router.navigate(['/rsvp/reminders']);

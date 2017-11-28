@@ -23,6 +23,7 @@ export class SearchComponent implements OnInit {
     invitationNumber: string;
     guests: any;
     errors: any;
+    rsvpData: any;
 
     constructor(private _weddingService: WeddingService,
                 private _rsvpService: RsvpService,
@@ -46,7 +47,8 @@ export class SearchComponent implements OnInit {
             if (invitationParty.length > 0) {
                 this._rsvpService.setRsvpData({
                     guests: invitationParty,
-                    invitation_num: this.invitationNumber
+                    invitation_num: this.invitationNumber,
+                    links: [{name: 'Guests', slug: '/rsvp/guests'}]
                 });
 
                 this._router.navigate(['/rsvp/guests']);

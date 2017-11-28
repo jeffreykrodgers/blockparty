@@ -52,7 +52,6 @@ Meteor.methods({
 
         items.forEach((item?: any) => {
             item._id = Random.id();
-            console.log('NEW ITEM ID', item._id);
         });
 
         switch (type) {
@@ -95,7 +94,6 @@ Meteor.methods({
     },
 
     deleteItem: (weddingId: string, type: string, item: any) => {
-        console.log(weddingId, type, item);
         switch (type) {
             case 'Guest':
                 WeddingCollection.collection.update({
@@ -130,10 +128,6 @@ Meteor.methods({
             default:
                 console.error("E03-Type not valid. Cannot edit document");
         }
-    },
-
-    testMethods: (testMessage: string) => {
-        console.log(testMessage);
     },
 
     getServerTime: () => {

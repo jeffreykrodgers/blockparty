@@ -7,8 +7,8 @@
 </section>
 
 <section class="rsvp-bottom">
-    <a *ngFor="let link of links"
-       class="link"
-       [routerLink]="[link.slug]"
-       [routerLinkActive]="['active']">{{link.name}}</a>
+    <div class="link" *ngFor="let link of links">
+        <a [routerLink]="[link.slug]"
+           [routerLinkActive]="['active']">{{link.name}}</a>
+    </div>
 </section>
