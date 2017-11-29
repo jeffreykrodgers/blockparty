@@ -13,7 +13,8 @@ import {ModalService} from "../modals/modals.service";
 })
 
 export class admin_WidgetComponent implements OnInit {
-    @Input() slug: string;
+    @Input() title: string;
+    @Input() chart: any;
 
     constructor(private _modalService: ModalService) {
 

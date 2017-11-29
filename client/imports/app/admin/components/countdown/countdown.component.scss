@@ -7,14 +7,22 @@
   display: flex;
   background: $gradient-d;
   border-radius: 8px;
-  margin: 10px;
-  box-shadow: $shadow-subtle;
+  margin: 10px 10px 20px;
+  box-shadow: $shadow-long;
   color: $white;
   padding: 20px;
   align-items: center;
 
   .left {
     flex: 1;
+    h2 {
+      font-weight: 400;
+      margin-bottom: 0;
+    }
+
+    h4 {
+      margin: 0;
+    }
   }
 
   .right {
@@ -30,7 +38,7 @@
       h3 {
         font-size: 28px;
         font-family: 'Montserrat', Arial, sans-serif;
-        font-weight: 200;
+        font-weight: 400;
         margin: 0;
       }
 
@@ -38,6 +46,28 @@
         margin: 0;
         margin-right: 10px;
         font-family: 'Montserrat', Arial, sans-serif;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $phone-max) {
+  :host {
+    justify-content: center;
+    text-align: center;
+
+    .right {
+      .timer {
+        h3 {
+          font-size: 20px;
+        }
+        h4 {
+          font-size: 14px;
+        }
       }
     }
   }

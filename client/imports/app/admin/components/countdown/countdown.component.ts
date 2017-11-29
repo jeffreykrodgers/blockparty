@@ -9,7 +9,7 @@ import {WeddingService} from "../../../common/services/wedding.service";
 @Component({
     selector: "countdown",
     host: {
-        class: 'countdown',
+        class: 'horizontal countdown',
     },
     template,
     styles: [style],
@@ -20,11 +20,15 @@ export class admin_CountdownComponent implements OnInit {
     weddingData: any;
     countdown: any;
     moment: any;
+    date: any;
+    spouses: object[];
 
     constructor(private _modalService: ModalService,
                 private _weddingService: WeddingService) {
         this.countdown = {};
         this.moment = moment;
+        this.spouses = [];
+        this.date = '';
     }
 
     ngOnInit() {
@@ -32,6 +36,8 @@ export class admin_CountdownComponent implements OnInit {
         this.weddingData.subscribe(wedding => {
             this.weddingData = wedding[0];
             this.getCountdown();
+            this.date = moment(wedding[0].date).format('dddd, MMMM Do YYYY [at] h:mm a');
+            this.spouses = wedding[0].spouses;
         });
 
         let self = this;

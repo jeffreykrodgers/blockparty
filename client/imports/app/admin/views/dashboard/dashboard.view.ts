@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import template from "./dashboard.view.html";
 import style from "./dashboard.view.scss";
 
