@@ -5,9 +5,12 @@
 
 :host {
   display: flex;
-  flex-direction: column;
+  height: 100px;
+  background: $gradient-d;
+  border-radius: 8px;
+  margin: 10px;
+  box-shadow: $shadow-subtle;
+  color: $white;
 
-  .widgets {
-    display: flex;
-  }
+
 }

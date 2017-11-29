@@ -52,6 +52,8 @@ import {DashboardView} from "./admin/views/dashboard/dashboard.view";
 import {UtilityService} from "./common/services/utils.services";
 import {TablesView} from "./admin/views/tables/tables.view";
 import {MenuService} from "./admin/services/menu.service";
+import {admin_WidgetComponent} from "./admin/components/widget/widget.component";
+import {admin_CountdownComponent} from "./admin/components/countdown/countdown.component";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -78,6 +80,8 @@ import {MenuService} from "./admin/services/menu.service";
         admin_TableComponent,
         admin_VenueComponent,
         admin_SidebarComponent,
+        admin_WidgetComponent,
+        admin_CountdownComponent,
 
         //Content Views
         ContentView,

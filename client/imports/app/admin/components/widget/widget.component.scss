@@ -4,10 +4,11 @@
 @import "../../../common/styles/animations";
 
 :host {
-  display: flex;
-  flex-direction: column;
-
-  .widgets {
-    display: flex;
-  }
+  flex: 1;
+  height: 200px;
+  margin: 10px;
+  padding: 20px;
+  background-color: $white;
+  border-radius: 8px;
+  box-shadow: $shadow-subtle;
 }
