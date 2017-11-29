@@ -5,12 +5,40 @@
 
 :host {
   display: flex;
-  height: 100px;
   background: $gradient-d;
   border-radius: 8px;
   margin: 10px;
   box-shadow: $shadow-subtle;
   color: $white;
+  padding: 20px;
+  align-items: center;
 
+  .left {
+    flex: 1;
+  }
 
+  .right {
+    flex: 1;
+    justify-content: flex-end;
+
+    .timer {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: flex-end;
+
+      h3 {
+        font-size: 28px;
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-weight: 200;
+        margin: 0;
+      }
+
+      h4 {
+        margin: 0;
+        margin-right: 10px;
+        font-family: 'Montserrat', Arial, sans-serif;
+      }
+    }
+  }
 }
