@@ -198,11 +198,13 @@ export class ModalsView implements OnInit {
             [this.modalData],
         );
 
-        if (this.addingMultiple) {
-            $('#modalForm').form('clear');
-        } else {
-            this.router.navigate([url]);
-            this.closeModal(modal);
-        }
+        this.router.navigate([url]);
+        $('#modalForm').form('clear');
+    //     if (this.addingMultiple) {
+    //         $('#modalForm').form('clear');
+    //     } else {
+    //         this.router.navigate([url]);
+    //         this.closeModal(modal);
+    //     }
     }
 }

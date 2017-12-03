@@ -47,7 +47,7 @@
           height: 20px;
           width: 20px;
           border-radius: 4px;
-          box-shadow: $shadow-short;
+          //box-shadow: $shadow-short;
           background: $gray;
         }
       }
@@ -55,6 +55,17 @@
 
     .right {
       flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .chart-container {
+        flex: 1;
+      }
     }
   }
+}
+
+chart {
+  display: block;
 }

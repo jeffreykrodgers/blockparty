@@ -122,7 +122,11 @@ import {admin_CountdownComponent} from "./admin/components/countdown/countdown.c
         RouterModule.forRoot(routes),
         NgSemanticModule,
         MainPipe,
-        ChartModule.forRoot(require('highcharts')),
+        ChartModule.forRoot(
+            require('highcharts'),
+            require('highcharts/highcharts-more'),
+            require('highcharts/modules/solid-gauge'),
+        ),
     ],
     // Main Component
     bootstrap: [AppComponent]
