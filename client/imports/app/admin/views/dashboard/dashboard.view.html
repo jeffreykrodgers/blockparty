@@ -1,10 +1,11 @@
 <div class="top">
-    <countdown></countdown>
+    <countdown class="animated fadeInDown"></countdown>
 </div>
 <div class="horizontal">
-    <widget [title]="'RSVP Breakdown'"></widget>
-    <widget [title]="'Guest Meals'"></widget>
-    <widget [title]="'Budget'"></widget>
-    <!--<chart [options]="options"></chart>-->
+    <widget class="animated fadeInDown"
+            *ngFor="let chart of charts; let i=index"
+            [ngStyle]="{'animation-delay': '.'+ i +'s'}"
+            [chart]="chart.type">
+    </widget>
 </div>
 
