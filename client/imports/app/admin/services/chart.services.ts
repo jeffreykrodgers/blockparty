@@ -1,14 +1,35 @@
-import {Injectable, EventEmitter} from '@angular/core';
+import {Injectable} from '@angular/core';
+import {Observable} from "rxjs/Observable";
+
 import * as Highcharts from 'highcharts';
 import * as SolidGauge from 'highcharts/modules/solid-gauge';
 import HighchartsMore = require('highcharts/highcharts-more');
+
+import {WeddingDB} from "../../../../../both/models/wedding.model";
+import {WeddingService} from "../../common/services/wedding.service";
+import {UtilityService} from "../../common/services/utils.services";
 
 HighchartsMore(Highcharts);
 SolidGauge(Highcharts);
 
 @Injectable()
 export class ChartService {
-    constructor() {}
+    weddingData: Observable<WeddingDB[]>;
+    meals: object[];
+    guests: object[];
+
+    constructor(private _weddingService: WeddingService,
+                private _utils: UtilityService) {
+        this.init();
+    }
+
+    public init() {
+        this.weddingData = this._weddingService.getWedding({}).zone();
+        this.weddingData.subscribe(wedding => {
+            this.meals = wedding[0].meals;
+            this.guests = wedding[0].guests;
+        });
+    }
 
     public getChart(type, settings: any = {}) {
         let chart: any = {
@@ -32,7 +53,8 @@ export class ChartService {
                 // enabled: false
             },
             title: {
-                text: ''
+                text: '',
+                style: {display: 'none'},
             },
             credits: {
                 enabled: false
@@ -69,7 +91,6 @@ export class ChartService {
                 minorTickLength: 0,
                 tickInterval: 0,
                 tickPositions: [],
-                // tickColor: '#000000',
                 tickPosition: 'outside',
                 tickLength: 4,
                 tickWidth: 1,
@@ -87,89 +108,111 @@ export class ChartService {
     private chartData(chart, type) {
         switch (type) {
             case 'rsvp':
-                chart.series = [{
-                    animation: {
-                        duration: 750
-                    },
-                    data: [{
-                        innerRadius: '100%',
-                        radius: '80%',
-                        y: 70,
-                        name: 'Not Attending',
-                        color: '#ED5858'
-                    }],
-                    // rounded: true,
-                }, {
-                    animation: {
-                        duration: 750
-                    },
-                    data: [{
-                        innerRadius: '100%',
-                        radius: '80%',
-                        y: 65,
-                        name: 'Attending',
-                        color: '#79ED94'
-                    }],
-                    // rounded: true,
-                }];
+                this.getRsvpData(chart);
                 break;
             case 'meals':
-                chart.series = [
-                    {
-                        animation: {
-                            duration: 750
-                        },
-                        data: [{
-                            innerRadius: '100%',
-                            radius: '80%',
-                            y: 100,
-                            name: 'Chicken',
-                            color: '#8781EF'
-                        }],
-                        // rounded: true,
-                    }, {
-                        animation: {
-                            duration: 750
-                        },
-                        data: [{
-                            innerRadius: '100%',
-                            radius: '80%',
-                            y: 65,
-                            name: 'Vegetarian',
-                            color: '#78ECD6'
-                        }],
-                        // rounded: true,
-                    }, {
-                        animation: {
-                            duration: 750
-                        },
-                        data: [{
-                            innerRadius: '100%',
-                            radius: '80%',
-                            y: 25,
-                            name: 'Salmon',
-                            color: '#F6A2D3'
-                        }],
-                        // rounded: true,
-                    }
-                ];
+                this.getMealsData(chart);
                 break;
             case 'budget':
-                chart.series = [{
-                    animation: {
-                        duration: 750
-                    },
-                    data: [{
-                        innerRadius: '100%',
-                        radius: '80%',
-                        y: 55,
-                        name: 'Total',
-                        color: '#79ED94'
-                    }],
-                    // rounded: true,
-                }];
+                this.getBudgetData(chart);
                 break;
         }
     }
+
+    public getRsvpData(chart) {
+        let count = this.guests.length;
+        let completed = this.guests.filter(guest => guest.completed);
+        let not_attending= completed.filter(guest => !guest.attending);
+        let attending = completed.filter(guest => guest.attending);
+
+        let p = Math.round((completed.length / count) * 100);
+        let n = not_attending.length;
+        let a = attending.length;
+
+        chart.yAxis.max = count;
+        chart.title.text = 'RSVP Completion';
+        chart.series = [{
+            animation: {
+                duration: 750
+            },
+            name: 'Not Attending',
+            data: [{
+                innerRadius: '100%',
+                radius: '80%',
+                y: n + a,
+                color: '#ED5858',
+                actual: n
+            }],
+            dataLabels: {
+                enabled: true,
+                format: `<span>${p}%</span>`
+            }
+            // rounded: true,
+        }, {
+            animation: {
+                duration: 750
+            },
+            name: 'Attending',
+            data: [{
+                innerRadius: '100%',
+                radius: '80%',
+                y: a,
+                color: '#79ED94',
+                actual: a,
+            }],
+            // rounded: true,
+        }];
+    }
+
+    public getMealsData(chart) {
+        let completed = this.guests.filter(guest => guest.meal);
+        let meals = [];
+        let total = 0;
+
+        for (let meal of this.meals) {
+            let count = this.guests.filter(guest => guest.meal === meal.name).length;
+            total += count;
+
+            meals.push({
+                animation: {
+                    duration: 750
+                },
+                name: meal.name,
+                data: [{
+                    innerRadius: '100%',
+                    radius: '80%',
+                    y: total,
+                    color: this._utils.invertColorType(meal.color, 'hex'),
+                    actual: count,
+                }],
+                index: this.meals.length - meals.length,
+                // rounded: true,
+            });
+
+
+        }
+
+        chart.series = meals;
+        chart.title.text = 'Meal Selection';
+        chart.yAxis.max = completed.length;
+        }
+
+    public getBudgetData(chart) {
+        chart.series = [{
+            animation: {
+                duration: 750
+            },
+            data: [{
+                innerRadius: '100%',
+                radius: '80%',
+                y: 55,
+                name: 'Total',
+                color: '#79ED94'
+            }],
+            // rounded: true,
+        }];
+    }
+
+
 
 }

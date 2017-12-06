@@ -15,7 +15,6 @@ export class RsvpService {
         }
     });
 
-
     weddingData: Observable<WeddingDB[]>;
     weddingId: string;
 
@@ -31,6 +30,7 @@ export class RsvpService {
     }
 
     setRsvpData(rsvpData: any, updateDb?: boolean) {
+        console.log("ID:", this.weddingId);
         if (updateDb) {
             WeddingService.updateWeddingItem(this.weddingId, rsvpData.guests);
         }

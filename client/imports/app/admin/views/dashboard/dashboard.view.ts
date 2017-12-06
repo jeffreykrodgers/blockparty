@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import template from "./dashboard.view.html";
 import style from "./dashboard.view.scss";
+import {ChartService} from "../../services/chart.services";
 
 @Component({
     selector: "dashboard",
@@ -15,14 +16,13 @@ export class DashboardView implements OnInit {
     charts: any;
 
     constructor() {
+
+    }
+
+    ngOnInit() {
         this.charts = [
             {type: 'rsvp'},
             {type: 'meals'},
             {type: 'budget'}];
-    }
-
-
-    ngOnInit() {
-
     }
 }
