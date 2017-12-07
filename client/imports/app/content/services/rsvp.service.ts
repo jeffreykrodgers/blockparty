@@ -30,7 +30,6 @@ export class RsvpService {
     }
 
     setRsvpData(rsvpData: any, updateDb?: boolean) {
-        console.log("ID:", this.weddingId);
         if (updateDb) {
             WeddingService.updateWeddingItem(this.weddingId, rsvpData.guests);
         }

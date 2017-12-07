@@ -21,7 +21,7 @@ export class UtilityService {
         }
     }
 
-    invertColorType(color, type) {
+    getColor(color, type) {
         let colors = [
             {
                 name: 'gray',

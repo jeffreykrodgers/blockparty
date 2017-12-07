@@ -17,6 +17,7 @@ export class ChartService {
     weddingData: Observable<WeddingDB[]>;
     meals: object[];
     guests: object[];
+    mealBudget: any;
 
     constructor(private _weddingService: WeddingService,
                 private _utils: UtilityService) {
@@ -28,6 +29,7 @@ export class ChartService {
         this.weddingData.subscribe(wedding => {
             this.meals = wedding[0].meals;
             this.guests = wedding[0].guests;
+            this.mealBudget = wedding[0].budgets[0].max;
         });
     }
 
@@ -49,12 +51,17 @@ export class ChartService {
                 marginTop: 0,
                 marginBottom: 0
             },
-            tooltip: {
-                // enabled: false
-            },
             title: {
                 text: '',
                 style: {display: 'none'},
+            },
+            tooltip: {
+                enabled: false,
+                backgroundColor: this._utils.getColor('white', 'hex'),
+                borderWidth: 0,
+                shadow: false,
+                padding: 0,
+                useHTML: true,
             },
             credits: {
                 enabled: false
@@ -120,14 +127,14 @@ export class ChartService {
     }
 
     public getRsvpData(chart) {
-        let count = this.guests.length;
-        let completed = this.guests.filter(guest => guest.completed);
-        let not_attending= completed.filter(guest => !guest.attending);
-        let attending = completed.filter(guest => guest.attending);
+        const count = this.guests.length;
+        const completed = this.guests.filter(guest => guest.completed);
+        const not_attending= completed.filter(guest => !guest.attending);
+        const attending = completed.filter(guest => guest.attending);
 
-        let p = Math.round((completed.length / count) * 100);
-        let n = not_attending.length;
-        let a = attending.length;
+        const p = Math.round((completed.length / count) * 100);
+        const n = not_attending.length;
+        const a = attending.length;
 
         chart.yAxis.max = count;
         chart.title.text = 'RSVP Completion';
@@ -140,12 +147,23 @@ export class ChartService {
                 innerRadius: '100%',
                 radius: '80%',
                 y: n + a,
-                color: '#ED5858',
-                actual: n
+                color: this._utils.getColor('gray', 'hex'),
+                actual: n,
+                tooltip: {
+                    pointFormat: `<span class="gauge-label point-label" style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}</b><br/>`
+                }
             }],
             dataLabels: {
                 enabled: true,
-                format: `<span>${p}%</span>`
+                borderWidth: 0,
+                color: this._utils.getColor('gray', 'hex'),
+                padding: 0,
+                y: 0,
+                useHTML: true,
+                format: `<div class="gauge-labels">
+                            <span class="gauge-label">${p}%</span>
+                            <span class="gauge-name">Complete</span>
+                         </div>`
             }
             // rounded: true,
         }, {
@@ -159,18 +177,23 @@ export class ChartService {
                 y: a,
                 color: '#79ED94',
                 actual: a,
+                tooltip: {
+                    pointFormatter: () => {
+                        `<span class="gauge-label point-label">{point.y}%</span>`
+                    }
+                }
             }],
             // rounded: true,
         }];
     }
 
     public getMealsData(chart) {
-        let completed = this.guests.filter(guest => guest.meal);
+        let completed = this.guests.filter((guest:any) => guest.meal);
         let meals = [];
         let total = 0;
 
         for (let meal of this.meals) {
-            let count = this.guests.filter(guest => guest.meal === meal.name).length;
+            let count = this.guests.filter((guest:any) => guest.meal === meal.name).length;
             total += count;
 
             meals.push({
@@ -182,14 +205,12 @@ export class ChartService {
                     innerRadius: '100%',
                     radius: '80%',
                     y: total,
-                    color: this._utils.invertColorType(meal.color, 'hex'),
+                    color: this._utils.getColor(meal.color, 'hex'),
                     actual: count,
                 }],
                 index: this.meals.length - meals.length,
                 // rounded: true,
             });
-
-
         }
 
         chart.series = meals;
@@ -198,17 +219,48 @@ export class ChartService {
         }
 
     public getBudgetData(chart) {
+        let meals = [];
+        let total = 0;
+
+        for (let meal of this.meals) {
+            let count = this.guests.filter((guest:any) => guest.meal === meal.name).length;
+            meals.push({
+                name: meal.name,
+                total: meal.price*count,
+            });
+
+            total += (meal.price*count);
+        }
+
+        let m = this.mealBudget;
+        const p = Math.round((total / m) * 100);
+
+        chart.yAxis.max = m;
+        chart.title.text = 'Budget';
         chart.series = [{
             animation: {
                 duration: 750
             },
+            name: 'Budget Used',
             data: [{
                 innerRadius: '100%',
                 radius: '80%',
-                y: 55,
+                y: total,
                 name: 'Total',
-                color: '#79ED94'
+                color: '#79ED94',
             }],
+            dataLabels: {
+                enabled: true,
+                borderWidth: 0,
+                color: this._utils.getColor('green', 'hex'),
+                padding: 0,
+                y: 0,
+                useHTML: true,
+                format: `<div class="gauge-labels">
+                            <span class="gauge-label green">${p}%</span>
+                            <span class="gauge-name">Budget Used</span>
+                         </div>`
+            }
             // rounded: true,
         }];
     }
