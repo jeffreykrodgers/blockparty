@@ -15,8 +15,8 @@ SolidGauge(Highcharts);
 @Injectable()
 export class ChartService {
     weddingData: Observable<WeddingDB[]>;
-    meals: object[];
-    guests: object[];
+    meals: any;
+    guests?: object[];
     mealBudget: any;
 
     constructor(private _weddingService: WeddingService,
@@ -128,9 +128,9 @@ export class ChartService {
 
     public getRsvpData(chart) {
         const count = this.guests.length;
-        const completed = this.guests.filter(guest => guest.completed);
-        const not_attending= completed.filter(guest => !guest.attending);
-        const attending = completed.filter(guest => guest.attending);
+        const completed = this.guests.filter((guest:any) => guest.completed);
+        const not_attending= completed.filter((guest:any) => !guest.attending);
+        const attending = completed.filter((guest:any) => guest.attending);
 
         const p = Math.round((completed.length / count) * 100);
         const n = not_attending.length;
@@ -164,7 +164,7 @@ export class ChartService {
                             <span class="gauge-label">${p}%</span>
                             <span class="gauge-name">Complete</span>
                          </div>`
-            }
+            },
             // rounded: true,
         }, {
             animation: {
