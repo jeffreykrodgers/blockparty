@@ -54,6 +54,7 @@ import {TablesView} from "./admin/views/tables/tables.view";
 import {MenuService} from "./admin/services/menu.service";
 import {admin_WidgetComponent} from "./admin/components/widget/widget.component";
 import {admin_CountdownComponent} from "./admin/components/countdown/countdown.component";
+import {ChartService} from "./admin/services/chart.services";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -112,6 +113,7 @@ import {admin_CountdownComponent} from "./admin/components/countdown/countdown.c
         ModalService,
         UtilityService,
         MenuService,
+        ChartService
     ],
     // Modules
     imports: [
@@ -122,7 +124,11 @@ import {admin_CountdownComponent} from "./admin/components/countdown/countdown.c
         RouterModule.forRoot(routes),
         NgSemanticModule,
         MainPipe,
-        ChartModule.forRoot(require('highcharts')),
+        ChartModule.forRoot(
+            require('highcharts'),
+            require('highcharts/highcharts-more'),
+            require('highcharts/modules/solid-gauge'),
+        ),
     ],
     // Main Component
     bootstrap: [AppComponent]

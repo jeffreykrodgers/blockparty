@@ -1,11 +1,17 @@
 <div class="title">
-    <h3>{{title}}</h3>
+    <h3 *ngIf="widget">{{widget.title.text}}</h3>
 </div>
-<div class="chart">
+<div class="chart" *ngIf="widget">
     <div class="left">
-        <div class="metric"><span>Metric 1</span></div>
-        <div class="metric"><span>Metric 2</span></div>
+        <div *ngFor="let point of widget.series" class="metric">
+            <div class="metric-color" [style.background]="point.data[0].color"></div>
+            <span [style.color]="point.data[0].color">{{point.data[0].actual}} {{point.name}}</span>
+        </div>
     </div>
-    <div class="right"></div>
+    <div class="right">
+        <div class="chart-container">
+            <chart [options]="widget"></chart>
+        </div>
+    </div>
 </div>
 <!--<ng-content></ng-content>-->

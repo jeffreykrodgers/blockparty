@@ -271,17 +271,13 @@
              (click)="deleteItem(itemModal)">
             Delete {{activeForm}}
         </div>
-        <div class="ui checkbox" *ngIf="modalMode === 'Add'">
-            <input type="checkbox" name="public" [(ngModel)]="addingMultiple">
-            <label>Create Multiple</label>
-        </div>
         <button class="ui button primary"
              (click)="submitModal(itemModal)">
             {{buttonText()}}
         </button>
         <button class="ui button"
              (click)="closeModal(itemModal)">
-            Cancel
+            Done
         </button>
     </modal-actions>
 </sm-modal>
