@@ -22,7 +22,6 @@ declare let $: any;
 
 export class ModalsView implements OnInit {
     @ViewChild('itemModal') itemModal: any;
-    // guestForm: FormGroup;
 
     weddingData: Observable<WeddingDB[]>;
     weddingId: any;
@@ -33,7 +32,6 @@ export class ModalsView implements OnInit {
     invitations: any;
     meals: any;
     colors: string[];
-    addingMultiple: boolean;
 
     constructor(private _weddingService: WeddingService,
                 private _modalService: ModalService,
@@ -47,17 +45,6 @@ export class ModalsView implements OnInit {
         this.modalData.address = {};
 
         this.colors = ['teal', 'pink', 'purple', 'blue'];
-
-        //TODO Maybe Reactive forms? I don't know...
-        // this.guestForm = new FormGroup({
-        //     name: new FormControl('Name'),
-        //     relation: new FormControl('Relation'),
-        //     party: new FormControl('Party'),
-        //     invitation_num: new FormControl('Invitation Code'),
-        //     attending: new FormControl('Attending'),
-        //     meal: new FormControl('Meal')
-        // });
-
     }
 
     ngOnInit() {
@@ -198,11 +185,18 @@ export class ModalsView implements OnInit {
             [this.modalData],
         );
 
-        if (this.addingMultiple) {
-            $('#modalForm').form('clear');
-        } else {
-            this.router.navigate([url]);
+        this.router.navigate([url]);
+        $('#modalForm').form('clear');
+
+        if (this.modalMode === 'Edit') {
             this.closeModal(modal);
         }
+        ;
+        //     if (this.addingMultiple) {
+        //         $('#modalForm').form('clear');
+        //     } else {
+        //         this.router.navigate([url]);
+        //         this.closeModal(modal);
+        //     }
     }
 }

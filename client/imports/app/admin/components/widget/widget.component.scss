@@ -5,10 +5,90 @@
 
 :host {
   flex: 1;
-  height: 200px;
+  min-width: 200px;
+  min-height: 250px;
   margin: 10px;
   padding: 20px;
   background-color: $white;
   border-radius: 8px;
   box-shadow: $shadow-subtle;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    h3 {
+      font-weight: 600;
+    }
+  }
+
+  .chart {
+    display: flex;
+    flex: 1;
+
+    .left {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .metric {
+        display: flex;
+        margin: 5px 0;
+        flex-direction: row-reverse;
+
+        span {
+          font-weight: 600;
+          margin: 0 5px;
+        }
+
+        .metric-color {
+          display: block;
+          height: 20px;
+          width: 20px;
+          border-radius: 4px;
+          //box-shadow: $shadow-short;
+          background: $gray;
+        }
+      }
+    }
+
+    .right {
+      flex: 2;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .chart-container {
+        flex: 1;
+      }
+    }
+  }
+}
+
+chart {
+  display: block;
+}
+
+::ng-deep {
+  .gauge-labels {
+    display: flex;
+    flex-direction: column;
+    margin-top: -24px;
+    align-items: center;
+  }
+
+  .gauge-label {
+    font-size: 28px;
+    font-weight: 300;
+
+    &.point-label {
+      margin-top: 20px;
+      color: $gray;
+    }
+  }
+
+  .gauge-name {
+    font-size: 12px;
+  }
 }

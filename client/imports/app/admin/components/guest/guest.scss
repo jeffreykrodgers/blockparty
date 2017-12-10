@@ -104,6 +104,16 @@
           display: flex;
           align-items: center;
 
+          .ui.horizontal.label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            i {
+              margin-left: 2px;
+            }
+          }
+
           .ui.pink.label {
             background-color: $pink !important;
           }

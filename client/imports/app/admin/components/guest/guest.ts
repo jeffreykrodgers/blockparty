@@ -29,7 +29,14 @@ export class admin_GuestComponent implements OnInit {
 
     mealColor(meal) {
         let result = this.meals.filter(m => m.name === meal);
-        return result[0].color;
+        if (result.length > 0) {
+            return result[0].color;
+        }
+    }
+
+    mealMissing(meal) {
+        let result = this.meals.filter(m => m.name === meal);
+        if (result.length === 0) return true;
     }
 
     guestStatus() {

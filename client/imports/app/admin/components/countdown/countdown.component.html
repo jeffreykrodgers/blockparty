@@ -1,15 +1,16 @@
 <div class="left">
-    <!--<div class="timer">-->
-    <!--<h3>{{countdown.months}}</h3>-->
-    <!--<h4>months </h4>-->
-    <!--<h3>{{countdown.days}}</h3>-->
-    <!--<h4>days </h4>-->
-    <!--<h3>{{countdown.hours}}</h3>-->
-    <!--<h4>hours </h4>-->
-    <!--<h3>{{countdown.minutes}}</h3>-->
-    <!--<h4>minutes </h4>-->
-    <!--</div>-->
+    <h2 *ngIf="spouses?.length">{{spouses && spouses[0].first_name}} and {{spouses[1].first_name}}</h2>
+    <h4>{{date}}</h4>
 </div>
 <div class="right">
-
+    <div class="timer">
+        <h3>{{countdown.months}}</h3>
+        <h4>months </h4>
+        <h3>{{countdown.days}}</h3>
+        <h4>days </h4>
+        <h3>{{countdown.hours}}</h3>
+        <h4>hours </h4>
+        <h3>{{countdown.minutes}}</h3>
+        <h4>minutes </h4>
+    </div>
 </div>

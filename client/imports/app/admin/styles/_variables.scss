@@ -9,8 +9,8 @@ $pink: #F6A2D3;
 $navy: #20437D;
 $teal: #78ECD6;
 
-$green: #21BA45;
-$red: #DB2828;
+$green: #79ED94;
+$red: #ED5858;
 
 $shadow-extra-long: 15px 15px 70px rgba(0,0,0,.15);
 $shadow-extra-long-down: 0px 15px 70px rgba(0,0,0,.15);
@@ -21,8 +21,11 @@ $shadow-short: 0 3px 6px rgba(0,0,0,.16);
 $shadow-text: 0 0 6px rgba(0,0,0,.12);
 
 $gradient-h: linear-gradient(to right, $purple 0%, $blue 100%);
+$gradient-hr: linear-gradient(to left, $purple 0%, $blue 100%);
 $gradient-v: linear-gradient($purple 0%, $blue 100%);
+$gradient-vr: linear-gradient($blue 100%, $purple 0%);
 $gradient-d: linear-gradient(to bottom right, $purple, $blue);
+$gradient-dr: linear-gradient(to top left, $purple, $blue);
 
 
 //device width

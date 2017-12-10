@@ -3,6 +3,7 @@ interface Wedding {
     _id?: string;
     date: any;
     theme: any;
+    budgets?: Budget[];
     spouses: Spouse[];
     venues?: Venue[];
     meals?: Meal[];
@@ -10,6 +11,12 @@ interface Wedding {
     guests?: Guest[];
     invitations?: string[];
     tables?: Table[];
+}
+
+interface Budget {
+    _id?: string;
+    name?: string;
+    max?: number;
 }
 
 interface Spouse {

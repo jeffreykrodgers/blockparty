@@ -20,4 +20,60 @@ export class UtilityService {
             return slug.toLowerCase();
         }
     }
+
+    getColor(color, type) {
+        let colors = [
+            {
+                name: 'gray',
+                hex: '#818285',
+            }, {
+                name: 'lightGray',
+                hex: '#EEEEEE',
+            }, {
+                name: 'white',
+                hex: '#FFFFFF',
+            }, {
+                name: 'frost',
+                hex: '#F6FAFB',
+            }, {
+                name: 'lightPurple',
+                hex: '#F1E4FF',
+            }, {
+                name: 'blue',
+                hex: '#2186C4',
+            }, {
+                name: 'purple',
+                hex: '#8781EF',
+            }, {
+                name: 'pink',
+                hex: '#F6A2D3',
+            }, {
+                name: 'navy',
+                hex: '#20437D',
+            }, {
+                name: 'teal',
+                hex: '#78ECD6',
+            }, {
+                name: 'green',
+                hex: '#79ED94',
+            }, {
+                name: 'red',
+                hex: '#ED5858',
+            }
+        ];
+
+        let colArr = colors.filter(col => {
+            if (col.name === color || col.hex === color) {
+                return col;
+            }
+        });
+
+        switch (type) {
+            case 'hex':
+                return colArr[0].hex;
+            case 'name':
+            default:
+                return colArr[0].name;
+        }
+    }
 }
