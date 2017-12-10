@@ -40,16 +40,10 @@ export class ChartService {
                     duration: 50,
                 },
                 type: 'solidgauge',
-                height: 128,
-                spacingTop: 0,
-                spacingRight: 0,
-                spacingBottom: 0,
-                spacingLeft: 0,
+                height: 140,
+                spacing: [0, 0, 0, 0],
                 plotBorderWidth: 0,
-                marginRight: 0,
-                marginLeft: 0,
-                marginTop: 0,
-                marginBottom: 0
+                margin: [0, 0, 0, 0]
             },
             title: {
                 text: '',

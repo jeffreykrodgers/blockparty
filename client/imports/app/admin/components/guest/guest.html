@@ -11,7 +11,7 @@
     <div class="details">
         <div class="meals detail">
             <div *ngIf="guest.attending && guest.meal" class="ui horizontal label" [ngClass]="mealColor(guest.meal)">
-                {{guest.meal}}
+                {{guest.meal}} <i *ngIf="mealMissing(guest.meal)" class="material-icons red">error</i>
             </div>
         </div>
     </div>
