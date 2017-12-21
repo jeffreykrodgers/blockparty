@@ -5,8 +5,23 @@
 
 :host {
   display: flex;
-  margin: 10px !important;
+  margin: 0 !important;
   padding: 0 !important;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 1px solid translucent50($lightGray);
+
+  &:first-child {
+    border-radius: 4px 4px 0 0;
+
+    .right {
+      border-radius: 0 4px 0 0;
+    }
+  }
+
+  &:hover {
+    z-index: 20;
+  }
 
   &>div {
     margin: 6px 8px;
@@ -36,8 +51,8 @@
     padding: 0 10px;
     flex: 1;
     background: $lightGray;
-    border-radius: 4px 0 0 4px;
-    box-shadow: $shadow-subtle;
+    //border-radius: 4px 0 0 4px;
+    //box-shadow: $shadow-subtle;
 
     h2, label {
       color: $gray;
@@ -66,14 +81,12 @@
       margin: 0 15px 0 5px;
     }
 
-    .name {
+    .name, .tags {
       display: flex;
-      flex-direction: column;
-      //width: 250px;
+      margin-right: 20px;
 
       h4 {
         max-width: 250px;
-        //white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
 
@@ -86,6 +99,23 @@
         &.incomplete {
           color: $gray;
         }
+      }
+
+      .ui.pink.label {
+        border: 2px solid $pink !important;
+        color: $pink !important;
+      }
+      .ui.purple.label {
+        border: 2px solid $purple !important;
+        color: $purple !important;
+      }
+      .ui.teal.label {
+        border: 2px solid $teal !important;
+        color: $teal !important;
+      }
+      .ui.blue.label {
+        border: 2px solid $blue !important;
+        color: $blue !important;
       }
     }
 
@@ -137,7 +167,7 @@
     background: translucent15($gray);
     color: $gray;
     padding: 0 10px;
-    border-radius: 0 4px 4px 0;
+    //border-radius: 0 4px 4px 0;
     width: 55px;
 
     label {

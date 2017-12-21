@@ -11,9 +11,15 @@
     flex: 1;
     max-width: 800px;
 
+    .list {
+      margin: 10px 15px;
+    }
+
     .insert {
-      height: 68px;
+      height: 55px;
       max-width: 800px;
+      border-radius: 0 0 4px 4px;
+      margin: 0;
     }
   }
   .tables {

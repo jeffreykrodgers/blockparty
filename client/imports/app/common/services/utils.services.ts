@@ -55,7 +55,7 @@ export class UtilityService {
                 hex: '#78ECD6',
             }, {
                 name: 'green',
-                hex: '#79ED94',
+                hex: '#20bf55',
             }, {
                 name: 'red',
                 hex: '#ED5858',
@@ -68,12 +68,6 @@ export class UtilityService {
             }
         });
 
-        switch (type) {
-            case 'hex':
-                return colArr[0].hex;
-            case 'name':
-            default:
-                return colArr[0].name;
-        }
+        return colArr[0][type];
     }
 }

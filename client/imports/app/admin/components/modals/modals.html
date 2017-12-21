@@ -1,24 +1,16 @@
-
 <div class="addButton addButtonsToggle" data-position="top center">
     <i class="large inverted add icon"></i>
 </div>
 <div class="ui invisible popup">
     <div class="vertical list">
-        <sm-button class="purple round addToggle" (click)="addItem('Guest')" icon="user" data-position="left center"></sm-button>
-        <div class="ui popup">Guest</div>
-
-        <sm-button class="purple round addToggle" (click)="addItem('Table')" icon="users"data-position="left center"></sm-button>
-        <div class="ui popup">Table</div>
-
-        <sm-button class="purple round addToggle" (click)="addItem('Venue')" icon="marker" data-position="left center"></sm-button>
-        <div class="ui popup">Venue</div>
-
-        <sm-button class="purple round addToggle" (click)="addItem('Meal')" icon="food" data-position="left center"></sm-button>
-        <div class="ui popup">Meal</div>
-
-        <!--<sm-button class="purple round addToggle" (click)="addItem('Announcement')" icon="announcement" data-position="left center"></sm-button>-->
-        <!--<div class="ui popup">Announcement</div>-->
-
+        <div *ngFor="let button of buttons">
+            <sm-button class="purple round addToggle"
+                       (click)="addItem(button.name)"
+                       icon="{{button.icon}}"
+                       data-position="left center">
+            </sm-button>
+            <div class="ui popup">{{button.name}}</div>
+        </div>
     </div>
 </div>
 
@@ -60,10 +52,14 @@
                 <label>Invitation Number</label>
                 <sm-select placeholder="Invitation..."
                            class="fluid search"
+                           [class]="'invites'"
                            [(model)]="modalData.invitation_num"
                            (change)="checkForGen($event)">
                     <option value="generateInvite">New...</option>
-                    <option *ngFor="let invite of invitations" value="{{invite}}">{{invite}}{{invitationGuests(invite)}}</option>
+                    <option *ngFor="let invite of invitations"
+                            value="{{invite}}">
+                        {{invite}}{{invitationGuests(invite)}}
+                    </option>
                 </sm-select>
             </div>
             <div class="field" *ngIf="modalMode === 'Edit'">
@@ -76,7 +72,9 @@
                 <sm-select placeholder="Meal"
                            class="fluid search"
                            [(model)]="modalData.meal">
-                    <option *ngFor="let meal of meals" value="{{meal.name}}">{{meal.name}}</option>
+                    <option *ngFor="let meal of meals" value="{{meal.name}}">
+                        {{meal.name}}
+                    </option>
                 </sm-select>
             </div>
         </form>
@@ -97,8 +95,9 @@
                 <sm-select placeholder="Guests..."
                            class="fluid search multiple"
                            [(model)]="modalData.guests">
-                    <option value="Friend">Friend</option>
-                    <option *ngFor="let guest of guests" value="{{guest._id}}">{{guest.name}}</option>
+                    <option *ngFor="let guest of guests" value="{{guest._id}}">
+                        {{guest.name}}{{getUserTable(guest._id)}}
+                    </option>
                 </sm-select>
             </div>
 
@@ -272,11 +271,11 @@
             Delete {{activeForm}}
         </div>
         <button class="ui button primary"
-             (click)="submitModal(itemModal)">
+                (click)="submitModal(itemModal)">
             {{buttonText()}}
         </button>
         <button class="ui button"
-             (click)="closeModal(itemModal)">
+                (click)="closeModal(itemModal)">
             Done
         </button>
     </modal-actions>

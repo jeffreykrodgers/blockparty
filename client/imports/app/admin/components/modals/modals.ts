@@ -29,9 +29,11 @@ export class ModalsView implements OnInit {
     modalData: any;
     modalMode: string;
     guests: any;
+    tables: any;
     invitations: any;
     meals: any;
     colors: string[];
+    buttons: any[];
 
     constructor(private _weddingService: WeddingService,
                 private _modalService: ModalService,
@@ -70,9 +72,29 @@ export class ModalsView implements OnInit {
         this.weddingData.subscribe(wedding => {
             this.weddingId = wedding[0]._id;
             this.guests = wedding[0].guests;
+            this.tables = wedding[0].tables;
             this.invitations = wedding[0].invitations;
             this.meals = wedding[0].meals;
         });
+
+        this.buttons = [
+            {
+                name: 'Guest',
+                icon: 'user'
+            },
+            {
+                name: 'Table',
+                icon: 'users'
+            },
+            {
+                name: 'Venue',
+                icon: 'marker'
+            },
+            {
+                name: 'Meal',
+                icon: 'food'
+            },
+        ]
     };
 
     ngAfterViewInit() {
@@ -108,6 +130,7 @@ export class ModalsView implements OnInit {
     closeModal(modal) {
         modal.hide();
         this.clearModalData();
+        $('.uidropdown').dropdown('reset');
         $('#modalForm').form('clear');
     }
 
@@ -150,6 +173,20 @@ export class ModalsView implements OnInit {
         );
 
         this.modalData.invitation_num = invite;
+        console.log(invite);
+        $('.invites').dropdown('set selected', invite);
+    };
+
+    getUserTable(user) {
+        let table = this.tables.filter((table) => {
+            if (table.guests && table.guests.indexOf(user) > -1) {
+                return table;
+            }
+        });
+
+        if (this.tables.indexOf(table[0]) > -1) {
+            return ` (Table ${this.tables.indexOf(table[0]) + 1})`;
+        }
     };
 
     invitationGuests(invite) {
@@ -177,12 +214,30 @@ export class ModalsView implements OnInit {
     submitModal(modal) {
         let methodName = this.modalMode === "Edit" ? "updateItem" : "addItem";
         let slug = this._utils.invertSlug(this.activeForm, true);
-        let url = slug === 'tables' ? `/admin/guests` : `/admin/${slug}`;
+        let url = `/admin/${slug}`;
+        let data = [this.modalData];
+
+        if (this.activeForm === 'Table') {
+            for (let guest of this.modalData.guests) {
+                let table = this.tables.filter((table) => {
+                    return table.guests
+                        && table.guests.indexOf(guest) > -1
+                        && table._id !== this.modalData._id;
+                });
+
+                if (table[0]) {
+                    let guest_index = table[0].guests.indexOf(guest);
+                    table[0].guests.splice(guest_index, 1);
+
+                    data.push(table[0]);
+                }
+            }
+        }
 
         Meteor.call(methodName,
             this.weddingId,
             this.activeForm,
-            [this.modalData],
+            data,
         );
 
         this.router.navigate([url]);
@@ -191,12 +246,5 @@ export class ModalsView implements OnInit {
         if (this.modalMode === 'Edit') {
             this.closeModal(modal);
         }
-        ;
-        //     if (this.addingMultiple) {
-        //         $('#modalForm').form('clear');
-        //     } else {
-        //         this.router.navigate([url]);
-        //         this.closeModal(modal);
-        //     }
     }
 }
