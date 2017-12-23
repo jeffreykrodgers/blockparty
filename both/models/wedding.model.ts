@@ -9,7 +9,7 @@ interface Wedding {
     meals?: Meal[];
     announcements?: Announcement[];
     guests?: Guest[];
-    invitations?: string[];
+    invitations?: Invitation[];
     tables?: Table[];
 }
 
@@ -59,9 +59,15 @@ interface Announcement {
     announcement: string;
 }
 
+interface Invitation {
+    _id?: string;
+    notes?: string;
+    code: string;
+    guests: string[];
+}
+
 interface Table {
     _id?: string;
-    number: number;
     notes?: string;
     seats: number;
     guests: string[];
@@ -75,6 +81,7 @@ interface Guest {
     status?: string;
     secondary: boolean;
     meal?: string;
+    dietary?: string;
     relation?: string;
     party?: string;
     reminder?: string;

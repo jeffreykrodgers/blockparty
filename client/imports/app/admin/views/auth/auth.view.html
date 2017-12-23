@@ -1,0 +1,82 @@
+<div class="content">
+    <div class="logo">
+        <h1>BlockParty</h1>
+        <p>Alpha 0.0.2</p>
+    </div>
+    <div class="ui card">
+        <div class="social-login">
+            <button class="ui facebook button"
+                    (click)="login(facebook)">
+                <i class="facebook icon"></i>
+                Facebook
+            </button>
+            <button class="ui google plus button"
+                    (click)="login(google)">
+                <i class="google icon"></i>
+                Google
+            </button>
+        </div>
+        <div class="classic-login">
+            <div class="ui form" *ngIf="!registering">
+                <div class="field">
+                    <label>Email Address</label>
+                    <div class="ui input">
+                        <input type="text"
+                               placeholder="Email"
+                               [(ngModel)]="user.email"
+                               name="email">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <div class="ui input">
+                        <input type="password"
+                               placeholder="Email"
+                               [(ngModel)]="user.password"
+                               name="pass">
+                    </div>
+                </div>
+                <button class="ui primary button"
+                        (click)="login('password')">Sign In
+                </button>
+
+                <a (click)="registering = !registering">Sign Up</a>
+            </div>
+
+            <div class="ui form" *ngIf="registering">
+                <div class="field">
+                    <label>Email Address</label>
+                    <div class="ui input">
+                        <input type="text"
+                               placeholder="Email"
+                               [(ngModel)]="user.email"
+                               name="email">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <div class="ui input">
+                        <input type="password"
+                               placeholder="Email"
+                               [(ngModel)]="user.password"
+                               name="password">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Confirm Password</label>
+                    <div class="ui input">
+                        <input type="password"
+                               placeholder="Email"
+                               [(ngModel)]="user.pass_conf"
+                               name="pass_conf">
+                    </div>
+                </div>
+                <button class="ui primary button"
+                        (click)="register()">Register
+                </button>
+
+                <a (click)="registering = !registering">Sign In</a>
+            </div>
+        </div>
+    </div>
+</div>

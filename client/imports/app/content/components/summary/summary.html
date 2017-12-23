@@ -7,9 +7,10 @@
                 <p *ngIf="guest.attending">is attending</p>
                 <p *ngIf="!guest.attending">can't make it</p>
             </div>
-            <div *ngIf="guest.attending && guest.meal">
+            <div *ngIf="guest.attending && (guest.meal || guest.dietary)">
                 <h3>Meal</h3>
                 <p>{{guest.meal}}</p>
+                <h6>{{guest.dietary}}</h6>
             </div>
             <div *ngIf="guest.attending && guest.reminder">
                 <h3>Reminder</h3>

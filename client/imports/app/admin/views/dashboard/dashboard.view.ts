@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import template from "./dashboard.view.html";
 import style from "./dashboard.view.scss";
-import {ChartService} from "../../services/chart.services";
+import {ChartService} from "../../services/chart.service";
 
 @Component({
     selector: "dashboard",

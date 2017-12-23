@@ -13,9 +13,18 @@
     </div>
     <div class="details">
         <div class="meals detail">
-            <div *ngIf="guest.attending && guest.meal" class="ui horizontal label" [ngClass]="labelColor(guest.meal)">
-                {{guest.meal}} <i *ngIf="mealMissing(guest.meal)" class="material-icons red">error</i>
+            <div *ngIf="guest.attending && guest.meal"
+                 class="ui horizontal label"
+                 [ngClass]="labelColor(guest.meal)">
+                {{guest.meal}}
+                <i *ngIf="mealMissing(guest.meal)" class="material-icons red">error</i>
             </div>
+            <div *ngIf="guest.dietary"
+                 class="ui horizontal red label">
+                <i class="white warning icon"></i>
+                {{guest.dietary}}
+            </div>
+
         </div>
     </div>
 </div>

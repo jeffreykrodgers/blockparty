@@ -30,7 +30,7 @@ export class admin_SidebarComponent implements OnInit {
     open: boolean;
 
     constructor(private _weddingService: WeddingService,
-                private _router: Router,
+                private router: Router,
                 private _route: ActivatedRoute) {
 
         this.weddingData = this._weddingService.getWedding({}).zone();
@@ -78,5 +78,11 @@ export class admin_SidebarComponent implements OnInit {
 
     toggleMenu() {
         this.open = !this.open;
+    }
+
+    logout() {
+        Meteor.logout(() => {
+            this.router.navigate(['/admin/auth']);
+        });
     }
 }

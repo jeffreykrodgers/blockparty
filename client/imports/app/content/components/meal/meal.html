@@ -12,5 +12,12 @@
         </div>
     </div>
 
+    <div class="half field">
+        <input placeholder="Dietary Restrictions?"
+               type="text"
+               [(ngModel)]="activeGuest.dietary"
+               name="dietary">
+    </div>
+
     <button class="ui big basic inverted button" (click)="setMeal()">Continue</button>
 </div>

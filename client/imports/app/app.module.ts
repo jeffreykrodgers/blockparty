@@ -54,7 +54,8 @@ import {TablesView} from "./admin/views/tables/tables.view";
 import {MenuService} from "./admin/services/menu.service";
 import {admin_WidgetComponent} from "./admin/components/widget/widget.component";
 import {admin_CountdownComponent} from "./admin/components/countdown/countdown.component";
-import {ChartService} from "./admin/services/chart.services";
+import {ChartService} from "./admin/services/chart.service";
+import {AuthView} from "./admin/views/auth/auth.view";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -62,6 +63,7 @@ import {ChartService} from "./admin/services/chart.services";
         AppComponent,
 
         //Admin
+        AuthView,
         AdminView,
         AdminContentView,
         DashboardView,

@@ -37,6 +37,7 @@ export class Main {
                         services: {}
                     },
                 ],
+                invitations: [],
                 venues: [],
                 meals: [],
                 announcements: [],

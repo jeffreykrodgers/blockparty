@@ -17,6 +17,7 @@ import {GiftComponent} from "./content/components/gift/gift";
 import {SummaryComponent} from "./content/components/summary/summary";
 import {FinishedComponent} from "./content/components/finished/finished";
 import {TablesView} from "./admin/views/tables/tables.view";
+import {AuthView} from "./admin/views/auth/auth.view";
 
 
 export const routes: Route[] = [
@@ -42,4 +43,6 @@ export const routes: Route[] = [
         {path: 'meals', component: MealsView},
         {path: 'announcements', component: AnnouncementsView}
     ]},
+
+    {path: 'admin/auth', component: AuthView}
 ];
