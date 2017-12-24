@@ -56,6 +56,7 @@ import {admin_WidgetComponent} from "./admin/components/widget/widget.component"
 import {admin_CountdownComponent} from "./admin/components/countdown/countdown.component";
 import {ChartService} from "./admin/services/chart.service";
 import {AuthView} from "./admin/views/auth/auth.view";
+import {UserService} from "./common/services/user.service";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -115,7 +116,8 @@ import {AuthView} from "./admin/views/auth/auth.view";
         ModalService,
         UtilityService,
         MenuService,
-        ChartService
+        ChartService,
+        UserService,
     ],
     // Modules
     imports: [

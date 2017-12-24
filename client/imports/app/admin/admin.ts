@@ -25,13 +25,13 @@ export class AdminView implements OnInit {
     }
 
     ngOnInit() {
-        console.log(Meteor.userId());
         if (!Meteor.userId()) {
-            this.router.navigate(['/admin/auth']);
+            this.router.navigate(['/login']);
         }
     };
 
     ngAfterViewInit() {
 
     }
+
 }

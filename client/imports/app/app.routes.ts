@@ -44,5 +44,5 @@ export const routes: Route[] = [
         {path: 'announcements', component: AnnouncementsView}
     ]},
 
-    {path: 'admin/auth', component: AuthView}
+    {path: 'login', component: AuthView}
 ];

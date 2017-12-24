@@ -82,7 +82,7 @@ export class admin_SidebarComponent implements OnInit {
 
     logout() {
         Meteor.logout(() => {
-            this.router.navigate(['/admin/auth']);
+            this.router.navigate(['/login']);
         });
     }
 }

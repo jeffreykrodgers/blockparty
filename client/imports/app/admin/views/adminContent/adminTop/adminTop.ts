@@ -3,7 +3,9 @@ import template from "./adminTop.html";
 import style from "./adminTop.scss";
 import {WeddingService} from "../../../../common/services/wedding.service";
 
-import * as moment from 'moment';
+import {UserService} from "../../../../common/services/user.service";
+import {Meteor} from "meteor/meteor";
+import {Tracker} from "meteor/tracker";
 
 @Component({
     selector: "adminTop",
@@ -16,43 +18,30 @@ import * as moment from 'moment';
 
 export class admin_TopComponent implements OnInit {
     weddingData: any;
-    countdown: any;
-    moment: any;
+    user: any;
 
-    constructor(private _weddingService: WeddingService) {
-        this.countdown = {};
-        this.moment = moment;
+    constructor(private _weddingService: WeddingService,
+                private _userService: UserService) {
+        this.weddingData = this._weddingService.getWedding({}).zone();
+        this.user = {};
     }
 
     ngOnInit() {
-        this.weddingData = this._weddingService.getWedding({}).zone();
         this.weddingData.subscribe(wedding => {
             this.weddingData = wedding[0];
-            this.getCountdown();
         });
 
-        let self = this;
-
-        setInterval(function () {
-            self.getCountdown();
-        }, 10000);
+        Tracker.autorun(() => {
+            let user = this._userService.getUser();
+            this.user.profile = user ? user.profile : {};
+        });
     };
 
-    private getCountdown() {
-        let _weddingDate: any = moment(this.weddingData.date);
-        let _currentDate: any = moment();
-        let _diffTime: any = _weddingDate - _currentDate;
-        let _duration: any = moment.duration(_diffTime);
+    initials() {
+        const f = this.user.profile.first_name;
+        const l = this.user.profile.last_name;
 
-        if (_diffTime > 0) {
-            //TODO Fix to use moment.diff instead of duration
-            this.countdown = {
-                months: _duration._data.months,
-                days: _duration._data.days + 1,
-                hours: _duration._data.hours,
-                minutes: _duration._data.minutes,
-            }
-        }
-    }
+        return (f && l) ? f[0].toUpperCase() + l[0].toUpperCase() : 'AU';
+    };
 
 }

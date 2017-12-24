@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, NgZone, OnInit} from "@angular/core";
 import template from "./auth.view.html";
 import style from "./auth.view.scss";
 import {Meteor} from "meteor/meteor";
@@ -20,18 +20,14 @@ export class AuthView implements OnInit {
     registering: boolean;
     errs: any;
 
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private zone: NgZone) {
         this.user = {};
     }
 
     ngOnInit() {
-
-    };
-
-    ngAfterViewInit() {
         if (Meteor.userId()) {
-            console.log("We got us some kinda user here...");
-            this.router.navigate(['/admin/dashboard']);
+            this.router.navigate(['/admin']);
         }
     };
 
@@ -40,8 +36,9 @@ export class AuthView implements OnInit {
             case 'password':
                 Meteor.loginWithPassword(this.user.email, this.user.password, (err) => {
                     if (err) {console.error(err.reason)} else {
-                        console.log(Meteor.user());
-                        this.router.navigate(['/admin/dashboard']);
+                        this.zone.run(() => {
+                            this.router.navigate(['/admin']);
+                        });
                     };
                 });
                 break;

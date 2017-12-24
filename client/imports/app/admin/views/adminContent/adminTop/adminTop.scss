@@ -37,6 +37,11 @@ h4 {
   .right {
     justify-content: flex-end;
 
+    h3 {
+      padding: 0 10px;
+      margin: 0;
+    }
+
     .picture {
       background: $gradient-d;
       margin: 10px;

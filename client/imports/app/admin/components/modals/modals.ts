@@ -173,7 +173,6 @@ export class ModalsView implements OnInit {
         );
 
         this.modalData.invitation_num = invite;
-        console.log(invite);
         $('.invites').dropdown('set selected', invite);
     };
 
