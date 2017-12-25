@@ -17,12 +17,13 @@ import {Router} from "@angular/router";
 export class AuthView implements OnInit {
     open: boolean;
     user: any;
+    error: any;
     registering: boolean;
     errs: any;
 
     constructor(private router: Router,
                 private zone: NgZone) {
-        this.user = {};
+        this.user = {profile: {}};
     }
 
     ngOnInit() {
@@ -35,21 +36,22 @@ export class AuthView implements OnInit {
         switch (type) {
             case 'password':
                 Meteor.loginWithPassword(this.user.email, this.user.password, (err) => {
-                    if (err) {console.error(err.reason)} else {
+                    if (err) {this.error = err;} else {
                         this.zone.run(() => {
+                            this.error = false;
                             this.router.navigate(['/admin']);
                         });
                     };
                 });
                 break;
             case 'facebook':
-                console.log('Facebook oAuth Currently Disabled. Sarry!');
+                this.error = 'Facebook oAuth Currently Disabled. Sarry!';
 
                 //TODO add facebook oauth
 
                 break;
             case 'google':
-                console.log('Google oAuth Currently Disabled. Sarry!');
+                this.error = 'Google oAuth Currently Disabled. Sarry!';
 
                 //TODO add google oauth
 
@@ -64,10 +66,14 @@ export class AuthView implements OnInit {
                 username: this.user.email,
                 email: this.user.email,
                 password: this.user.password,
+                profile: this.user.profile,
             }, () => {
                 this.registering = false;
             });
         }
+
+        this.user = {profile:{}};
+        this.registering = false;
 
     };
 }
