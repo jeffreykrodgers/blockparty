@@ -4,10 +4,11 @@ import style from "./modals.scss";
 import {WeddingService} from "../../../common/services/wedding.service";
 import {Observable} from "rxjs/Observable";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
-import {ModalService} from "./modals.service";
+import {ModalService} from "../../services/modals.service";
 import {UtilityService} from "../../../common/services/utils.services";
 import {Router, RouterModule, Routes} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
+import {Subject} from "rxjs/Subject";
 
 declare let $: any;
 
@@ -26,8 +27,10 @@ export class ModalsView implements OnInit {
     weddingData: Observable<WeddingDB[]>;
     weddingId: any;
     activeForm: string;
+    modal: Observable<any>;
     modalData: any;
     modalMode: string;
+    modalMessage: any;
     guests: any;
     tables: any;
     invitations: any;
@@ -41,8 +44,10 @@ export class ModalsView implements OnInit {
                 private router: Router) {
 
         this.weddingData = this._weddingService.getWedding({}).zone();
+        this.modal = this._modalService.events$;
         this.modalData = {};
         this.invitations = [];
+        this.modalMessage = false;
         this.activeForm = 'Guest';
         this.modalData.address = {};
 
@@ -52,18 +57,21 @@ export class ModalsView implements OnInit {
     ngOnInit() {
         const self = this;
 
-        this._modalService.events$.forEach((data) => {
+        this.modal.subscribe((data) => {
+            // console.log('Event Trigger Received, executing:', data);
             if (data.data) {
                 this.modalData = {...data.data};
             }
-            this.modalMode = data.mode;
 
-            switch (this.modalMode) {
+            // console.log("Am I doing anything?");
+
+            switch (data.mode) {
                 case 'Edit':
                     self.editItem(data.form);
                     break;
                 case 'Add':
                 default:
+                    // console.log('Adding Item');
                     self.addItem(data.form);
                     break;
             }
@@ -94,7 +102,9 @@ export class ModalsView implements OnInit {
                 name: 'Meal',
                 icon: 'food'
             },
-        ]
+        ];
+
+
     };
 
     ngAfterViewInit() {
@@ -104,13 +114,23 @@ export class ModalsView implements OnInit {
     };
 
     addItem(form) {
-        if (form === 'Venue') this.modalData = {address: {}};
+        if (form === 'Venue' && this.modalData === {}) this.modalData = {address: {}};
+        // console.log("Add Item Triggered", this.itemModal);
 
         this.modalMode = 'Add';
         this.activeForm = form;
         this.showModal(this.itemModal);
 
         $('.addButtonsToggle').popup('hide');
+    };
+
+    buttonIcon(): string {
+        switch (this.modalMode) {
+            case 'Add':
+                return 'plus';
+            case 'Edit':
+                return 'save';
+        }
     };
 
     buttonText(): string {
@@ -123,15 +143,17 @@ export class ModalsView implements OnInit {
     };
 
     clearModalData() {
+        this.modalMessage = false;
         this.modalData = this.activeForm === 'Venue'
             ? this.modalData = {address: {}} : this.modalData = {};
+        // console.log('Clearing Modal data:', this.modalMessage, this.modalData);
+        $('.uidropdown').dropdown('reset');
+        $('#modalForm').form('clear');
     };
 
     closeModal(modal) {
         modal.hide();
         this.clearModalData();
-        $('.uidropdown').dropdown('reset');
-        $('#modalForm').form('clear');
     }
 
     deleteItem(modal) {
@@ -146,6 +168,7 @@ export class ModalsView implements OnInit {
 
     editItem(form) {
         this.activeForm = form;
+        this.modalMode = 'Edit';
         this.showModal(this.itemModal);
     };
 
@@ -236,14 +259,26 @@ export class ModalsView implements OnInit {
         Meteor.call(methodName,
             this.weddingId,
             this.activeForm,
-            data,
+            data, (err) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    this.modalMessage = {
+                        color: 'green',
+                        text: `Successfully added ${this.activeForm}`,
+                    }
+
+                    this.router.navigate([url]);
+
+                    this.clearModalData();
+
+                    if (this.modalMode === 'Edit') {
+                        this.closeModal(modal);
+                    }
+                }
+            }
         );
 
-        this.router.navigate([url]);
-        $('#modalForm').form('clear');
 
-        if (this.modalMode === 'Edit') {
-            this.closeModal(modal);
-        }
     }
 }

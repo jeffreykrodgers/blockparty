@@ -37,7 +37,11 @@ export class Main {
                         services: {}
                     },
                 ],
-                budgets: [],
+                budgets: [
+                    {
+                        max: 800,
+                    }
+                ],
                 invitations: [],
                 venues: [],
                 meals: [],

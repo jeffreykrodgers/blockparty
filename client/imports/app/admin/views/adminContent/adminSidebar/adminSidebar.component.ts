@@ -8,6 +8,9 @@ import {WeddingService} from "../../../../common/services/wedding.service";
 import * as moment from 'moment';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MenuService} from "../../../services/menu.service";
+import {ModalService} from "../../../services/modals.service";
+
+declare let $: any;
 
 @Component({
     selector: "adminSidebar",
@@ -30,6 +33,7 @@ export class admin_SidebarComponent implements OnInit {
     open: boolean;
 
     constructor(private _weddingService: WeddingService,
+                private _modalService: ModalService,
                 private router: Router,
                 private _route: ActivatedRoute) {
 

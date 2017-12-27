@@ -263,18 +263,21 @@
                           [(ngModel)]="modalData.announcement"></textarea>
             </div>
         </form>
+        <div class="ui green message" *ngIf="modalMessage" ngClass="modalMessage.color">{{modalMessage.text}}</div>
     </modal-content>
     <modal-actions>
-        <div class="ui left floated negative button"
+        <div class="ui left floated negative icon button"
              *ngIf="modalMode === 'Edit'"
              (click)="deleteItem(itemModal)">
+            <i class="trash icon"></i>
             Delete {{activeForm}}
         </div>
-        <button class="ui button primary"
+        <button class="ui icon button primary"
                 (click)="submitModal(itemModal)">
-            {{buttonText()}}
+            <i class="icon" [ngClass]="buttonIcon()"></i>
+            {{buttonText()}} {{activeForm}}
         </button>
-        <button class="ui button"
+        <button class="ui primary button"
                 (click)="closeModal(itemModal)">
             Done
         </button>

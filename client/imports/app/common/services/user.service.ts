@@ -16,9 +16,11 @@ export class UserService {
         return Meteor.user();
     }
 
-    public static updateUser(id: string, obj: object) {
+    public updateUser(id: string, obj: object) {
+
     }
 
     public deleteUser(type: string, obj:any) {
+
     }
 }

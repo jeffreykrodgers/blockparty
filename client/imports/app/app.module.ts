@@ -42,7 +42,7 @@ import {MainPipe} from "./common/pipes/main-pipe.module";
 import {ModalsView} from "./admin/components/modals/modals";
 import {ChartModule} from "angular2-highcharts";
 import {ContentView} from "./content/content";
-import {ModalService} from "./admin/components/modals/modals.service";
+import {ModalService} from "./admin/services/modals.service";
 import {GuestsView} from "./admin/views/guests/guests.view";
 import {MealsView} from "./admin/views/meals/meals.view";
 import {VenuesView} from "./admin/views/venues/venues.view";

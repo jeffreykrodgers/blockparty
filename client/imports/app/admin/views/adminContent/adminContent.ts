@@ -7,6 +7,7 @@ import {WeddingDB} from "../../../../../../both/models/wedding.model";
 
 import * as moment from 'moment';
 import {MenuService} from "../../services/menu.service";
+import {Meteor} from "meteor/meteor";
 
 @Component({
     selector: "adminContent",
@@ -49,5 +50,9 @@ export class AdminContentView implements OnInit {
 
     toggleMenu() {
         this._menuService.toggleSidebar.emit();
+    }
+
+    loggedIn() {
+        return Meteor.userId();
     }
 }
