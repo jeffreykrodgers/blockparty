@@ -1,7 +1,9 @@
 import {WeddingCollection} from "../../../both/collections/wedding.collection";
-import {check} from "meteor/check";
+// import {check} from "meteor/check";
 import {Meteor} from "meteor/meteor";
 import {Random} from "meteor/random";
+import AWS = require('aws-sdk');
+
 
 Meteor.methods({
 
@@ -62,10 +64,14 @@ Meteor.methods({
                 break;
             case 'Invitation':
                 items.forEach((item?: any) => {
-                   WeddingCollection.collection.update({_id: weddingId}, {$push: {"invitations": {
-                       $each: [item],
-                       $position: 0
-                   }}});
+                    WeddingCollection.collection.update({_id: weddingId}, {
+                        $push: {
+                            "invitations": {
+                                $each: [item],
+                                $position: 0
+                            }
+                        }
+                    });
                 });
                 break;
             case 'Table':
@@ -93,7 +99,7 @@ Meteor.methods({
         }
     },
 
-    deleteItem: (weddingId: string, type: string, item: any) => {
+    deleteItem: (weddingId: string, type: string, item: any, cb: any) => {
         switch (type) {
             case 'Guest':
                 WeddingCollection.collection.update({
@@ -132,5 +138,44 @@ Meteor.methods({
 
     getServerTime: () => {
         return (new Date);
+    },
+
+    uploadFile: (event_id: string, fileMeta: any, file:any) => {
+        const s3_config = Meteor.settings.s3;
+        const aws_config = Meteor.settings.aws;
+        const data = new Buffer(file, 'binary');
+        const fileName = encodeURI(fileMeta.name);
+        const Future = require('fibers/future');
+        const future = new Future();
+
+        let upload = {};
+
+        AWS.config.update(aws_config);
+        const s3 = new AWS.S3({region: s3_config.region});
+        const params = {
+            Bucket: s3_config.bucket,
+            Key: `${event_id}_${fileName}`,
+            Body: data,
+            ACL: 'public-read'
+        };
+
+        s3.putObject(params, Meteor.bindEnvironment((err) => {
+            if (err) {console.error("Error uploading to S3:", err)} else {
+                upload = {
+                    _id: Random.id(),
+                    path: `https://s3.amazonaws.com/eg-bp-cdn/${event_id}_${fileName}`
+                };
+
+                WeddingCollection.collection.update({_id: event_id}, {
+                    $push: {
+                        "uploads": upload
+                    }
+                });
+
+                future.return(upload);
+            }
+        }));
+
+        return future.wait();
     }
 });

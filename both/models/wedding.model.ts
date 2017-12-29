@@ -11,6 +11,7 @@ interface Wedding {
     guests?: Guest[];
     invitations?: Invitation[];
     tables?: Table[];
+    uploads?: Upload[];
 }
 
 interface Budget {
@@ -49,6 +50,7 @@ interface Meal {
     name: string;
     color?: string;
     price?: number;
+    image?: string;
     notes?: string;
 }
 
@@ -87,6 +89,12 @@ interface Guest {
     reminder?: string;
     gift?: number;
     table?: number;
+}
+
+interface Upload {
+    _id?: string;
+    meta?: object;
+    path: string;
 }
 
 export type WeddingDB = Wedding;

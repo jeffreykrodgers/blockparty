@@ -114,8 +114,8 @@ export class ModalsView implements OnInit {
     };
 
     addItem(form) {
-        if (form === 'Venue' && this.modalData === {}) this.modalData = {address: {}};
-        // console.log("Add Item Triggered", this.itemModal);
+        if (form === 'Venue' && Object.keys(this.modalData).length === 0)
+            this.modalData = {address: {}};
 
         this.modalMode = 'Add';
         this.activeForm = form;
@@ -261,7 +261,10 @@ export class ModalsView implements OnInit {
             this.activeForm,
             data, (err) => {
                 if (err) {
-                    console.log(err);
+                    this.modalMessage = {
+                        color: 'red',
+                        text: `Failed: ${err}`,
+                    }
                 } else {
                     this.modalMessage = {
                         color: 'green',
@@ -269,7 +272,6 @@ export class ModalsView implements OnInit {
                     }
 
                     this.router.navigate([url]);
-
                     this.clearModalData();
 
                     if (this.modalMode === 'Edit') {
@@ -278,7 +280,29 @@ export class ModalsView implements OnInit {
                 }
             }
         );
+    };
 
+    uploadImage(event) {
+        const file = event.currentTarget.files[0];
+        const fileReader = new FileReader();
 
+        let fileMeta = {
+            name: file.name,
+            lastModified: file.lastModified,
+            lastModifiedDate: file.lastModifiedDate,
+            webkitRelativePath: file.webkitRelativePath,
+            size: file.size,
+            type: file.type
+        };
+
+        fileReader.onload = () => {
+            Meteor.call('uploadFile', this.weddingId, fileMeta, fileReader.result, (err, res) => {
+                if (err) {console.log(err)} else {
+                    this.modalData.image = res._id;
+                }
+            });
+        };
+
+        fileReader.readAsBinaryString(file);
     }
 }

@@ -22,14 +22,14 @@ export class SearchComponent implements OnInit {
 
     invitationNumber: string;
     guests: any;
-    errors: any;
+    error: any;
     rsvpData: any;
 
     constructor(private _weddingService: WeddingService,
                 private _rsvpService: RsvpService,
                 private _router: Router) {
         this.weddingData = this._weddingService.getWedding({}).zone();
-        this.errors = [];
+        this.error = false;
     }
 
     ngOnInit() {
@@ -54,11 +54,11 @@ export class SearchComponent implements OnInit {
                 this._router.navigate(['/rsvp/guests']);
 
             } else {
-                this.errors.push("No Guests found with this invitation number");
+                this.error = "No Guests found with this invitation number";
             }
 
         } else {
-            this.errors.push("Please input an invitation number");
+            this.error = "Please input an invitation number";
         }
     }
 }

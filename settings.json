@@ -1,0 +1,13 @@
+{
+  "aws": {
+    "accessKeyId": "AKIAJWAQH3RW3SBOGM3A",
+    "secretAccessKey": "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",
+    "region": "us-west-2"
+  },
+  "s3": {
+    "key": "AKIAJWAQH3RW3SBOGM3A",
+    "secret": "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",
+    "bucket": "eg-bp-cdn",
+    "region": "us-east-1"
+  }
+}
