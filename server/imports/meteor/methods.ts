@@ -144,7 +144,7 @@ Meteor.methods({
         const s3_config = Meteor.settings.s3;
         const aws_config = Meteor.settings.aws;
         const data = new Buffer(file, 'binary');
-        const fileName = encodeURI(fileMeta.name);
+        const fileName = fileMeta.name.replace(/[^a-z0-9.]/gi, '_').toLowerCase();
         const Future = require('fibers/future');
         const future = new Future();
 

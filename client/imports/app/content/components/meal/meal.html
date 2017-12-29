@@ -6,7 +6,10 @@
                 <input type="radio" [(ngModel)]="activeGuest.meal" value="{{meal.name}}" />
                 <div class="meal-data">
                     <span>{{meal.name}}</span>
-                    <div class="meal-image"><i class="big camera icon"></i></div>
+                    <div class="meal-image">
+                        <i *ngIf="!meal.image" class="big inverted photo icon"></i>
+                        <img *ngIf="meal.image" src="{{mealImage(meal)}}">
+                    </div>
                 </div>
             </label>
         </div>

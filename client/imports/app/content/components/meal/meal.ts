@@ -24,6 +24,7 @@ export class MealComponent implements OnInit {
     meals: object[];
     activeGuest: object;
     links: object[];
+    uploads: any;
 
     constructor(private _weddingService: WeddingService,
                 private _rsvpService: RsvpService,
@@ -45,6 +46,7 @@ export class MealComponent implements OnInit {
 
         this.weddingData.subscribe(wedding => {
             this.meals = wedding[0].meals;
+            this.uploads = wedding[0].uploads;
         });
 
         if (this.guests.length > 0) {
@@ -76,5 +78,11 @@ export class MealComponent implements OnInit {
             this._rsvpService.setRsvpData(this.rsvpData, true);
             this._router.navigate(['/rsvp/reminders']);
         }
+    }
+
+    mealImage(meal) {
+        let upload = this.uploads.filter((upload) => upload._id === meal.image);
+
+        return upload[0].path;
     }
 }

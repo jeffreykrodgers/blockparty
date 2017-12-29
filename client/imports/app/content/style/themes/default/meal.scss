@@ -42,13 +42,18 @@
 
             .meal-image {
               background-color: $gray;
-              height: 100px;
-              width: 150px;
+              height: 150px;
+              width: 200px;
               border-radius: 8px;
               display: flex;
               justify-content: center;
               align-items: center;
+              overflow: hidden;
 
+              img {
+                min-width: 100%;
+                min-height: 100%;
+              }
             }
           }
         }

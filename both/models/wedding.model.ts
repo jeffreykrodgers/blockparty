@@ -33,6 +33,7 @@ interface Spouse {
 interface Venue {
     _id?: string;
     name: string;
+    image?: string;
     address: {
         street: string,
         city: string,
