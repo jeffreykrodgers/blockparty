@@ -22,9 +22,12 @@
             </div>
         </div>
 
+
         <button class="ui basic inverted icon button" *ngIf="reminders.length < 3" (click)="addReminder()">
-            <i class="add icon"></i> Add Reminder</button>
+            <i class="add icon"></i>
+        </button>
+        <label *ngIf="reminders.length < 3">Add Reminder</label>
 
     </div>
-    <button class="ui big basic inverted button" (click)="setReminder()">Next</button>
+    <button class="ui big basic inverted button pill" (click)="setReminder()">Next</button>
 </div>

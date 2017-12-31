@@ -1,14 +1,16 @@
 @import "variables";
 @import "functions";
+@import "../../../../common/styles/variables";
 
 :host {
   height: 100vh;
   width: 100vw;
+  //max-height: 100vh;
   max-width: 600px;
   display: flex;
   margin: 0 auto;
   flex-direction: column;
-  justify-content: center;
+  //justify-content: center;
   align-items: center;
 
   section {
@@ -27,6 +29,7 @@
       height: 200px;
       width: auto;
       margin: 20px;
+      opacity: .7;
     }
   }
 
@@ -41,6 +44,8 @@
   .rsvp-bottom {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 60px;
 
     .link {
 
@@ -70,4 +75,21 @@
   .ui.button {
     margin-right: 0;
   }
+
+  .ui.basic.inverted.pill.button {
+    border-radius: 30px;
+    padding: 15px 40px;
+  }
 }
+
+@media screen and (max-width: $tablet-max) {
+  :host {
+    .rsvp-top {
+
+      img {
+
+      }
+    }
+  }
+}
+

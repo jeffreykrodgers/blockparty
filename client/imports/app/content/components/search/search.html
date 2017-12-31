@@ -2,12 +2,17 @@
     <img src="/img/vinajeff.svg"/>
     <div class="ui form">
         <div class="field">
-            <div class="ui icon input">
+            <div class="ui left icon input">
+                <i class="add user icon">
+                </i>
                 <input placeholder="Invitation Number..."
                        type="text"
                        [(ngModel)]="invitationNumber"
                        name="invitationNumber">
-                <i class="inverted circular search link icon" (click)="findGuests()"></i>
+                <button class="ui icon basic button"
+                        (click)="findGuests()">
+                    <i class="large search icon"></i>
+                </button>
             </div>
             <div class="ui pointing red basic label" *ngIf="error">
                 {{error}}

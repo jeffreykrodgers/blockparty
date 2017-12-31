@@ -39,9 +39,16 @@ export class admin_SidebarComponent implements OnInit {
 
         this.weddingData = this._weddingService.getWedding({}).zone();
         this.links = [{
-                text: 'Dashboard',
+                text: 'Event',
                 slug: '/admin/dashboard',
                 icon: 'dashboard'
+            },
+            {
+                text: 'Website',
+                slug: '/rsvp/',
+                icon: 'language',
+                target: '_blank'
+
             },
             {
                 text: 'Guests',
@@ -63,11 +70,23 @@ export class admin_SidebarComponent implements OnInit {
                 slug: '/admin/meals',
                 icon: 'local_dining'
             },
-            // {
-            //     text: 'Announements',
-            //     slug: '/admin/announcements',
-            //     icon: 'announcement'
-            // },
+            {
+                text: 'Registries',
+                slug: '/admin/registries',
+                icon: 'playlist_add_check'
+            },
+            {
+                text: 'Announcements',
+                slug: '/admin/announcements',
+                icon: 'not_interested',
+                disabled: true,
+            },
+            {
+                text: 'Guestbook',
+                slug: '/admin/guestbook',
+                icon: 'not_interested',
+                disabled: true,
+            },
         ]
 
     }
@@ -78,6 +97,10 @@ export class admin_SidebarComponent implements OnInit {
             this.date = moment(wedding[0].date).format('dddd, MMMM Do YYYY [at] h:mm a');
             this.spouses = wedding[0].spouses;
         });
+    }
+
+    getTarget(target) {
+        return target ? target : '_self';
     }
 
     toggleMenu() {

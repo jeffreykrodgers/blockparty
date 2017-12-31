@@ -6,6 +6,10 @@
     color: white;
   }
 
+  h2 {
+    margin-bottom: 2px;
+  }
+
   .ui.form .inline.fields {
     display: flex;
     justify-content: center;
@@ -29,7 +33,7 @@
         }
         &> input + .guest-data{
           cursor:pointer;
-          opacity: .5;
+          opacity: .3;
         }
         &> input:checked + .guest-data{
           opacity: 1;

@@ -3,21 +3,17 @@ interface Wedding {
     _id?: string;
     date: any;
     theme: any;
-    budgets?: Budget[];
     spouses: Spouse[];
+    budgets?: Budget[];
+    invitations?: Invitation[];
+    guests?: Guest[];
+    tables?: Table[];
     venues?: Venue[];
     meals?: Meal[];
+    registries? : Registry[];
     announcements?: Announcement[];
-    guests?: Guest[];
-    invitations?: Invitation[];
-    tables?: Table[];
-    uploads?: Upload[];
-}
 
-interface Budget {
-    _id?: string;
-    name?: string;
-    max?: number;
+    uploads?: Upload[];
 }
 
 interface Spouse {
@@ -28,6 +24,42 @@ interface Spouse {
     email?: String;
     password?: String;
     services?: any;
+}
+
+interface Budget {
+    _id?: string;
+    name?: string;
+    max?: number;
+}
+
+interface Invitation {
+    _id?: string;
+    notes?: string;
+    code: string;
+    guests: string[];
+}
+
+interface Guest {
+    _id?: string;
+    name: string;
+    email?: string;
+    invitation_num: string;
+    status?: string;
+    secondary: boolean;
+    meal?: string;
+    dietary?: string;
+    relation?: string;
+    party?: string;
+    reminder?: string;
+    gift?: number;
+    table?: number;
+}
+
+interface Table {
+    _id?: string;
+    notes?: string;
+    seats: number;
+    guests: string[];
 }
 
 interface Venue {
@@ -55,41 +87,19 @@ interface Meal {
     notes?: string;
 }
 
+interface Registry {
+    _id?: string;
+    name: string;
+    image?: string;
+    description?: string;
+    link: string;
+}
+
 interface Announcement {
     _id?: string;
     date: any;
     title: string;
     announcement: string;
-}
-
-interface Invitation {
-    _id?: string;
-    notes?: string;
-    code: string;
-    guests: string[];
-}
-
-interface Table {
-    _id?: string;
-    notes?: string;
-    seats: number;
-    guests: string[];
-}
-
-interface Guest {
-    _id?: string;
-    name: string;
-    email?: string;
-    invitation_num: string;
-    status?: string;
-    secondary: boolean;
-    meal?: string;
-    dietary?: string;
-    relation?: string;
-    party?: string;
-    reminder?: string;
-    gift?: number;
-    table?: number;
 }
 
 interface Upload {

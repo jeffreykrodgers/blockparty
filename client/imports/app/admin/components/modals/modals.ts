@@ -35,6 +35,7 @@ export class ModalsView implements OnInit {
     tables: any;
     invitations: any;
     meals: any;
+    registries: any;
     colors: string[];
     buttons: any[];
 
@@ -50,7 +51,9 @@ export class ModalsView implements OnInit {
         this.modalMessage = false;
         this.activeForm = 'Guest';
         this.modalData.address = {};
-
+        this.registries = [{
+            name: 'Zola',
+        }];
         this.colors = ['teal', 'pink', 'purple', 'blue'];
     }
 
@@ -58,12 +61,9 @@ export class ModalsView implements OnInit {
         const self = this;
 
         this.modal.subscribe((data) => {
-            // console.log('Event Trigger Received, executing:', data);
             if (data.data) {
                 this.modalData = {...data.data};
             }
-
-            // console.log("Am I doing anything?");
 
             switch (data.mode) {
                 case 'Edit':
@@ -71,7 +71,6 @@ export class ModalsView implements OnInit {
                     break;
                 case 'Add':
                 default:
-                    // console.log('Adding Item');
                     self.addItem(data.form);
                     break;
             }
@@ -101,6 +100,10 @@ export class ModalsView implements OnInit {
             {
                 name: 'Meal',
                 icon: 'food'
+            },
+            {
+                name: 'Registry',
+                icon: 'gift'
             },
         ];
 
@@ -143,21 +146,21 @@ export class ModalsView implements OnInit {
     };
 
     clearModalData() {
-        this.modalMessage = false;
         this.modalData = this.activeForm === 'Venue'
             ? this.modalData = {address: {}} : this.modalData = {};
-        // console.log('Clearing Modal data:', this.modalMessage, this.modalData);
         $('.uidropdown').dropdown('reset');
         $('#modalForm').form('clear');
     };
 
     closeModal(modal) {
         modal.hide();
+        this.modalMessage = false;
         this.clearModalData();
     }
 
     deleteItem(modal) {
-        Meteor.call('editItem',
+        console.log(this.modalData);
+        Meteor.call('deleteItem',
             this.weddingId,
             this.activeForm,
             [this.modalData],
@@ -221,6 +224,7 @@ export class ModalsView implements OnInit {
     }
 
     showModal(modal) {
+        console.log(this.modalData);
         $('.activitiesToggle').popup('hide');
         modal.show({
             inverted: true,
@@ -268,8 +272,10 @@ export class ModalsView implements OnInit {
                 } else {
                     this.modalMessage = {
                         color: 'green',
-                        text: `Successfully added ${this.activeForm}`,
-                    }
+                        text: `Successfully added ${this.activeForm}: ${this.modalData.name}`,
+                    };
+
+                    console.log(this.modalMessage);
 
                     this.router.navigate([url]);
                     this.clearModalData();

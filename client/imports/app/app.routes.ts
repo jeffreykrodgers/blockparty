@@ -18,6 +18,7 @@ import {SummaryComponent} from "./content/components/summary/summary";
 import {FinishedComponent} from "./content/components/finished/finished";
 import {TablesView} from "./admin/views/tables/tables.view";
 import {AuthView} from "./admin/views/auth/auth.view";
+import {RegistriesView} from "./admin/views/registries/registries.view";
 
 
 export const routes: Route[] = [
@@ -41,6 +42,7 @@ export const routes: Route[] = [
         {path: 'tables', component: TablesView},
         {path: 'venues', component: VenuesView},
         {path: 'meals', component: MealsView},
+        {path: 'registries', component: RegistriesView},
         {path: 'announcements', component: AnnouncementsView}
     ]},
 

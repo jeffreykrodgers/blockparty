@@ -192,6 +192,7 @@
     transition: .2s all;
     position: relative;
     overflow: visible;
+    max-width: 33%;
 
     &.clickable {
       cursor: pointer;
@@ -200,6 +201,10 @@
         box-shadow: $shadow-extra-long-down;
       }
     }
+  }
+
+  .insert {
+    max-width: 33%;
   }
 
   .ui.pink.button {

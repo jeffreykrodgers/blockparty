@@ -262,6 +262,37 @@
                 </div>
             </div>
         </form>
+        <form class="ui form" id="modalForm" *ngIf="activeForm === 'Registry'">
+            <div class="field">
+                <sm-select placeholder="Registry"
+                           class="fluid search"
+                           [(model)]="modalData.name">
+                    <option *ngFor="let registry of registries" value="{{registry.name}}">
+                        {{registry.name}}
+                    </option>
+                </sm-select>
+            </div>
+            <div class="field">
+                <label>Description</label>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="Description"
+                           [(ngModel)]="modalData.description"
+                           name="registry_description"
+                           autocomplete="off">
+                </div>
+            </div>
+            <div class="field">
+                <label>Link</label>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="http://www.example.com/event_name"
+                           [(ngModel)]="modalData.link"
+                           name="registry_link"
+                           autocomplete="off">
+                </div>
+            </div>
+        </form>
         <form class="ui form" id="modalForm" *ngIf="activeForm === 'Announcement'">
             <div class="field">
                 <label>Title</label>
@@ -281,7 +312,7 @@
                           [(ngModel)]="modalData.announcement"></textarea>
             </div>
         </form>
-        <div class="ui green message" *ngIf="modalMessage" ngClass="modalMessage.color">{{modalMessage.text}}</div>
+        <div class="ui message" *ngIf="modalMessage" [ngClass]="modalMessage.color">{{modalMessage.text}}</div>
     </modal-content>
     <modal-actions>
         <div class="ui left floated negative icon button"

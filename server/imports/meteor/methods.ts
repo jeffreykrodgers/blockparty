@@ -38,6 +38,12 @@ Meteor.methods({
                         "venues._id": item._id
                     }, {$set: {"venues.$": item}});
                     break;
+                case 'Registry':
+                    WeddingCollection.collection.update({
+                        _id: weddingId,
+                        "registries._id": item._id
+                    }, {$set: {"registries.$": item}});
+                    break;
                 case 'Announcements':
                     WeddingCollection.collection.update({
                         _id: weddingId,
@@ -89,6 +95,11 @@ Meteor.methods({
                     WeddingCollection.collection.update({_id: weddingId}, {$push: {"venues": item}});
                 });
                 break;
+            case 'Registry':
+                items.forEach((item?: any) => {
+                    WeddingCollection.collection.update({_id: weddingId}, {$push: {"registries": item}});
+                });
+                break;
             case 'Announcement':
                 items.forEach((item?: any) => {
                     WeddingCollection.collection.update({_id: weddingId}, {$push: {"announcements": item}});
@@ -125,6 +136,13 @@ Meteor.methods({
                     "venues._id": item._id
                 }, {$pull: {"venues": {'_id': item._id}}});
                 break;
+            case 'Registry':
+                console.log("Removing Registry:", item);
+                WeddingCollection.collection.update({
+                    _id: weddingId,
+                    "registries._id": item._id
+                }, {$pull: {"registries": {'_id': item._id}}});
+                break;
             case 'Announcements':
                 WeddingCollection.collection.update({
                     _id: weddingId,
@@ -132,7 +150,7 @@ Meteor.methods({
                 }, {$pull: {"announcements": {'_id': item._id}}});
                 break;
             default:
-                console.error("E03-Type not valid. Cannot edit document");
+                console.error("E03-Type not valid. Cannot remove document.");
         }
     },
 

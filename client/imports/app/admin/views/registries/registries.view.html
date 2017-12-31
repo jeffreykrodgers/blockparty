@@ -1,0 +1,17 @@
+<dashboard-area [slug]="'Registries'" class="registries">
+    <div class="horizontal list">
+        <registry-card class="clickable animated fadeInDown"
+                       *ngFor="let registry of registries; let i=index"
+                       [registry]="registry"
+                       [ngStyle]="{'animation-delay': '.'+ i +'s'}"
+                       (click)="_modalService.openModal('Registry', registry, 'Edit')">
+        </registry-card>
+        <div class="insert animated fadeIn" (click)="_modalService.openModal('Registry')">
+            <div class="item">
+                <i class="add icon"></i>
+                <div class="content">Add Registry</div>
+            </div>
+        </div>
+    </div>
+</dashboard-area>
+

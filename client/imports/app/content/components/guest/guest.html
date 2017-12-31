@@ -1,4 +1,5 @@
 <h2>Who is coming?</h2>
+<p>Click to select any guests that will be attending.</p>
 <div class="ui form">
     <div class="inline fields" *ngIf="rsvpData">
         <div class="field" *ngFor="let guest of rsvpData.guests">
@@ -12,5 +13,5 @@
         </div>
     </div>
 
-    <button class="ui big inverted basic button" (click)="setGuests()">Next</button>
+    <button class="ui big inverted basic pill button" (click)="setGuests()">Next</button>
 </div>

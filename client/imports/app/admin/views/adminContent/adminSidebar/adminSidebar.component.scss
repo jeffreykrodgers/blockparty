@@ -90,6 +90,13 @@
             }
           }
 
+          &.disabled {
+            color: translucent15($blue);
+            :hover {
+              color: translucent15($blue);
+            }
+          }
+
           i {
             margin-right: 15px;
           }

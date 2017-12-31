@@ -1,5 +1,6 @@
 @import "variables";
 @import "functions";
+@import "../../../../common/styles/variables";
 
 :host {
   .ui.form .field {
@@ -11,6 +12,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 12px;
 
         h3 {
           margin: 0 10px;
@@ -46,5 +48,31 @@
     font-weight: 300;
     font-size: 16px;
     color: $white;
+  }
+}
+
+@media screen and (max-width: $tablet-max) {
+  :host {
+    .ui.form .field {
+      .reminders {
+
+        .reminder-form {
+          flex-direction: column;
+          margin: 30px 8px;
+          border: 1px solid $white;
+          border-radius: 4px;
+          padding: 8px;
+
+          h3, .search, .left, .icon {
+            margin: 5px;
+            min-width: 280px;
+          }
+
+          .icon {
+            margin: 20px;
+          }
+        }
+      }
+    }
   }
 }

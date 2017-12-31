@@ -10,9 +10,11 @@
     .inline.fields {
       display: flex;
       justify-content: center;
-      margin: 20px 0 40px;
+      margin: 20px 0 20px;
 
       .field {
+        margin: 20px 0;
+
         .meal {
           &> input{ /* HIDE RADIO */
             visibility: hidden; /* Makes input not-clickable */

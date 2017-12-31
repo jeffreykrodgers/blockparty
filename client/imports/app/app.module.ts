@@ -57,6 +57,8 @@ import {admin_CountdownComponent} from "./admin/components/countdown/countdown.c
 import {ChartService} from "./admin/services/chart.service";
 import {AuthView} from "./admin/views/auth/auth.view";
 import {UserService} from "./common/services/user.service";
+import {RegistriesView} from "./admin/views/registries/registries.view";
+import {admin_RegistryComponent} from "./admin/components/registry/registry.component";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -73,6 +75,7 @@ import {UserService} from "./common/services/user.service";
         TablesView,
         MealsView,
         VenuesView,
+        RegistriesView,
         AnnouncementsView,
 
         //Admin Components
@@ -81,6 +84,7 @@ import {UserService} from "./common/services/user.service";
         admin_TopComponent,
         admin_GuestComponent,
         admin_MealComponent,
+        admin_RegistryComponent,
         admin_TableComponent,
         admin_VenueComponent,
         admin_SidebarComponent,

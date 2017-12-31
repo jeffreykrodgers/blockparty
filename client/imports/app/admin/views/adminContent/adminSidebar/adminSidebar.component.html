@@ -5,7 +5,11 @@
 <section class="body">
     <menu class="navigation">
         <div class="item" *ngFor="let link of links">
-            <a class="link" [routerLink]="[link.slug]" [routerLinkActive]="['active']">
+            <a class="link"
+               target="{{getTarget(link.target)}}"
+               [routerLink]="[link.slug]"
+               [routerLinkActive]="['active']"
+               [ngClass]="{'disabled': link.disabled}">
                 <i class="material-icons">{{link.icon}}</i>
                 <h5>{{link.text}}</h5>
             </a>

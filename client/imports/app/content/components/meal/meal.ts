@@ -82,7 +82,6 @@ export class MealComponent implements OnInit {
 
     mealImage(meal) {
         let upload = this.uploads.filter((upload) => upload._id === meal.image);
-
         return upload[0].path;
     }
 }

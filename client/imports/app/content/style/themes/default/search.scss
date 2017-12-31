@@ -1,4 +1,5 @@
 @import "variables";
+@import "../../../../common/styles/variables";
 
 
 :host {
@@ -10,7 +11,7 @@
 
   img {
     height: 350px;
-    opacity: .85;
+    opacity: .5;
   }
 
   .ui.form {
@@ -22,14 +23,31 @@
       align-items: center;
 
       .ui.input {
-        max-width: 210px;
+
+      }
+
+      .ui.basic.button {
+        box-shadow: none;
+        border-radius: 0;
+        border-bottom: 2px solid $white;
+
+        .icon {
+          opacity: .2;
+        }
+
+        &:hover {
+          background: none !important;
+
+          .icon {
+            opacity: 1;
+          }
+        }
       }
     }
 
     input[type="text"] {
       font-weight: 300;
       border-bottom: 2px solid;
-      text-align: center;
       text-transform: uppercase;
 
       &::placeholder {
@@ -39,10 +57,19 @@
       }
 
       &:focus {
+
         &::placeholder {
           opacity: 0;
         }
       }
     }
   }
+}
+
+@media screen and (max-width: $tablet-max) {
+:host {
+  img {
+    height: 250px;
+  }
+}
 }

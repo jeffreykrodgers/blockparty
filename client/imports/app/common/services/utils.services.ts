@@ -8,8 +8,9 @@ export class UtilityService {
 
     invertSlug(slug, invert_case) {
         //TODO: Doesn't actually invert, just makes singular plural. Needs fixed
+
         if (invert_case) slug = this.invertSlugCase(slug);
-        return `${slug}s`;
+        return slug === 'registry' ? 'registries' : `${slug}s`;
     }
 
     invertSlugCase(slug: string) {
