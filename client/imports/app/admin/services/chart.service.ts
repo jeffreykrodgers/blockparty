@@ -169,7 +169,7 @@ export class ChartService {
                 innerRadius: '100%',
                 radius: '80%',
                 y: a,
-                color: '#79ED94',
+                color: '#20bf55',
                 actual: a,
                 tooltip: {
                     pointFormatter: () => {
@@ -241,7 +241,7 @@ export class ChartService {
                 radius: '80%',
                 y: total,
                 name: 'Total',
-                color: '#79ED94',
+                color: '#20bf55',
             }],
             dataLabels: {
                 enabled: true,

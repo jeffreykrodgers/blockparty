@@ -25,6 +25,10 @@ export class SummaryComponent implements OnInit {
         });
     }
 
+    getAttendingMessage(attending) {
+        return attending ? 'Will Attend' : 'Regretfully Declines';
+    }
+
     finish() {
         this.rsvpData.guests.forEach((guest) => {
            guest.completed = true;

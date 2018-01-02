@@ -1,7 +1,7 @@
 @import "style/themes/default/variables";
 @import "style/themes/default/functions";
 @import "style/themes/default/mixins";
-
+@import "../common/styles/variables";
 
 :host {
 
@@ -12,6 +12,7 @@
     height: 100%;
     z-index: 5;
     color: $white;
+    overflow: scroll;
 
     .entry {
       width: 100%;
@@ -25,6 +26,10 @@
   h1, h2, h3, h4, h5 {
     font-family: 'montserrat', Helvetica, sans-serif;
     font-weight: 200;
+  }
+
+  p {
+    font-weight: 300;
   }
 
   hr {
@@ -42,7 +47,7 @@
     border: 0;
     border-bottom: 1px solid $white;
     border-radius: 0;
-    padding: 10px;
+    padding: 10px 0;
     font-weight: 300;
     color: $white;
     font-size: 16px;
@@ -52,9 +57,31 @@
       color: $white;
       font-size: 16px;
     }
+
+    &:hover, &:focus, &:active {
+      background: none;
+      border: 0;
+      border-bottom: 1px solid $white;
+      border-radius: 0;
+      padding: 10px 0;
+      font-weight: 300;
+      color: $white;
+      font-size: 16px;
+      font-family: 'montserrat', helvetica, sans-serif;
+    }
   }
 
-  .ui.form .field>label {
+  .ui.form .field > label {
     color: $white;
+  }
+}
+
+@media screen and (max-width: $tablet-max) {
+  ::ng-deep {
+    .top, .bottom {
+      img {
+        opacity: .2;
+      }
+    }
   }
 }

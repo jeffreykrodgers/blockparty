@@ -75,6 +75,10 @@
         line-height: 38px;
       }
     }
+
+    .ui.message {
+      margin: 20px;
+    }
   }
 
   .ui.modal>.actions {
@@ -165,6 +169,12 @@
     .addButton {
       right: 20px;
       bottom: 20px;
+    }
+  }
+
+  ::ng-deep {
+    .ui.modal>.actions {
+      margin-bottom: 15px;
     }
   }
 }

@@ -4,10 +4,11 @@ import style from "./modals.scss";
 import {WeddingService} from "../../../common/services/wedding.service";
 import {Observable} from "rxjs/Observable";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
-import {ModalService} from "./modals.service";
+import {ModalService} from "../../services/modals.service";
 import {UtilityService} from "../../../common/services/utils.services";
 import {Router, RouterModule, Routes} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
+import {Subject} from "rxjs/Subject";
 
 declare let $: any;
 
@@ -26,12 +27,17 @@ export class ModalsView implements OnInit {
     weddingData: Observable<WeddingDB[]>;
     weddingId: any;
     activeForm: string;
+    modal: Observable<any>;
     modalData: any;
     modalMode: string;
+    modalMessage: any;
     guests: any;
+    tables: any;
     invitations: any;
     meals: any;
+    registries: any;
     colors: string[];
+    buttons: any[];
 
     constructor(private _weddingService: WeddingService,
                 private _modalService: ModalService,
@@ -39,24 +45,27 @@ export class ModalsView implements OnInit {
                 private router: Router) {
 
         this.weddingData = this._weddingService.getWedding({}).zone();
+        this.modal = this._modalService.events$;
         this.modalData = {};
         this.invitations = [];
+        this.modalMessage = false;
         this.activeForm = 'Guest';
         this.modalData.address = {};
-
+        this.registries = [{
+            name: 'Zola',
+        }];
         this.colors = ['teal', 'pink', 'purple', 'blue'];
     }
 
     ngOnInit() {
         const self = this;
 
-        this._modalService.events$.forEach((data) => {
+        this.modal.subscribe((data) => {
             if (data.data) {
                 this.modalData = {...data.data};
             }
-            this.modalMode = data.mode;
 
-            switch (this.modalMode) {
+            switch (data.mode) {
                 case 'Edit':
                     self.editItem(data.form);
                     break;
@@ -70,9 +79,35 @@ export class ModalsView implements OnInit {
         this.weddingData.subscribe(wedding => {
             this.weddingId = wedding[0]._id;
             this.guests = wedding[0].guests;
+            this.tables = wedding[0].tables;
             this.invitations = wedding[0].invitations;
             this.meals = wedding[0].meals;
         });
+
+        this.buttons = [
+            {
+                name: 'Guest',
+                icon: 'user'
+            },
+            {
+                name: 'Table',
+                icon: 'users'
+            },
+            {
+                name: 'Venue',
+                icon: 'marker'
+            },
+            {
+                name: 'Meal',
+                icon: 'food'
+            },
+            {
+                name: 'Registry',
+                icon: 'gift'
+            },
+        ];
+
+
     };
 
     ngAfterViewInit() {
@@ -82,13 +117,23 @@ export class ModalsView implements OnInit {
     };
 
     addItem(form) {
-        if (form === 'Venue') this.modalData = {address: {}};
+        if (form === 'Venue' && Object.keys(this.modalData).length === 0)
+            this.modalData = {address: {}};
 
         this.modalMode = 'Add';
         this.activeForm = form;
         this.showModal(this.itemModal);
 
         $('.addButtonsToggle').popup('hide');
+    };
+
+    buttonIcon(): string {
+        switch (this.modalMode) {
+            case 'Add':
+                return 'plus';
+            case 'Edit':
+                return 'save';
+        }
     };
 
     buttonText(): string {
@@ -103,16 +148,19 @@ export class ModalsView implements OnInit {
     clearModalData() {
         this.modalData = this.activeForm === 'Venue'
             ? this.modalData = {address: {}} : this.modalData = {};
+        $('.uidropdown').dropdown('reset');
+        $('#modalForm').form('clear');
     };
 
     closeModal(modal) {
         modal.hide();
+        this.modalMessage = false;
         this.clearModalData();
-        $('#modalForm').form('clear');
     }
 
     deleteItem(modal) {
-        Meteor.call('editItem',
+        console.log(this.modalData);
+        Meteor.call('deleteItem',
             this.weddingId,
             this.activeForm,
             [this.modalData],
@@ -123,6 +171,7 @@ export class ModalsView implements OnInit {
 
     editItem(form) {
         this.activeForm = form;
+        this.modalMode = 'Edit';
         this.showModal(this.itemModal);
     };
 
@@ -150,6 +199,19 @@ export class ModalsView implements OnInit {
         );
 
         this.modalData.invitation_num = invite;
+        $('.invites').dropdown('set selected', invite);
+    };
+
+    getUserTable(user) {
+        let table = this.tables.filter((table) => {
+            if (table.guests && table.guests.indexOf(user) > -1) {
+                return table;
+            }
+        });
+
+        if (this.tables.indexOf(table[0]) > -1) {
+            return ` (Table ${this.tables.indexOf(table[0]) + 1})`;
+        }
     };
 
     invitationGuests(invite) {
@@ -162,6 +224,7 @@ export class ModalsView implements OnInit {
     }
 
     showModal(modal) {
+        console.log(this.modalData);
         $('.activitiesToggle').popup('hide');
         modal.show({
             inverted: true,
@@ -177,26 +240,75 @@ export class ModalsView implements OnInit {
     submitModal(modal) {
         let methodName = this.modalMode === "Edit" ? "updateItem" : "addItem";
         let slug = this._utils.invertSlug(this.activeForm, true);
-        let url = slug === 'tables' ? `/admin/guests` : `/admin/${slug}`;
+        let url = `/admin/${slug}`;
+        let data = [this.modalData];
+
+        if (this.activeForm === 'Table') {
+            for (let guest of this.modalData.guests) {
+                let table = this.tables.filter((table) => {
+                    return table.guests
+                        && table.guests.indexOf(guest) > -1
+                        && table._id !== this.modalData._id;
+                });
+
+                if (table[0]) {
+                    let guest_index = table[0].guests.indexOf(guest);
+                    table[0].guests.splice(guest_index, 1);
+
+                    data.push(table[0]);
+                }
+            }
+        }
 
         Meteor.call(methodName,
             this.weddingId,
             this.activeForm,
-            [this.modalData],
+            data, (err) => {
+                if (err) {
+                    this.modalMessage = {
+                        color: 'red',
+                        text: `Failed: ${err}`,
+                    }
+                } else {
+                    this.modalMessage = {
+                        color: 'green',
+                        text: `Successfully added ${this.activeForm}: ${this.modalData.name}`,
+                    };
+
+                    console.log(this.modalMessage);
+
+                    this.router.navigate([url]);
+                    this.clearModalData();
+
+                    if (this.modalMode === 'Edit') {
+                        this.closeModal(modal);
+                    }
+                }
+            }
         );
+    };
 
-        this.router.navigate([url]);
-        $('#modalForm').form('clear');
+    uploadImage(event) {
+        const file = event.currentTarget.files[0];
+        const fileReader = new FileReader();
 
-        if (this.modalMode === 'Edit') {
-            this.closeModal(modal);
-        }
-        ;
-        //     if (this.addingMultiple) {
-        //         $('#modalForm').form('clear');
-        //     } else {
-        //         this.router.navigate([url]);
-        //         this.closeModal(modal);
-        //     }
+        let fileMeta = {
+            name: file.name,
+            lastModified: file.lastModified,
+            lastModifiedDate: file.lastModifiedDate,
+            webkitRelativePath: file.webkitRelativePath,
+            size: file.size,
+            type: file.type
+        };
+
+        fileReader.onload = () => {
+            Meteor.call('uploadFile', this.weddingId, fileMeta, fileReader.result, (err, res) => {
+                if (err) {console.log(err)} else {
+                    this.modalData.image = res._id;
+                }
+            });
+        };
+
+        fileReader.readAsBinaryString(file);
     }
 }

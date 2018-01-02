@@ -27,7 +27,7 @@ export class admin_GuestComponent implements OnInit {
         });
     }
 
-    mealColor(meal) {
+    labelColor(meal) {
         let result = this.meals.filter(m => m.name === meal);
         if (result.length > 0) {
             return result[0].color;

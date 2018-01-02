@@ -1,5 +1,6 @@
 @import "variables";
 @import "functions";
+@import "../../../../common/styles/variables";
 
 body, html {
   padding: 0;
@@ -17,10 +18,10 @@ body, html {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background: -webkit-linear-gradient(left bottom, rgba(180,39,117,.95), rgba(32,67,125,.95)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(top right, rgba(32,67,125,.95), rgba(180,39,117,.95)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(top right, rgba(32,67,125,.95), rgba(180,39,117,.95)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to top right, rgba(32,67,125,.95), rgba(180,39,117,.95)); /* Standard syntax (must be last) */
+    background: -webkit-linear-gradient(left bottom, rgba(180, 39, 117, .95), rgba(32, 67, 125, .95)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top right, rgba(32, 67, 125, .95), rgba(180, 39, 117, .95)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(top right, rgba(32, 67, 125, .95), rgba(180, 39, 117, .95)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to top right, rgba(32, 67, 125, .95), rgba(180, 39, 117, .95)); /* Standard syntax (must be last) */
 
     .top {
       max-height: 40px;
@@ -35,3 +36,4 @@ body, html {
     }
   }
 }
+

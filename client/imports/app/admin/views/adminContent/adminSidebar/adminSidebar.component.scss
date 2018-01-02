@@ -10,6 +10,9 @@
   color: $blue;
   padding-right: 0;
   border-right: 1px solid $lightGray;
+  display: flex;
+  flex-direction: column;
+
 
   .head {
     h6 {
@@ -19,16 +22,23 @@
   }
 
   .body {
+    flex: 1;
+    display: flex;
 
     .navigation {
       display: flex;
       flex-direction: column;
       padding-left: 0;
+      margin-bottom: 0;
 
       .item {
         height: 38px;
         display: flex;
         margin: 5px 0;
+
+        &.bottomed {
+          margin-top: auto;
+        }
 
         a.link {
           color: translucent50($blue);
@@ -77,6 +87,13 @@
             .indicator {
               color: $blue;
               opacity: .5;
+            }
+          }
+
+          &.disabled {
+            color: translucent15($blue);
+            :hover {
+              color: translucent15($blue);
             }
           }
 

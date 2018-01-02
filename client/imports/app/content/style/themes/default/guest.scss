@@ -1,9 +1,15 @@
 @import "variables";
 @import "functions";
+@import "../../../../common/styles/animations";
+
 
 :host {
   .ui.checkbox label, .ui.checkbox+label {
     color: white;
+  }
+
+  h2 {
+    margin-bottom: 2px;
   }
 
   .ui.form .inline.fields {
@@ -29,7 +35,7 @@
         }
         &> input + .guest-data{
           cursor:pointer;
-          opacity: .5;
+          opacity: .3;
         }
         &> input:checked + .guest-data{
           opacity: 1;

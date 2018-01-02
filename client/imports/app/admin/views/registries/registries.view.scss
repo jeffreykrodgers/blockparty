@@ -1,0 +1,24 @@
+@import "../../styles/functions";
+@import "../../styles/variables";
+@import "../../styles/mixins";
+@import "../../../common/styles/animations";
+
+:host {
+  display: flex;
+  width: 100%;
+  .regs {
+    flex: 1;
+  }
+
+  .registries {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .insert {
+    flex: 1;
+    border-radius: 0 0 4px 4px;
+    min-height: 300px;
+  }
+}

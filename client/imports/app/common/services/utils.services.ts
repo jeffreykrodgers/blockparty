@@ -8,8 +8,9 @@ export class UtilityService {
 
     invertSlug(slug, invert_case) {
         //TODO: Doesn't actually invert, just makes singular plural. Needs fixed
+
         if (invert_case) slug = this.invertSlugCase(slug);
-        return `${slug}s`;
+        return slug === 'registry' ? 'registries' : `${slug}s`;
     }
 
     invertSlugCase(slug: string) {
@@ -55,7 +56,7 @@ export class UtilityService {
                 hex: '#78ECD6',
             }, {
                 name: 'green',
-                hex: '#79ED94',
+                hex: '#20bf55',
             }, {
                 name: 'red',
                 hex: '#ED5858',
@@ -68,12 +69,6 @@ export class UtilityService {
             }
         });
 
-        switch (type) {
-            case 'hex':
-                return colArr[0].hex;
-            case 'name':
-            default:
-                return colArr[0].name;
-        }
+        return colArr[0][type];
     }
 }

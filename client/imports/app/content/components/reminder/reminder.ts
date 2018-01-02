@@ -17,7 +17,7 @@ export class ReminderComponent implements OnInit {
     rsvpData: any;
     guests?: object[];
     reminders?: object[];
-    links?:object[];
+    links?: object[];
 
     constructor(private _rsvpService: RsvpService,
                 private _router: Router) {
@@ -39,12 +39,11 @@ export class ReminderComponent implements OnInit {
             });
 
             this.guests.forEach((guest: any) => {
-                if (guest.reminder && this.reminders.filter((r: any) => r.guest === guest._id).length === 0) {
-                    this.reminders.push({
-                        guest: guest._id,
-                        date: guest.reminder,
-                        guest_email: guest.email
+                if (guest.reminders) {
+                    guest.reminders.forEach((reminder) => {
+                        reminder.guest = guest._id;
                     });
+                    this.reminders.push(...guest.reminders);
                 }
             });
         });
@@ -55,27 +54,32 @@ export class ReminderComponent implements OnInit {
     }
 
     removeReminder(reminder) {
-        this.reminders.splice(reminder, 1);
+        let i = this.reminders.indexOf(reminder);
+        this.reminders.splice(i, 1);
     }
 
     setReminder() {
-        this.reminders.forEach((reminder?: any) => {
-            this.guests.filter((guest?: any) => {
+        this.guests.forEach((guest:any) => {
+            guest.reminders = [];
+            this.reminders.forEach((reminder?: any) => {
                 if (guest._id === reminder.guest) {
-                    guest.reminder = reminder.date;
-                    guest.email = reminder.guest_email;
+                    guest.reminders.push({
+                        time: reminder.time,
+                        email: reminder.email,
+                    })
                 }
             });
         });
 
+
         this.links = this.rsvpData.links.filter(
-            (link:any) => link.name === 'Summary');
+            (link: any) => link.name === 'Registries');
 
         if (this.links.length === 0)
-            this.rsvpData.links.push( {name: 'Summary', slug: '/rsvp/summary'});
+            this.rsvpData.links.push({name: 'Registries', slug: '/rsvp/registries'});
 
         this._rsvpService.setRsvpData(this.rsvpData, true);
-        this._router.navigate(['/rsvp/summary']);
+        this._router.navigate(['/rsvp/registries']);
 
     }
 }

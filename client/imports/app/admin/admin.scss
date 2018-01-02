@@ -24,6 +24,10 @@
       justify-content: center;
     }
   }
+
+  .disabled {
+    cursor: default !important;
+  }
 }
 
 ::ng-deep {

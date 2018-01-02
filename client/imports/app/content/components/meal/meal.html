@@ -1,16 +1,27 @@
-<h2 *ngIf="activeGuest">Choose meal for <strong>{{activeGuest.name}}</strong></h2>
-<div class="ui form">
+<h2 class=" animated fadeIn" *ngIf="activeGuest">Choose meal for</h2>
+<h2 class=" animated fadeIn" *ngIf="activeGuest"><strong>{{activeGuest.name}}</strong></h2>
+<div class="ui form  animated fadeIn">
     <div class="inline fields" *ngIf="rsvpData" >
         <div class="field" *ngFor="let meal of meals">
             <label class="meal">
                 <input type="radio" [(ngModel)]="activeGuest.meal" value="{{meal.name}}" />
                 <div class="meal-data">
                     <span>{{meal.name}}</span>
-                    <div class="meal-image"><i class="big camera icon"></i></div>
+                    <div class="meal-image">
+                        <i *ngIf="!meal.image" class="big inverted photo icon"></i>
+                        <img *ngIf="meal.image" src="{{mealImage(meal)}}">
+                    </div>
                 </div>
             </label>
         </div>
     </div>
 
-    <button class="ui big basic inverted button" (click)="setMeal()">Continue</button>
+    <div class="half field">
+        <input placeholder="Dietary Restrictions?"
+               type="text"
+               [(ngModel)]="activeGuest.dietary"
+               name="dietary">
+    </div>
+
+    <button class="ui big basic inverted pill button" (click)="setMeal()">Continue</button>
 </div>

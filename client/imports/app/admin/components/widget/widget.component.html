@@ -5,7 +5,7 @@
     <div class="left">
         <div *ngFor="let point of widget.series" class="metric">
             <div class="metric-color" [style.background]="point.data[0].color"></div>
-            <span [style.color]="point.data[0].color">{{point.data[0].actual}} {{point.name}}</span>
+            <span [style.color]="point.data[0].color">{{point.name}}</span>
         </div>
     </div>
     <div class="right">

@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import template from "./widget.component.html";
 import style from "./widget.component.scss";
-import {ChartService} from "../../services/chart.services";
+import {ChartService} from "../../services/chart.service";
 import {WeddingService} from "../../../common/services/wedding.service";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
 import {Observable} from "rxjs/Observable";

@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from "@angular/core";
+import {Component, OnInit, Output, EventEmitter, ElementRef, ViewChild} from "@angular/core";
 import template from "./meal.html";
 import {Observable} from "rxjs";
 import style from "../../style/themes/default/meal.scss";
@@ -6,6 +6,8 @@ import {WeddingService} from "../../../common/services/wedding.service";
 import {RsvpService} from "../../services/rsvp.service";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
 import {Router} from "@angular/router";
+
+declare let $: any;
 
 @Component({
     selector: "meal",
@@ -21,13 +23,15 @@ export class MealComponent implements OnInit {
     weddingData: Observable<WeddingDB[]>;
 
     guests: object[];
-    meals: object[];
+    meals?: object[];
     activeGuest: object;
     links: object[];
+    uploads: any;
 
     constructor(private _weddingService: WeddingService,
                 private _rsvpService: RsvpService,
-                private _router: Router) {
+                private _router: Router,
+                private element: ElementRef) {
         this.weddingData = this._weddingService.getWedding({}).zone();
     }
 
@@ -45,6 +49,7 @@ export class MealComponent implements OnInit {
 
         this.weddingData.subscribe(wedding => {
             this.meals = wedding[0].meals;
+            this.uploads = wedding[0].uploads;
         });
 
         if (this.guests.length > 0) {
@@ -66,6 +71,9 @@ export class MealComponent implements OnInit {
 
         if (guest_index < guest_count - 1) {
             this.activeGuest = this.guests[guest_index + 1];
+            console.log($('.content'));
+            $('.content').animate({ scrollTop: $(".content").offset().top }, 300);
+            // $('#name')
         } else {
             this.links = this.rsvpData.links.filter(
                 (link:any) => link.name === 'Reminders');
@@ -76,5 +84,10 @@ export class MealComponent implements OnInit {
             this._rsvpService.setRsvpData(this.rsvpData, true);
             this._router.navigate(['/rsvp/reminders']);
         }
+    }
+
+    mealImage(meal) {
+        let upload = this.uploads.filter((upload) => upload._id === meal.image);
+        return upload[0].path;
     }
 }

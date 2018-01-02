@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import template from "./countdown.component.html";
 import style from "./countdown.component.scss";
-import {ModalService} from "../modals/modals.service";
+import {ModalService} from "../../services/modals.service";
 
 import * as moment from 'moment';
 import {WeddingService} from "../../../common/services/wedding.service";

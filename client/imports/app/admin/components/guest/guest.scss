@@ -5,8 +5,24 @@
 
 :host {
   display: flex;
-  margin: 10px !important;
+  margin: 0 !important;
   padding: 0 !important;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 1px solid translucent50($lightGray);
+  max-width: none;
+
+  &:first-child {
+    border-radius: 4px 4px 0 0;
+
+    .right {
+      border-radius: 0 4px 0 0;
+    }
+  }
+
+  &:hover {
+    z-index: 12;
+  }
 
   &>div {
     margin: 6px 8px;
@@ -36,8 +52,8 @@
     padding: 0 10px;
     flex: 1;
     background: $lightGray;
-    border-radius: 4px 0 0 4px;
-    box-shadow: $shadow-subtle;
+    //border-radius: 4px 0 0 4px;
+    //box-shadow: $shadow-subtle;
 
     h2, label {
       color: $gray;
@@ -49,6 +65,7 @@
     display: flex;
     margin: 15px 0;
     margin-left: 15px;
+    flex-wrap: wrap;
 
     &>div  {
       display: flex;
@@ -66,16 +83,16 @@
       margin: 0 15px 0 5px;
     }
 
-    .name {
+    .name, .tags {
       display: flex;
-      flex-direction: column;
-      //width: 250px;
+      margin-right: 20px;
+      flex-wrap: wrap;
 
       h4 {
         max-width: 250px;
-        //white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        line-height: 26px;
 
         &.attending {
           color: $green;
@@ -86,6 +103,23 @@
         &.incomplete {
           color: $gray;
         }
+      }
+
+      .ui.pink.label {
+        border: 2px solid $pink !important;
+        color: $pink !important;
+      }
+      .ui.purple.label {
+        border: 2px solid $purple !important;
+        color: $purple !important;
+      }
+      .ui.teal.label {
+        border: 2px solid $teal !important;
+        color: $teal !important;
+      }
+      .ui.blue.label {
+        border: 2px solid $blue !important;
+        color: $blue !important;
       }
     }
 
@@ -103,6 +137,7 @@
           margin-left: auto;
           display: flex;
           align-items: center;
+          flex-direction: row;
 
           .ui.horizontal.label {
             display: flex;
@@ -137,7 +172,7 @@
     background: translucent15($gray);
     color: $gray;
     padding: 0 10px;
-    border-radius: 0 4px 4px 0;
+    //border-radius: 0 4px 4px 0;
     width: 55px;
 
     label {
@@ -155,6 +190,26 @@
     .icon.close {
       position: absolute;
       //display: none;
+    }
+  }
+}
+
+@media screen and (max-width: $phone-max) {
+  :host {
+    &> .center {
+      flex-direction: column;
+      .tags {
+        flex: 1;
+      }
+      .details {
+        flex: 1;
+        margin: 5px 0;
+        .detail {
+          &.meals {
+            margin-left: 0;
+          }
+        }
+      }
     }
   }
 }

@@ -37,6 +37,11 @@ h4 {
   .right {
     justify-content: flex-end;
 
+    h3 {
+      padding: 0 10px;
+      margin: 0;
+    }
+
     .picture {
       background: $gradient-d;
       margin: 10px;
@@ -69,4 +74,20 @@ h4 {
 
 
   }
+}
+
+@media screen and (max-width: $phone-max) {
+:host {
+  .left {
+    flex: 2;
+  }
+
+  .right {
+    flex: 1;
+
+    h3 {
+      display: none;
+    }
+  }
+}
 }

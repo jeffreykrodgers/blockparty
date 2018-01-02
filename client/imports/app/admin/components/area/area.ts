@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import template from "./area.html";
 import style from "./area.scss";
-import {ModalService} from "../modals/modals.service";
+import {ModalService} from "../../services/modals.service";
 
 @Component({
     selector: "dashboard-area",

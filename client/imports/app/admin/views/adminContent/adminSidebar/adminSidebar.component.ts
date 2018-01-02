@@ -8,6 +8,9 @@ import {WeddingService} from "../../../../common/services/wedding.service";
 import * as moment from 'moment';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MenuService} from "../../../services/menu.service";
+import {ModalService} from "../../../services/modals.service";
+
+declare let $: any;
 
 @Component({
     selector: "adminSidebar",
@@ -30,14 +33,23 @@ export class admin_SidebarComponent implements OnInit {
     open: boolean;
 
     constructor(private _weddingService: WeddingService,
-                private _router: Router,
-                private _route: ActivatedRoute) {
+                private _modalService: ModalService,
+                private router: Router,
+                private _route: ActivatedRoute,
+                private _menuService: MenuService) {
 
         this.weddingData = this._weddingService.getWedding({}).zone();
         this.links = [{
-                text: 'Dashboard',
+                text: 'Event',
                 slug: '/admin/dashboard',
                 icon: 'dashboard'
+            },
+            {
+                text: 'Website',
+                slug: '/rsvp/',
+                icon: 'language',
+                target: '_blank'
+
             },
             {
                 text: 'Guests',
@@ -59,11 +71,23 @@ export class admin_SidebarComponent implements OnInit {
                 slug: '/admin/meals',
                 icon: 'local_dining'
             },
-            // {
-            //     text: 'Announements',
-            //     slug: '/admin/announcements',
-            //     icon: 'announcement'
-            // },
+            {
+                text: 'Registries',
+                slug: '/admin/registries',
+                icon: 'playlist_add_check'
+            },
+            {
+                text: 'Announcements',
+                slug: '/admin/announcements',
+                icon: 'not_interested',
+                disabled: true,
+            },
+            {
+                text: 'Guestbook',
+                slug: '/admin/guestbook',
+                icon: 'not_interested',
+                disabled: true,
+            },
         ]
 
     }
@@ -76,7 +100,21 @@ export class admin_SidebarComponent implements OnInit {
         });
     }
 
+    getTarget(target) {
+        return target ? target : '_self';
+    }
+
     toggleMenu() {
         this.open = !this.open;
+    }
+
+    toggleSidebar() {
+        this._menuService.toggleSidebar.emit();
+    }
+
+    logout() {
+        Meteor.logout(() => {
+            this.router.navigate(['/login']);
+        });
     }
 }
