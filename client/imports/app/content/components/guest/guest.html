@@ -1,8 +1,8 @@
-<h2>Who is coming?</h2>
-<p>Click to select any guests that will be attending.</p>
+<h2 class="animated fadeIn">Who is coming?</h2>
+<p class="animated fadeIn">Select any guests that will be attending.</p>
 <div class="ui form">
     <div class="inline fields" *ngIf="rsvpData">
-        <div class="field" *ngFor="let guest of rsvpData.guests">
+        <div class="field animated fadeIn" *ngFor="let guest of rsvpData.guests">
             <label class="guest">
                 <input type="checkbox" [(ngModel)]="guest.attending" />
                 <div class="guest-data">

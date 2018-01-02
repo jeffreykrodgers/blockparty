@@ -6,7 +6,7 @@
   height: 100vh;
   width: 100vw;
   //max-height: 100vh;
-  max-width: 600px;
+  //max-width: 600px;
   display: flex;
   margin: 0 auto;
   flex-direction: column;
@@ -46,6 +46,8 @@
     justify-content: center;
     align-items: center;
     min-height: 60px;
+    flex-wrap: wrap;
+    margin: 20px 0;
 
     .link {
 
@@ -68,6 +70,11 @@
 }
 
 ::ng-deep {
+
+  .animated {
+    animation-delay: .1s;
+  }
+
   i, label, span {
     color: $white;
   }

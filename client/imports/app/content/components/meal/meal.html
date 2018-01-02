@@ -1,5 +1,6 @@
-<h2 *ngIf="activeGuest">Choose meal for <strong>{{activeGuest.name}}</strong></h2>
-<div class="ui form">
+<h2 class=" animated fadeIn" *ngIf="activeGuest">Choose meal for</h2>
+<h2 class=" animated fadeIn" *ngIf="activeGuest"><strong>{{activeGuest.name}}</strong></h2>
+<div class="ui form  animated fadeIn">
     <div class="inline fields" *ngIf="rsvpData" >
         <div class="field" *ngFor="let meal of meals">
             <label class="meal">

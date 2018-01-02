@@ -1,9 +1,12 @@
-import {Component, OnInit, Output, EventEmitter} from "@angular/core";
-import {Observable} from "rxjs";
+import {Component, OnInit} from "@angular/core";
 
 import template from "./gift.html";
 import style from "../../style/themes/default/gift.scss";
 import {RsvpService} from "../../services/rsvp.service";
+import {Router} from "@angular/router";
+import {WeddingService} from "../../../common/services/wedding.service";
+import {WeddingDB} from "../../../../../../both/models/wedding.model";
+import {Observable} from "rxjs/Rx";
 
 
 @Component({
@@ -15,58 +18,50 @@ import {RsvpService} from "../../services/rsvp.service";
     styles: [style]
 })
 
-export class GiftComponent implements OnInit {
-    @Output() currentComponent: EventEmitter<object> = new EventEmitter();
+export class RegistryComponent implements OnInit {
+    weddingData: Observable<WeddingDB[]>;
 
     rsvpData: any;
-    guests?: object[];
-    gifts?: object[];
-    addingGift: boolean;
+    registries?: object[];
+    links?:object[];
 
-    constructor(private _rsvpService: RsvpService) {
-        this.gifts = [];
+    constructor(private _rsvpService: RsvpService,
+                private _weddingService: WeddingService,
+                private _router: Router) {
+        this.registries = [];
+        this.weddingData = this._weddingService.getWedding({}).zone();
     }
 
     ngOnInit() {
         this._rsvpService.getRsvpData().subscribe(rsvp => {
             this.rsvpData = rsvp;
-            this.guests = rsvp.guests;
 
-            this.guests.forEach((guest: any) => {
-                if (guest.gift && this.gifts.filter((r: any) => r.guest === guest._id).length === 0) {
-                    this.gifts.push({
-                        guest: guest._id,
-                        amount: guest.gift,
-                    });
-                }
-            });
+            if (!rsvp.links) this.rsvpData.links = [];
+
+            if (!this.rsvpData.invitation_num)
+                this._router.navigate(['/rsvp']);
+        });
+
+        this.weddingData.subscribe(wedding => {
+            this.registries = wedding[0].registries;
         });
     }
 
-    addGift() {
-        this.gifts.push({});
-        this.addingGift = true;
+    getLogo(registry) {
+        switch (registry.name) {
+            case 'Zola':
+                return 'img/zola-logo-white.svg';
+        }
     }
 
-    startPayment() {
-        //TODO: Paypal stuff will go here
-        this.addingGift = false;
-    }
+    continue() {
+        this.links = this.rsvpData.links.filter(
+            (link:any) => link.name === 'Summary');
 
-    setGift() {
-        this.gifts.forEach((gift?: any) => {
-            this.guests.filter((guest?: any) => {
-                if (guest._id === gift.guest) {
-                    guest.gift = gift.amount;
-                }
-            });
-        });
-
-        this.rsvpData.current_component = {
-            name: 'summary',
-            title: 'Summary'
-        };
+        if (this.links.length === 0)
+            this.rsvpData.links.push( {name: 'Summary', slug: '/rsvp/summary'});
 
         this._rsvpService.setRsvpData(this.rsvpData, true);
+        this._router.navigate(['/rsvp/summary']);
     }
 }

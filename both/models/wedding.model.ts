@@ -12,7 +12,6 @@ interface Wedding {
     meals?: Meal[];
     registries? : Registry[];
     announcements?: Announcement[];
-
     uploads?: Upload[];
 }
 
@@ -39,19 +38,21 @@ interface Invitation {
     guests: string[];
 }
 
+interface Reminder {
+    time: number;
+    email: string;
+}
+
 interface Guest {
     _id?: string;
     name: string;
-    email?: string;
     invitation_num: string;
     status?: string;
-    secondary: boolean;
     meal?: string;
     dietary?: string;
     relation?: string;
     party?: string;
-    reminder?: string;
-    gift?: number;
+    reminders?: Reminder[];
     table?: number;
 }
 

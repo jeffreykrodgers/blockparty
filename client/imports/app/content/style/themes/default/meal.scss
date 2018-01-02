@@ -1,7 +1,13 @@
 @import "variables";
 @import "functions";
+@import "../../../../common/styles/animations";
+
 
 :host {
+  h2 {
+    margin: 0;
+  }
+
   .ui.form {
     display: flex;
     flex-direction: column;
@@ -53,7 +59,6 @@
               overflow: hidden;
 
               img {
-                min-width: 100%;
                 min-height: 100%;
               }
             }
@@ -67,7 +72,7 @@
       margin-bottom: 40px;
 
       input {
-        text-align: center;
+
       }
     }
   }

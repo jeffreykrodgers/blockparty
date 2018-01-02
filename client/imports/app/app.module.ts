@@ -13,7 +13,7 @@ import {RsvpView} from "./content/views/rsvp/rsvp";
 import {AppComponent} from "./app.component";
 import {AnnouncementsComponent} from "./content/components/announcements/announcements";
 import {FinishedComponent} from "./content/components/finished/finished";
-import {GiftComponent} from "./content/components/gift/gift";
+import {RegistryComponent} from "./content/components/gift/gift";
 import {GuestComponent} from "./content/components/guest/guest";
 import {MealComponent} from "./content/components/meal/meal";
 import {PhotosComponent} from "./content/components/photos/photos";
@@ -99,7 +99,7 @@ import {admin_RegistryComponent} from "./admin/components/registry/registry.comp
         //Content Components
         AnnouncementsComponent,
         FinishedComponent,
-        GiftComponent,
+        RegistryComponent,
         GuestComponent,
         MealComponent,
         PhotosComponent,

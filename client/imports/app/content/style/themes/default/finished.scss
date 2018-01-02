@@ -1,12 +1,18 @@
 @import "variables";
 @import "functions";
+@import "../../../../common/styles/animations";
+@import "../../../../common/styles/variables";
+
 
 :host {
   .venues {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
     .venue {
-      margin: 20px 35px;
+      margin: 35px;
+      min-width: 200px;
 
       h3 {
         margin: 0;

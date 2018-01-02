@@ -1,24 +1,29 @@
 <div>
-    <h1>Your RSVP</h1>
+    <h1 class="animated fadeIn">Your RSVP</h1>
     <div class="summaries" *ngIf="rsvpData">
-        <div class="summary guests" *ngFor="let guest of rsvpData.guests">
-            <div>
+        <div class="summary animated fadeInDown" *ngFor="let guest of rsvpData.guests">
+            <div class="top">
                 <h3>{{guest.name}}</h3>
-                <p *ngIf="guest.attending">is attending</p>
-                <p *ngIf="!guest.attending">can't make it</p>
             </div>
-            <div *ngIf="guest.attending && (guest.meal || guest.dietary)">
-                <h3>Meal</h3>
-                <p>{{guest.meal}}</p>
-                <h6>{{guest.dietary}}</h6>
-            </div>
-            <div *ngIf="guest.attending && guest.reminder">
-                <h3>Reminder</h3>
-                <p>{{guest.reminder}} Days before</p>
-                <p>{{guest.email}}</p>
+            <div class="bottom">
+                <div class="row">
+                    <i class="check icon" *ngIf="guest.attending"></i>
+                    <i class="close icon" *ngIf="!guest.attending"></i>
+                    {{getAttendingMessage(guest.attending)}}
+                </div>
+                <div class="row">
+                    <i class="food icon"></i>
+                    {{guest.meal}}
+                    <sub class="ellipsis" *ngIf="guest.dietary">* {{guest.dietary}}</sub>
+                </div>
+                <div class="row" *ngFor="let reminder of guest.reminders">
+                    <i class="bell icon"></i>
+                    {{reminder.time}} Days Before
+                    <sub class="ellipsis">at {{reminder.email}}</sub>
+                </div>
             </div>
         </div>
     </div>
 
-    <button class="ui big basic inverted button" (click)="finish()">Continue</button>
+    <button class="ui big basic inverted pill button" (click)="finish()">Continue</button>
 </div>
