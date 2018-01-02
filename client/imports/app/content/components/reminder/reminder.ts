@@ -54,7 +54,8 @@ export class ReminderComponent implements OnInit {
     }
 
     removeReminder(reminder) {
-        this.reminders.splice(reminder, 1);
+        let i = this.reminders.indexOf(reminder);
+        this.reminders.splice(i, 1);
     }
 
     setReminder() {

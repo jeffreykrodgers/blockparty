@@ -19,6 +19,7 @@ export class FinishedComponent implements OnInit {
     weddingData: Observable<WeddingDB[]>;
 
     venues: object[];
+    uploads: object[];
 
     constructor(private _weddingService: WeddingService, private _rsvpService: RsvpService) {
         this.weddingData = this._weddingService.getWedding({}).zone();
@@ -29,6 +30,7 @@ export class FinishedComponent implements OnInit {
     ngOnInit() {
         this.weddingData.subscribe(wedding =>{
             this.venues = wedding[0].venues;
+            this.uploads = wedding[0].uploads;
         });
     }
 
@@ -38,5 +40,12 @@ export class FinishedComponent implements OnInit {
 
     getTime(val) {
         return moment(val).format('h[:]mma')
+    }
+
+    getVimage(image) {
+        let imageArray = this.uploads.filter((upload:any) => image === upload._id);
+        let imageObject:any = imageArray[0];
+
+        return imageObject.path;
     }
 }

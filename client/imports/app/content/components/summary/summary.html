@@ -11,7 +11,7 @@
                     <i class="close icon" *ngIf="!guest.attending"></i>
                     {{getAttendingMessage(guest.attending)}}
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="guest.attending">
                     <i class="food icon"></i>
                     {{guest.meal}}
                     <sub class="ellipsis" *ngIf="guest.dietary">* {{guest.dietary}}</sub>

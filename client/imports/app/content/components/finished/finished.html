@@ -1,11 +1,15 @@
 <div>
     <h1>You're all set!</h1>
+    <p>We can't wait to see you there!</p>
     <div class="venues" *ngIf="rsvpData">
         <div class="venue animated fadeIn" *ngFor="let v of venues">
+
             <h1>{{v.event}}</h1>
             <h3>{{getDate(v.start_time)}}</h3>
             <h3>at <strong>{{getTime(v.start_time)}}</strong></h3>
-            <hr/>
+            <div class="image">
+                <img src="{{getVimage(v.image)}}"/>
+            </div>
             <h3>{{v.name}}</h3>
             <p>
                 {{v.address.street}} {{v.address.city}},
