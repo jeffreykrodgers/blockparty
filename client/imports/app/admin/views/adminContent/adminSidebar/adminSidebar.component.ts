@@ -35,7 +35,8 @@ export class admin_SidebarComponent implements OnInit {
     constructor(private _weddingService: WeddingService,
                 private _modalService: ModalService,
                 private router: Router,
-                private _route: ActivatedRoute) {
+                private _route: ActivatedRoute,
+                private _menuService: MenuService) {
 
         this.weddingData = this._weddingService.getWedding({}).zone();
         this.links = [{
@@ -105,6 +106,10 @@ export class admin_SidebarComponent implements OnInit {
 
     toggleMenu() {
         this.open = !this.open;
+    }
+
+    toggleSidebar() {
+        this._menuService.toggleSidebar.emit();
     }
 
     logout() {

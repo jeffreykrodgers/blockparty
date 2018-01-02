@@ -157,7 +157,6 @@
   }
 
   .insert {
-    //flex: 1;
     border: 2px dashed translucent30($gray);
     margin: 10px;
     border-radius: 4px;
@@ -167,6 +166,8 @@
     cursor: pointer;
     transition: all .2s;
     animation-delay: 1s;
+    max-width: 33%;
+    flex: 1;
 
     .item {
       display: flex;
@@ -204,7 +205,7 @@
   }
 
   .insert {
-    max-width: 33%;
+
   }
 
   .ui.pink.button {
@@ -252,6 +253,17 @@
   :host {
     .navToggle {
       display: flex;
+    }
+  }
+
+  ::ng-deep {
+    .card {
+      margin: 15px 5px;
+      max-width: 100%;
+    }
+
+    .insert {
+      max-width: 100%;
     }
   }
 }

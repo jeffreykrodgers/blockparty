@@ -21,7 +21,7 @@
   }
 
   &:hover {
-    z-index: 20;
+    z-index: 12;
   }
 
   &>div {
@@ -65,6 +65,7 @@
     display: flex;
     margin: 15px 0;
     margin-left: 15px;
+    flex-wrap: wrap;
 
     &>div  {
       display: flex;
@@ -85,6 +86,7 @@
     .name, .tags {
       display: flex;
       margin-right: 20px;
+      flex-wrap: wrap;
 
       h4 {
         max-width: 250px;
@@ -188,6 +190,26 @@
     .icon.close {
       position: absolute;
       //display: none;
+    }
+  }
+}
+
+@media screen and (max-width: $phone-max) {
+  :host {
+    &> .center {
+      flex-direction: column;
+      .tags {
+        flex: 1;
+      }
+      .details {
+        flex: 1;
+        margin: 5px 0;
+        .detail {
+          &.meals {
+            margin-left: 0;
+          }
+        }
+      }
     }
   }
 }

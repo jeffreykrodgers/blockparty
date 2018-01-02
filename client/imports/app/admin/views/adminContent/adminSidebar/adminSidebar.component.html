@@ -7,6 +7,7 @@
         <div class="item" *ngFor="let link of links">
             <a class="link"
                target="{{getTarget(link.target)}}"
+               (click)="toggleSidebar()"
                [routerLink]="[link.slug]"
                [routerLinkActive]="['active']"
                [ngClass]="{'disabled': link.disabled}">

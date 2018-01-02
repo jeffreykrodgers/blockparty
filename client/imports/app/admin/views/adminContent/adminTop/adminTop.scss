@@ -75,3 +75,19 @@ h4 {
 
   }
 }
+
+@media screen and (max-width: $phone-max) {
+:host {
+  .left {
+    flex: 2;
+  }
+
+  .right {
+    flex: 1;
+
+    h3 {
+      display: none;
+    }
+  }
+}
+}

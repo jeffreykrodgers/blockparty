@@ -23,3 +23,11 @@
     }
   }
 }
+
+@media screen and (max-width: $phone-max) {
+  :host {
+    .guests .list {
+      margin: 10px 5px;
+    }
+  }
+}

@@ -171,5 +171,11 @@
       bottom: 20px;
     }
   }
+
+  ::ng-deep {
+    .ui.modal>.actions {
+      margin-bottom: 15px;
+    }
+  }
 }
 
