@@ -50,45 +50,33 @@ export class admin_SidebarComponent implements OnInit {
                 icon: 'language',
                 target: '_blank'
 
-            },
-            {
-                text: 'Guests',
-                slug: '/admin/guests',
-                icon: 'person'
-            },
-            {
-                text: 'Tables',
-                slug: '/admin/tables',
-                icon: 'people'
-            },
-            {
-                text: 'Venues',
-                slug: '/admin/venues',
-                icon: 'location_on'
-            },
-            {
-                text: 'Meals',
-                slug: '/admin/meals',
-                icon: 'local_dining'
-            },
-            {
-                text: 'Registries',
-                slug: '/admin/registries',
-                icon: 'playlist_add_check'
-            },
-            {
-                text: 'Announcements',
-                slug: '/admin/announcements',
-                icon: 'not_interested',
-                disabled: true,
-            },
-            {
-                text: 'Guestbook',
-                slug: '/admin/guestbook',
-                icon: 'not_interested',
-                disabled: true,
-            },
-        ]
+            }
+        ];
+
+        Meteor.settings.public.activeModules.forEach((module) => {
+            if (!module.disabled) {
+                let link = {
+                    text: module.text,
+                    slug: module.slug,
+                    icon: module.matIcon,
+                };
+
+                this.links.push(link);
+            }
+        });
+
+        Meteor.settings.public.activeModules.forEach((module) => {
+            if (module.disabled) {
+                let link = {
+                    text: module.text,
+                    slug: module.slug,
+                    icon: module.matIcon,
+                    disabled: true
+                };
+
+                this.links.push(link);
+            }
+        });
 
     }
 

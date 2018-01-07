@@ -42,8 +42,8 @@ export class admin_VenueComponent implements OnInit {
             });
         }
 
-        this.start_time = moment(this.venue.start_time).format('h:mm a');
-        this.end_time = moment(this.venue.end_time).format('h:mm a');
+        // this.start_time = moment(this.venue.start_time).format('h:mm a');
+        // this.end_time = moment(this.venue.end_time).format('h:mm a');
 
         $('.activitiesToggle')
             .popup({
