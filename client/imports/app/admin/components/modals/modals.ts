@@ -9,6 +9,7 @@ import {UtilityService} from "../../../common/services/utils.services";
 import {Router, RouterModule, Routes} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Subject} from "rxjs/Subject";
+import {Subscription} from "rxjs/Subscription";
 
 declare let $: any;
 
@@ -28,7 +29,8 @@ export class ModalsView implements OnInit {
     weddingId: any;
     activeForm: string;
     errors: string[];
-    modal: Observable<any>;
+    modalServiceEvents: Observable<any>;
+    modal: Subscription;
     modalData: any;
     modalMode: string;
     modalMessage: any;
@@ -46,7 +48,7 @@ export class ModalsView implements OnInit {
                 private router: Router) {
 
         this.weddingData = this._weddingService.getWedding({}).zone();
-        this.modal = this._modalService.events$;
+        this.modalServiceEvents = this._modalService.events$;
         this.modalData = {};
         this.invitations = [];
         this.modalMessage = false;
@@ -61,7 +63,7 @@ export class ModalsView implements OnInit {
     ngOnInit() {
         const self = this;
 
-        this.modal.subscribe((data) => {
+        this.modal = this.modalServiceEvents.subscribe((data) => {
             if (data.data) {
                 this.modalData = {...data.data};
             }
@@ -99,6 +101,10 @@ export class ModalsView implements OnInit {
 
 
     };
+
+    ngOnDestroy() {
+        this.modal.unsubscribe();
+    }
 
     ngAfterViewInit() {
         $('.addButtonsToggle').popup({on: 'click'});
