@@ -1,7 +1,12 @@
-<dashboard-area [slug]="'Guest'" class="guests">
+<dashboard-area [slug]="'Guest'"
+                [items]="guests"
+                class="guests"
+                (sort)="setSort($event)"
+                (filter)="addFilter($event)">
+    {{sort}}
     <div class="vertical list">
         <guest-card class="clickable animated fadeInLeft"
-                    *ngFor="let guest of guests; let i=index"
+                    *ngFor="let guest of guests | filter:filters; let i=index"
                     [ngStyle]="{'animation-delay': '.'+ i +'s'}"
                     [guest]="guest"
                     [meals]="meals"

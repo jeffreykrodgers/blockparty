@@ -6,9 +6,7 @@ import {Observable} from "rxjs/Observable";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
 import {ModalService} from "../../services/modals.service";
 import {UtilityService} from "../../../common/services/utils.services";
-import {Router, RouterModule, Routes} from "@angular/router";
-import {FormControl, FormGroup} from "@angular/forms";
-import {Subject} from "rxjs/Subject";
+import {Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 
 declare let $: any;
@@ -195,7 +193,8 @@ export class ModalsView implements OnInit {
         );
 
         this.modalData.invitation_num = invite;
-        $('.invites').dropdown('set selected', invite);
+        $('#invites').dropdown('refresh');
+        $('#invites').dropdown('set selected', invite);
     };
 
     getUserTable(user) {
@@ -225,7 +224,6 @@ export class ModalsView implements OnInit {
             inverted: true,
             observeChanges: true,
             onVisible: () => {
-                // $('.calendar').calendar();
                 $('#venue_start').calendar({
                     type: 'time',
                     endCalendar: $('#venue_end'),
@@ -320,7 +318,7 @@ export class ModalsView implements OnInit {
         fileReader.onload = () => {
             Meteor.call('uploadFile', this.weddingId, fileMeta, fileReader.result, (err, res) => {
                 if (err) {
-                    console.log(err)
+                    console.error(err)
                 } else {
                     this.modalData.image = res._id;
                 }

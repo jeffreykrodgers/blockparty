@@ -137,7 +137,7 @@
     align-items: center;
     justify-content: center;
     transition: all .2s;
-    z-index: 15;
+    z-index: 8;
 
     i {
       margin: 0;
@@ -223,7 +223,7 @@
 
   .ui.blue.button {
     background: $blue;
-    box-shadow: colorShadow($blue);
+    //box-shadow: colorShadow($blue);
   }
 
   .ui.popup {

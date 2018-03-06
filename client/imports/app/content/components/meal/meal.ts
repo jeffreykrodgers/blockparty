@@ -71,7 +71,6 @@ export class MealComponent implements OnInit {
 
         if (guest_index < guest_count - 1) {
             this.activeGuest = this.guests[guest_index + 1];
-            console.log($('.content'));
             $('.content').animate({ scrollTop: $(".content").offset().top }, 300);
             // $('#name')
         } else {

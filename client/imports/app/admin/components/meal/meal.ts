@@ -35,8 +35,6 @@ export class admin_MealComponent implements OnInit {
                     return upload._id === this.meal.image;
                 });
 
-                console.log(uploads);
-
                 this.upload = uploads[0];
             });
         }

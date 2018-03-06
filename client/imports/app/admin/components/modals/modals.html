@@ -54,6 +54,7 @@
                 <sm-select placeholder="Invitation..."
                            class="fluid search"
                            [class]="'invites'"
+                           [id]="'invitations'"
                            [(model)]="modalData.invitation_num"
                            (change)="checkForGen($event)">
                     <option value="generateInvite">New...</option>
