@@ -60,20 +60,27 @@ export class AuthView implements OnInit {
     };
 
     register() {
+        if (Meteor.settings.registration_enabled) {
+            if (this.user.password === this.user.pass_conf) {
+                Accounts.createUser({
+                    username: this.user.email,
+                    email: this.user.email,
+                    password: this.user.password,
+                    profile: this.user.profile,
+                }, () => {
+                    this.registering = false;
+                });
+            }
 
-        if (this.user.password === this.user.pass_conf) {
-            Accounts.createUser({
-                username: this.user.email,
-                email: this.user.email,
-                password: this.user.password,
-                profile: this.user.profile,
-            }, () => {
-                this.registering = false;
-            });
+            this.user = {profile:{}};
+            this.registering = false;
+        } else {
+            this.error = 'Registration Disabled'
         }
-
-        this.user = {profile:{}};
-        this.registering = false;
-
     };
+
+    toggleMode() {
+        this.error = false;
+        this.registering = !this.registering;
+    }
 }

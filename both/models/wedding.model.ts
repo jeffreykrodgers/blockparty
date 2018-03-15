@@ -54,6 +54,8 @@ interface Guest {
     party?: string;
     reminders?: Reminder[];
     table?: number;
+    child?: boolean;
+    gift?: boolean;
 }
 
 interface Table {
@@ -86,6 +88,7 @@ interface Meal {
     price?: number;
     image?: string;
     notes?: string;
+    kids?: boolean;
 }
 
 interface Registry {

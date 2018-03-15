@@ -59,6 +59,9 @@ import {AuthView} from "./admin/views/auth/auth.view";
 import {UserService} from "./common/services/user.service";
 import {RegistriesView} from "./admin/views/registries/registries.view";
 import {admin_RegistryComponent} from "./admin/components/registry/registry.component";
+import {OrderByPipe} from "./common/pipes/sort.pipe";
+import {FilterPipe} from "./common/pipes/filter.pipe";
+import {FilterService} from "./admin/services/filter.service";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -108,6 +111,10 @@ import {admin_RegistryComponent} from "./admin/components/registry/registry.comp
         SummaryComponent,
         TopComponent,
         BottomComponent,
+
+        //Pipes
+        OrderByPipe,
+        FilterPipe
     ],
     // Entry Components
     entryComponents: [
@@ -122,6 +129,8 @@ import {admin_RegistryComponent} from "./admin/components/registry/registry.comp
         MenuService,
         ChartService,
         UserService,
+        FilterService,
+        FilterPipe
     ],
     // Modules
     imports: [

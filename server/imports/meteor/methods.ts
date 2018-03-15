@@ -137,7 +137,6 @@ Meteor.methods({
                 }, {$pull: {"venues": {'_id': item._id}}});
                 break;
             case 'Registry':
-                console.log("Removing Registry:", item);
                 WeddingCollection.collection.update({
                     _id: weddingId,
                     "registries._id": item._id

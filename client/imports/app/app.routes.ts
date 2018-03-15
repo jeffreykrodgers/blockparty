@@ -20,7 +20,6 @@ import {TablesView} from "./admin/views/tables/tables.view";
 import {AuthView} from "./admin/views/auth/auth.view";
 import {RegistriesView} from "./admin/views/registries/registries.view";
 
-
 export const routes: Route[] = [
     {path: '', component: ContentView, children: [
         {path: '', component: EntryView},

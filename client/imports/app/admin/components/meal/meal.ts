@@ -32,7 +32,7 @@ export class admin_MealComponent implements OnInit {
         if (this.meal.image) {
             this.weddingData.subscribe(wedding => {
                 let uploads = wedding[0].uploads.filter((upload) => {
-                    return upload._id = this.meal.image;
+                    return upload._id === this.meal.image;
                 });
 
                 this.upload = uploads[0];

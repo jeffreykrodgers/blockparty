@@ -1,3 +1,4 @@
+<!--TODO: Break this down a bit. Too much.-->
 <div class="content">
     <div class="logo">
         <h1>BlockParty</h1>
@@ -32,7 +33,7 @@
                     <label>Password</label>
                     <div class="ui input">
                         <input type="password"
-                               placeholder="Email"
+                               placeholder="Password"
                                [(ngModel)]="user.password"
                                name="pass">
                     </div>
@@ -43,7 +44,7 @@
                     </button>
                     <div class="ui red label" *ngIf="error">{{error}}</div>
 
-                    <a (click)="registering = !registering">Register</a>
+                    <a (click)="toggleMode()">Register</a>
                 </div>
 
             </div>
@@ -65,7 +66,7 @@
                             <input type="text"
                                    placeholder="First"
                                    [(ngModel)]="user.profile.first_name"
-                                   name="first">
+                                   name="first_name">
                         </div>
                     </div>
                     <div class="field">
@@ -74,7 +75,7 @@
                             <input type="text"
                                    placeholder="Last"
                                    [(ngModel)]="user.profile.last_name"
-                                   name="last">
+                                   name="last_name">
                         </div>
                     </div>
                 </div>
@@ -100,8 +101,11 @@
                     <button class="ui primary button"
                             (click)="register()">Register
                     </button>
-                    <div class="ui red label" *ngIf="error">{{error}}</div>
-                    <a (click)="registering = !registering">Sign In</a>
+                    <div class="ui red icon label" *ngIf="error">
+                        <i class="warning icon"></i>
+                        {{error}}
+                    </div>
+                    <a (click)="toggleMode()">Sign In</a>
                 </div>
             </div>
         </div>

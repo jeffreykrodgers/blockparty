@@ -6,9 +6,8 @@ import {Observable} from "rxjs/Observable";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
 import {ModalService} from "../../services/modals.service";
 import {UtilityService} from "../../../common/services/utils.services";
-import {Router, RouterModule, Routes} from "@angular/router";
-import {FormControl, FormGroup} from "@angular/forms";
-import {Subject} from "rxjs/Subject";
+import {Router} from "@angular/router";
+import {Subscription} from "rxjs/Subscription";
 
 declare let $: any;
 
@@ -27,7 +26,9 @@ export class ModalsView implements OnInit {
     weddingData: Observable<WeddingDB[]>;
     weddingId: any;
     activeForm: string;
-    modal: Observable<any>;
+    errors: string[];
+    modalServiceEvents: Observable<any>;
+    modal: Subscription;
     modalData: any;
     modalMode: string;
     modalMessage: any;
@@ -45,7 +46,7 @@ export class ModalsView implements OnInit {
                 private router: Router) {
 
         this.weddingData = this._weddingService.getWedding({}).zone();
-        this.modal = this._modalService.events$;
+        this.modalServiceEvents = this._modalService.events$;
         this.modalData = {};
         this.invitations = [];
         this.modalMessage = false;
@@ -60,7 +61,7 @@ export class ModalsView implements OnInit {
     ngOnInit() {
         const self = this;
 
-        this.modal.subscribe((data) => {
+        this.modal = this.modalServiceEvents.subscribe((data) => {
             if (data.data) {
                 this.modalData = {...data.data};
             }
@@ -84,36 +85,30 @@ export class ModalsView implements OnInit {
             this.meals = wedding[0].meals;
         });
 
-        this.buttons = [
-            {
-                name: 'Guest',
-                icon: 'user'
-            },
-            {
-                name: 'Table',
-                icon: 'users'
-            },
-            {
-                name: 'Venue',
-                icon: 'marker'
-            },
-            {
-                name: 'Meal',
-                icon: 'food'
-            },
-            {
-                name: 'Registry',
-                icon: 'gift'
-            },
-        ];
+        this.buttons = [];
+
+        Meteor.settings.public.activeModules.forEach((module) => {
+            let button = {
+                name: module.name,
+                icon: module.icon,
+                disabled: module.disabled,
+            };
+
+            this.buttons.push(button);
+        });
 
 
     };
+
+    ngOnDestroy() {
+        this.modal.unsubscribe();
+    }
 
     ngAfterViewInit() {
         $('.addButtonsToggle').popup({on: 'click'});
         $('.addToggle').popup({inline: true, on: 'hover'});
         $('#itemModal').modal();
+        $('.dropdown').dropdown();
     };
 
     addItem(form) {
@@ -136,8 +131,12 @@ export class ModalsView implements OnInit {
         }
     };
 
-    buttonText(): string {
+    actionButtonText(): string {
         return this.modalMode === 'Edit' ? 'Save' : this.modalMode;
+    };
+
+    closeButtonText(): string {
+        return this.modalMode === 'Edit' ? 'Cancel' : 'Done';
     };
 
     checkForGen(e) {
@@ -159,7 +158,6 @@ export class ModalsView implements OnInit {
     }
 
     deleteItem(modal) {
-        console.log(this.modalData);
         Meteor.call('deleteItem',
             this.weddingId,
             this.activeForm,
@@ -199,7 +197,8 @@ export class ModalsView implements OnInit {
         );
 
         this.modalData.invitation_num = invite;
-        $('.invites').dropdown('set selected', invite);
+        $('#invites').dropdown('refresh');
+        $('#invites').dropdown('set selected', invite);
     };
 
     getUserTable(user) {
@@ -224,13 +223,25 @@ export class ModalsView implements OnInit {
     }
 
     showModal(modal) {
-        console.log(this.modalData);
         $('.activitiesToggle').popup('hide');
         modal.show({
             inverted: true,
             observeChanges: true,
             onVisible: () => {
-                $('.calendar').calendar();
+                $('#venue_start').calendar({
+                    type: 'time',
+                    endCalendar: $('#venue_end'),
+                    onChange: (date, text) => {
+                        this.modalData.start_time = text;
+                    }
+                });
+                $('#venue_end').calendar({
+                    type: 'time',
+                    startCalendar: $('#venue_start'),
+                    onChange: (date, text) => {
+                        this.modalData.end_time = text;
+                    }
+                });
                 $('.uidropdown').dropdown();
                 $('.checkbox').checkbox();
             }
@@ -260,32 +271,39 @@ export class ModalsView implements OnInit {
             }
         }
 
-        Meteor.call(methodName,
-            this.weddingId,
-            this.activeForm,
-            data, (err) => {
-                if (err) {
-                    this.modalMessage = {
-                        color: 'red',
-                        text: `Failed: ${err}`,
-                    }
-                } else {
-                    this.modalMessage = {
-                        color: 'green',
-                        text: `Successfully added ${this.activeForm}: ${this.modalData.name}`,
-                    };
+        if (!this.errors) {
+            Meteor.call(methodName,
+                this.weddingId,
+                this.activeForm,
+                data, (err) => {
+                    if (err) {
+                        this.modalMessage = {
+                            color: 'red',
+                            text: `Failed: ${err}`,
+                        }
+                    } else {
+                        this.modalMessage = {
+                            color: 'green',
+                            text: `Successfully added ${this.activeForm}: ${this.modalData.name}`,
+                        };
 
-                    console.log(this.modalMessage);
+                        this.router.navigate([url]);
+                        this.clearModalData();
 
-                    this.router.navigate([url]);
-                    this.clearModalData();
-
-                    if (this.modalMode === 'Edit') {
-                        this.closeModal(modal);
+                        if (this.modalMode === 'Edit') {
+                            this.closeModal(modal);
+                        }
                     }
                 }
+            );
+        } else {
+            this.modalMessage = {
+                color: 'red',
+                text: `Errors: ${this.errors}`,
             }
-        );
+        }
+
+
     };
 
     uploadImage(event) {
@@ -303,7 +321,9 @@ export class ModalsView implements OnInit {
 
         fileReader.onload = () => {
             Meteor.call('uploadFile', this.weddingId, fileMeta, fileReader.result, (err, res) => {
-                if (err) {console.log(err)} else {
+                if (err) {
+                    console.error(err)
+                } else {
                     this.modalData.image = res._id;
                 }
             });

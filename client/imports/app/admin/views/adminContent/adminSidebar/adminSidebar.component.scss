@@ -92,6 +92,7 @@
 
           &.disabled {
             color: translucent15($blue);
+            text-shadow: none;
             :hover {
               color: translucent15($blue);
             }
@@ -116,7 +117,7 @@
 @media screen and (max-width: $tablet-max) {
   :host {
     position: absolute;
-    z-index: 10;
+    z-index: 4;
     height: 100%;
     width: 100%;
     display: none;

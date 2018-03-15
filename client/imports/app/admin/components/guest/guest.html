@@ -8,8 +8,11 @@
         <h4 class="ellipsis" [ngClass]="guestStatus()">{{guest.name}}</h4>
     </div>
     <div class="tags">
-        <span class="ui horizontal basic purple label">{{guest.relation}}</span>
-        <span class="ui horizontal basic purple label">{{guest.party}}</span>
+        <span class="ui horizontal basic label"
+              [ngClass]="{'purple': guest.relation === 'Family', 'blue': guest.relation === 'Friend'}">{{guest.relation}}</span>
+        <span class="ui horizontal basic label"
+              [ngClass]="{'pink': guest.party === 'Bride', 'blue': guest.party === 'Groom'}">{{guest.party}}</span>
+        <span class="ui horizontal basic blue label" *ngIf="guest.child">Child</span>
     </div>
     <div class="details">
         <div class="meals detail">

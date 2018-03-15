@@ -3,9 +3,52 @@
         <h2>{{slug}}</h2>
     </div>
     <div class="actions">
-        <!--<i class="sort icon"></i>-->
+        <div class="filters">
+            <div class="ui blue dropdown label" *ngFor="let filter of filters">
+                <i class="caret down icon"></i>
+                {{filter.name}}
+                <i class="delete icon" (click)="removeFilter(filter)"></i>
+                <div class="menu">
+                    <div class="item"
+                         *ngFor="let item of _filterService.getFilterFields(items, filter.slug)"
+                         (click)="addFilterValue(filter, item)">{{item}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action">
+            <div class="ui pointing dropdown top right blue icon circular button">
+                <i class="icons">
+                    <i class="filter icon"></i>
+                    <i class="bottom right corner add white icon"></i>
+                </i>
+                <div class="menu">
+                    <div class="item" (click)="addFilter('invitation_num')">Invitation</div>
+                    <div class="item" (click)="addFilter('relation')">Relation</div>
+                    <div class="item" (click)="addFilter('party')">Party</div>
+                    <!--<div class="item" (click)="addFilter('attending')">RSVP Status</div>-->
+                </div>
+            </div>
+        </div>
+        <div class="action">
+            <div class="ui pointing dropdown top right blue icon circular button">
+                <i class="sort icon"></i>
+                <div class="menu">
+                    <div class="item" (click)="setSort('invitation_num')">Invitation Number</div>
+                    <div class="item" (click)="setSort('name')">Guest Name</div>
+                    <div class="item" (click)="setSort('relation')">Relation</div>
+                    <div class="item" (click)="setSort('party')">Party</div>
+                </div>
+            </div>
+        </div>
+        <div class="action">
+            <div class="ui blue icon circular button">
+                <i class="add icon" (click)="_modalService.openModal(slug)"></i>
+            </div>
+        </div>
+
         <!--<i class="filter icon"></i>-->
-        <i class="add icon" (click)="_modalService.openModal(slug)"></i>
+
     </div>
 </div>
 <ng-content></ng-content>

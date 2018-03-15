@@ -12,12 +12,10 @@ export class ModalService {
             data: data,
         };
 
-        // console.log('Event Triggered. Payload:', payload);
         this.modalObservable.next(payload);
     }
 
     get events$ () {
-        // console.log("Observable", this.modalObservable);
         return this.modalObservable.asObservable();
     }
 }

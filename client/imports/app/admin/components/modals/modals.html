@@ -4,7 +4,8 @@
 <div class="ui invisible popup">
     <div class="vertical list">
         <div *ngFor="let button of buttons">
-            <sm-button class="purple round addToggle"
+            <sm-button *ngIf="!button.disabled"
+                       class="purple round addToggle"
                        (click)="addItem(button.name)"
                        icon="{{button.icon}}"
                        data-position="left center">
@@ -53,6 +54,7 @@
                 <sm-select placeholder="Invitation..."
                            class="fluid search"
                            [class]="'invites'"
+                           [id]="'invitations'"
                            [(model)]="modalData.invitation_num"
                            (change)="checkForGen($event)">
                     <option value="generateInvite">New...</option>
@@ -61,6 +63,12 @@
                         {{invite}}{{invitationGuests(invite)}}
                     </option>
                 </sm-select>
+            </div>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input name="child" type="checkbox"[(ngModel)]="modalData.child">
+                    <label>Child</label>
+                </div>
             </div>
             <div class="field" *ngIf="modalMode === 'Edit'">
                 <div class="ui toggle checkbox">
@@ -88,7 +96,7 @@
             <div class="field">
                 <label>Number of Seats</label>
                 <div class="ui input left">
-                    <input type="text"
+                    <input type="number"
                            placeholder="Number of Seats"
                            [(ngModel)]="modalData.seats"
                            name="table_seats"
@@ -100,11 +108,29 @@
                 <label>Guests</label>
                 <sm-select placeholder="Guests..."
                            class="fluid search multiple"
-                           [(model)]="modalData.guests">
+                           [(model)]="modalData.guests"
+                           [options]="{maxSelections: modalData.seats}">
                     <option *ngFor="let guest of guests" value="{{guest._id}}">
                         {{guest.name}}{{getUserTable(guest._id)}}
                     </option>
                 </sm-select>
+                <span *ngIf="modalData.seats && modalData.guests"
+                        [ngClass]="{red: modalData.seats < modalData.guests.length}">
+                    {{modalData.guests.length}}/{{modalData.seats}} Seats
+                </span>
+                <!--TODO: Regular semantic dropdown doesn't work, but it is preferred over the ngSemantic version-->
+                <!--<div class="ui fluid multiple serach selection dropdown">-->
+                    <!--<input name="table_guests" type="hidden" [(ngModel)]="modalData.guests">-->
+                    <!--<i class="dropdown icon"></i>-->
+                    <!--<div class="default text">Guests...</div>-->
+                    <!--<div class="menu">-->
+                    <!--<div *ngFor="let guest of guests"-->
+                    <!--class="item"-->
+                    <!--data-value="test">-->
+                    <!--{{guest.name}}{{getUserTable(guest._id)}}-->
+                    <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
 
             <div class="field">
@@ -188,7 +214,7 @@
             <div class="two fields">
                 <div class="field">
                     <label>Start Time</label>
-                    <div class="ui calendar" id="#example1">
+                    <div class="ui calendar" id="venue_start">
                         <div class="ui input left">
                             <input type="datetime-local"
                                    placeholder="Start Time"
@@ -197,16 +223,16 @@
                                    autocomplete="off">
                         </div>
                     </div>
-
                 </div>
                 <div class="field">
                     <label>End Time</label>
-                    <div class="ui calendar">
+                    <div class="ui calendar" id="venue_end">
                         <div class="ui input left">
                             <input type="datetime-local"
                                    placeholder="End Time"
                                    [(ngModel)]="modalData.end_time"
                                    name="venue_end"
+                                   id="venue_end"
                                    autocomplete="off">
                         </div>
                     </div>
@@ -259,6 +285,12 @@
                            [(ngModel)]="modalData.notes"
                            name="meal_notes"
                            autocomplete="off">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input name="child" type="checkbox"[(ngModel)]="modalData.kids">
+                    <label>Kids</label>
                 </div>
             </div>
         </form>
@@ -324,11 +356,11 @@
         <button class="ui icon button primary"
                 (click)="submitModal(itemModal)">
             <i class="icon" [ngClass]="buttonIcon()"></i>
-            {{buttonText()}} {{activeForm}}
+            {{actionButtonText()}} {{activeForm}}
         </button>
-        <button class="ui primary button"
+        <button class="ui button"
                 (click)="closeModal(itemModal)">
-            Done
+            {{closeButtonText()}}
         </button>
     </modal-actions>
 </sm-modal>

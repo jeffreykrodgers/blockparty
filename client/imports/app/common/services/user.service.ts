@@ -8,7 +8,6 @@ export class UserService {
     constructor() {
         // Tracker.autorun(() => {
         //     this.user = Meteor.user();
-        //     console.log(Meteor.user());
         // });
     }
 
