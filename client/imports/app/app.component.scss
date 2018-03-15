@@ -1,2 +1,10 @@
 @import "content/style/themes/default/_variables.scss";
 @import "content/style/themes/default/main.scss";
+@import "common/styles/variables";
+
+
+:host {
+  .ui.dimmer {
+    background: $gradient-dr;
+  }
+}

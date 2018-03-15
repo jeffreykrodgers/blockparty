@@ -6,13 +6,28 @@
     </div>
     <div class="name">
         <h4 class="ellipsis" [ngClass]="guestStatus()">{{guest.name}}</h4>
-        <h5 class="ellipsis">{{guest.relation}} of the {{guest.party}}</h5>
+    </div>
+    <div class="tags">
+        <span class="ui horizontal basic label"
+              [ngClass]="{'purple': guest.relation === 'Family', 'blue': guest.relation === 'Friend'}">{{guest.relation}}</span>
+        <span class="ui horizontal basic label"
+              [ngClass]="{'pink': guest.party === 'Bride', 'blue': guest.party === 'Groom'}">{{guest.party}}</span>
+        <span class="ui horizontal basic blue label" *ngIf="guest.child">Child</span>
     </div>
     <div class="details">
         <div class="meals detail">
-            <div *ngIf="guest.attending && guest.meal" class="ui horizontal label" [ngClass]="mealColor(guest.meal)">
+            <div *ngIf="guest.attending && guest.meal"
+                 class="ui horizontal label"
+                 [ngClass]="labelColor(guest.meal)">
                 {{guest.meal}}
+                <i *ngIf="mealMissing(guest.meal)" class="material-icons red">error</i>
             </div>
+            <div *ngIf="guest.dietary"
+                 class="ui horizontal red label">
+                <i class="white warning icon"></i>
+                {{guest.dietary}}
+            </div>
+
         </div>
     </div>
 </div>

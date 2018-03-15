@@ -1,0 +1,113 @@
+<!--TODO: Break this down a bit. Too much.-->
+<div class="content">
+    <div class="logo">
+        <h1>BlockParty</h1>
+        <p>Alpha 0.0.2</p>
+    </div>
+    <div class="ui card animated fadeInDown">
+        <div class="social-login">
+            <button class="ui facebook disabled button"
+                    (click)="login('facebook')">
+                <i class="facebook icon"></i>
+                Facebook
+            </button>
+            <button class="ui google plus disabled button"
+                    (click)="login('google')">
+                <i class="google icon"></i>
+                Google
+            </button>
+        </div>
+        <div class="classic-login">
+            <div class="ui form" *ngIf="!registering">
+                <div class="field">
+                    <label>Email Address</label>
+                    <div class="ui input">
+                        <input type="text"
+                               placeholder="Email"
+                               [(ngModel)]="user.email"
+                               name="email">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Password</label>
+                    <div class="ui input">
+                        <input type="password"
+                               placeholder="Password"
+                               [(ngModel)]="user.password"
+                               name="pass">
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="ui primary button"
+                            (click)="login('password')">Sign In
+                    </button>
+                    <div class="ui red label" *ngIf="error">{{error}}</div>
+
+                    <a (click)="toggleMode()">Register</a>
+                </div>
+
+            </div>
+
+            <div class="ui form" *ngIf="registering">
+                <div class="field">
+                    <label>Email Address</label>
+                    <div class="ui input">
+                        <input type="text"
+                               placeholder="Email"
+                               [(ngModel)]="user.email"
+                               name="email">
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="field">
+                        <label>First Name</label>
+                        <div class="ui input">
+                            <input type="text"
+                                   placeholder="First"
+                                   [(ngModel)]="user.profile.first_name"
+                                   name="first_name">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Last Name</label>
+                        <div class="ui input">
+                            <input type="text"
+                                   placeholder="Last"
+                                   [(ngModel)]="user.profile.last_name"
+                                   name="last_name">
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <div class="ui input">
+                        <input type="password"
+                               placeholder="Email"
+                               [(ngModel)]="user.password"
+                               name="password">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Confirm Password</label>
+                    <div class="ui input">
+                        <input type="password"
+                               placeholder="Email"
+                               [(ngModel)]="user.pass_conf"
+                               name="pass_conf">
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="ui primary button"
+                            (click)="register()">Register
+                    </button>
+                    <div class="ui red icon label" *ngIf="error">
+                        <i class="warning icon"></i>
+                        {{error}}
+                    </div>
+                    <a (click)="toggleMode()">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

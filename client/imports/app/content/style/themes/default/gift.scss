@@ -1,0 +1,102 @@
+@import "variables";
+@import "functions";
+@import "../../../../common/styles/animations";
+@import "../../../../common/styles/variables";
+
+:host {
+  color: $white;
+
+  .ui.form .field {
+    .registries {
+      display: flex;
+      .registry {
+        margin: 20px 0;
+        flex: 1;
+        border: 2px solid $white;
+        border-radius: 8px;
+        padding: 30px 20px;
+        display: flex;
+        align-items: center;
+        transition: all .1s;
+
+        &:hover {
+          background: translucent30($white);
+        }
+
+        & > div {
+          flex: 1;
+          padding: 20px
+        }
+
+        .left {
+          border-right: 1px solid translucent50($white);
+          padding: 0px;
+          padding-right: 20px;
+          padding-left: 10px;
+        }
+
+        .right {
+          display: flex;
+          flex-direction: column;
+          text-align: left;
+
+          h4 {
+            color: $white;
+          }
+
+          .prompt {
+            display: flex;
+
+            h3 {
+              display: inline-block;
+              margin-right: 8px;
+              color: $white;
+              font-weight: 600;
+            }
+
+          }
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+
+}
+
+@media screen and (max-width: $tablet-max) {
+  :host {
+    .ui.form .field {
+      .registries {
+        .registry {
+          margin: 10px;
+          flex-direction: column;
+          & > div {
+
+          }
+
+          .left {
+            width: 100%;
+            border-right: 0px;
+            border-bottom: 1px solid $white;
+            padding: 20px;
+          }
+
+          .right {
+            text-align: center;
+
+            .prompt {
+              text-align: center;
+              justify-content: center;
+              align-items: center;
+              h3 {
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

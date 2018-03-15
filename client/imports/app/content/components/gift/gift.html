@@ -1,34 +1,24 @@
-<div>
-
-    <div *ngIf="!addingGift">
-        <div class="field">
-            <h3>Gift</h3>
-            <button class="ui button" (click)="addGift()">Add Gift</button>
-
-            <div class="gift-form">
-                <h5 *ngFor="let gift of gifts">From {{gift.guest}} - {{gift.amount}}</h5>
-            </div>
+<h2 class="animated fadeIn">Send a Gift</h2>
+<p class="animated fadeIn">Gift us with the opportunity to make new memories</p>
+<div class="ui form">
+    <div class="field">
+        <div class="registries" *ngFor="let registry of registries">
+            <a class="registry animated fadeIn" href="{{registry.link}}" target="_blank" (click)="enableNext = true">
+                <div class="left">
+                    <img src="{{getLogo(registry)}}"/>
+                </div>
+                <div class="right">
+                    <h4>{{registry.description}}</h4>
+                    <div class="prompt">
+                        <h3>Send a Gift</h3>
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </div>
+                </div>
+            </a>
         </div>
-        <button class="ui icon button" (click)="setGift()">
-            <i class="chevron right icon"></i> Continue
-        </button>
     </div>
-
-    <div *ngIf="addingGift" class="ui form">
-        <div class="field">
-            <div class="add-gift-form" *ngIf="addingGift">
-                <!--<mat-select placeholder="Guest..." [(ngModel)]="gift.guest">-->
-                    <!--<mat-option *ngFor="let guest of guests" [value]="guest._id">{{ guest.name }}</mat-option>-->
-                <!--</mat-select>-->
-
-                <!--<mat-form-field class="example-full-width">-->
-                    <!--<input matInput [(ngModel)]="gift.amount">-->
-                <!--</mat-form-field>-->
-            </div>
-        </div>
-        <button class="ui icon button" (click)="startPayment()">
-            <i class="chevron right icon"></i> PayPal
-        </button>
-    </div>
-
+    <button class="ui big basic inverted button pill"
+            (click)="continue()">Next</button>
 </div>
+
+<!--[ngClass]="{disabled: !enableNext}">Next</button>-->

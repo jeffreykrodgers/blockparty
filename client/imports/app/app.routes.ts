@@ -13,11 +13,12 @@ import {SearchComponent} from "./content/components/search/search";
 import {GuestComponent} from "./content/components/guest/guest";
 import {MealComponent} from "./content/components/meal/meal";
 import {ReminderComponent} from "./content/components/reminder/reminder";
-import {GiftComponent} from "./content/components/gift/gift";
+import {RegistryComponent} from "./content/components/gift/gift";
 import {SummaryComponent} from "./content/components/summary/summary";
 import {FinishedComponent} from "./content/components/finished/finished";
 import {TablesView} from "./admin/views/tables/tables.view";
-
+import {AuthView} from "./admin/views/auth/auth.view";
+import {RegistriesView} from "./admin/views/registries/registries.view";
 
 export const routes: Route[] = [
     {path: '', component: ContentView, children: [
@@ -27,7 +28,7 @@ export const routes: Route[] = [
             {path: 'guests', component: GuestComponent},
             {path: 'meals', component: MealComponent},
             {path: 'reminders', component: ReminderComponent},
-            {path: 'gifts', component: GiftComponent},
+            {path: 'registries', component: RegistryComponent},
             {path: 'summary', component: SummaryComponent},
             {path: 'finished', component: FinishedComponent},
         ]}
@@ -40,6 +41,9 @@ export const routes: Route[] = [
         {path: 'tables', component: TablesView},
         {path: 'venues', component: VenuesView},
         {path: 'meals', component: MealsView},
+        {path: 'registries', component: RegistriesView},
         {path: 'announcements', component: AnnouncementsView}
     ]},
+
+    {path: 'login', component: AuthView}
 ];

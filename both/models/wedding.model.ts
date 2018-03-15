@@ -4,12 +4,15 @@ interface Wedding {
     date: any;
     theme: any;
     spouses: Spouse[];
+    budgets?: Budget[];
+    invitations?: Invitation[];
+    guests?: Guest[];
+    tables?: Table[];
     venues?: Venue[];
     meals?: Meal[];
+    registries? : Registry[];
     announcements?: Announcement[];
-    guests?: Guest[];
-    invitations?: string[];
-    tables?: Table[];
+    uploads?: Upload[];
 }
 
 interface Spouse {
@@ -22,9 +25,50 @@ interface Spouse {
     services?: any;
 }
 
+interface Budget {
+    _id?: string;
+    name?: string;
+    max?: number;
+}
+
+interface Invitation {
+    _id?: string;
+    notes?: string;
+    code: string;
+    guests: string[];
+}
+
+interface Reminder {
+    time: number;
+    email: string;
+}
+
+interface Guest {
+    _id?: string;
+    name: string;
+    invitation_num: string;
+    status?: string;
+    meal?: string;
+    dietary?: string;
+    relation?: string;
+    party?: string;
+    reminders?: Reminder[];
+    table?: number;
+    child?: boolean;
+    gift?: boolean;
+}
+
+interface Table {
+    _id?: string;
+    notes?: string;
+    seats: number;
+    guests: string[];
+}
+
 interface Venue {
     _id?: string;
     name: string;
+    image?: string;
     address: {
         street: string,
         city: string,
@@ -42,7 +86,17 @@ interface Meal {
     name: string;
     color?: string;
     price?: number;
+    image?: string;
     notes?: string;
+    kids?: boolean;
+}
+
+interface Registry {
+    _id?: string;
+    name: string;
+    image?: string;
+    description?: string;
+    link: string;
 }
 
 interface Announcement {
@@ -52,27 +106,10 @@ interface Announcement {
     announcement: string;
 }
 
-interface Table {
+interface Upload {
     _id?: string;
-    number: number;
-    notes?: string;
-    seats: number;
-    guests: string[];
-}
-
-interface Guest {
-    _id?: string;
-    name: string;
-    email?: string;
-    invitation_num: string;
-    status?: string;
-    secondary: boolean;
-    meal?: string;
-    relation?: string;
-    party?: string;
-    reminder?: string;
-    gift?: number;
-    table?: number;
+    meta?: object;
+    path: string;
 }
 
 export type WeddingDB = Wedding;

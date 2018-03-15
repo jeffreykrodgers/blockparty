@@ -15,7 +15,6 @@ export class RsvpService {
         }
     });
 
-
     weddingData: Observable<WeddingDB[]>;
     weddingId: string;
 

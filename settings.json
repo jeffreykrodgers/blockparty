@@ -1,0 +1,108 @@
+{
+  "aws": {
+    "accessKeyId": "AKIAJWAQH3RW3SBOGM3A",
+    "secretAccessKey": "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",
+    "region": "us-west-2"
+  },
+  "s3": {
+    "key": "AKIAJWAQH3RW3SBOGM3A",
+    "secret": "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",
+    "bucket": "eg-bp-cdn",
+    "region": "us-east-1"
+  },
+  "public": {
+    "registrationEnabled": false,
+    "activeModules": [
+      {
+        "name": "Guest",
+        "text": "Guests",
+        "icon": "user",
+        "matIcon": "person",
+        "slug": "/admin/guests"
+      },
+      {
+        "name": "Table",
+        "text": "Tables",
+        "icon": "users",
+        "matIcon": "people",
+        "slug": "/admin/tables"
+      },
+      {
+        "name": "Venue",
+        "text": "Venues",
+        "icon": "marker",
+        "matIcon": "location_on",
+        "slug": "/admin/venues"
+      },
+      {
+        "name": "Meal",
+        "text": "Meals",
+        "icon": "food",
+        "matIcon": "local_dining",
+        "slug": "/admin/meals"
+      },
+      {
+        "name": "Registry",
+        "text": "Registries",
+        "icon": "gift",
+        "matIcon": "playlist_add_check",
+        "slug": "/admin/registries"
+      },
+      {
+        "name": "Announcement",
+        "text": "Announcements",
+        "icon": "gift",
+        "matIcon": "not_interested",
+        "slug": "/admin/announcements",
+        "disabled": true
+      },
+      {
+        "name": "Vendor",
+        "text": "Vendors",
+        "icon": "gift",
+        "matIcon": "not_interested",
+        "slug": "/admin/vendors",
+        "disabled": true
+      }
+    ],
+    "colors": [
+      {
+        "name": "gray",
+        "hex": "#818285"
+      }, {
+        "name": "lightGray",
+        "hex": "#EEEEEE"
+      }, {
+        "name": "white",
+        "hex": "#FFFFFF"
+      }, {
+        "name": "frost",
+        "hex": "#F6FAFB"
+      }, {
+        "name": "lightPurple",
+        "hex": "#F1E4FF"
+      }, {
+        "name": "blue",
+        "hex": "#2186C4"
+      }, {
+        "name": "purple",
+        "hex": "#8781EF"
+      }, {
+        "name": "pink",
+        "hex": "#F6A2D3"
+      }, {
+        "name": "navy",
+        "hex": "#20437D"
+      }, {
+        "name": "teal",
+        "hex": "#78ECD6"
+      }, {
+        "name": "green",
+        "hex": "#20bf55"
+      }, {
+        "name": "red",
+        "hex": "#ED5858"
+      }
+    ]
+  }
+}

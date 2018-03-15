@@ -137,7 +137,7 @@
     align-items: center;
     justify-content: center;
     transition: all .2s;
-    z-index: 15;
+    z-index: 8;
 
     i {
       margin: 0;
@@ -157,7 +157,6 @@
   }
 
   .insert {
-    //flex: 1;
     border: 2px dashed translucent30($gray);
     margin: 10px;
     border-radius: 4px;
@@ -167,6 +166,8 @@
     cursor: pointer;
     transition: all .2s;
     animation-delay: 1s;
+    max-width: 33%;
+    flex: 1;
 
     .item {
       display: flex;
@@ -192,6 +193,7 @@
     transition: .2s all;
     position: relative;
     overflow: visible;
+    max-width: 33%;
 
     &.clickable {
       cursor: pointer;
@@ -200,6 +202,10 @@
         box-shadow: $shadow-extra-long-down;
       }
     }
+  }
+
+  .insert {
+
   }
 
   .ui.pink.button {
@@ -217,7 +223,7 @@
 
   .ui.blue.button {
     background: $blue;
-    box-shadow: colorShadow($blue);
+    //box-shadow: colorShadow($blue);
   }
 
   .ui.popup {
@@ -247,6 +253,17 @@
   :host {
     .navToggle {
       display: flex;
+    }
+  }
+
+  ::ng-deep {
+    .card {
+      margin: 15px 5px;
+      max-width: 100%;
+    }
+
+    .insert {
+      max-width: 100%;
     }
   }
 }

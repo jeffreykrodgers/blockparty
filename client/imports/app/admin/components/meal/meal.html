@@ -1,8 +1,10 @@
 <div class="head" [ngClass]="meal.color">
-    <i class="big inverted photo icon"></i>
+    <i *ngIf="!meal.image" class="big inverted photo icon"></i>
+    <img *ngIf="meal.image && upload" src="{{upload.path}}">
 </div>
 <div class="foot">
     <h1>{{meal.name}}</h1>
     <h4>${{meal.price}}</h4>
     <p>{{meal.notes}}</p>
+    <p *ngIf="meal.kids">*Kids Meal</p>
 </div>

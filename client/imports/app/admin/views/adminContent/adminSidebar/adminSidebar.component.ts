@@ -8,6 +8,9 @@ import {WeddingService} from "../../../../common/services/wedding.service";
 import * as moment from 'moment';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MenuService} from "../../../services/menu.service";
+import {ModalService} from "../../../services/modals.service";
+
+declare let $: any;
 
 @Component({
     selector: "adminSidebar",
@@ -30,41 +33,50 @@ export class admin_SidebarComponent implements OnInit {
     open: boolean;
 
     constructor(private _weddingService: WeddingService,
-                private _router: Router,
-                private _route: ActivatedRoute) {
+                private _modalService: ModalService,
+                private router: Router,
+                private _route: ActivatedRoute,
+                private _menuService: MenuService) {
 
         this.weddingData = this._weddingService.getWedding({}).zone();
         this.links = [{
-                text: 'Dashboard',
+                text: 'Event',
                 slug: '/admin/dashboard',
                 icon: 'dashboard'
             },
             {
-                text: 'Guests',
-                slug: '/admin/guests',
-                icon: 'person'
-            },
-            {
-                text: 'Tables',
-                slug: '/admin/tables',
-                icon: 'people'
-            },
-            {
-                text: 'Venues',
-                slug: '/admin/venues',
-                icon: 'location_on'
-            },
-            {
-                text: 'Meals',
-                slug: '/admin/meals',
-                icon: 'local_dining'
-            },
-            // {
-            //     text: 'Announements',
-            //     slug: '/admin/announcements',
-            //     icon: 'announcement'
-            // },
-        ]
+                text: 'Website',
+                slug: '/rsvp/',
+                icon: 'language',
+                target: '_blank'
+
+            }
+        ];
+
+        Meteor.settings.public.activeModules.forEach((module) => {
+            if (!module.disabled) {
+                let link = {
+                    text: module.text,
+                    slug: module.slug,
+                    icon: module.matIcon,
+                };
+
+                this.links.push(link);
+            }
+        });
+
+        Meteor.settings.public.activeModules.forEach((module) => {
+            if (module.disabled) {
+                let link = {
+                    text: module.text,
+                    slug: module.slug,
+                    icon: module.matIcon,
+                    disabled: true
+                };
+
+                this.links.push(link);
+            }
+        });
 
     }
 
@@ -76,7 +88,21 @@ export class admin_SidebarComponent implements OnInit {
         });
     }
 
+    getTarget(target) {
+        return target ? target : '_self';
+    }
+
     toggleMenu() {
         this.open = !this.open;
+    }
+
+    toggleSidebar() {
+        this._menuService.toggleSidebar.emit();
+    }
+
+    logout() {
+        Meteor.logout(() => {
+            this.router.navigate(['/login']);
+        });
     }
 }

@@ -4,7 +4,7 @@ import style from "./venues.view.scss";
 import {Observable} from "rxjs/Observable";
 import {WeddingDB} from "../../../../../../both/models/wedding.model";
 import {WeddingService} from "../../../common/services/wedding.service";
-import {ModalService} from "../../components/modals/modals.service";
+import {ModalService} from "../../services/modals.service";
 
 @Component({
     selector: "venues",

@@ -13,7 +13,7 @@ import {RsvpView} from "./content/views/rsvp/rsvp";
 import {AppComponent} from "./app.component";
 import {AnnouncementsComponent} from "./content/components/announcements/announcements";
 import {FinishedComponent} from "./content/components/finished/finished";
-import {GiftComponent} from "./content/components/gift/gift";
+import {RegistryComponent} from "./content/components/gift/gift";
 import {GuestComponent} from "./content/components/guest/guest";
 import {MealComponent} from "./content/components/meal/meal";
 import {PhotosComponent} from "./content/components/photos/photos";
@@ -42,7 +42,7 @@ import {MainPipe} from "./common/pipes/main-pipe.module";
 import {ModalsView} from "./admin/components/modals/modals";
 import {ChartModule} from "angular2-highcharts";
 import {ContentView} from "./content/content";
-import {ModalService} from "./admin/components/modals/modals.service";
+import {ModalService} from "./admin/services/modals.service";
 import {GuestsView} from "./admin/views/guests/guests.view";
 import {MealsView} from "./admin/views/meals/meals.view";
 import {VenuesView} from "./admin/views/venues/venues.view";
@@ -54,6 +54,14 @@ import {TablesView} from "./admin/views/tables/tables.view";
 import {MenuService} from "./admin/services/menu.service";
 import {admin_WidgetComponent} from "./admin/components/widget/widget.component";
 import {admin_CountdownComponent} from "./admin/components/countdown/countdown.component";
+import {ChartService} from "./admin/services/chart.service";
+import {AuthView} from "./admin/views/auth/auth.view";
+import {UserService} from "./common/services/user.service";
+import {RegistriesView} from "./admin/views/registries/registries.view";
+import {admin_RegistryComponent} from "./admin/components/registry/registry.component";
+import {OrderByPipe} from "./common/pipes/sort.pipe";
+import {FilterPipe} from "./common/pipes/filter.pipe";
+import {FilterService} from "./admin/services/filter.service";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -61,6 +69,7 @@ import {admin_CountdownComponent} from "./admin/components/countdown/countdown.c
         AppComponent,
 
         //Admin
+        AuthView,
         AdminView,
         AdminContentView,
         DashboardView,
@@ -69,6 +78,7 @@ import {admin_CountdownComponent} from "./admin/components/countdown/countdown.c
         TablesView,
         MealsView,
         VenuesView,
+        RegistriesView,
         AnnouncementsView,
 
         //Admin Components
@@ -77,6 +87,7 @@ import {admin_CountdownComponent} from "./admin/components/countdown/countdown.c
         admin_TopComponent,
         admin_GuestComponent,
         admin_MealComponent,
+        admin_RegistryComponent,
         admin_TableComponent,
         admin_VenueComponent,
         admin_SidebarComponent,
@@ -91,7 +102,7 @@ import {admin_CountdownComponent} from "./admin/components/countdown/countdown.c
         //Content Components
         AnnouncementsComponent,
         FinishedComponent,
-        GiftComponent,
+        RegistryComponent,
         GuestComponent,
         MealComponent,
         PhotosComponent,
@@ -100,6 +111,10 @@ import {admin_CountdownComponent} from "./admin/components/countdown/countdown.c
         SummaryComponent,
         TopComponent,
         BottomComponent,
+
+        //Pipes
+        OrderByPipe,
+        FilterPipe
     ],
     // Entry Components
     entryComponents: [
@@ -112,6 +127,10 @@ import {admin_CountdownComponent} from "./admin/components/countdown/countdown.c
         ModalService,
         UtilityService,
         MenuService,
+        ChartService,
+        UserService,
+        FilterService,
+        FilterPipe
     ],
     // Modules
     imports: [
@@ -122,7 +141,11 @@ import {admin_CountdownComponent} from "./admin/components/countdown/countdown.c
         RouterModule.forRoot(routes),
         NgSemanticModule,
         MainPipe,
-        ChartModule.forRoot(require('highcharts')),
+        ChartModule.forRoot(
+            require('highcharts'),
+            require('highcharts/highcharts-more'),
+            require('highcharts/modules/solid-gauge'),
+        ),
     ],
     // Main Component
     bootstrap: [AppComponent]

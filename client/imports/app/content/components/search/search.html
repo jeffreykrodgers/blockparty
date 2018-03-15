@@ -1,16 +1,22 @@
 <section>
-    <img src="/img/vinajeff.svg"/>
+    <img src="/img/vinajeff3.svg"/>
     <div class="ui form">
-        <div class="field">
-            <div class="ui icon input">
+        <div class="field animated fadeIn">
+            <div class="ui left icon input">
+                <i class="add user icon">
+                </i>
                 <input placeholder="Invitation Number..."
                        type="text"
                        [(ngModel)]="invitationNumber"
-                       name="invitationNumber">
-                <i class="inverted circular search link icon" (click)="findGuests()"></i>
+                       name="invitationNumber"
+                       (keyup.enter)="findGuests()">
+                <button class="ui icon basic button"
+                        (click)="findGuests()">
+                    <i class="large search icon"></i>
+                </button>
             </div>
-            <div class="ui pointing red basic label" *ngIf="errors.length > 0">
-                <span *ngFor="let error of errors">{{error}}</span>
+            <div class="ui pointing red basic label" *ngIf="error">
+                {{error}}
             </div>
         </div>
     </div>

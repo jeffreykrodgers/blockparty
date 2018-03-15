@@ -1,24 +1,17 @@
-
 <div class="addButton addButtonsToggle" data-position="top center">
     <i class="large inverted add icon"></i>
 </div>
 <div class="ui invisible popup">
     <div class="vertical list">
-        <sm-button class="purple round addToggle" (click)="addItem('Guest')" icon="user" data-position="left center"></sm-button>
-        <div class="ui popup">Guest</div>
-
-        <sm-button class="purple round addToggle" (click)="addItem('Table')" icon="users"data-position="left center"></sm-button>
-        <div class="ui popup">Table</div>
-
-        <sm-button class="purple round addToggle" (click)="addItem('Venue')" icon="marker" data-position="left center"></sm-button>
-        <div class="ui popup">Venue</div>
-
-        <sm-button class="purple round addToggle" (click)="addItem('Meal')" icon="food" data-position="left center"></sm-button>
-        <div class="ui popup">Meal</div>
-
-        <!--<sm-button class="purple round addToggle" (click)="addItem('Announcement')" icon="announcement" data-position="left center"></sm-button>-->
-        <!--<div class="ui popup">Announcement</div>-->
-
+        <div *ngFor="let button of buttons">
+            <sm-button *ngIf="!button.disabled"
+                       class="purple round addToggle"
+                       (click)="addItem(button.name)"
+                       icon="{{button.icon}}"
+                       data-position="left center">
+            </sm-button>
+            <div class="ui popup">{{button.name}}</div>
+        </div>
     </div>
 </div>
 
@@ -60,23 +53,42 @@
                 <label>Invitation Number</label>
                 <sm-select placeholder="Invitation..."
                            class="fluid search"
+                           [class]="'invites'"
+                           [id]="'invitations'"
                            [(model)]="modalData.invitation_num"
                            (change)="checkForGen($event)">
                     <option value="generateInvite">New...</option>
-                    <option *ngFor="let invite of invitations" value="{{invite}}">{{invite}}{{invitationGuests(invite)}}</option>
+                    <option *ngFor="let invite of invitations"
+                            value="{{invite}}">
+                        {{invite}}{{invitationGuests(invite)}}
+                    </option>
                 </sm-select>
             </div>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input name="child" type="checkbox"[(ngModel)]="modalData.child">
+                    <label>Child</label>
+                </div>
+            </div>
             <div class="field" *ngIf="modalMode === 'Edit'">
+                <div class="ui toggle checkbox">
+                    <input name="public" type="checkbox" [(ngModel)]="modalData.completed">
+                    <label>Complete RSVP</label>
+                </div>
+            </div>
+            <div class="field" *ngIf="modalMode === 'Edit' && modalData.completed === true">
                 <div class="ui toggle checkbox">
                     <input name="public" type="checkbox" [(ngModel)]="modalData.attending">
                     <label>Attending?</label>
                 </div>
             </div>
-            <div class="field" *ngIf="modalMode === 'Edit' && modalData.attending === true">
+            <div class="field" *ngIf="modalMode === 'Edit' && modalData.completed === true">
                 <sm-select placeholder="Meal"
                            class="fluid search"
                            [(model)]="modalData.meal">
-                    <option *ngFor="let meal of meals" value="{{meal.name}}">{{meal.name}}</option>
+                    <option *ngFor="let meal of meals" value="{{meal.name}}">
+                        {{meal.name}}
+                    </option>
                 </sm-select>
             </div>
         </form>
@@ -84,7 +96,7 @@
             <div class="field">
                 <label>Number of Seats</label>
                 <div class="ui input left">
-                    <input type="text"
+                    <input type="number"
                            placeholder="Number of Seats"
                            [(ngModel)]="modalData.seats"
                            name="table_seats"
@@ -96,10 +108,29 @@
                 <label>Guests</label>
                 <sm-select placeholder="Guests..."
                            class="fluid search multiple"
-                           [(model)]="modalData.guests">
-                    <option value="Friend">Friend</option>
-                    <option *ngFor="let guest of guests" value="{{guest._id}}">{{guest.name}}</option>
+                           [(model)]="modalData.guests"
+                           [options]="{maxSelections: modalData.seats}">
+                    <option *ngFor="let guest of guests" value="{{guest._id}}">
+                        {{guest.name}}{{getUserTable(guest._id)}}
+                    </option>
                 </sm-select>
+                <span *ngIf="modalData.seats && modalData.guests"
+                        [ngClass]="{red: modalData.seats < modalData.guests.length}">
+                    {{modalData.guests.length}}/{{modalData.seats}} Seats
+                </span>
+                <!--TODO: Regular semantic dropdown doesn't work, but it is preferred over the ngSemantic version-->
+                <!--<div class="ui fluid multiple serach selection dropdown">-->
+                    <!--<input name="table_guests" type="hidden" [(ngModel)]="modalData.guests">-->
+                    <!--<i class="dropdown icon"></i>-->
+                    <!--<div class="default text">Guests...</div>-->
+                    <!--<div class="menu">-->
+                    <!--<div *ngFor="let guest of guests"-->
+                    <!--class="item"-->
+                    <!--data-value="test">-->
+                    <!--{{guest.name}}{{getUserTable(guest._id)}}-->
+                    <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
 
             <div class="field">
@@ -122,6 +153,12 @@
                            [(ngModel)]="modalData.name"
                            name="venue_name"
                            autocomplete="off">
+                </div>
+            </div>
+            <div class="field">
+                <label>Picture</label>
+                <div class="ui input left">
+                    <input type="file" (change)="uploadImage($event)" placeholder="Upload File..." accept=".jpg, .png">
                 </div>
             </div>
             <div class="field">
@@ -177,7 +214,7 @@
             <div class="two fields">
                 <div class="field">
                     <label>Start Time</label>
-                    <div class="ui calendar" id="#example1">
+                    <div class="ui calendar" id="venue_start">
                         <div class="ui input left">
                             <input type="datetime-local"
                                    placeholder="Start Time"
@@ -186,16 +223,16 @@
                                    autocomplete="off">
                         </div>
                     </div>
-
                 </div>
                 <div class="field">
                     <label>End Time</label>
-                    <div class="ui calendar">
+                    <div class="ui calendar" id="venue_end">
                         <div class="ui input left">
                             <input type="datetime-local"
                                    placeholder="End Time"
                                    [(ngModel)]="modalData.end_time"
                                    name="venue_end"
+                                   id="venue_end"
                                    autocomplete="off">
                         </div>
                     </div>
@@ -211,6 +248,12 @@
                            [(ngModel)]="modalData.name"
                            name="meal_name"
                            autocomplete="off">
+                </div>
+            </div>
+            <div class="field">
+                <label>Picture</label>
+                <div class="ui input left">
+                    <input type="file" (change)="uploadImage($event)" placeholder="Upload File..." accept=".jpg, .png">
                 </div>
             </div>
             <div class="field">
@@ -244,6 +287,43 @@
                            autocomplete="off">
                 </div>
             </div>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input name="child" type="checkbox"[(ngModel)]="modalData.kids">
+                    <label>Kids</label>
+                </div>
+            </div>
+        </form>
+        <form class="ui form" id="modalForm" *ngIf="activeForm === 'Registry'">
+            <div class="field">
+                <sm-select placeholder="Registry"
+                           class="fluid search"
+                           [(model)]="modalData.name">
+                    <option *ngFor="let registry of registries" value="{{registry.name}}">
+                        {{registry.name}}
+                    </option>
+                </sm-select>
+            </div>
+            <div class="field">
+                <label>Description</label>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="Description"
+                           [(ngModel)]="modalData.description"
+                           name="registry_description"
+                           autocomplete="off">
+                </div>
+            </div>
+            <div class="field">
+                <label>Link</label>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="http://www.example.com/event_name"
+                           [(ngModel)]="modalData.link"
+                           name="registry_link"
+                           autocomplete="off">
+                </div>
+            </div>
         </form>
         <form class="ui form" id="modalForm" *ngIf="activeForm === 'Announcement'">
             <div class="field">
@@ -264,24 +344,23 @@
                           [(ngModel)]="modalData.announcement"></textarea>
             </div>
         </form>
+        <div class="ui message" *ngIf="modalMessage" [ngClass]="modalMessage.color">{{modalMessage.text}}</div>
     </modal-content>
     <modal-actions>
-        <div class="ui left floated negative button"
+        <div class="ui left floated negative icon button"
              *ngIf="modalMode === 'Edit'"
              (click)="deleteItem(itemModal)">
+            <i class="trash icon"></i>
             Delete {{activeForm}}
         </div>
-        <div class="ui checkbox" *ngIf="modalMode === 'Add'">
-            <input type="checkbox" name="public" [(ngModel)]="addingMultiple">
-            <label>Create Multiple</label>
-        </div>
-        <button class="ui button primary"
-             (click)="submitModal(itemModal)">
-            {{buttonText()}}
+        <button class="ui icon button primary"
+                (click)="submitModal(itemModal)">
+            <i class="icon" [ngClass]="buttonIcon()"></i>
+            {{actionButtonText()}} {{activeForm}}
         </button>
         <button class="ui button"
-             (click)="closeModal(itemModal)">
-            Cancel
+                (click)="closeModal(itemModal)">
+            {{closeButtonText()}}
         </button>
     </modal-actions>
 </sm-modal>

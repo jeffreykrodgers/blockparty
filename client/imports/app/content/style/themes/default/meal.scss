@@ -1,14 +1,27 @@
 @import "variables";
 @import "functions";
+@import "../../../../common/styles/animations";
+
 
 :host {
+  h2 {
+    margin: 0;
+  }
+
   .ui.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     .inline.fields {
       display: flex;
       justify-content: center;
-      margin: 20px 0 40px;
+      margin: 20px 0 20px;
 
       .field {
+        margin: 20px 0;
+        padding: 0 .5em;
+
         .meal {
           &> input{ /* HIDE RADIO */
             visibility: hidden; /* Makes input not-clickable */
@@ -38,16 +51,29 @@
 
             .meal-image {
               background-color: $gray;
-              height: 100px;
-              width: 150px;
+              height: 150px;
+              width: 200px;
               border-radius: 8px;
               display: flex;
               justify-content: center;
               align-items: center;
+              overflow: hidden;
 
+              img {
+                min-height: 100%;
+              }
             }
           }
         }
+      }
+    }
+
+    .half {
+      max-width: 50%;
+      margin-bottom: 40px;
+
+      input {
+
       }
     }
   }

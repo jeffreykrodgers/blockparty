@@ -1,5 +1,6 @@
 <div class="head">
-    <i class="big inverted photo icon"></i>
+    <i *ngIf="!venue.image" class="big inverted photo icon"></i>
+    <img *ngIf="venue.image && upload" src="{{upload.path}}">
 </div>
 <div class="details">
     <div class="name">
@@ -14,11 +15,11 @@
 <div class="foot">
     <div class="time">
         <label>Start</label>
-        <h1>{{start_time}}</h1>
+        <h1>{{venue.start_time}}</h1>
     </div>
     <div class="time">
         <label>End</label>
-        <h1>{{end_time}}</h1>
+        <h1>{{venue.end_time}}</h1>
     </div>
 </div>
 <!--<div class="actions">-->

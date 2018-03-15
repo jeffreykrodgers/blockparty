@@ -1,1 +1,17 @@
-<ng-content></ng-content>
+<div class="title">
+    <h3 *ngIf="widget">{{widget.title.text}}</h3>
+</div>
+<div class="chart" *ngIf="widget">
+    <div class="left">
+        <div *ngFor="let point of widget.series" class="metric">
+            <div class="metric-color" [style.background]="point.data[0].color"></div>
+            <span [style.color]="point.data[0].color">{{point.name}}</span>
+        </div>
+    </div>
+    <div class="right">
+        <div class="chart-container">
+            <chart [options]="widget"></chart>
+        </div>
+    </div>
+</div>
+<!--<ng-content></ng-content>-->

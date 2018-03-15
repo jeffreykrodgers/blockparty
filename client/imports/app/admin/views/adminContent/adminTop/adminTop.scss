@@ -37,6 +37,11 @@ h4 {
   .right {
     justify-content: flex-end;
 
+    h3 {
+      padding: 0 10px;
+      margin: 0;
+    }
+
     .picture {
       background: $gradient-d;
       margin: 10px;
@@ -66,27 +71,23 @@ h4 {
       }
     }
 
-    //.countdown {
-    //  display: flex;
-    //  flex-direction: row;
-    //  align-items: baseline;
-    //
-    //  h3 {
-    //    font-size: 28px;
-    //    font-family: 'Montserrat', Arial, sans-serif;
-    //    font-weight: 200;
-    //    text-shadow: $shadow-text;
-    //    margin: 0;
-    //  }
-    //
-    //  h4 {
-    //    margin: 0;
-    //    margin-right: 8px;
-    //    font-family: 'Montserrat', Arial, sans-serif;
-    //    text-shadow: $shadow-text;
-    //    color: $blue;
-    //  }
-    //}
+
 
   }
+}
+
+@media screen and (max-width: $phone-max) {
+:host {
+  .left {
+    flex: 2;
+  }
+
+  .right {
+    flex: 1;
+
+    h3 {
+      display: none;
+    }
+  }
+}
 }
