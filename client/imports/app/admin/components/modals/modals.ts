@@ -131,8 +131,12 @@ export class ModalsView implements OnInit {
         }
     };
 
-    buttonText(): string {
+    actionButtonText(): string {
         return this.modalMode === 'Edit' ? 'Save' : this.modalMode;
+    };
+
+    closeButtonText(): string {
+        return this.modalMode === 'Edit' ? 'Cancel' : 'Done';
     };
 
     checkForGen(e) {

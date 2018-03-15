@@ -92,6 +92,7 @@
 
           &.disabled {
             color: translucent15($blue);
+            text-shadow: none;
             :hover {
               color: translucent15($blue);
             }

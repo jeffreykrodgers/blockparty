@@ -12,4 +12,11 @@ export class FilterPipe implements PipeTransform {
         }
         return array.filter(item => filterFrom.some(f => f.value === item[f.slug]));
     }
+
+    transformMeal(array: any[], filterFrom: any[]): any {
+        if (array.length === 0 || filterFrom.length === 0) {
+            return array;
+        }
+        return array.filter(item => filterFrom.some(f => f.kids === item.kids))
+    }
 }

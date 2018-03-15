@@ -8,7 +8,8 @@
                 <input placeholder="Invitation Number..."
                        type="text"
                        [(ngModel)]="invitationNumber"
-                       name="invitationNumber">
+                       name="invitationNumber"
+                       (keyup.enter)="findGuests()">
                 <button class="ui icon basic button"
                         (click)="findGuests()">
                     <i class="large search icon"></i>

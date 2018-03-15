@@ -59,8 +59,8 @@ import {AuthView} from "./admin/views/auth/auth.view";
 import {UserService} from "./common/services/user.service";
 import {RegistriesView} from "./admin/views/registries/registries.view";
 import {admin_RegistryComponent} from "./admin/components/registry/registry.component";
-import {OrderByPipe} from "./admin/pipes/sort.pipe";
-import {FilterPipe} from "./admin/pipes/filter.pipe";
+import {OrderByPipe} from "./common/pipes/sort.pipe";
+import {FilterPipe} from "./common/pipes/filter.pipe";
 import {FilterService} from "./admin/services/filter.service";
 
 @NgModule({
@@ -130,6 +130,7 @@ import {FilterService} from "./admin/services/filter.service";
         ChartService,
         UserService,
         FilterService,
+        FilterPipe
     ],
     // Modules
     imports: [

@@ -64,6 +64,12 @@
                     </option>
                 </sm-select>
             </div>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input name="child" type="checkbox"[(ngModel)]="modalData.child">
+                    <label>Child</label>
+                </div>
+            </div>
             <div class="field" *ngIf="modalMode === 'Edit'">
                 <div class="ui toggle checkbox">
                     <input name="public" type="checkbox" [(ngModel)]="modalData.completed">
@@ -281,6 +287,12 @@
                            autocomplete="off">
                 </div>
             </div>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input name="child" type="checkbox"[(ngModel)]="modalData.kids">
+                    <label>Kids</label>
+                </div>
+            </div>
         </form>
         <form class="ui form" id="modalForm" *ngIf="activeForm === 'Registry'">
             <div class="field">
@@ -344,11 +356,11 @@
         <button class="ui icon button primary"
                 (click)="submitModal(itemModal)">
             <i class="icon" [ngClass]="buttonIcon()"></i>
-            {{buttonText()}} {{activeForm}}
+            {{actionButtonText()}} {{activeForm}}
         </button>
-        <button class="ui primary button"
+        <button class="ui button"
                 (click)="closeModal(itemModal)">
-            Done
+            {{closeButtonText()}}
         </button>
     </modal-actions>
 </sm-modal>
