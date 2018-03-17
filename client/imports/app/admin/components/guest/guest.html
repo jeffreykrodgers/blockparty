@@ -9,9 +9,12 @@
     </div>
     <div class="tags">
         <span class="ui horizontal basic label"
-              [ngClass]="{'purple': guest.relation === 'Family', 'blue': guest.relation === 'Friend'}">{{guest.relation}}</span>
+              [ngClass]="{'purple': guest.relation === 'Family',
+                          'teal': guest.relation === 'Friend'}">{{guest.relation}}</span>
         <span class="ui horizontal basic label"
-              [ngClass]="{'pink': guest.party === 'Bride', 'blue': guest.party === 'Groom'}">{{guest.party}}</span>
+              [ngClass]="{'pink': guest.party === 'Bride',
+                          'blue': guest.party === 'Groom',
+                          'purple': guest.party === 'Couple'}">{{guest.party}}</span>
         <span class="ui horizontal basic blue label" *ngIf="guest.child">Child</span>
     </div>
     <div class="details">

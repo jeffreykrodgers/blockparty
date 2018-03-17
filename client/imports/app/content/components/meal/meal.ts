@@ -28,6 +28,7 @@ export class MealComponent implements OnInit {
     activeGuest: any;
     links: object[];
     uploads: any;
+    dietary: boolean;
 
     constructor(private _weddingService: WeddingService,
                 private _rsvpService: RsvpService,
@@ -35,6 +36,7 @@ export class MealComponent implements OnInit {
                 private _filterPipe: FilterPipe,
                 private element: ElementRef) {
         this.weddingData = this._weddingService.getWedding({}).zone();
+        this.dietary = false;
     }
 
     ngOnInit() {
@@ -64,6 +66,14 @@ export class MealComponent implements OnInit {
         console.log(this.activeGuest);
     }
 
+    resetDietary() {
+        Meteor.setTimeout(() => {
+            if (this.activeGuest.meal) {
+                this.dietary = false;
+            }
+        }, 800);
+    }
+
     setMeal() {
         const guest_count = this.guests.length;
         const guest_index = this.guests.indexOf(this.activeGuest);
@@ -87,6 +97,12 @@ export class MealComponent implements OnInit {
     mealImage(meal) {
         let upload = this.uploads.filter((upload) => upload._id === meal.image);
         return upload[0].path;
+    }
+
+    toggleDietary() {
+        console.log("Dietary", this.dietary);
+        this.activeGuest.meal = "";
+        this.dietary = !this.dietary;
     }
 
     subscribeWedding() {

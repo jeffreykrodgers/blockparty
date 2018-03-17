@@ -17,9 +17,64 @@
 
 <sm-modal title="{{modalMode}} {{activeForm}}" class="modal" id="itemModal" #itemModal>
     <modal-content>
-        <form class="ui form" id="modalForm" *ngIf="activeForm === 'Guest'">
+        <form class="ui form" id="modalForm" *ngIf="activeForm === 'Meal'">
             <div class="field">
                 <label>Name</label>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="Name"
+                           [(ngModel)]="modalData.name"
+                           name="meal_name"
+                           autocomplete="off">
+                </div>
+            </div>
+            <div class="field">
+                <label>Picture</label>
+                <div class="ui input left">
+                    <input type="file" (change)="uploadImage($event)" placeholder="Upload File..." accept=".jpg, .png">
+                </div>
+            </div>
+            <div class="field">
+                <label>Price</label>
+                <div class="ui input left">
+                    <input type="number"
+                           placeholder="Name"
+                           [(ngModel)]="modalData.price"
+                           name="meal_price"
+                           autocomplete="off">
+                </div>
+            </div>
+            <div class="inline fields">
+                <div class="field"
+                     *ngFor="let color of colors">
+                    <div class="ui radio checkbox" [ngClass]="color">
+                        <input name="color"
+                               type="radio"
+                               [value]="color"
+                               [(ngModel)]="modalData.color">
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Notes</label>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="Notes"
+                           [(ngModel)]="modalData.notes"
+                           name="meal_notes"
+                           autocomplete="off">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input name="child" type="checkbox"[(ngModel)]="modalData.kids">
+                    <label>Kids</label>
+                </div>
+            </div>
+        </form>
+        <form class="ui form" id="modalForm" *ngIf="activeForm === 'Guest'">
+            <div class="field">
+                <label>Guest Name</label>
                 <div class="ui input left">
                     <input type="text"
                            placeholder="Name"
@@ -28,28 +83,28 @@
                            autocomplete="off">
                 </div>
             </div>
+
             <div class="two fields">
-                <div class="field">
+                <div class="field" *ngIf="modalMode">
                     <sm-select placeholder="Relation..."
                                class="fluid search"
+                               (onChange)="printChange($event)"
                                [(model)]="modalData.relation">
-                        <option value="Friend">Friend</option>
-                        <option value="Family">Family</option>
+                        <option *ngFor="let value of relations" value="{{value}}">{{value}}</option>
                     </sm-select>
                 </div>
                 <h5>of the</h5>
-                <div class="field">
+                <div class="field" *ngIf="modalMode">
                     <sm-select placeholder="Party..."
                                class="fluid search"
+                               (onChange)="printChange($event)"
                                [(model)]="modalData.party">
-                        <option value="Bride">Bride</option>
-                        <option value="Groom">Groom</option>
-                        <option value="Couple">Couple</option>
+                        <option *ngFor="let value of parties" value="{{value}}">{{value}}</option>
                     </sm-select>
                 </div>
             </div>
 
-            <div class="field">
+            <div class="field" *ngIf="modalMode">
                 <label>Invitation Number</label>
                 <sm-select placeholder="Invitation..."
                            class="fluid search"
@@ -64,6 +119,19 @@
                     </option>
                 </sm-select>
             </div>
+
+            <div class="field" *ngIf="modalMode === 'Edit' && modalData.completed === true">
+                <label>Meal</label>
+                <sm-select placeholder="Meal"
+                           class="fluid search"
+                           (change)="printChange($event)"
+                           [(model)]="modalData.meal">
+                    <option *ngFor="let meal of meals" value="{{meal.name}}">
+                        {{meal.name}}
+                    </option>
+                </sm-select>
+            </div>
+
             <div class="field">
                 <div class="ui toggle checkbox">
                     <input name="child" type="checkbox"[(ngModel)]="modalData.child">
@@ -82,15 +150,7 @@
                     <label>Attending?</label>
                 </div>
             </div>
-            <div class="field" *ngIf="modalMode === 'Edit' && modalData.completed === true">
-                <sm-select placeholder="Meal"
-                           class="fluid search"
-                           [(model)]="modalData.meal">
-                    <option *ngFor="let meal of meals" value="{{meal.name}}">
-                        {{meal.name}}
-                    </option>
-                </sm-select>
-            </div>
+
         </form>
         <form class="ui form" id="modalForm" *ngIf="activeForm === 'Table'">
             <div class="field">
@@ -236,61 +296,6 @@
                                    autocomplete="off">
                         </div>
                     </div>
-                </div>
-            </div>
-        </form>
-        <form class="ui form" id="modalForm" *ngIf="activeForm === 'Meal'">
-            <div class="field">
-                <label>Name</label>
-                <div class="ui input left">
-                    <input type="text"
-                           placeholder="Name"
-                           [(ngModel)]="modalData.name"
-                           name="meal_name"
-                           autocomplete="off">
-                </div>
-            </div>
-            <div class="field">
-                <label>Picture</label>
-                <div class="ui input left">
-                    <input type="file" (change)="uploadImage($event)" placeholder="Upload File..." accept=".jpg, .png">
-                </div>
-            </div>
-            <div class="field">
-                <label>Price</label>
-                <div class="ui input left">
-                    <input type="number"
-                           placeholder="Name"
-                           [(ngModel)]="modalData.price"
-                           name="meal_price"
-                           autocomplete="off">
-                </div>
-            </div>
-            <div class="inline fields">
-                <div class="field"
-                     *ngFor="let color of colors">
-                    <div class="ui radio checkbox" [ngClass]="color">
-                        <input name="color"
-                               type="radio"
-                               [value]="color"
-                               [(ngModel)]="modalData.color">
-                    </div>
-                </div>
-            </div>
-            <div class="field">
-                <label>Notes</label>
-                <div class="ui input left">
-                    <input type="text"
-                           placeholder="Notes"
-                           [(ngModel)]="modalData.notes"
-                           name="meal_notes"
-                           autocomplete="off">
-                </div>
-            </div>
-            <div class="field">
-                <div class="ui toggle checkbox">
-                    <input name="child" type="checkbox"[(ngModel)]="modalData.kids">
-                    <label>Kids</label>
                 </div>
             </div>
         </form>

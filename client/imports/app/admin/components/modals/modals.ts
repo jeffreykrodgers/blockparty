@@ -39,6 +39,8 @@ export class ModalsView implements OnInit {
     registries: any;
     colors: string[];
     buttons: any[];
+    parties: string[];
+    relations: string[];
 
     constructor(private _weddingService: WeddingService,
                 private _modalService: ModalService,
@@ -52,10 +54,10 @@ export class ModalsView implements OnInit {
         this.modalMessage = false;
         this.activeForm = 'Guest';
         this.modalData.address = {};
-        this.registries = [{
-            name: 'Zola',
-        }];
+        this.registries = [{name: 'Zola'}];
         this.colors = ['teal', 'pink', 'purple', 'blue'];
+        this.parties = ['Bride', 'Groom', 'Couple'];
+        this.relations = ['Family', 'Friend'];
     }
 
     ngOnInit() {
@@ -222,7 +224,12 @@ export class ModalsView implements OnInit {
         if (list.length > 0) return ` - ${list}`;
     }
 
+    printChange(e) {
+        console.log("Event:", e);
+    }
+
     showModal(modal) {
+        console.log(this.modalData);
         $('.activitiesToggle').popup('hide');
         modal.show({
             inverted: true,
@@ -249,6 +256,7 @@ export class ModalsView implements OnInit {
     }
 
     submitModal(modal) {
+        console.log("ModalData:", this.modalData);
         let methodName = this.modalMode === "Edit" ? "updateItem" : "addItem";
         let slug = this._utils.invertSlug(this.activeForm, true);
         let url = `/admin/${slug}`;

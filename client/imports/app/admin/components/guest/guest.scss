@@ -84,9 +84,11 @@
     }
 
     .name, .tags {
+      flex: 1;
       display: flex;
       margin-right: 20px;
       flex-wrap: wrap;
+      justify-content: flex-start;
 
       h4 {
         max-width: 250px;
@@ -121,6 +123,10 @@
         border: 2px solid $blue !important;
         color: $blue !important;
       }
+    }
+
+    .tags {
+      flex: 2;
     }
 
     .details {

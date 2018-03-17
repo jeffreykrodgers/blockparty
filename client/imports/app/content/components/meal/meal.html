@@ -4,7 +4,7 @@
     <div class="inline fields" *ngIf="rsvpData" >
         <div class="field" *ngFor="let meal of meals">
             <label class="meal">
-                <input type="radio" [(ngModel)]="activeGuest.meal" value="{{meal.name}}" />
+                <input type="radio" [(ngModel)]="activeGuest.meal" value="{{meal.name}}"/>
                 <div class="meal-data">
                     <span>{{meal.name}}</span>
                     <div class="meal-image">
@@ -14,13 +14,22 @@
                 </div>
             </label>
         </div>
-    </div>
-
-    <div class="half field">
-        <input placeholder="Dietary Restrictions?"
-               type="text"
-               [(ngModel)]="activeGuest.dietary"
-               name="dietary">
+        <div class="field">
+            <label class="meal">
+                <div class="meal-data">
+                    <span class="translucent50">Other</span>
+                    <div class="meal-image image-placeholder">
+                        <h3 class="clickable" (click)="toggleDietary()" *ngIf="!dietary">Dietary Restriction?</h3 >
+                        <input placeholder="Dietary Restrictions?"
+                               type="text"
+                               *ngIf="dietary"
+                               (blur)="resetDietary()"
+                               [(ngModel)]="activeGuest.dietary"
+                               name="dietary">
+                    </div>
+                </div>
+            </label>
+        </div>
     </div>
 
     <button class="ui big basic inverted pill button" (click)="setMeal()">Continue</button>

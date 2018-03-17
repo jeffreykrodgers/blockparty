@@ -2,7 +2,7 @@
     <div class="title">
         <h2>{{slug}}</h2>
     </div>
-    <div class="actions">
+    <div class="actions" *ngIf="slug === 'Guest'">
         <div class="filters">
             <div class="ui blue dropdown label" *ngFor="let filter of filters">
                 <i class="caret down icon"></i>
@@ -41,14 +41,6 @@
                 </div>
             </div>
         </div>
-        <div class="action">
-            <div class="ui blue icon circular button">
-                <i class="add icon" (click)="_modalService.openModal(slug)"></i>
-            </div>
-        </div>
-
-        <!--<i class="filter icon"></i>-->
-
     </div>
 </div>
 <ng-content></ng-content>
