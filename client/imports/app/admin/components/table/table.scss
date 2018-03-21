@@ -5,53 +5,90 @@
 
 :host {
   margin: 10px;
-  min-width: 140px;
-  max-width: 140px;
-  min-height: 140px;
-  max-height: 140px;
-  border-radius: 70px;
   cursor: pointer;
   background-color: $white;
+  border-radius: 4px;
   box-shadow: $shadow-subtle;
   transition: .2s all;
   display: flex;
+  flex: 1;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 12px;
+  min-width: 280px;
 
-  border: 10px solid $gray;
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+
+    &>div {
+      flex: 2;
+      display: flex;
+      align-items: center;
+
+      h2 {
+        margin: 0 8px 0 0;
+      }
+    }
+
+    .right {
+      flex: 1;
+      justify-content: flex-end;
+    }
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      margin-bottom: 4px;
+
+      &>span {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        padding: 4px;
+        border-radius: 4px;
+        background-color: $frost;
+      }
+
+      .guest {
+        background-color: $lightGray;
+
+        h5 {
+          margin: 0 8px;
+        }
+
+        .ui.label {
+          border-width: 2px;
+
+          &.basic {
+            background-color: $lightGray !important;
+          }
+
+          &.green {
+            background-color: $green !important;
+            border-color: $green !important;
+          }
+
+          &.red {
+            background-color: $red !important;
+            border-color: $red !important;
+          }
+        }
+
+        .last {
+          margin-left: auto;
+        }
+      }
+    }
+  }
 
   &.clickable {
     &:hover {
       box-shadow: $shadow-extra-long-down;
     }
-  }
-
-  h1, h2, h5 {
-    margin: 0;
-  }
-
-  h1, h2 {
-    font-size: 20px;
-    font-weight: 400;
-    font-family: 'Montserrat', Arial, sans-serif;
-    margin-top: 0px;
-  }
-
-  h2 {
-    font-size: 18px;
-    margin-top: 20px;
-  }
-
-  h5 {
-    color: $blue;
-    font-weight: 300;
-  }
-
-  p {
-    margin: 10px 0 0;
-    font-size: 10px;
-    font-style: italic;
   }
 
   .actions {

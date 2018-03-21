@@ -62,6 +62,7 @@ import {admin_RegistryComponent} from "./admin/components/registry/registry.comp
 import {OrderByPipe} from "./common/pipes/sort.pipe";
 import {FilterPipe} from "./common/pipes/filter.pipe";
 import {FilterService} from "./admin/services/filter.service";
+import {RangePipe} from "./admin/pipes/range.pipe";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -114,7 +115,8 @@ import {FilterService} from "./admin/services/filter.service";
 
         //Pipes
         OrderByPipe,
-        FilterPipe
+        FilterPipe,
+        RangePipe
     ],
     // Entry Components
     entryComponents: [

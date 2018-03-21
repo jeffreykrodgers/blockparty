@@ -1,12 +1,36 @@
-<!--<chart class="highchart" [options]="options"></chart>-->
-<h2>Table {{index}}</h2>
-<h5>{{tableCount}} Guests</h5>
-<p>{{table.notes}}</p>
+<div class="header">
+    <div class="left">
+        <h2>{{index}}</h2>
+        <p>{{table.notes}}</p>
+    </div>
+    <div class="right">
+        <!--<i class="trash icon"></i>-->
+    </div>
+</div>
+<div class="list">
+    <div *ngFor="let slot of [] | range:table.seats; let i=index">
+        <span *ngIf="guests[i]" class="guest">
+            <span class="ui empty circular label"
+                  [ngClass]="getColor(guests[i], 'attending')"
+                  [attr.data-content]="guests[i].attending"></span>
 
-<!--<div class="actions">-->
-    <!--<i class="material-icons activitiesToggle" data-position="bottom center">more_horiz</i>-->
-    <!--<div class="ui invisible popup">-->
-        <!--<sm-button class="round teal" (click)="_modalService.openModal('Table', table, 'Edit')" icon="edit"></sm-button>-->
-        <!--<sm-button class="round red" (click)="_weddingService.deleteItem('Table', table)" icon="remove"></sm-button>-->
-    <!--</div>-->
-<!--</div>-->
+            <h5>{{guests[i].name}}</h5>
+            <span class="ui basic empty teal circular label"
+                  [ngClass]="getColor(guests[i], 'relation')"
+                  [attr.data-content]="guests[i].relation"></span>
+
+            <span class="ui basic empty teal circular label"
+                  [ngClass]="getColor(guests[i], 'party')"
+                  [attr.data-content]="guests[i].party"></span>
+
+            <span class="ui empty circular label last"
+                  [ngClass]="getColor(guests[i], 'meal')"
+                  [attr.data-content]="guests[i].meal"></span>
+        </span>
+        <span *ngIf="!guests[i]">Empty</span>
+    </div>
+</div>
+
+
+
+

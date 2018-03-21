@@ -22,6 +22,7 @@ export class TablesView implements OnInit {
 
     guests: object[];
     tables: object[];
+    meals: object[];
 
     constructor(private _weddingService: WeddingService,
                 private _modalService: ModalService) {
@@ -32,6 +33,7 @@ export class TablesView implements OnInit {
         this.weddingData.subscribe(wedding => {
             this.guests = wedding[0].guests;
             this.tables = wedding[0].tables;
+            this.meals = wedding[0].meals;
         });
     }
 }

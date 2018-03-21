@@ -3,6 +3,8 @@
         <table-card class="clickable animated zoomIn"
                     *ngFor="let table of tables; let i=index"
                     [ngStyle]="{'animation-delay': '.'+ i +'s'}"
+                    [guests]="guests"
+                    [meals]="meals"
                     [table]="table"
                     [index]="i + 1"
                     (click)="_modalService.openModal('Table', table, 'Edit')">
