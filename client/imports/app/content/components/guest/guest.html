@@ -4,12 +4,27 @@
     <div class="inline fields" *ngIf="rsvpData">
         <div class="field animated fadeIn" *ngFor="let guest of rsvpData.guests">
             <label class="guest">
-                <input type="checkbox" [(ngModel)]="guest.attending" />
+                <input type="checkbox" [(ngModel)]="guest.attending"/>
                 <div class="guest-data">
                     <i class="massive user icon"></i>
-                    <span>{{guest.name}}</span>
+                    <h4 *ngIf="!editing || (editing && beingEdited !== guest._id)">{{guest.name}}</h4>
+                </div>
+                <div class="ui input" *ngIf="editing && beingEdited === guest._id">
+                    <input placeholder="Name"
+                           type="text"
+                           [(ngModel)]="guest.name"
+                           name="name"
+                           (keyup.enter)="saveGuest()">
+                    <button class="ui icon basic button"
+                            (click)="saveGuest()">
+                        <i class="large check icon"></i>
+                    </button>
                 </div>
             </label>
+            <button class="ui basic inverted icon button" (click)="editName(guest)">
+                <i class="pencil icon" *ngIf="!editing"></i>
+                <span>Edit Name</span>
+            </button>
         </div>
     </div>
 
