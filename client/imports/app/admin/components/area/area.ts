@@ -30,7 +30,9 @@ export class admin_AreaComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        Meteor.setTimeout(() => {
+            $('.ui.dropdown').dropdown();
+        }, 500);
     }
 
     setSort(sort) {
@@ -60,6 +62,4 @@ export class admin_AreaComponent implements OnInit {
         this.filters.splice(this.filters.indexOf(filter), 1);
         this.filter.emit(this.filters);
     }
-
-
 }

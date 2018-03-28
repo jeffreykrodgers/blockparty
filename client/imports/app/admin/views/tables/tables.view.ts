@@ -22,6 +22,8 @@ export class TablesView implements OnInit {
 
     guests: object[];
     tables: object[];
+    meals: object[];
+    weddingId: string;
 
     constructor(private _weddingService: WeddingService,
                 private _modalService: ModalService) {
@@ -30,8 +32,19 @@ export class TablesView implements OnInit {
 
     ngOnInit() {
         this.weddingData.subscribe(wedding => {
+            this.weddingId = wedding[0]._id;
             this.guests = wedding[0].guests;
             this.tables = wedding[0].tables;
+            this.meals = wedding[0].meals;
         });
+    }
+
+    getTableGuests(table) {
+        let guests = this.guests.filter((guest:any) => table.guests.indexOf(guest._id) > -1);
+        return guests;
+    }
+
+    updateSeats() {
+        Meteor.call('updateItem', this.weddingId, 'Table', this.tables);
     }
 }

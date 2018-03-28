@@ -5,21 +5,141 @@
 
 :host {
   margin: 10px;
-  min-width: 140px;
-  max-width: 140px;
-  min-height: 140px;
-  max-height: 140px;
-  border-radius: 70px;
-  cursor: pointer;
+  //cursor: pointer;
   background-color: $white;
+  border-radius: 4px;
   box-shadow: $shadow-subtle;
   transition: .2s all;
   display: flex;
+  flex: 1;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 12px;
+  min-width: 280px;
 
-  border: 10px solid $gray;
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+
+    & > div {
+      flex: 2;
+      display: flex;
+      align-items: center;
+
+      h2 {
+        margin: 0 8px 0 0;
+      }
+    }
+
+    .right {
+      flex: 1;
+      justify-content: flex-end;
+      height: 100%;
+
+      i {
+        height: 18px;
+        margin-left: 8px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      margin-bottom: 4px;
+
+      & > span {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        padding: 4px;
+        border-radius: 4px;
+        background-color: $frost;
+        height: 32px;
+      }
+
+      .gu-mirror {
+        cursor: grabbing;
+        cursor: -moz-grabbing;
+        cursor: -webkit-grabbing;
+      }
+
+      .guest {
+        background-color: $lightGray;
+
+        & > i {
+          height: 20px;
+          font-size: 18px;
+          cursor: move;
+          cursor: grab;
+          cursor: -moz-grab;
+          cursor: -webkit-grab;
+          margin: 0 4px;
+          //cursor: grab;
+        }
+
+        h5 {
+          margin: 0 8px;
+        }
+
+        .ui.label {
+          border-width: 2px;
+
+          &.green {
+            background-color: $green !important;
+            border-color: $green !important;
+          }
+
+          &.red {
+            background-color: $red !important;
+            border-color: $red !important;
+          }
+
+          &.blue {
+            background-color: $blue !important;
+            border-color: $blue !important;
+          }
+
+          &.purple {
+            background-color: $purple !important;
+            border-color: $purple !important;
+          }
+
+          &.teal {
+            background-color: $teal !important;
+            border-color: $teal !important;
+          }
+
+          &.pink {
+            background-color: $pink !important;
+            border-color: $pink !important;
+          }
+
+          &.gray {
+            background-color: $gray !important;
+            border-color: $gray !important;
+
+          }
+
+          &.basic {
+            background-color: $lightGray !important;
+          }
+
+        }
+
+        .relation {
+          margin-left: auto;
+        }
+
+        .meal {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
 
   &.clickable {
     &:hover {
@@ -27,41 +147,24 @@
     }
   }
 
-  h1, h2, h5 {
-    margin: 0;
-  }
-
-  h1, h2 {
-    font-size: 20px;
-    font-weight: 400;
-    font-family: 'Montserrat', Arial, sans-serif;
-    margin-top: 0px;
-  }
-
-  h2 {
-    font-size: 18px;
-    margin-top: 20px;
-  }
-
-  h5 {
-    color: $blue;
-    font-weight: 300;
-  }
-
-  p {
-    margin: 10px 0 0;
-    font-size: 10px;
-    font-style: italic;
-  }
-
   .actions {
     margin-top: auto;
   }
 }
 
-::ng-deep {
-    .highchart, .highcharts-container {
-      height: 100%;
-      width: 100%;
+@media screen and (max-width: $phone-max) {
+  :host {
+    .list {
+      div > span {
+        min-height: 40px;
+      }
     }
+  }
+}
+
+::ng-deep {
+  .highchart, .highcharts-container {
+    height: 100%;
+    width: 100%;
+  }
 }

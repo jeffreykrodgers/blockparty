@@ -3,6 +3,7 @@
 @import "../../../styles/defaults";
 @import "../../../styles/functions";
 
+
 :host {
   width: 200px;
   padding: 20px;
@@ -102,7 +103,7 @@
             margin-right: 15px;
           }
 
-          h5 {
+          h4 {
             margin: 0;
             font-weight: 400;
             font-family: 'Montserrat', Arial, sans-serif;
@@ -121,18 +122,25 @@
     height: 100%;
     width: 100%;
     display: none;
+    overflow: scroll;
 
     &.opened {
       display: block;
     }
 
     .body {
+      padding-bottom: 80px;
       .navigation {
         .item {
+          margin: 12px;
           a.link {
+            h4 {
+              font-size: 20px;
+              margin-left: 16px;
+            }
             &.active {
               &::after {
-                right: -1px;
+                right: 0;
                 left: auto;
               }
             }

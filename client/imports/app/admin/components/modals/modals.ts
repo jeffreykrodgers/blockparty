@@ -229,7 +229,7 @@ export class ModalsView implements OnInit {
     }
 
     showModal(modal) {
-        console.log(this.modalData);
+        // console.log(this.modalData);
         $('.activitiesToggle').popup('hide');
         modal.show({
             inverted: true,
