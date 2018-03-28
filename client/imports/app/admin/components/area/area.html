@@ -1,6 +1,7 @@
 <div class="nav">
     <div class="title">
         <h2>{{slug}}</h2>
+        <span class="ui circular blue label" *ngIf="items.length > 0">{{items.length}}</span>
     </div>
     <div class="actions" *ngIf="slug === 'Guest'">
         <div class="filters">

@@ -1,4 +1,4 @@
-<dashboard-area [slug]="'Table'" class="tables" >
+<dashboard-area [slug]="'Table'" [items]="tables" class="tables" >
     <div class="list">
         <table-card class="clickable"
                     *ngFor="let table of tables; let i=index"
