@@ -3,7 +3,7 @@ import template from "./table.html";
 import style from "./table.scss";
 import {WeddingService} from "../../../common/services/wedding.service";
 import {Observable} from "rxjs/Observable";
-import {DragulaService, Dragula} from "ng2-dragula";
+import {DragulaService} from "ng2-dragula";
 import {ModalService} from "../../services/modals.service";
 
 declare let $: any;
