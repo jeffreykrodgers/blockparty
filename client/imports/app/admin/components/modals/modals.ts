@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import template from "./modals.html";
 import style from "./modals.scss";
 import {WeddingService} from "../../../common/services/wedding.service";
@@ -20,7 +20,7 @@ declare let $: any;
     styles: [style],
 })
 
-export class ModalsView implements OnInit {
+export class ModalsView implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild('itemModal') itemModal: any;
 
     weddingData: Observable<WeddingDB[]>;

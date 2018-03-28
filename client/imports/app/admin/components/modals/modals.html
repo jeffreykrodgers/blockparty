@@ -132,6 +132,17 @@
                 </sm-select>
             </div>
 
+            <div class="field" *ngIf="modalMode === 'Edit' && modalData.completed === true">
+                <label>Dietary Restrictions</label>
+                <div class="ui input left">
+                    <input type="text"
+                           placeholder="Dietary Restrictions"
+                           [(ngModel)]="modalData.dietary"
+                           name="dietary"
+                           autocomplete="off">
+                </div>
+            </div>
+
             <div class="field">
                 <div class="ui toggle checkbox">
                     <input name="child" type="checkbox"[(ngModel)]="modalData.child">
