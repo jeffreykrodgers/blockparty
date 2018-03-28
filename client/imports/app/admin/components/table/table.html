@@ -4,30 +4,39 @@
         <p>{{table.notes}}</p>
     </div>
     <div class="right">
-        <!--<i class="trash icon"></i>-->
+        <!--<button class="ui icon primary button" (click)="_modalService.openModal('Table', table, 'Edit')">-->
+            <i class="settings icon" (click)="_modalService.openModal('Table', table, 'Edit')"></i>
+        <!--</button>-->
+        <!--<button class="ui icon red button"><i class="trash icon"></i></button>-->
     </div>
 </div>
-<div class="list">
-    <div *ngFor="let slot of [] | range:table.seats; let i=index">
-        <span *ngIf="guests[i]" class="guest">
+<div class="list container"
+     [dragula]="'table'"
+     [dragulaModel]="table.guests"
+     [dragulaOptions]="dragulaOptions">
+    <div class="seat" *ngFor="let guest of table.guests; let i=index">
+        <span class="guest">
+            <i class="bars icon"></i>
             <span class="ui empty circular label"
-                  [ngClass]="getColor(guests[i], 'attending')"
-                  [attr.data-content]="guests[i].attending"></span>
+                  [ngClass]="getColor(guest, 'attending')"
+                  [attr.data-content]="attend(guest)"></span>
 
-            <h5>{{guests[i].name}}</h5>
-            <span class="ui basic empty teal circular label"
-                  [ngClass]="getColor(guests[i], 'relation')"
-                  [attr.data-content]="guests[i].relation"></span>
+            <h5 class="ellipsis">{{guestData(guest, 'name')}}</h5>
+            <span class="ui basic empty circular label relation"
+                  [ngClass]="getColor(guest, 'relation')"
+                  [attr.data-content]="guestData(guest, 'relation')"></span>
 
-            <span class="ui basic empty teal circular label"
-                  [ngClass]="getColor(guests[i], 'party')"
-                  [attr.data-content]="guests[i].party"></span>
+            <span class="ui basic empty circular label party"
+                  [ngClass]="getColor(guest, 'party')"
+                  [attr.data-content]="guestData(guest, 'party')"></span>
 
-            <span class="ui empty circular label last"
-                  [ngClass]="getColor(guests[i], 'meal')"
-                  [attr.data-content]="guests[i].meal"></span>
+            <span class="ui empty circular label last meal"
+                  [ngClass]="getColor(guest, 'meal')"
+                  [attr.data-content]="guestData(guest, 'meal') || 'None'"></span>
         </span>
-        <span *ngIf="!guests[i]">Empty</span>
+    </div>
+    <div *ngFor="let slot of [] | range:table.seats - table.guests.length; let i=index">
+        <span></span>
     </div>
 </div>
 

@@ -63,6 +63,7 @@ import {OrderByPipe} from "./common/pipes/sort.pipe";
 import {FilterPipe} from "./common/pipes/filter.pipe";
 import {FilterService} from "./admin/services/filter.service";
 import {RangePipe} from "./admin/pipes/range.pipe";
+import {DragulaModule} from "ng2-dragula";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -143,6 +144,7 @@ import {RangePipe} from "./admin/pipes/range.pipe";
         RouterModule.forRoot(routes),
         NgSemanticModule,
         MainPipe,
+        DragulaModule,
         ChartModule.forRoot(
             require('highcharts'),
             require('highcharts/highcharts-more'),

@@ -5,7 +5,7 @@
 
 :host {
   margin: 10px;
-  cursor: pointer;
+  //cursor: pointer;
   background-color: $white;
   border-radius: 4px;
   box-shadow: $shadow-subtle;
@@ -21,7 +21,7 @@
     align-items: center;
     margin-bottom: 8px;
 
-    &>div {
+    & > div {
       flex: 2;
       display: flex;
       align-items: center;
@@ -34,6 +34,13 @@
     .right {
       flex: 1;
       justify-content: flex-end;
+      height: 100%;
+
+      i {
+        height: 18px;
+        margin-left: 8px;
+        cursor: pointer;
+      }
     }
   }
 
@@ -44,17 +51,35 @@
     div {
       margin-bottom: 4px;
 
-      &>span {
+      & > span {
         display: flex;
         width: 100%;
         align-items: center;
         padding: 4px;
         border-radius: 4px;
         background-color: $frost;
+        height: 32px;
+      }
+
+      .gu-mirror {
+        cursor: grabbing;
+        cursor: -moz-grabbing;
+        cursor: -webkit-grabbing;
       }
 
       .guest {
         background-color: $lightGray;
+
+        & > i {
+          height: 20px;
+          font-size: 18px;
+          cursor: move;
+          cursor: grab;
+          cursor: -moz-grab;
+          cursor: -webkit-grab;
+          margin: 0 4px;
+          //cursor: grab;
+        }
 
         h5 {
           margin: 0 8px;
@@ -62,10 +87,6 @@
 
         .ui.label {
           border-width: 2px;
-
-          &.basic {
-            background-color: $lightGray !important;
-          }
 
           &.green {
             background-color: $green !important;
@@ -76,10 +97,45 @@
             background-color: $red !important;
             border-color: $red !important;
           }
+
+          &.blue {
+            background-color: $blue !important;
+            border-color: $blue !important;
+          }
+
+          &.purple {
+            background-color: $purple !important;
+            border-color: $purple !important;
+          }
+
+          &.teal {
+            background-color: $teal !important;
+            border-color: $teal !important;
+          }
+
+          &.pink {
+            background-color: $pink !important;
+            border-color: $pink !important;
+          }
+
+          &.gray {
+            background-color: $gray !important;
+            border-color: $gray !important;
+
+          }
+
+          &.basic {
+            background-color: $lightGray !important;
+          }
+
         }
 
-        .last {
+        .relation {
           margin-left: auto;
+        }
+
+        .meal {
+          margin-left: 8px;
         }
       }
     }
@@ -96,9 +152,19 @@
   }
 }
 
-::ng-deep {
-    .highchart, .highcharts-container {
-      height: 100%;
-      width: 100%;
+@media screen and (max-width: $phone-max) {
+  :host {
+    .list {
+      div > span {
+        min-height: 40px;
+      }
     }
+  }
+}
+
+::ng-deep {
+  .highchart, .highcharts-container {
+    height: 100%;
+    width: 100%;
+  }
 }
