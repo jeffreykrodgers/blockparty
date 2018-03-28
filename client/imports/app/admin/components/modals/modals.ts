@@ -54,7 +54,7 @@ export class ModalsView implements OnInit {
         this.modalMessage = false;
         this.activeForm = 'Guest';
         this.modalData.address = {};
-        this.registries = [{name: 'Zola'}];
+        this.registries = [{name: 'Zola'}, {name: 'Target'}];
         this.colors = ['teal', 'pink', 'purple', 'blue'];
         this.parties = ['Bride', 'Groom', 'Couple'];
         this.relations = ['Family', 'Friend'];
