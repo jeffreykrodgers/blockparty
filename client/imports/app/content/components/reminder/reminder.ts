@@ -73,13 +73,13 @@ export class ReminderComponent implements OnInit {
 
 
         this.links = this.rsvpData.links.filter(
-            (link: any) => link.name === 'Registries');
+            (link: any) => link.name === 'Songs');
 
         if (this.links.length === 0)
-            this.rsvpData.links.push({name: 'Registries', slug: '/rsvp/registries'});
+            this.rsvpData.links.push({name: 'Songs', slug: '/rsvp/songs'});
 
         this._rsvpService.setRsvpData(this.rsvpData, true);
-        this._router.navigate(['/rsvp/registries']);
+        this._router.navigate(['/rsvp/songs']);
 
     }
 }

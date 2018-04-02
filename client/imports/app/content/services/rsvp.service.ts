@@ -29,9 +29,17 @@ export class RsvpService {
         return this.rsvpDataObservable.asObservable();
     }
 
-    setRsvpData(rsvpData: any, updateDb?: boolean) {
+    setRsvpData(rsvpData: any, updateDb?: boolean, song?: boolean) {
         if (updateDb) {
-            WeddingService.updateWeddingItem(this.weddingId, rsvpData.guests);
+            WeddingService.updateWeddingItem(this.weddingId, rsvpData.guests, 'Guest');
+        }
+
+        if (song) {
+            if (rsvpData.song._id) {
+                WeddingService.updateWeddingItem(this.weddingId, [rsvpData.song], 'Song');
+            } else {
+                WeddingService.addWeddingItem(this.weddingId, [rsvpData.song], 'Song');
+            }
         }
 
         this.rsvpDataObservable.next(rsvpData);

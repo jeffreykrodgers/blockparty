@@ -84,8 +84,16 @@
       margin: 0 15px 0 5px;
     }
 
-    .name, .tags {
+    .clmn {
       flex: 1;
+      display: flex;
+      margin-right: 20px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .name, .tags {
+      flex: 2;
       display: flex;
       margin-right: 20px;
       flex-wrap: wrap;
@@ -130,9 +138,13 @@
       flex: 2;
     }
 
+    .lyft {
+      margin: 0;
+    }
+
     .details {
       display: flex;
-      flex: 1;
+      flex: 2;
 
       .detail {
         margin: 0 8px;
@@ -150,6 +162,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-wrap: nowrap;
 
             i {
               margin-left: 2px;
