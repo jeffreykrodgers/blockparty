@@ -9,15 +9,15 @@ import style from "../../style/themes/default/reminder.scss";
     template,
     styles: [style]
 })
-export class LyftComponent implements OnInit, OnDestroy {
+export class LyftComponent implements OnInit {
     rsvpData: any;
-    lyftGuest?: string;
+    lyftGuest?: any;
     guests?: any;
     links?: object[];
 
     constructor(private _rsvpService: RsvpService,
                 private _router: Router) {
-
+        this.lyftGuest = {};
     }
     ngOnInit() {
         this._rsvpService.getRsvpData().subscribe(rsvp => {
@@ -28,13 +28,17 @@ export class LyftComponent implements OnInit, OnDestroy {
             if (!this.rsvpData.invitation_num)
                 this._router.navigate(['/rsvp']);
 
-            this.lyftGuest = rsvp.guests.filter(function (guest) {
-                return guest.lyft;
-            })[0];
+            this.guests = rsvp.guests;
+            this.lyftGuest.guest = rsvp.guests.find(guest => guest.lyft)._id;
         });
     }
-    ngOnDestroy() {}
+
     submitLyft() {
+        let guest = this.rsvpData.guests.find(guest => guest._id === this.lyftGuest.guest);
+        let i = this.rsvpData.guests.indexOf(guest);
+        this.rsvpData.guests.forEach(guest => guest.lyft = false);
+        this.rsvpData.guests[i].lyft = true;
+
         this.links = this.rsvpData.links.filter(
             (link: any) => link.name === 'Registries');
 

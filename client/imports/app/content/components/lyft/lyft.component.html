@@ -3,10 +3,12 @@
     <div class="field">
         <div class="reminders">
             <div class="reminder-form animated fadeInLeft">
-                <sm-select placeholder="Who needs it?" class="fluid search" [(model)]="lyftGuest">
-                    <option *ngFor="let guest of guests" [value]="guest._id">{{ guest.name }}</option>
+                <sm-select placeholder="Who needs it?"
+                           class="fluid search"
+                           [(model)]="lyftGuest.guest">
+                    <option *ngFor="let guest of guests"
+                            [value]="guest._id">{{ guest.name }}</option>
                 </sm-select>
-                <input class="ui left input" placeholder="Lyft" [(ngModel)]="lyft">
             </div>
         </div>
     </div>
