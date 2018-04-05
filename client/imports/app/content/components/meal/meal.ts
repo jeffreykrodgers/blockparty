@@ -80,6 +80,7 @@ export class MealComponent implements OnInit {
             this.activeGuest = this.guests[guest_index + 1];
             this.subscribeWedding();
             $('.content').animate({ scrollTop: $(".content").offset().top }, 300);
+            $('.field').addClass('fadeOut').removeClass('fadeOut');
         } else {
             this.links = this.rsvpData.links.filter(
                 (link:any) => link.name === 'Reminders');

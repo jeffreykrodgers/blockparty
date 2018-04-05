@@ -28,16 +28,23 @@ export class LyftComponent implements OnInit {
             if (!this.rsvpData.invitation_num)
                 this._router.navigate(['/rsvp']);
 
-            this.guests = rsvp.guests;
-            this.lyftGuest.guest = rsvp.guests.find(guest => guest.lyft)._id;
+            if (rsvp.guests) {
+                this.guests = rsvp.guests;
+                let lyftArray = this.guests.filter(guest => guest.lyft);
+                this.lyftGuest.guest = lyftArray[0] ? lyftArray[0]._id : {};
+               // console.log(this.guests.filter(guest => guest.lyft));
+            }
         });
     }
 
     submitLyft() {
         let guest = this.rsvpData.guests.find(guest => guest._id === this.lyftGuest.guest);
         let i = this.rsvpData.guests.indexOf(guest);
-        this.rsvpData.guests.forEach(guest => guest.lyft = false);
-        this.rsvpData.guests[i].lyft = true;
+
+        if (i && this.rsvpData.guests[i]) {
+            this.rsvpData.guests.forEach(guest => guest.lyft = false);
+            this.rsvpData.guests[i].lyft = true;
+        }
 
         this.links = this.rsvpData.links.filter(
             (link: any) => link.name === 'Registries');
