@@ -169,6 +169,14 @@ export class ModalsView implements OnInit, OnDestroy, AfterViewInit {
         this.closeModal(modal);
     }
 
+    resetItem(modal) {
+        this.modalData.meal = "";
+        this.modalData.attending = false;
+        this.modalData.completed = false;
+        this.modalData.dietary = "";
+        this.modalData.lyft = false;
+    }
+
     editItem(form) {
         this.activeForm = form;
         this.modalMode = 'Edit';
