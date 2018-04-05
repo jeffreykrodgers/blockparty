@@ -13,6 +13,7 @@ interface Wedding {
     registries? : Registry[];
     announcements?: Announcement[];
     uploads?: Upload[];
+    songs?: Song[];
 }
 
 interface Spouse {
@@ -23,6 +24,12 @@ interface Spouse {
     email?: String;
     password?: String;
     services?: any;
+}
+
+interface Song {
+    _id?: string;
+    song: string;
+    invite: string;
 }
 
 interface Budget {
@@ -56,6 +63,7 @@ interface Guest {
     table?: number;
     child?: boolean;
     gift?: boolean;
+    lyft?: boolean;
 }
 
 interface Table {

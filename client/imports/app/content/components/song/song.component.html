@@ -1,0 +1,11 @@
+<h2 class="animated fadeIn">Recommend a song for our DJ!</h2>
+<div class="ui form">
+    <div class="field">
+        <div class="reminders">
+            <div class="reminder-form animated fadeInLeft">
+                <input class="ui left input" placeholder="Song" [(ngModel)]="rsvpData.song.title">
+            </div>
+        </div>
+    </div>
+    <button class="ui big basic inverted button pill" (click)="submitSong()">Next</button>
+</div>

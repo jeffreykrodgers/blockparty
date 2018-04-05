@@ -17,11 +17,15 @@
                           'purple': guest.party === 'Couple'}">{{guest.party}}</span>
         <span class="ui horizontal basic blue label" *ngIf="guest.child">Child</span>
     </div>
+    <div class="clmn">
+        <span class="ui horizontal pink label" *ngIf="guest.lyft"><i class="lyft icon"></i></span>
+    </div>
     <div class="details">
         <div class="meals detail">
             <div *ngIf="guest.attending && guest.meal"
                  class="ui horizontal label"
                  [ngClass]="labelColor(guest.meal)">
+                <i class="utensils icon"></i>
                 {{guest.meal}}
                 <i *ngIf="mealMissing(guest.meal)" class="material-icons red">error</i>
             </div>
@@ -30,7 +34,6 @@
                 <i class="white warning icon"></i>
                 {{guest.dietary}}
             </div>
-
         </div>
     </div>
 </div>

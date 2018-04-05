@@ -19,6 +19,8 @@ import {FinishedComponent} from "./content/components/finished/finished";
 import {TablesView} from "./admin/views/tables/tables.view";
 import {AuthView} from "./admin/views/auth/auth.view";
 import {RegistriesView} from "./admin/views/registries/registries.view";
+import {LyftComponent} from "./content/components/lyft/lyft.component";
+import {SongComponent} from "./content/components/song/song.component";
 
 export const routes: Route[] = [
     {path: '', component: ContentView, children: [
@@ -28,6 +30,8 @@ export const routes: Route[] = [
             {path: 'guests', component: GuestComponent},
             {path: 'meals', component: MealComponent},
             {path: 'reminders', component: ReminderComponent},
+            {path: 'lyft', component: LyftComponent},
+            {path: 'songs', component: SongComponent},
             {path: 'registries', component: RegistryComponent},
             {path: 'summary', component: SummaryComponent},
             {path: 'finished', component: FinishedComponent},

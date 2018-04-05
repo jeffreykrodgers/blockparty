@@ -20,6 +20,12 @@ Meteor.methods({
                         "guests._id": item._id
                     }, {$set: {"guests.$": item}});
                     break;
+                case 'Song':
+                    WeddingCollection.collection.update({
+                        _id: weddingId,
+                        "songs._id": item._id
+                    }, {$set: {"songs.$": item}});
+                    break;
                 case 'Table':
                     WeddingCollection.collection.update({
                         _id: weddingId,
@@ -66,6 +72,12 @@ Meteor.methods({
             case 'Guest':
                 items.forEach((item?: any) => {
                     WeddingCollection.collection.update({_id: weddingId}, {$push: {"guests": item}});
+                });
+                break;
+            case 'Song':
+                console.log(items);
+                items.forEach((item?: any) => {
+                    WeddingCollection.collection.update({_id: weddingId}, {$push: {"songs": item}});
                 });
                 break;
             case 'Invitation':

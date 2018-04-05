@@ -9,4 +9,3 @@ enableProdMode();
 Meteor.startup(() => {
     platformBrowserDynamic().bootstrapModule(AppModule);
 });
-

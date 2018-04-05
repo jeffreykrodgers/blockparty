@@ -126,6 +126,7 @@
                            class="fluid search"
                            (change)="printChange($event)"
                            [(model)]="modalData.meal">
+                    <option>Select</option>
                     <option *ngFor="let meal of meals" value="{{meal.name}}">
                         {{meal.name}}
                     </option>
@@ -368,6 +369,12 @@
              (click)="deleteItem(itemModal)">
             <i class="trash icon"></i>
             Delete {{activeForm}}
+        </div>
+        <div class="ui left floated icon button"
+            *ngIf="modalMode === 'Edit' && activeForm === 'Guest'"
+            (click)="resetItem(itemModal)">
+            <i class="refresh icon"></i>
+            Reset {{activeForm}}
         </div>
         <button class="ui icon button primary"
                 (click)="submitModal(itemModal)">

@@ -22,6 +22,7 @@ export class SearchComponent implements OnInit {
 
     invitationNumber: string;
     guests: any;
+    songs: any;
     error: any;
     rsvpData: any;
 
@@ -35,6 +36,7 @@ export class SearchComponent implements OnInit {
     ngOnInit() {
         this.weddingData.subscribe(wedding =>{
             this.guests = wedding[0].guests;
+            this.songs = wedding[0].songs || [];
         });
     }
 
@@ -43,22 +45,27 @@ export class SearchComponent implements OnInit {
             this.invitationNumber = this.invitationNumber.toUpperCase();
             const invitationParty = this.guests.filter(
                 guest => guest.invitation_num == this.invitationNumber);
+            const invitationSong = this.songs.filter(
+                song => song.invite == this.invitationNumber);
+
+            console.log("SONG:", invitationSong);
 
             if (invitationParty.length > 0) {
                 this._rsvpService.setRsvpData({
                     guests: invitationParty,
                     invitation_num: this.invitationNumber,
-                    links: [{name: 'Guests', slug: '/rsvp/guests'}]
+                    links: [{name: 'Guests', slug: '/rsvp/guests'}],
+                    song: invitationSong[0] || {}
                 });
 
                 this._router.navigate(['/rsvp/guests']);
 
             } else {
-                this.error = "No Guests found with this invitation number";
+                this.error = "No Guests found with this invitation number :(";
             }
 
         } else {
-            this.error = "Please input an invitation number";
+            this.error = "We won't know who you are without an invitation number ;)";
         }
     }
 }

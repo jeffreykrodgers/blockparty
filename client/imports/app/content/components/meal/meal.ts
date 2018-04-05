@@ -62,8 +62,6 @@ export class MealComponent implements OnInit {
         }
 
         this.subscribeWedding();
-
-        console.log(this.activeGuest);
     }
 
     resetDietary() {
@@ -82,6 +80,7 @@ export class MealComponent implements OnInit {
             this.activeGuest = this.guests[guest_index + 1];
             this.subscribeWedding();
             $('.content').animate({ scrollTop: $(".content").offset().top }, 300);
+            $('.field').addClass('fadeOut').removeClass('fadeOut');
         } else {
             this.links = this.rsvpData.links.filter(
                 (link:any) => link.name === 'Reminders');
@@ -100,7 +99,6 @@ export class MealComponent implements OnInit {
     }
 
     toggleDietary() {
-        console.log("Dietary", this.dietary);
         this.activeGuest.meal = "";
         this.dietary = !this.dietary;
     }
@@ -108,10 +106,8 @@ export class MealComponent implements OnInit {
     subscribeWedding() {
         this.weddingData.subscribe(wedding => {
             if (this.activeGuest.child) {
-                console.log('Dis a child');
                 this.meals = this._filterPipe.transformMeal(wedding[0].meals, [{'kids': true}]);
             } else {
-                console.log('Dis not a child');
                 this.meals = this._filterPipe.transformMeal(wedding[0].meals, [{'kids': false}]);
             }
             this.uploads = wedding[0].uploads;
