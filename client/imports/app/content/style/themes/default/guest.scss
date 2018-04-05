@@ -24,11 +24,45 @@
       align-items: center;
       margin: 0;
       padding: 0 10px;
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      & > .ui.button.basic.inverted {
+        box-shadow: none !important;
+
+        span {
+          width: 0;
+          overflow: hidden;
+          transition: all .2s;
+          display: none;
+        }
+
+        i {
+          opacity: .5;
+          transition: all .2s;
+        }
+
+        &:hover {
+          span {
+            width: auto;
+            display: inline;
+          }
+
+          i {
+            opacity: 1;
+          }
+        }
+      }
 
       .guest {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-right: 0;
+
         &> input{
           visibility: hidden;
           position: absolute;
@@ -46,9 +80,10 @@
           flex-direction: column;
           align-items: center;
 
-          span {
-            margin-bottom: 5px;
+          h4 {
+            margin: 8px 0;
             font-weight: 300;
+            color: $white;
           }
         }
       }

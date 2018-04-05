@@ -62,6 +62,10 @@ import {admin_RegistryComponent} from "./admin/components/registry/registry.comp
 import {OrderByPipe} from "./common/pipes/sort.pipe";
 import {FilterPipe} from "./common/pipes/filter.pipe";
 import {FilterService} from "./admin/services/filter.service";
+import {RangePipe} from "./admin/pipes/range.pipe";
+import {DragulaModule} from "ng2-dragula";
+import {SongComponent} from "./content/components/song/song.component";
+import {LyftComponent} from "./content/components/lyft/lyft.component";
 
 @NgModule({
     // Components, Pipes, Directive
@@ -104,6 +108,8 @@ import {FilterService} from "./admin/services/filter.service";
         FinishedComponent,
         RegistryComponent,
         GuestComponent,
+        SongComponent,
+        LyftComponent,
         MealComponent,
         PhotosComponent,
         ReminderComponent,
@@ -114,7 +120,8 @@ import {FilterService} from "./admin/services/filter.service";
 
         //Pipes
         OrderByPipe,
-        FilterPipe
+        FilterPipe,
+        RangePipe
     ],
     // Entry Components
     entryComponents: [
@@ -141,6 +148,7 @@ import {FilterService} from "./admin/services/filter.service";
         RouterModule.forRoot(routes),
         NgSemanticModule,
         MainPipe,
+        DragulaModule,
         ChartModule.forRoot(
             require('highcharts'),
             require('highcharts/highcharts-more'),

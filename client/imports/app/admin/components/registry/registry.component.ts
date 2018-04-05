@@ -29,6 +29,9 @@ export class admin_RegistryComponent implements OnInit {
             case 'Zola':
                 this.image = '/img/zola-logo-white.svg';
                 break;
+            case 'Target':
+                this.image = '/img/target_logo.svg';
+                break;
         }
     }
 }

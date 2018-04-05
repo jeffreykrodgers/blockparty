@@ -1,11 +1,14 @@
-<dashboard-area [slug]="'Table'" class="tables" >
+<dashboard-area [slug]="'Tables'" [items]="tables" class="tables" >
     <div class="list">
-        <table-card class="clickable animated zoomIn"
+        <table-card class="clickable"
                     *ngFor="let table of tables; let i=index"
                     [ngStyle]="{'animation-delay': '.'+ i +'s'}"
+                    [weddingId]="weddingId"
+                    [guests]="getTableGuests(table)"
+                    [meals]="meals"
                     [table]="table"
                     [index]="i + 1"
-                    (click)="_modalService.openModal('Table', table, 'Edit')">
+                    (seatsChanged)="updateSeats()">
         </table-card>
         <div class="insert animated fadeIn" (click)="_modalService.openModal('Table')">
             <div class="item">

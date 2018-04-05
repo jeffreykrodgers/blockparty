@@ -1,0 +1,16 @@
+<h2 class="animated fadeIn">Will you need any Lyft credits?</h2>
+<div class="ui form">
+    <div class="field">
+        <div class="reminders">
+            <div class="reminder-form animated fadeInLeft">
+                <sm-select placeholder="Who needs it?"
+                           class="fluid search"
+                           [(model)]="lyftGuest.guest">
+                    <option *ngFor="let guest of guests"
+                            [value]="guest._id">{{ guest.name }}</option>
+                </sm-select>
+            </div>
+        </div>
+    </div>
+    <button class="ui big basic inverted button pill" (click)="submitLyft()">Next</button>
+</div>

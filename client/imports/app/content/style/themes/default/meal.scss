@@ -44,13 +44,21 @@
             flex-direction: column;
             align-items: center;
 
+            .translucent50 {
+              opacity: .5;
+            }
+
+            .clickable {
+              cursor: pointer;
+            }
+
             span {
               margin-bottom: 5px;
               font-weight: 300;
             }
 
             .meal-image {
-              background-color: $gray;
+              color: $white;
               height: 150px;
               width: 200px;
               border-radius: 8px;
@@ -58,6 +66,11 @@
               justify-content: center;
               align-items: center;
               overflow: hidden;
+
+              &.image-placeholder {
+                border: 2px dashed translucent50($white);
+                padding: 10px;
+              }
 
               img {
                 min-height: 100%;

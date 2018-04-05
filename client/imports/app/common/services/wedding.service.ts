@@ -25,8 +25,12 @@ export class WeddingService {
         return this.data;
     }
 
-    public static updateWeddingItem(id: string, obj: object) {
-        Meteor.call('updateItem', id, 'Guest', obj);
+    public static addWeddingItem(id, obj, type) {
+        Meteor.call('addItem', id, type, obj);
+    };
+
+    public static updateWeddingItem(id: string, obj: object, type: string) {
+        Meteor.call('updateItem', id, type, obj);
     }
 
     public deleteWeddingItem(type: string, obj:any) {

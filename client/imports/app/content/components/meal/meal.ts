@@ -28,6 +28,7 @@ export class MealComponent implements OnInit {
     activeGuest: any;
     links: object[];
     uploads: any;
+    dietary: boolean;
 
     constructor(private _weddingService: WeddingService,
                 private _rsvpService: RsvpService,
@@ -35,6 +36,7 @@ export class MealComponent implements OnInit {
                 private _filterPipe: FilterPipe,
                 private element: ElementRef) {
         this.weddingData = this._weddingService.getWedding({}).zone();
+        this.dietary = false;
     }
 
     ngOnInit() {
@@ -60,8 +62,14 @@ export class MealComponent implements OnInit {
         }
 
         this.subscribeWedding();
+    }
 
-        console.log(this.activeGuest);
+    resetDietary() {
+        Meteor.setTimeout(() => {
+            if (this.activeGuest.meal) {
+                this.dietary = false;
+            }
+        }, 800);
     }
 
     setMeal() {
@@ -72,6 +80,7 @@ export class MealComponent implements OnInit {
             this.activeGuest = this.guests[guest_index + 1];
             this.subscribeWedding();
             $('.content').animate({ scrollTop: $(".content").offset().top }, 300);
+            $('.field').addClass('fadeOut').removeClass('fadeOut');
         } else {
             this.links = this.rsvpData.links.filter(
                 (link:any) => link.name === 'Reminders');
@@ -89,13 +98,16 @@ export class MealComponent implements OnInit {
         return upload[0].path;
     }
 
+    toggleDietary() {
+        this.activeGuest.meal = "";
+        this.dietary = !this.dietary;
+    }
+
     subscribeWedding() {
         this.weddingData.subscribe(wedding => {
             if (this.activeGuest.child) {
-                console.log('Dis a child');
                 this.meals = this._filterPipe.transformMeal(wedding[0].meals, [{'kids': true}]);
             } else {
-                console.log('Dis not a child');
                 this.meals = this._filterPipe.transformMeal(wedding[0].meals, [{'kids': false}]);
             }
             this.uploads = wedding[0].uploads;

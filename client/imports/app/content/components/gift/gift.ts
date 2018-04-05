@@ -51,6 +51,8 @@ export class RegistryComponent implements OnInit {
         switch (registry.name) {
             case 'Zola':
                 return 'img/zola-logo-white.svg';
+            case 'Target':
+                return 'img/target_logo.svg'
         }
     }
 

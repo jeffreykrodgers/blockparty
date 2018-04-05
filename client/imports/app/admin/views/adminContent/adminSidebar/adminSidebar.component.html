@@ -12,13 +12,13 @@
                [routerLinkActive]="['active']"
                [ngClass]="{'disabled': link.disabled}">
                 <i class="material-icons">{{link.icon}}</i>
-                <h5>{{link.text}}</h5>
+                <h4>{{link.text}}</h4>
             </a>
         </div>
         <div class="item bottomed">
             <a class="link" (click)="logout()">
                 <i class="material-icons">power_settings_new</i>
-                <h5>Log Out</h5>
+                <h4>Log Out</h4>
             </a>
         </div>
     </menu>
